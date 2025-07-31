@@ -4,6 +4,8 @@
 
 This document outlines the comprehensive development plan for OmniBazaar's mobile applications (iOS and Android) using a modified parallel approach. The mobile apps will provide full functionality of the web extension while leveraging mobile-native features for enhanced user experience.
 
+**UPDATED (2025-07-23)**: Now integrates with OmniBazaar's Hybrid L2.5 Architecture where OmniCoin is deployed ON COTI V2 with dual consensus (COTI for transactions, Proof of Participation for business logic).
+
 ## Development Philosophy
 
 ### Modified Parallel Approach
@@ -55,15 +57,26 @@ This document outlines the comprehensive development plan for OmniBazaar's mobil
 
 ## Architecture Overview
 
+### Hybrid L2.5 Integration for Mobile
+
+The mobile app integrates with OmniBazaar's dual-layer architecture:
+- **COTI V2 Layer**: OmniCoin token operations with MPC privacy
+- **Validator Layer**: Marketplace business logic with Proof of Participation
+
 ### Shared Architecture with Web
 
 ```
 OmniBazaar/
 ├── shared/                          # Shared between web and mobile
 │   ├── api/                         # API client and types
+│   │   ├── coti-layer/              # COTI V2 transaction layer APIs
+│   │   └── validator-layer/         # OmniBazaar validator APIs
 │   ├── constants/                   # App-wide constants
 │   ├── hooks/                       # Reusable React hooks
 │   ├── services/                    # Business logic
+│   │   ├── omnicoin/                # OmniCoin token services
+│   │   ├── privacy/                 # MPC/garbled circuits
+│   │   └── validators/              # Validator network services
 │   ├── store/                       # Redux store configuration
 │   ├── types/                       # TypeScript definitions
 │   └── utils/                       # Utility functions
@@ -74,6 +87,8 @@ OmniBazaar/
 │   │   ├── navigation/              # Navigation configuration
 │   │   ├── screens/                 # Screen components
 │   │   ├── native/                  # Platform-specific code
+│   │   │   ├── coti-integration/    # COTI V2 mobile integration
+│   │   │   └── biometric-privacy/   # Biometric + privacy features
 │   │   └── theme/                   # Mobile theme/styling
 │   ├── ios/                         # iOS-specific code
 │   ├── android/                     # Android-specific code
@@ -82,21 +97,32 @@ OmniBazaar/
 
 ### Mobile-Specific Architecture
 
-1. **Offline-First Design**
+1. **Dual-Layer Mobile Integration**
+   - COTI V2 layer for OmniCoin token operations
+   - Validator layer for marketplace business logic
+   - Seamless switching between layers based on operation type
+
+2. **Privacy-Enhanced Mobile Features**
+   - COTI MPC/garbled circuits integration
+   - Biometric authentication combined with privacy features
+   - Secure enclave for private key storage
+   - Privacy-preserving push notifications
+
+3. **Offline-First Design**
    - Local database for all user data
    - Background sync when connected
-   - Optimistic UI updates
+   - Optimistic UI updates with dual-layer coordination
 
-2. **Push Notification Architecture**
-   - Order updates
-   - Chat messages
-   - Price alerts
-   - Transaction confirmations
+4. **Push Notification Architecture**
+   - Order updates (via validator layer)
+   - Chat messages (encrypted via validator layer)
+   - OmniCoin transaction confirmations (via COTI V2)
+   - Staking rewards notifications
 
-3. **Biometric Security**
-   - Wallet access
-   - Transaction signing
-   - App authentication
+5. **Enhanced Biometric Security**
+   - Wallet access with privacy protection
+   - Transaction signing with MPC integration
+   - App authentication with dual-layer support
 
 ## Feature Implementation Plan
 
@@ -128,32 +154,45 @@ OmniBazaar/
 
 ### Phase 2: Core Features (Months 4-6)
 
-#### 2.1 Wallet Module
+#### 2.1 Wallet Module (Hybrid L2.5 Integration)
 - **Features from Wallet module progress**:
-  - Multi-asset support (leveraging existing Redux store)
-  - Transaction history with infinite scroll
-  - QR code generation/scanning
-  - Contact management
-  - Biometric transaction signing
+  - OmniCoin token support (deployed on COTI V2)
+  - Multi-asset support with privacy features
+  - Transaction history with dual-layer operations
+  - QR code generation/scanning with privacy options
+  - Contact management with validator integration
+  - Biometric transaction signing with MPC privacy
+
+- **L2.5 Architecture Enhancements**:
+  - Dual-layer transaction processing (COTI + validators)
+  - Privacy-enabled staking operations
+  - Proof of Participation score display
+  - Zero-fee transaction experience
 
 - **Mobile-Native Enhancements**:
-  - NFC tap-to-pay support
-  - Apple Pay/Google Pay integration
-  - Widget for balance display
-  - Push notifications for transactions
+  - NFC tap-to-pay with privacy protection
+  - Apple Pay/Google Pay integration for OmniCoin
+  - Widget for OmniCoin balance and staking rewards
+  - Push notifications for COTI and validator transactions
 
-#### 2.2 Marketplace Module
+#### 2.2 Marketplace Module (Validator Layer Integration)
 - **Features from Bazaar module progress**:
-  - Product browsing with filters
-  - Search with voice input
-  - Category navigation
-  - Shopping cart management
-  - Order tracking
+  - Product browsing with validator-processed filters
+  - Search with voice input via validator network
+  - Category navigation with Proof of Participation ranking
+  - Shopping cart management with privacy features
+  - Order tracking via validator consensus
+
+- **L2.5 Architecture Enhancements**:
+  - Zero-fee marketplace transactions
+  - Privacy-preserved seller/buyer information
+  - Validator-verified product authenticity
+  - Encrypted chat integration with sellers
 
 - **Mobile-Native Enhancements**:
-  - Camera integration for product photos
+  - Camera integration for product photos (IPFS storage via validators)
   - Barcode scanning for product lookup
-  - Location-based listings
+  - Location-based listings with privacy protection
   - AR preview for products (future)
   - Share products via native share sheet
 
