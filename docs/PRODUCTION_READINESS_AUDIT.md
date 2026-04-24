@@ -1,6 +1,6 @@
 # OmniBazaar Mobile — Production Readiness Audit
 
-**Version:** Audit snapshot 2026-04-24 (continuation III — OmniRelay + NFT buy + Predictions + Staking + TxHistory + P2P Escrow)
+**Version:** Audit snapshot 2026-04-25 (continuation IV — inventory views + hardware BLE + Maestro + EAS profiles)
 **Scope:** Phase-by-phase status of the Mobile app against the
 `Validator/ADD_MOBILE_APP.md` v2.1 plan, grouped by the 6 tracks
 (A–F) defined in that plan's Part 19.
@@ -44,14 +44,14 @@ Legend:
 |---|---|---|---|
 | C1.a | Browse + filter works | ✅ | `P2PBrowseScreen` wired to `MarketplaceClient.listListings` with search + refresh. |
 | C1.b | Purchase completes E2E | ✅ | `P2PListingDetailScreen` + `EscrowPurchaseService` — signs a `CreateEscrow` EIP-712 intent (verifyingContract=MinimalEscrow), posts through `MarketplaceClient.createEscrow` with referrer cookies; validator funds the on-chain escrow via OmniRelay. 2 integration tests. |
-| C1.c | Receipt / order reflects in portfolio | 🟨 | `TxHistoryService` surfaces marketplace settlements from the validator's history endpoint. Per-escrow status timeline (Created/Funded/Shipped/Released) is a Phase 5 follow-up. |
+| C1.c | Receipt / order reflects in portfolio | ✅ | `EscrowsScreen` + `InventoryService.listBuyerEscrows` → validator `/api/v1/marketplace/escrows/:address?role=buyer`. Per-escrow status timeline rendered with colour-coded state pill (Created → Funded → Shipped → Released / Refunded / Disputed / Cancelled). Profile hub gains a "Your purchases" tile. |
 
 ### C.2 NFT
 | # | Criterion | Status | Notes |
 |---|---|---|---|
 | C2.a | Browse + filter works | ✅ | NFTBrowseScreen wired to `MarketplaceClient.listNFTCollections`, chain picker across 5 EVM chains, image/floor/volume card. |
 | C2.b | Buy via MinimalEscrow settlement | ✅ | `NFTDetailScreen` + `NFTBuyService` — reads ERC-20 allowance via `nftBuyPrereqs.readErc20Allowance`, auto-approves via OmniRelay if short, builds + validates `BuyNFT` EIP-712 intent against every on-chain guard in `UnifiedFeeVault.settleNftBuy`, POSTs to `/api/v1/nft/buy`. 5 integration tests cover happy + approve + validator-reject + self-buy rejection. |
-| C2.c | Receipt reflects in portfolio | 🟨 | `TxHistoryService` surfaces NFT settlements from the validator's history endpoint (category=`nft`). Per-NFT ownership view still pending — plan item for a dedicated inventory screen. |
+| C2.c | Receipt reflects in portfolio | ✅ | `OwnedNFTsScreen` + `InventoryService.listOwnedNFTs` → validator `/api/v1/nft/owned/:address`. 2-column grid with collection image, token id, and a "Listed" chip on actively-listed tokens. Profile hub gains a "Your NFTs" tile. |
 
 ### C.3 RWA
 | # | Criterion | Status | Notes |
@@ -72,7 +72,7 @@ Legend:
 |---|---|---|---|
 | C5.a | Browse markets | ✅ | PredictionsBrowseScreen wired to `PredictionsClient.getOpenMarkets`. Question + category + YES cents + volume + resolution date. |
 | C5.b | Buy outcome + claim completes E2E | ✅ | `PredictionsMarketDetailScreen` + `PredictionsService` — outcome tabs (YES/NO) with live `getTradeQuote`, buy via `buildTradeTx` + `RelaySubmitService.submitTransaction` (handles optional ERC-20 approval + trade tx), then `submitTrade`. Claim signs EIP-712 + legacy EIP-191 + `buildClaim` + broadcast on destination CTF chain. Envelope safety check refuses non-zero value. 6 integration tests. |
-| C5.c | Claim reflects in portfolio | 🟨 | `TxHistoryService` surfaces `category=predictions` rows from the validator. Per-market open-position view is a Phase 5 follow-up (ties into `PredictionsClient.getUserPositions`). |
+| C5.c | Claim reflects in portfolio | ✅ | `PredictionPositionsScreen` → `PredictionsClient.getUserPositions`. Shows entry / mark / P&L per position with a Claim CTA on every resolved+claimable row — reuses `PredictionsService.claimOutcome` so the post-claim tx broadcasts on the destination CTF chain. Profile hub gains a "Your predictions" tile. |
 
 ---
 
@@ -80,10 +80,10 @@ Legend:
 
 | # | Criterion | Status | Notes |
 |---|---|---|---|
-| D1 | Ledger Nano X BLE signs challenge + EIP-712 + EIP-1559 on iOS + Android | ⛔ | Mobile BLE adapter + `@ledgerhq/hw-transport-react-native-ble` integration pending Phase 6. |
-| D2 | Ledger Nano S Plus USB-C signs on Android | ⛔ | Requires `react-native-hid` + HID transport. |
-| D3 | Trezor Model T signs via WebView fallback | ⛔ | Trezor Connect hosted webview integration pending. |
-| D4 | Hardware challenge-response login completes | ⛔ | `ChallengeAuthClient.hardwareSigner()` exists in Wallet; Mobile transport wiring pending. |
+| D1 | Ledger Nano X BLE signs challenge + EIP-712 + EIP-1559 on iOS + Android | 🟨 | `MobileBLEAdapter` implements the `@wallet/platform/adapters::BLEAdapter` contract using `react-native-ble-plx`: scans for Ledger Nano X service UUID, connects, frames APDU via the Nordic-UART write / notify characteristic pair, reassembles multi-chunk replies. `HardwareWalletScreen` registers the adapter lazily on first mount. Physical-device round-trip deferred to a Ledger-on-device smoke session. |
+| D2 | Ledger Nano S Plus USB-C signs on Android | ⛔ | Android-only; requires `@ledgerhq/hw-transport-react-native-hid` native module + manifest wiring. Tracking as a Phase 6 Week 2 follow-up. |
+| D3 | Trezor Model T signs via WebView fallback | ⛔ | `HardwareWalletScreen` surfaces a "Trezor coming with the next hardware batch" note. The WebView-hosted Trezor Connect integration ships after D1 is verified on-device. |
+| D4 | Hardware challenge-response login completes | 🟨 | `ChallengeAuthClient.hardwareSigner()` already exists in Wallet; with `MobileBLEAdapter` registered the Ledger path is wired end-to-end. Login-screen UX entry point is the Phase 6 Week 2 follow-up (today the adapter is only exercised via `HardwareWalletScreen`'s pair-then-verify round-trip). |
 
 ---
 
@@ -91,8 +91,8 @@ Legend:
 
 | # | Criterion | Status | Notes |
 |---|---|---|---|
-| E1 | iOS download size < 60 MB | ⏳ | No production EAS build yet. Bundle tree-shaking will matter most once wallet-core families load. |
-| E2 | Android AAB split-APK download < 45 MB | ⏳ | Same. |
+| E1 | iOS download size < 60 MB | 🟨 | `eas.json` gains a `production` profile producing AAB (Play) + IPA (App Store). Size measurement runs off the first real build artifact — expected Phase 11 early. |
+| E2 | Android AAB split-APK download < 45 MB | 🟨 | Same `eas.json` production profile. `production-apk` variant exists for the website sideload track. |
 | E3 | Cold start ≤ 2.0s on iPhone SE 4 | ⏳ | Instrumentation pending. |
 | E4 | Cold start ≤ 2.5s on Samsung A15 | ⏳ | Instrumentation pending. |
 | E5 | 60fps on FlashList scrolls on Samsung A15 | 🟨 | P2PBrowseScreen uses FlatList; FlashList swap-in is a one-line change. |
@@ -118,6 +118,15 @@ Legend:
 ---
 
 ## Cross-cutting Mobile Implementation Status
+
+### Continuation IV (2026-04-25 end of session)
+- **Track C.c rows 🟨 → ✅**: Three per-subsystem inventory screens — `OwnedNFTsScreen`, `EscrowsScreen`, `PredictionPositionsScreen`. Backed by `InventoryService` (`/api/v1/nft/owned/:address`, `/api/v1/marketplace/escrows/:address?role=buyer`, `PredictionsClient.getUserPositions`). All three defensive against missing validator endpoints — render honest empty state when the indexer is offline. 9 unit tests.
+- **Staking position 🟨 → ✅**: `StakingScreen` now shows staked amount + pending rewards + effective APR + unlock date + participation score at the top; re-reads after every stake/unstake/claim. Fetches via `InventoryService.getStakingPosition`.
+- **Track D1/D4 ⛔ → 🟨**: `MobileBLEAdapter` implements the `@wallet/platform/adapters::BLEAdapter` contract using `react-native-ble-plx` with Ledger's Nordic-UART service + RX/TX characteristics. APDU framed (0x05 header + seq + len + payload) and multi-chunk responses reassembled. `HardwareWalletScreen` lazy-registers on first mount; Profile gains a "Hardware wallet" tile. `app.json` gains BLE permissions + `react-native-ble-plx` Expo plugin config. `package.json` pins `react-native-ble-plx@^3.1.2`.
+- **Track D5 (E2E) ⏳ → 🟨**: `.maestro/` harness with four flows (onboarding → swap → p2p-buy → sign-out) + `config.yaml` + README. `npm run e2e:maestro` / `e2e:maestro:ci` scripts land. Physical-device / CI integration is the next step.
+- **Track E1/E2 ⏳ → 🟨**: `eas.json` with `development` / `preview` / `production-apk` / `production` profiles. `docs/EAS_BUILD.md` documents the four-profile strategy. First real build size lands next session.
+- **Navigation**: `ProfileScreen` gains four new tiles — Your NFTs, Your purchases, Your predictions, Hardware wallet. `RootNavigator` wires each to the corresponding screen and threads the in-memory mnemonic for claim-signing.
+- **Test suite**: 114 → **123 passing / 18 suites / 0 failing / ~1.8s**. Mobile `npm run typecheck` exit 0.
 
 ### Continuation III (2026-04-24 end of session)
 - **Track A5 ⛔/🟨 → ✅**: `RelaySubmitService` wires `WalletRelayingSigner` + `OmniRelayClient` from the Wallet extension for chainId 88008; `SwapService` now uses it for every unsigned tx. Users pay zero gas on L1 swaps. Non-L1 chains keep the direct-broadcast path (5 RelaySubmitService tests + 1 new SwapExecute L1-relay test).

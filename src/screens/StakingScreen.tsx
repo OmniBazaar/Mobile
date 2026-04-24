@@ -8,7 +8,7 @@
  * user never pays gas on OmniCoin L1.
  */
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Alert,
   Pressable,
@@ -30,6 +30,7 @@ import {
   stake as stakeAction,
   unstake as unstakeAction,
 } from '../services/StakingService';
+import { getStakingPosition, type StakingPosition } from '../services/InventoryService';
 
 /** Amount tier + base APR. */
 interface AmountTier {
@@ -81,6 +82,16 @@ export default function StakingScreen(props: StakingScreenProps): JSX.Element {
   const [durationIdx, setDurationIdx] = useState(0);
   const [busy, setBusy] = useState<'stake' | 'unstake' | 'claim' | undefined>(undefined);
   const [message, setMessage] = useState<string | undefined>(undefined);
+  const [position, setPosition] = useState<StakingPosition | undefined>(undefined);
+
+  const loadPosition = useCallback(async (): Promise<void> => {
+    if (staker === '') return;
+    setPosition(await getStakingPosition(staker));
+  }, [staker]);
+
+  useEffect(() => {
+    void loadPosition();
+  }, [loadPosition]);
 
   const canStake = amount !== '' && Number.parseFloat(amount) > 0 && mnemonic !== '';
   const canUnstake = amount !== '' && Number.parseFloat(amount) > 0 && mnemonic !== '';
@@ -100,13 +111,14 @@ export default function StakingScreen(props: StakingScreenProps): JSX.Element {
             defaultValue: `${kind} submitted — tx ${txHash.slice(0, 10)}…`,
           }),
         );
+        await loadPosition();
       } catch (err) {
         setMessage(err instanceof Error ? err.message : String(err));
       } finally {
         setBusy(undefined);
       }
     },
-    [t],
+    [t, loadPosition],
   );
 
   const onStake = useCallback((): void => {
@@ -171,6 +183,57 @@ export default function StakingScreen(props: StakingScreenProps): JSX.Element {
           })}
         </Text>
       </View>
+
+      {position !== undefined && (
+        <Card style={styles.section}>
+          <Text style={styles.sectionHeader}>
+            {t('staking.yourPosition', { defaultValue: 'Your position' })}
+          </Text>
+          <View style={styles.row}>
+            <Text style={styles.rowLabel}>
+              {t('staking.staked', { defaultValue: 'Staked' })}
+            </Text>
+            <Text style={styles.rowValue}>
+              {ethers.formatUnits(position.amount, 18)} XOM
+            </Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.rowLabel}>
+              {t('staking.pending', { defaultValue: 'Pending rewards' })}
+            </Text>
+            <Text style={styles.rowValue}>
+              {ethers.formatUnits(position.pendingRewards, 18)} XOM
+            </Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.rowLabel}>
+              {t('staking.currentApr', { defaultValue: 'Current APR' })}
+            </Text>
+            <Text style={styles.rowValue}>
+              {(position.baseAprBps / 100).toFixed(2)}% +{' '}
+              {(position.bonusAprBps / 100).toFixed(2)}%
+            </Text>
+          </View>
+          {position.unlockAt !== undefined && position.unlockAt > 0 && (
+            <View style={styles.row}>
+              <Text style={styles.rowLabel}>
+                {t('staking.unlockAt', { defaultValue: 'Unlocks' })}
+              </Text>
+              <Text style={styles.rowValue}>
+                {new Date(position.unlockAt * 1000).toLocaleDateString()}
+              </Text>
+            </View>
+          )}
+          {position.participationScore !== undefined && (
+            <View style={styles.row}>
+              <Text style={styles.rowLabel}>
+                {t('staking.participation', { defaultValue: 'Participation score' })}
+              </Text>
+              <Text style={styles.rowValue}>{position.participationScore}/100</Text>
+            </View>
+          )}
+        </Card>
+      )}
 
       <Card style={styles.section}>
         <Text style={styles.sectionHeader}>

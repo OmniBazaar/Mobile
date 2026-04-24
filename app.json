@@ -23,7 +23,9 @@
         "NSCameraUsageDescription": "Use camera to scan QR codes and take product photos",
         "NSPhotoLibraryUsageDescription": "Access photos to upload product images",
         "NSLocationWhenInUseUsageDescription": "Use location to find nearby sellers",
-        "NSMicrophoneUsageDescription": "Use microphone for voice messages in chat"
+        "NSMicrophoneUsageDescription": "Use microphone for voice messages in chat",
+        "NSBluetoothAlwaysUsageDescription": "Pair your Ledger hardware wallet to sign transactions securely.",
+        "NSBluetoothPeripheralUsageDescription": "Pair your Ledger hardware wallet to sign transactions securely."
       }
     },
     "android": {
@@ -40,7 +42,11 @@
         "android.permission.ACCESS_COARSE_LOCATION",
         "android.permission.VIBRATE",
         "android.permission.USE_BIOMETRIC",
-        "android.permission.USE_FINGERPRINT"
+        "android.permission.USE_FINGERPRINT",
+        "android.permission.BLUETOOTH",
+        "android.permission.BLUETOOTH_ADMIN",
+        "android.permission.BLUETOOTH_CONNECT",
+        "android.permission.BLUETOOTH_SCAN"
       ]
     },
     "web": {
@@ -70,6 +76,17 @@
           "sounds": [
             "./assets/sounds/notification.wav"
           ]
+        }
+      ],
+      [
+        "react-native-ble-plx",
+        {
+          "isBackgroundEnabled": false,
+          "modes": [
+            "peripheral",
+            "central"
+          ],
+          "bluetoothAlwaysPermission": "Pair your Ledger hardware wallet to sign transactions securely."
         }
       ]
     ],

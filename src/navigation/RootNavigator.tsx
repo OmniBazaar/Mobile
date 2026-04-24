@@ -38,6 +38,10 @@ import KYCScreen from '../screens/KYCScreen';
 import AboutScreen from '../screens/AboutScreen';
 import PrivacyScreen from '../screens/PrivacyScreen';
 import TxHistoryScreen from '../screens/TxHistoryScreen';
+import OwnedNFTsScreen from '../screens/OwnedNFTsScreen';
+import EscrowsScreen from '../screens/EscrowsScreen';
+import PredictionPositionsScreen from '../screens/PredictionPositionsScreen';
+import HardwareWalletScreen from '../screens/HardwareWalletScreen';
 
 /** Which onboarding step the user is currently on. */
 type OnboardingStep =
@@ -73,7 +77,11 @@ type AuthedRoute =
   | 'kyc'
   | 'about'
   | 'privacy'
-  | 'tx-history';
+  | 'tx-history'
+  | 'nfts-owned'
+  | 'escrows'
+  | 'prediction-positions'
+  | 'hardware';
 
 /**
  * Render the right screen based on the auth lifecycle state + the
@@ -232,6 +240,19 @@ export default function RootNavigator(): JSX.Element | null {
         return <PrivacyScreen onBack={() => setAuthedRoute('swap')} />;
       case 'tx-history':
         return <TxHistoryScreen onBack={() => setAuthedRoute('profile')} />;
+      case 'nfts-owned':
+        return <OwnedNFTsScreen onBack={() => setAuthedRoute('profile')} />;
+      case 'escrows':
+        return <EscrowsScreen onBack={() => setAuthedRoute('profile')} />;
+      case 'prediction-positions':
+        return (
+          <PredictionPositionsScreen
+            onBack={() => setAuthedRoute('profile')}
+            mnemonic={onboard.keys?.mnemonic ?? ''}
+          />
+        );
+      case 'hardware':
+        return <HardwareWalletScreen onBack={() => setAuthedRoute('profile')} />;
       case 'wallet-home':
       default:
         return (

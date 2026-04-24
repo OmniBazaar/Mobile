@@ -1,0 +1,20 @@
+# Maestro configuration for OmniBazaar Mobile E2E flows.
+#
+# Run all flows:   maestro test .maestro/
+# Run one flow:    maestro test .maestro/flows/onboarding.yaml
+# Record a run:    maestro test --format junit --output maestro-report.xml .maestro/
+#
+# Device matrix: iPhone SE 4 (iOS 17) + Samsung A15 (Android 14) per the
+# performance targets in ADD_MOBILE_APP.md Part 22. Flows use UI text
+# (not test IDs) as the primary selector — we pin translations to the
+# `en` locale via the `locale` envvar for deterministic runs.
+executionOrder:
+  flowsOrder:
+    - onboarding.yaml
+    - swap.yaml
+    - p2p-buy.yaml
+    - sign-out.yaml
+
+# appId is kept in sync with app.json's `expo.ios.bundleIdentifier`
+# and `expo.android.package`. Update both sides in lock-step.
+appId: com.omnibazaar.mobile

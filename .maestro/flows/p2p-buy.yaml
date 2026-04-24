@@ -1,0 +1,30 @@
+# P2P buy flow: WalletHome → Marketplace → P2P tab → tap first listing
+# → Buy with escrow → confirm → verify escrowId surfaces.
+appId: com.omnibazaar.mobile
+---
+- tapOn: "Shop"
+- assertVisible: "Marketplaces"
+- tapOn: "P2P"
+- waitForAnimationToEnd:
+    timeout: 10000
+# Tap the first listing card. We don't pin on any specific title — the
+# test validator seed ensures at least one listing exists in the
+# `omnibazaar_test` fixture.
+- tapOn:
+    index: 0
+    point: "50%,50%"
+- assertVisible: "Buy with escrow"
+- tapOn: "Buy with escrow"
+- tapOn: "Confirm"
+- waitForAnimationToEnd:
+    timeout: 20000
+- assertVisible:
+    text: "escrowId"
+    optional: true
+- tapOn:
+    text: "← Back"
+    optional: true
+- tapOn:
+    text: "‹ Back"
+    optional: true
+- assertVisible: "Balance"

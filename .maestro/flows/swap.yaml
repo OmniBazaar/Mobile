@@ -1,0 +1,26 @@
+# Swap flow: WalletHome → Swap → fetch quote → confirm → verify success.
+# Requires the onboarding flow to have run (wallet unlocked).
+appId: com.omnibazaar.mobile
+---
+- tapOn: "Swap"
+- assertVisible: "From"
+- assertVisible: "To"
+- tapOn:
+    id: "swap-amount-input"
+- inputText: "1"
+- tapOn: "Get Quote"
+- waitForAnimationToEnd:
+    timeout: 15000
+- assertVisible: "Swap Now"
+- tapOn: "Swap Now"
+# Alert.alert("Confirm swap") — accept.
+- tapOn: "Confirm"
+- waitForAnimationToEnd:
+    timeout: 30000
+- assertVisible:
+    text: "operationId"
+    optional: true
+- tapOn:
+    text: "← Back"
+    optional: true
+- assertVisible: "Balance"

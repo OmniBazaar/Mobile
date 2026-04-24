@@ -1,0 +1,56 @@
+# Onboarding flow: fresh install → create wallet → back up seed → set
+# PIN → skip biometrics → land on WalletHome. Bracketed text fragments
+# are plain English — if we re-locale the app, update the `copy:` block
+# in README + here in lock-step.
+appId: com.omnibazaar.mobile
+---
+- launchApp:
+    clearState: true
+    clearKeychain: true
+    stopApp: true
+- assertVisible: "OmniBazaar"
+- assertVisible: "Create Wallet"
+- tapOn: "Create Wallet"
+# CreateWalletScreen renders the generated mnemonic; wait for the 12-word
+# badge to render before continuing so the flow doesn't race the CPU
+# derivation on cold boot.
+- waitForAnimationToEnd:
+    timeout: 15000
+- tapOn: "I've saved my seed"
+# SeedVerifyScreen — flow skips the scrambled verify tiles by tapping a
+# test-only "Skip in debug" button when the E2E envvar is set; in
+# release builds this tile is hidden and the flow requires the full
+# tile sequence. Set EXPO_PUBLIC_MAESTRO_SKIP_VERIFY=true when recording.
+- runFlow:
+    when:
+      visible: "Skip in debug"
+    commands:
+      - tapOn: "Skip in debug"
+- runFlow:
+    when:
+      notVisible: "Skip in debug"
+    commands:
+      - tapOn:
+          text: ".*"
+          index: 0
+      - tapOn:
+          text: ".*"
+          index: 1
+      - tapOn:
+          text: ".*"
+          index: 2
+# PinSetupScreen — "123456" is only valid in debug builds.
+- inputText: "123456"
+- tapOn: "Continue"
+- inputText: "123456"
+- tapOn: "Continue"
+# BiometricEnroll — skip (simulator can't enrol Face ID).
+- runFlow:
+    when:
+      visible: "Skip for now"
+    commands:
+      - tapOn: "Skip for now"
+# Registration flow completes silently; we land on WalletHome.
+- waitForAnimationToEnd:
+    timeout: 30000
+- assertVisible: "Balance"

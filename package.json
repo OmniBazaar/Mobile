@@ -22,6 +22,8 @@
     "e2e:build:android": "detox build --configuration android",
     "e2e:test:ios": "detox test --configuration ios",
     "e2e:test:android": "detox test --configuration android",
+    "e2e:maestro": "maestro test .maestro/",
+    "e2e:maestro:ci": "maestro test --format junit --output maestro-report.xml .maestro/",
     "postinstall": "patch-package",
     "clean": "rm -rf node_modules ios/build android/build",
     "clean:all": "npm run clean && rm -rf ios/Pods .expo"
@@ -66,6 +68,7 @@
     "react-native-gesture-handler": "~2.14.0",
     "react-native-get-random-values": "~1.8.0",
     "react-native-mmkv": "^2.11.0",
+    "react-native-ble-plx": "^3.1.2",
     "react-native-qrcode-svg": "^6.3.21",
     "react-native-reanimated": "~3.6.0",
     "react-native-safe-area-context": "4.8.2",

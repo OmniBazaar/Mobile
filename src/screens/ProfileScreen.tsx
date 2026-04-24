@@ -15,7 +15,16 @@ import { colors } from '@theme/colors';
 import { useAuthStore } from '../store/authStore';
 
 /** Destination key a ProfileScreen tile can emit. */
-export type ProfileDestination = 'settings' | 'staking' | 'kyc' | 'about' | 'tx-history';
+export type ProfileDestination =
+  | 'settings'
+  | 'staking'
+  | 'kyc'
+  | 'about'
+  | 'tx-history'
+  | 'nfts-owned'
+  | 'escrows'
+  | 'prediction-positions'
+  | 'hardware';
 
 /** Props accepted by ProfileScreen. */
 export interface ProfileScreenProps {
@@ -40,6 +49,26 @@ export default function ProfileScreen(props: ProfileScreenProps): JSX.Element {
       key: 'tx-history',
       label: t('profile.txHistory', { defaultValue: 'Activity' }),
       hint: t('profile.txHistoryHint', { defaultValue: 'Transactions, shielded + public' }),
+    },
+    {
+      key: 'nfts-owned',
+      label: t('profile.nftsOwned', { defaultValue: 'Your NFTs' }),
+      hint: t('profile.nftsOwnedHint', { defaultValue: 'Collectibles you currently hold' }),
+    },
+    {
+      key: 'escrows',
+      label: t('profile.escrows', { defaultValue: 'Your purchases' }),
+      hint: t('profile.escrowsHint', { defaultValue: 'P2P escrows + shipping status' }),
+    },
+    {
+      key: 'prediction-positions',
+      label: t('profile.predictionPositions', { defaultValue: 'Your predictions' }),
+      hint: t('profile.predictionPositionsHint', { defaultValue: 'Open positions + claim rewards' }),
+    },
+    {
+      key: 'hardware',
+      label: t('profile.hardware', { defaultValue: 'Hardware wallet' }),
+      hint: t('profile.hardwareHint', { defaultValue: 'Pair a Ledger Nano X over Bluetooth' }),
     },
     {
       key: 'staking',

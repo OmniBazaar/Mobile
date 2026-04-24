@@ -1,0 +1,13 @@
+# Sign-out flow: WalletHome → Profile → Settings → Sign out → land on
+# Welcome.
+appId: com.omnibazaar.mobile
+---
+- tapOn: "Profile"
+- assertVisible: "Settings"
+- tapOn: "Settings"
+- assertVisible: "Sign out"
+- tapOn: "Sign out"
+# Confirmation dialog.
+- tapOn: "Confirm"
+- assertVisible: "OmniBazaar"
+- assertVisible: "Create Wallet"
