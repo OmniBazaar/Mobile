@@ -128,14 +128,6 @@ export interface ContractAddresses {
   OmniArbitration?: string;
   /** OmniMarketplace trustless listing registration and content verification (UUPS proxy) */
   OmniMarketplace?: string;
-  /**
-   * OmniMarketplaceSettlement atomic NFT-buy settlement contract. Settles a
-   * buyer-signed EIP-712 `BuyNFT` intent: pulls XOM from buyer, pays the
-   * 1% fee to UnifiedFeeVault (70/20/10 split), pays the seller, and
-   * transfers the ERC-721 — all in one transaction.
-   * Set by `scripts/sync-contract-addresses.js` after deployment.
-   */
-  OmniMarketplaceSettlement?: string;
   /** OmniENS trustless username registry with XOM fee burn */
   OmniENS?: string;
   /** OmniChatFee trustless chat fee collection with free tier tracking */
@@ -336,8 +328,6 @@ export const OMNICOIN_ADDRESSES: Record<string, ContractAddresses> = {
     OmniSwapRouter: '0x12a8145C26a696C60edcC8931AE860cb822553A4',
     UnifiedFeeVault: '0xf702f60683c5AFd2351d0b0941c0AADEa62015e1',
     OmniMarketplace: '0xaf0734938801b9f7E1C6d83c78Dfd0667607AA2a',
-    // OmniMarketplaceSettlement: '' — set by sync-contract-addresses.js after deployment
-    OmniMarketplaceSettlement: '',
     OmniENS: '0x9Db5C15bEea394A215fe3f10d2A5fb4290b6633B',
     OmniChatFee: '0x19c01a5C9D23f432EcB56Ef976f55B4FB6EAcFd5',
     OmniPriceOracle: '0xB4Fc75e626f39a86E4BB023bC6f654964f354c3e',
