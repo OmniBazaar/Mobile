@@ -29,11 +29,11 @@ Legend:
 
 | # | Criterion | Status | Notes |
 |---|---|---|---|
-| B1 | COTI `_safeOnboard()` completes first-time | ⛔ | Screen + service wiring deferred to Phase 3 Week 2. |
-| B2 | Shield flow (XOM → pXOM) succeeds | ⛔ | Same. |
-| B3 | Unshield flow (pXOM → XOM) succeeds | ⛔ | Same. |
+| B1 | COTI `_safeOnboard()` completes first-time | 🟨 | PrivacyScreen probes `isOnboarded()` at mount and surfaces a "first-time setup" card; first shield tx runs `_safeOnboard()` inline. |
+| B2 | Shield flow (XOM → pXOM) succeeds | 🟨 | PrivacyScreen calls `PrivacyService.shield()`. Live validator confirmation pending. |
+| B3 | Unshield flow (pXOM → XOM) succeeds | 🟨 | PrivacyScreen calls `PrivacyService.unshield()`. |
 | B4 | TX history shows shielded / unshielded states correctly | ⛔ | Depends on TX history screen (deferred from Phase 2). |
-| B5 | COTI gas balance check warns before shield attempts | ⛔ | Will land with the privacy screen. |
+| B5 | COTI gas balance check warns before shield attempts | 🟨 | Onboard status check surfaces first-time warning; explicit COTI gas read deferred. |
 
 ---
 
@@ -49,29 +49,29 @@ Legend:
 ### C.2 NFT
 | # | Criterion | Status | Notes |
 |---|---|---|---|
-| C2.a | Browse + filter works | ⏳ | Coming-soon placeholder in MarketplaceHomeScreen. |
+| C2.a | Browse + filter works | ✅ | NFTBrowseScreen wired to `MarketplaceClient.listNFTCollections`, chain picker across 5 EVM chains, image/floor/volume card. |
 | C2.b | Buy via MinimalEscrow settlement | ⛔ | Pending NFT service integration on Mobile. |
 | C2.c | Receipt reflects in portfolio | ⛔ | Same. |
 
 ### C.3 RWA
 | # | Criterion | Status | Notes |
 |---|---|---|---|
-| C3.a | Browse + filter works | ⏳ | Placeholder. |
+| C3.a | Browse + filter works | 🟨 | Deep-link to DEX from MarketplaceHomeScreen with explainer card. Standalone RWA catalog deferred. |
 | C3.b | Trade completes E2E | ⛔ | KYC + jurisdiction gating wired but trade flow pending. |
 | C3.c | Position reflects in portfolio | ⛔ | Same. |
 
 ### C.4 Yield
 | # | Criterion | Status | Notes |
 |---|---|---|---|
-| C4.a | Browse catalog works | ⏳ | Placeholder. |
+| C4.a | Browse catalog works | 🟨 | Deep-link to DEX from MarketplaceHomeScreen. Standalone yield catalog deferred. |
 | C4.b | Deposit / withdraw completes E2E | ⛔ | `YieldService` in Wallet; Mobile UI pending. |
 | C4.c | Position reflects in portfolio | ⛔ | Same. |
 
 ### C.5 Predictions
 | # | Criterion | Status | Notes |
 |---|---|---|---|
-| C5.a | Browse markets | ⏳ | Placeholder. |
-| C5.b | Buy outcome + claim completes E2E | ⛔ | `PredictionsClient` available in `@wallet/services/predictions/`. |
+| C5.a | Browse markets | ✅ | PredictionsBrowseScreen wired to `PredictionsClient.getOpenMarkets`. Question + category + YES cents + volume + resolution date. |
+| C5.b | Buy outcome + claim completes E2E | ⛔ | `PredictionsClient` buy/claim available in Wallet; Mobile UI pending. |
 | C5.c | Claim reflects in portfolio | ⛔ | Same. |
 
 ---
@@ -118,6 +118,15 @@ Legend:
 ---
 
 ## Cross-cutting Mobile Implementation Status
+
+### Session-latest additions (2026-04-24 continuation)
+- NFTBrowseScreen + PredictionsBrowseScreen live via `MarketplaceClient.listNFTCollections` + `PredictionsClient.getOpenMarkets`
+- MarketplaceHomeScreen: RWA + Yield cards now deep-link to Swap with a "Trade on DEX" CTA instead of a coming-soon placeholder
+- PrivacyScreen — XOM ↔ pXOM shield/unshield with COTI onboard probe, first-time setup banner, fee hint, confirmation Alert
+- Swap header exposes a "Privacy (pXOM)" link that routes to PrivacyScreen
+- PortfolioService gains `fetchErc20Balances` + `ERC20_TOKENS` registry (9 entries, USDC/USDT across ETH/ARB/BASE/POLY/OP/AVAX)
+- WalletHome list now shows native + ERC-20 together; zero-balance non-L1 natives hidden
+- 4 new unit tests (ERC20_TOKENS invariants) — 73 total passing
 
 ### Shipped (feat/platform-adapters branch on Wallet + OmniBazaar/Mobile main)
 - Platform adapter layer with 11 interfaces, 45 passing unit tests.
