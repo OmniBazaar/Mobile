@@ -31,6 +31,11 @@ import SendScreen from '../screens/SendScreen';
 import ReceiveScreen from '../screens/ReceiveScreen';
 import SwapScreen from '../screens/SwapScreen';
 import MarketplaceHomeScreen from '../screens/MarketplaceHomeScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+import SettingsScreen from '../screens/SettingsScreen';
+import StakingScreen from '../screens/StakingScreen';
+import KYCScreen from '../screens/KYCScreen';
+import AboutScreen from '../screens/AboutScreen';
 
 /** Which onboarding step the user is currently on. */
 type OnboardingStep =
@@ -54,7 +59,17 @@ interface OnboardingState {
 }
 
 /** Post-auth navigation state. */
-type AuthedRoute = 'wallet-home' | 'send' | 'receive' | 'swap' | 'marketplace';
+type AuthedRoute =
+  | 'wallet-home'
+  | 'send'
+  | 'receive'
+  | 'swap'
+  | 'marketplace'
+  | 'profile'
+  | 'settings'
+  | 'staking'
+  | 'kyc'
+  | 'about';
 
 /**
  * Render the right screen based on the auth lifecycle state + the
@@ -169,6 +184,29 @@ export default function RootNavigator(): JSX.Element | null {
         return <SwapScreen onBack={() => setAuthedRoute('wallet-home')} />;
       case 'marketplace':
         return <MarketplaceHomeScreen onBack={() => setAuthedRoute('wallet-home')} />;
+      case 'profile':
+        return (
+          <ProfileScreen
+            onBack={() => setAuthedRoute('wallet-home')}
+            onNavigate={(dest) => setAuthedRoute(dest)}
+          />
+        );
+      case 'settings':
+        return (
+          <SettingsScreen
+            onBack={() => setAuthedRoute('profile')}
+            onSignOut={() => {
+              clearAuth();
+              setOnboard({ step: 'welcome' });
+            }}
+          />
+        );
+      case 'staking':
+        return <StakingScreen onBack={() => setAuthedRoute('profile')} />;
+      case 'kyc':
+        return <KYCScreen onBack={() => setAuthedRoute('profile')} />;
+      case 'about':
+        return <AboutScreen onBack={() => setAuthedRoute('profile')} />;
       case 'wallet-home':
       default:
         return (
@@ -177,6 +215,7 @@ export default function RootNavigator(): JSX.Element | null {
             onReceive={() => setAuthedRoute('receive')}
             onSwap={() => setAuthedRoute('swap')}
             onShop={() => setAuthedRoute('marketplace')}
+            onProfile={() => setAuthedRoute('profile')}
             onSignOut={() => {
               clearAuth();
               setOnboard({ step: 'welcome' });
