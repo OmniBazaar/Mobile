@@ -14,9 +14,6 @@
  * route ranking.
  */
 
-import { ethers, Wallet } from 'ethers';
-
-import { getClientRPCRegistry } from '@wallet/core/providers/ClientRPCRegistry';
 import {
   getUniversalSwapClient,
   type ExecuteResponse,
@@ -25,6 +22,8 @@ import {
   type UnsignedSwapTransaction,
   type UniversalSwapQuoteParams,
 } from '@wallet/services/dex/UniversalSwapClient';
+
+import { submitTransaction } from './RelaySubmitService';
 
 export type { ExecuteResponse, QuoteResponse, SwapQuote, UniversalSwapQuoteParams };
 
@@ -151,7 +150,10 @@ export async function executeQuote(params: {
 
   const unsigned = response.transactions ?? [];
   for (const tx of unsigned) {
-    const hash = await signAndBroadcast(tx, params.mnemonic);
+    const hash = await submitTransaction(
+      { to: tx.to, data: tx.data, value: tx.value, chainId: tx.chainId },
+      params.mnemonic,
+    );
     txHashes.push(hash);
     chainIds.push(tx.chainId);
     // Route the on-chain hash back to the validator so it can track
@@ -179,35 +181,8 @@ export async function executeQuote(params: {
   };
 }
 
-/**
- * Sign and broadcast a single UnsignedSwapTransaction via Mobile's
- * ClientRPCRegistry provider. Waits for 1 confirmation before
- * returning so that the caller's next step in the sequence has a
- * real on-chain receipt to reference.
- *
- * @param tx - Unsigned tx from the validator.
- * @param mnemonic - BIP39 phrase used to derive the signer.
- * @returns On-chain tx hash.
- */
-async function signAndBroadcast(tx: UnsignedSwapTransaction, mnemonic: string): Promise<string> {
-  const provider = getClientRPCRegistry().getProvider(tx.chainId);
-  if (provider === undefined) {
-    throw new Error(`executeQuote: no RPC provider available for chainId ${tx.chainId}`);
-  }
-  const wallet = Wallet.fromPhrase(
-    mnemonic,
-    // Cross-realm ethers — same caveat as SendService.sendNative.
-    provider as unknown as ethers.Provider,
-  );
-  const request: ethers.TransactionRequest = {
-    to: tx.to,
-    data: tx.data,
-    value: BigInt(tx.value),
-    chainId: tx.chainId,
-  };
-  const sent = await wallet.sendTransaction(request);
-  // Wait for 1 confirmation so the validator's post-broadcast pull
-  // sees the tx reliably.
-  await sent.wait(1);
-  return sent.hash;
-}
+// Note: the per-tx sign/broadcast/relay logic lives in
+// `./RelaySubmitService.submitTransaction`, which chooses OmniRelay for
+// chainId 88008 (gasless) vs direct broadcast otherwise. `UnsignedSwapTransaction`
+// stays exported so UI code can render the pending step list.
+export type { UnsignedSwapTransaction };

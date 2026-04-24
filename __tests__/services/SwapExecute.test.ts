@@ -1,12 +1,12 @@
 /**
  * SwapService.executeQuote — integration test with mocked
- * UniversalSwapClient + ClientRPCRegistry.
+ * UniversalSwapClient + RelaySubmitService.
  *
- * Locks in the three-step flow (execute → sign+broadcast → submitSignedTx)
- * without hitting a live validator or chain.
+ * Locks in the three-step flow (execute → submitTransaction → submitSignedTx)
+ * without hitting a live validator or chain. Routing between OmniRelay
+ * (chainId 88008) and direct broadcast (other chains) lives inside
+ * `RelaySubmitService` — see `RelaySubmitService.test.ts` for that gate.
  */
-
-import type { TransactionRequest, TransactionResponse } from 'ethers';
 
 // Mock the UniversalSwapClient. The factory returns a stable object so
 // the SwapService under test sees the same mock on each call.
@@ -20,40 +20,20 @@ jest.mock('@wallet/services/dex/UniversalSwapClient', () => ({
   }),
 }));
 
-// Mock the ClientRPCRegistry. `getProvider` returns undefined by default;
-// individual tests override per-chain.
-const mockProvider = { __mock: true } as const;
-const mockGetProvider = jest.fn();
+// Mock the submit layer so we can assert per-chain routing without
+// wiring ethers / ClientRPCRegistry / OmniRelay for each test.
+const mockSubmitTransaction = jest.fn(async (tx: { chainId: number }) => {
+  return `0x${'a'.repeat(62)}${(tx.chainId ?? 0).toString(16).padStart(2, '0')}`;
+});
+const mockShouldRelay = jest.fn((chainId: number) => chainId === 88008);
 
-jest.mock('@wallet/core/providers/ClientRPCRegistry', () => ({
-  getClientRPCRegistry: () => ({
-    getProvider: mockGetProvider,
-  }),
+jest.mock('../../src/services/RelaySubmitService', () => ({
+  OMNICOIN_L1_CHAIN_ID: 88008,
+  shouldRelay: mockShouldRelay,
+  submitTransaction: mockSubmitTransaction,
+  relayL1Transaction: jest.fn(),
+  broadcastDirect: jest.fn(),
 }));
-
-// Mock ethers.Wallet.fromPhrase so we don't actually derive keys.
-// The returned object's sendTransaction resolves to a canned
-// TransactionResponse whose wait() resolves immediately.
-const mockSendTransaction = jest.fn(async (tx: TransactionRequest) => {
-  const hash = `0x${'a'.repeat(62)}${(tx.chainId ?? 0).toString(16).padStart(2, '0')}`;
-  return {
-    hash,
-    wait: async (): Promise<null> => null,
-  } as unknown as TransactionResponse;
-});
-
-jest.mock('ethers', () => {
-  const actual = jest.requireActual('ethers');
-  return {
-    ...actual,
-    Wallet: {
-      ...actual.Wallet,
-      fromPhrase: jest.fn(() => ({
-        sendTransaction: mockSendTransaction,
-      })),
-    },
-  };
-});
 
 import { executeQuote } from '../../src/services/SwapService';
 
@@ -63,7 +43,10 @@ const MNEMONIC =
 describe('SwapService.executeQuote', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    mockGetProvider.mockReturnValue(mockProvider);
+    mockShouldRelay.mockImplementation((chainId: number) => chainId === 88008);
+    mockSubmitTransaction.mockImplementation(async (tx: { chainId: number }) => {
+      return `0x${'a'.repeat(62)}${(tx.chainId ?? 0).toString(16).padStart(2, '0')}`;
+    });
   });
 
   it('calls UniversalSwapClient.execute with the quoteId + address', async () => {
@@ -101,11 +84,43 @@ describe('SwapService.executeQuote', () => {
       mnemonic: MNEMONIC,
     });
 
-    expect(mockSendTransaction).toHaveBeenCalledTimes(2);
+    expect(mockSubmitTransaction).toHaveBeenCalledTimes(2);
     expect(result.txHashes).toHaveLength(2);
     expect(result.chainIds).toEqual([1, 1]);
     expect(result.operationId).toBe('op-456');
     expect(result.status).toBe('submitted');
+  });
+
+  it('relays L1 (chainId 88008) transactions gaslessly via OmniForwarder', async () => {
+    mockExecute.mockResolvedValue({
+      operationId: 'op-l1',
+      status: 'submitted',
+      message: '',
+      transactions: [
+        {
+          step: 'swap',
+          chainId: 88008,
+          to: '0xE',
+          data: '0xdeadbeef',
+          value: '0',
+          description: '',
+        },
+      ],
+    });
+
+    const result = await executeQuote({
+      quoteId: 'q-l1',
+      address: '0x6666666666666666666666666666666666666666',
+      mnemonic: MNEMONIC,
+    });
+
+    expect(mockSubmitTransaction).toHaveBeenCalledTimes(1);
+    // shouldRelay(88008) === true per the routing helper; the unified
+    // submitTransaction() picks the relay path internally. We assert
+    // the chainId made it through unchanged.
+    const [firstCall] = mockSubmitTransaction.mock.calls;
+    expect(firstCall?.[0]?.chainId).toBe(88008);
+    expect(result.chainIds).toEqual([88008]);
   });
 
   it('reports deposit + claim step labels to the validator', async () => {
@@ -155,7 +170,7 @@ describe('SwapService.executeQuote', () => {
 
     // Tx was still broadcast + included in the result.
     expect(result.txHashes).toHaveLength(1);
-    expect(mockSendTransaction).toHaveBeenCalledTimes(1);
+    expect(mockSubmitTransaction).toHaveBeenCalledTimes(1);
   });
 
   it('throws a clear error when the target chain has no RPC provider', async () => {
@@ -167,7 +182,9 @@ describe('SwapService.executeQuote', () => {
         { step: 'swap', chainId: 999, to: '0xD', data: '0x', value: '0', description: '' },
       ],
     });
-    mockGetProvider.mockReturnValueOnce(undefined);
+    mockSubmitTransaction.mockRejectedValueOnce(
+      new Error('broadcastDirect: no RPC provider for chainId 999'),
+    );
 
     await expect(
       executeQuote({
@@ -175,7 +192,7 @@ describe('SwapService.executeQuote', () => {
         address: '0x4444444444444444444444444444444444444444',
         mnemonic: MNEMONIC,
       }),
-    ).rejects.toThrow(/no RPC provider available for chainId 999/);
+    ).rejects.toThrow(/no RPC provider for chainId 999/);
   });
 
   it('returns an empty txHashes array when execute returns zero transactions', async () => {

@@ -39,12 +39,20 @@ const CHAINS: Array<{ chainId: number; label: string }> = [
   { chainId: 42161, label: 'Arbitrum' },
 ];
 
+/** Props. */
+export interface NFTBrowseScreenProps {
+  /** Called when the user taps a collection card. Undefined disables tap. */
+  onSelectCollection?: (collection: NFTCollectionSummary) => void;
+}
+
 /**
  * Render the NFT-collections browse grid.
+ * @param props - See {@link NFTBrowseScreenProps}.
  * @returns JSX.
  */
-export default function NFTBrowseScreen(): JSX.Element {
+export default function NFTBrowseScreen(props: NFTBrowseScreenProps = {}): JSX.Element {
   const { t } = useTranslation();
+  const { onSelectCollection } = props;
   const [chainId, setChainId] = useState(CHAINS[0]!.chainId);
   const [collections, setCollections] = useState<NFTCollectionSummary[]>([]);
   const [loading, setLoading] = useState(false);
@@ -97,7 +105,12 @@ export default function NFTBrowseScreen(): JSX.Element {
         numColumns={2}
         columnWrapperStyle={styles.columnWrapper}
         contentContainerStyle={styles.listContent}
-        renderItem={({ item }) => <CollectionCard collection={item} />}
+        renderItem={({ item }) => (
+          <CollectionCard
+            collection={item}
+            onPress={onSelectCollection !== undefined ? () => onSelectCollection(item) : undefined}
+          />
+        )}
         refreshControl={
           <RefreshControl
             refreshing={loading}
@@ -122,9 +135,20 @@ export default function NFTBrowseScreen(): JSX.Element {
 }
 
 /** Single collection card. */
-function CollectionCard({ collection }: { collection: NFTCollectionSummary }): JSX.Element {
+function CollectionCard({
+  collection,
+  onPress,
+}: {
+  collection: NFTCollectionSummary;
+  onPress?: () => void;
+}): JSX.Element {
   return (
-    <Pressable style={styles.card} accessibilityRole="button" accessibilityLabel={collection.name}>
+    <Pressable
+      style={styles.card}
+      accessibilityRole="button"
+      accessibilityLabel={collection.name}
+      onPress={onPress}
+    >
       {collection.imageUrl !== undefined ? (
         <Image source={{ uri: collection.imageUrl }} style={styles.cardImage} accessibilityIgnoresInvertColors />
       ) : (

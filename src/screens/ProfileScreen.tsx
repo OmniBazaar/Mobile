@@ -15,7 +15,7 @@ import { colors } from '@theme/colors';
 import { useAuthStore } from '../store/authStore';
 
 /** Destination key a ProfileScreen tile can emit. */
-export type ProfileDestination = 'settings' | 'staking' | 'kyc' | 'about';
+export type ProfileDestination = 'settings' | 'staking' | 'kyc' | 'about' | 'tx-history';
 
 /** Props accepted by ProfileScreen. */
 export interface ProfileScreenProps {
@@ -36,6 +36,11 @@ export default function ProfileScreen(props: ProfileScreenProps): JSX.Element {
   const username = useAuthStore((s) => s.username);
 
   const rows: Array<{ key: ProfileDestination; label: string; hint: string }> = [
+    {
+      key: 'tx-history',
+      label: t('profile.txHistory', { defaultValue: 'Activity' }),
+      hint: t('profile.txHistoryHint', { defaultValue: 'Transactions, shielded + public' }),
+    },
     {
       key: 'staking',
       label: t('profile.staking', { defaultValue: 'Staking' }),

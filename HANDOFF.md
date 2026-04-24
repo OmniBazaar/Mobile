@@ -45,10 +45,10 @@ npm run type-check && npm run build:chrome && npm run validate:dist:chrome
 **END OF HEADER — EVERYTHING BELOW IS CURRENT HANDOFF CONTEXT**
 ---
 
-## Current state (2026-04-24 end of session)
+## Current state (2026-04-24 end of session — continuation III)
 
 ### What's shipped
-Seven phases at MVP+ with committed, tested code:
+Seven phases at MVP+ plus the remaining Track A / Track B4 / Track C / Phase 5 Week 2 gaps closed in continuation III:
 - **Phase 0** Mobile skeleton + path aliases + 8 platform adapters + Wallet adapter refactor (14 files routed through platform registry; Wallet extension's 226 tests preserved)
 - **Phase 1** Full challenge-response auth flow — 9 onboarding screens (Welcome → CreateWallet → SeedBackup → SeedVerify → Import → PinSetup → BiometricEnroll → SignIn → Home)
 - **Phase 2** Multi-chain portfolio (native + ERC-20), Send, Receive
@@ -62,19 +62,21 @@ Seven phases at MVP+ with committed, tested code:
 ### Production audit scorecard (Tracks A–F)
 | Track | Score |
 |---|---|
-| A Intent-based trading | **3/5 ✅** 1/5 🟨 1/5 ⏳ |
-| B Privacy (COTI pXOM) | 4/5 🟨 1/5 ⛔ |
-| C 5 Marketplaces | **3/15 ✅** 3/15 🟨 3/15 ⏳ 6/15 ⛔ |
+| A Intent-based trading | **5/5 ✅** |
+| B Privacy (COTI pXOM) | 5/5 🟨 (B4 upgraded ⛔ → 🟨 with TxHistoryScreen) |
+| C 5 Marketplaces | **8/15 ✅** 7/15 🟨 |
 | D Hardware wallets | 4/4 ⛔ (transports pending) |
 | E Perf / bundle / battery | 1/6 🟨 5/6 ⏳ |
 | F Store assets + compliance | 3/10 ✅ 1/10 🟨 2/10 ⏳ 4/10 ⛔ |
+
+Track C detail: ✅ rows are P2P browse+buy, NFT browse+buy, RWA deep-link, Yield deep-link, Predictions browse+buy+claim. 🟨 rows are the "receipt reflects in portfolio" items where TxHistoryService now surfaces the rows but a per-subsystem inventory view is still pending, plus the RWA/Yield trade flows (deferred to DEX).
 
 See `docs/PRODUCTION_READINESS_AUDIT.md` for the full per-row scorecard with explicit pending notes.
 
 ### Gates at close
 - `npm run typecheck` — exit 0
-- `npm test` — **79/79** passing, no open-handle warnings, ~1.2s
-- Wallet `type-check` + `build:chrome` + 226 tests — preserved across all refactors
+- `npm test` — **114 / 17 suites** passing, no open-handle warnings, ~1.8s
+- Wallet `type-check` + `build:chrome` + 226 tests — preserved across all refactors (Wallet changes in continuation III are additive — the Mobile code imports existing helpers rather than editing Wallet source)
 - WebApp `/mobile/install` + 4 Playwright smoke cases — committed in WebApp repo
 
 ### Commit log (Mobile, newest first)
@@ -106,41 +108,33 @@ Wallet repo (`feat/platform-adapters` branch, 10 commits beyond `origin/main`) h
 
 ### Top-of-queue (highest ROI per hour)
 
-1. **OmniRelay gasless submit on L1** (Track A5 🟨 → ✅ + A4 regression test)
-   - `SwapService.executeQuote` currently always calls `signAndBroadcast`. For `chainId === 88008` it should route through `@wallet/core/relay/WalletRelayingSigner` + `OmniRelayClient` instead so users never pay gas on OmniCoin L1.
-   - Wallet extension pattern: SW signs a `ForwardRequest` with wallet key, posts to `/api/v1/relay/submit`, validator submits on-chain.
-   - Blocker: `UnsignedSwapTransaction` is a raw-tx shape; L1 path needs an EIP-2771 re-encoding step. Check whether the validator's `/universal-swap/execute` endpoint returns L1 txs in a different shape when the user's address has a `VITE_ENABLE_SMART_ACCOUNT`-like flag set, or whether the Mobile client re-wraps client-side.
+1. **Hardware wallet transports** (Track D1–D4 ⛔)
+   - Install `@ledgerhq/hw-transport-react-native-ble` + `react-native-ble-plx` native modules; wire `MobileBLEAdapter` via `getBLEAdapter()` (interface already defined in `@wallet/platform/adapters`).
+   - Trezor via WebView fallback (no first-class RN SDK — same approach the extension took in Phase 7).
+   - Physical-device testing gate for all 4 D-track rows.
 
-2. **NFT buy flow** (Track C2.b/c ⛔ → ✅)
-   - `NFTBrowseScreen` today is browse-only. The buy path requires:
-     1. Read `ERC20.allowance(buyer, settlement)` via `nftBuyPrereqs.readErc20Allowance`; if insufficient, sign + broadcast an approve.
-     2. Sign a `BuyNFT` EIP-712 intent (reuse `services/marketplace/buyNFTIntentValidator.ts` from the parallel session's work on Wallet).
-     3. POST the intent to `MarketplaceClient.buyNFT(...)` — verify the method name; may need to add a thin client-side wrapper.
-   - Add an `NFTDetailScreen` between `NFTBrowseScreen` and the buy confirmation sheet.
+2. **Per-subsystem inventory views** (Track C 🟨 → ✅ for `*.c` rows)
+   - NFTs owned (wraps `MarketplaceClient.listNFTsOwned` once it lands, or `alchemy_getAssetsByOwner`-style RPC fallback).
+   - P2P escrow status timeline (`MarketplaceClient.getEscrowsForBuyer`): Created → Funded → Shipped → Released.
+   - Open prediction positions (`PredictionsClient.getUserPositions`) + settled-claims totals.
+   - Staking: current stake + pending rewards (`StakingService.getPosition` — not yet ported; validator exposes `/api/v1/staking/:address/position`).
 
-3. **Predictions buy + claim** (Track C5.b/c ⛔ → ✅)
-   - `PredictionsClient.buildTradeTx` + `.submitTrade` + `.buildClaim` are already exported. Need a `PredictionsMarketDetailScreen` wiring outcome tabs + buy intent + claim button.
-
-4. **TX history screen** (Track B4 ⛔ → ✅ + Track C portfolio rows)
-   - Needed for shielded/unshielded state display and for the portfolio "receipt reflects" rows. Index client-side by chain via `ClientRPCRegistry` `getLogs`, plus any validator-side indexed history endpoint.
-
-5. **Maestro E2E flows** (Track D5 — cert-grade for physical device gate)
+3. **Maestro E2E flows** (Track D5 — cert-grade for physical device gate)
    - 22 critical journeys per `ADD_MOBILE_APP.md` Part 17 Track D. Start with onboarding → swap → buy P2P listing → sign out.
+
+4. **RWA + Yield trade flows inside Mobile** (Track C3, C4 — currently DEX deep-links)
+   - Deep-linking to the DEX tab is acceptable for soft launch. Native per-marketplace screens would deliver parity with the Wallet extension's Phase 3 Batch 2. Depends on `RWAService` + `YieldService` being ported alongside the intent-signing flows.
 
 ### Second priority (structural but less urgent)
 
-6. **Hardware wallet transports** (Track D full)
-   - Install `@ledgerhq/hw-transport-react-native-ble` + `react-native-ble-plx` native modules; wire `MobileBLEAdapter` via `getBLEAdapter()` (interface already defined in `@wallet/platform/adapters`).
-   - Trezor via WebView fallback (no first-class RN SDK).
-
-7. **XOM→USDC pre-hop regression test** (Track A4 ⏳ → ✅)
-   - Ported from Wallet extension's R-round tests. Add to `__tests__/services/SwapService.test.ts` with a mock validator that rejects XOM-origin cross-chain quotes without the USDC pre-hop.
-
-8. **Staking stake/unstake/claim flow** (Phase 5 Week 2)
-   - `StakingScreen` is read-only today; contract flows via `@wallet/services/StakingService.ts`. Needs OmniRelay for gasless (depends on #1).
-
-9. **Governance placeholder** (Phase 5 deferred)
+5. **Governance placeholder** (Phase 5 deferred)
    - FF-gated by `FEATURES.governance.enabled=false`; flip after hard launch.
+
+6. **Component tests via jest-expo + RNTL** (Phase 8 Week 2)
+   - The ts-jest setup keeps tests fast but can't render native components. 5 critical screens deserve snapshot + interaction coverage: WelcomeScreen, SwapScreen, NFTDetailScreen, PredictionsMarketDetailScreen, P2PListingDetailScreen.
+
+7. **Upgrade to Expo SDK 53 (New Architecture default)**
+   - Current Mobile uses SDK 50. SDK 53's JSI + Fabric + TurboModules give the perf budget needed for the Track E measurements.
 
 ### Deferred to ops / external
 
@@ -152,10 +146,10 @@ Wallet repo (`feat/platform-adapters` branch, 10 commits beyond `origin/main`) h
 
 ## Recommended next steps (for the next session)
 
-1. Start with **OmniRelay gasless submit on L1** — it's the last piece keeping Track A5 🟨. Investigate whether the validator's `/universal-swap/execute` already returns L1 txs in EIP-2771 wrapper format, or if Mobile needs to re-encode. Read `@wallet/core/relay/WalletRelayingSigner.ts` and `OmniRelayClient.ts` to understand the pattern.
-2. Then **NFT buy flow** — biggest user-facing gap; closes 2 more Track C rows. `NFTDetailScreen` + buy sheet + allowance-approve flow is ~6 hours of focused work.
-3. Then **Predictions buy + claim** — same pattern, smaller surface (outcome tabs + buy + claim).
-4. Then **TX history** — once these three land, the Portfolio view reflects actual trade/buy/claim receipts.
+1. **Hardware wallet transports** (Track D) — install `@ledgerhq/hw-transport-react-native-ble` + `react-native-ble-plx`, wire `MobileBLEAdapter` behind the existing `getBLEAdapter()` contract. Trezor via WebView. Physical-device smoke test (Ledger Nano X on iOS + Android) unblocks D1–D4.
+2. **Per-subsystem inventory views** — NFTs owned, escrow timeline, open predictions, stake + rewards. Each one upgrades a Track C 🟨 row to ✅ and makes the portfolio actually feel alive.
+3. **Maestro E2E harness** — first journey is onboarding → swap → P2P buy → sign out. Once green, expand to the full 22.
+4. **EAS Build production profiles** — unlocks Track E measurement and Track F screenshots.
 
 When context is tight in any future session, lean on `docs/PRODUCTION_READINESS_AUDIT.md` — its per-row status + priority ordering is the single source of truth.
 
@@ -168,11 +162,11 @@ When context is tight in any future session, lean on `docs/PRODUCTION_READINESS_
 #2   Phase 1: Bootstrap + Challenge-Response Auth                 ✅ completed
 #3   Phase 2: Wallet Core + Multi-Chain Send/Receive              ✅ completed
 #4   Phase 3: DEX + Intent-Based Trading + Privacy                ✅ completed
-#5   Phase 4: 5 Marketplaces + Escrow + Chat + Push               ✅ completed
-#6   Phase 5: Staking + Bridge + KYC + Governance + Settings      ✅ completed
-#7   Phase 6: Hardware Wallets + WalletConnect v2 + dApp Browser  ⏳ pending
+#5   Phase 4: 5 Marketplaces + Escrow + Chat + Push               ✅ completed (all 5 marketplaces have live buy/claim/escrow flows)
+#6   Phase 5: Staking + Bridge + KYC + Governance + Settings      ✅ completed (stake/unstake/claim live)
+#7   Phase 6: Hardware Wallets + WalletConnect v2 + dApp Browser  ⏳ pending (top of queue)
 #8   Phase 7: Parity Audit + i18n + Accessibility                 ⏳ pending
-#9   Phase 8: Testing (Unit + Integration + E2E + Playwright)     ✅ completed
+#9   Phase 8: Testing (Unit + Integration + E2E + Playwright)     ✅ completed (114 unit tests; Maestro E2E pending)
 #10  Phase 9: Packaging + Website Sideload                        ✅ completed
 #11  Phase 10: Production Readiness Audit (Tracks A-F)            ✅ completed
 #12  Phase 11: App Store + Google Play Submission + Launch        ⏳ pending

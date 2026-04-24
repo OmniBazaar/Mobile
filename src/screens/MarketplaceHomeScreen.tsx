@@ -11,10 +11,20 @@ import React, { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
+import type {
+  MarketplaceListing,
+  NFTCollectionSummary,
+} from '@wallet/services/marketplace/MarketplaceClient';
+
 import { colors } from '@theme/colors';
+import { useAuthStore } from '../store/authStore';
 import P2PBrowseScreen from './P2PBrowseScreen';
+import P2PListingDetailScreen from './P2PListingDetailScreen';
 import NFTBrowseScreen from './NFTBrowseScreen';
+import NFTDetailScreen from './NFTDetailScreen';
 import PredictionsBrowseScreen from './PredictionsBrowseScreen';
+import PredictionsMarketDetailScreen from './PredictionsMarketDetailScreen';
+import type { PredictionMarket } from '@wallet/services/predictions/PredictionsClient';
 
 /** Marketplace identifier. */
 export type MarketplaceKind = 'p2p' | 'nft' | 'rwa' | 'yield' | 'predictions';
@@ -25,6 +35,11 @@ export interface MarketplaceHomeScreenProps {
   onBack: () => void;
   /** Called when the user wants to open the DEX swap for RWA/Yield trading. */
   onOpenSwap: () => void;
+  /**
+   * BIP39 phrase held in memory for the session; required for NFT + prediction
+   * buy flows that sign EIP-712 intents client-side. Empty string blocks buy.
+   */
+  mnemonic: string;
 }
 
 /**
@@ -35,6 +50,48 @@ export interface MarketplaceHomeScreenProps {
 export default function MarketplaceHomeScreen(props: MarketplaceHomeScreenProps): JSX.Element {
   const { t } = useTranslation();
   const [kind, setKind] = useState<MarketplaceKind>('p2p');
+  const [selectedNFTCollection, setSelectedNFTCollection] =
+    useState<NFTCollectionSummary | undefined>(undefined);
+  const [selectedPredictionMarket, setSelectedPredictionMarket] =
+    useState<PredictionMarket | undefined>(undefined);
+  const [selectedP2PListing, setSelectedP2PListing] =
+    useState<MarketplaceListing | undefined>(undefined);
+  const buyerAddress = useAuthStore((s) => s.address);
+
+  if (selectedP2PListing !== undefined) {
+    return (
+      <P2PListingDetailScreen
+        listing={selectedP2PListing}
+        buyer={buyerAddress}
+        mnemonic={props.mnemonic}
+        onBack={() => setSelectedP2PListing(undefined)}
+      />
+    );
+  }
+
+  // NFT detail — routes to the dedicated buy screen; back clears.
+  if (selectedNFTCollection !== undefined) {
+    return (
+      <NFTDetailScreen
+        collection={selectedNFTCollection}
+        buyer={buyerAddress}
+        mnemonic={props.mnemonic}
+        onBack={() => setSelectedNFTCollection(undefined)}
+      />
+    );
+  }
+
+  // Prediction detail — buy/claim screen; back clears.
+  if (selectedPredictionMarket !== undefined) {
+    return (
+      <PredictionsMarketDetailScreen
+        market={selectedPredictionMarket}
+        buyer={buyerAddress}
+        mnemonic={props.mnemonic}
+        onBack={() => setSelectedPredictionMarket(undefined)}
+      />
+    );
+  }
 
   const tabs: Array<{ kind: MarketplaceKind; label: string }> = [
     { kind: 'p2p', label: t('marketplace.tab.p2p', { defaultValue: 'P2P' }) },
@@ -72,9 +129,15 @@ export default function MarketplaceHomeScreen(props: MarketplaceHomeScreenProps)
       </ScrollView>
 
       <View style={styles.body}>
-        {kind === 'p2p' && <P2PBrowseScreen />}
-        {kind === 'nft' && <NFTBrowseScreen />}
-        {kind === 'predictions' && <PredictionsBrowseScreen />}
+        {kind === 'p2p' && (
+          <P2PBrowseScreen onSelectListing={setSelectedP2PListing} />
+        )}
+        {kind === 'nft' && (
+          <NFTBrowseScreen onSelectCollection={setSelectedNFTCollection} />
+        )}
+        {kind === 'predictions' && (
+          <PredictionsBrowseScreen onSelectMarket={setSelectedPredictionMarket} />
+        )}
         {(kind === 'rwa' || kind === 'yield') && (
           <DeepLinkToDex kind={kind} onOpenSwap={props.onOpenSwap} />
         )}

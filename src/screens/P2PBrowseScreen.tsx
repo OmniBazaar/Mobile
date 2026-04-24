@@ -33,12 +33,20 @@ const { width } = Dimensions.get('window');
 const COLUMN_GAP = 8;
 const CARD_WIDTH = (width - 32 - COLUMN_GAP) / 2;
 
+/** Props. */
+export interface P2PBrowseScreenProps {
+  /** Called when the user taps a listing card. */
+  onSelectListing?: (listing: MarketplaceListing) => void;
+}
+
 /**
  * Render the P2P browse grid.
+ * @param props - See {@link P2PBrowseScreenProps}.
  * @returns JSX.
  */
-export default function P2PBrowseScreen(): JSX.Element {
+export default function P2PBrowseScreen(props: P2PBrowseScreenProps = {}): JSX.Element {
   const { t } = useTranslation();
+  const { onSelectListing } = props;
   const [listings, setListings] = useState<MarketplaceListing[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
@@ -96,7 +104,12 @@ export default function P2PBrowseScreen(): JSX.Element {
         numColumns={2}
         columnWrapperStyle={styles.columnWrapper}
         contentContainerStyle={styles.listContent}
-        renderItem={({ item }) => <ListingCard listing={item} />}
+        renderItem={({ item }) => (
+          <ListingCard
+            listing={item}
+            onPress={onSelectListing !== undefined ? () => onSelectListing(item) : undefined}
+          />
+        )}
         ListEmptyComponent={
           loading ? (
             <Text style={styles.loading}>
@@ -121,10 +134,21 @@ export default function P2PBrowseScreen(): JSX.Element {
 }
 
 /** Individual listing card rendered in the 2-column grid. */
-function ListingCard({ listing }: { listing: MarketplaceListing }): JSX.Element {
+function ListingCard({
+  listing,
+  onPress,
+}: {
+  listing: MarketplaceListing;
+  onPress?: () => void;
+}): JSX.Element {
   const imageUrl = listing.images.length > 0 ? listing.images[0] : undefined;
   return (
-    <Pressable style={styles.card} accessibilityRole="button" accessibilityLabel={listing.title}>
+    <Pressable
+      style={styles.card}
+      accessibilityRole="button"
+      accessibilityLabel={listing.title}
+      onPress={onPress}
+    >
       {imageUrl !== undefined ? (
         <Image source={{ uri: imageUrl }} style={styles.cardImage} accessibilityIgnoresInvertColors />
       ) : (

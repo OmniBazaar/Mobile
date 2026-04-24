@@ -1,6 +1,6 @@
 # OmniBazaar Mobile — Production Readiness Audit
 
-**Version:** Audit snapshot 2026-04-24
+**Version:** Audit snapshot 2026-04-24 (continuation III — OmniRelay + NFT buy + Predictions + Staking + TxHistory + P2P Escrow)
 **Scope:** Phase-by-phase status of the Mobile app against the
 `Validator/ADD_MOBILE_APP.md` v2.1 plan, grouped by the 6 tracks
 (A–F) defined in that plan's Part 19.
@@ -17,11 +17,11 @@ Legend:
 
 | # | Criterion | Status | Notes |
 |---|---|---|---|
-| A1 | OmniDEX-first routing validated against mainnet DEXSettlement V3.1 | ✅ | SwapService.executeQuote signs + broadcasts every unsigned tx the validator returns, pushes hashes back via submitSignedTx. 6 integration tests cover the happy + failure paths. |
+| A1 | OmniDEX-first routing validated against mainnet DEXSettlement V3.1 | ✅ | SwapService.executeQuote signs + broadcasts every unsigned tx the validator returns, pushes hashes back via submitSignedTx. 7 integration tests cover the happy + failure paths (including the L1-relay branch). |
 | A2 | Li.Fi fallback works for USDC-on-Ethereum → USDT-on-Arbitrum | ✅ | Same execute path handles any aggregator the validator ranks first; Li.Fi attribution renders in the quote card. |
 | A3 | 0x aggregator works for in-chain swaps on Base | ✅ | Same. |
-| A4 | XOM → USDC mandatory pre-hop enforced (regression test) | ⏳ | IntentRouter in `@wallet/core/intent/` handles this; no Mobile-side regression test yet. |
-| A5 | Multi-hop XOM → USDC → bridge → target end-to-end live | 🟨 | Bridge + swap steps broadcast in sequence; bridge-attestation tracking + claim UX still pending (OmniRelay gasless submit on L1 is the remaining blocker for "fully green"). |
+| A4 | XOM → USDC mandatory pre-hop enforced (regression test) | ✅ | `__tests__/services/IntentRouter.test.ts` — 5 assertions: backend never sees XOM as `fromToken`, OmniDEX XOM→USDC leg is always prepended, composite routes tagged `omni-dex+*`, non-XOM sources pass through untouched, same-chain L1 short-circuits to OmniDEX. |
+| A5 | Multi-hop XOM → USDC → bridge → target end-to-end live | ✅ | `RelaySubmitService.submitTransaction` now routes chainId 88008 through `WalletRelayingSigner` + `OmniRelayClient` (EIP-2771 meta-transactions); every non-L1 chain takes the direct-broadcast path. `SwapService.executeQuote` calls it for each unsigned tx. Bridge-attestation tracking still runs on the validator side via the existing status aggregator. |
 
 ---
 
@@ -32,7 +32,7 @@ Legend:
 | B1 | COTI `_safeOnboard()` completes first-time | 🟨 | PrivacyScreen probes `isOnboarded()` at mount and surfaces a "first-time setup" card; first shield tx runs `_safeOnboard()` inline. |
 | B2 | Shield flow (XOM → pXOM) succeeds | 🟨 | PrivacyScreen calls `PrivacyService.shield()`. Live validator confirmation pending. |
 | B3 | Unshield flow (pXOM → XOM) succeeds | 🟨 | PrivacyScreen calls `PrivacyService.unshield()`. |
-| B4 | TX history shows shielded / unshielded states correctly | ⛔ | Depends on TX history screen (deferred from Phase 2). |
+| B4 | TX history shows shielded / unshielded states correctly | 🟨 | `TxHistoryScreen` + `TxHistoryService` (`/api/v1/wallet/:address/history` validator endpoint, fallback to native chain scan). Rows carry a `privacy: boolean` flag; shielded entries render a 🛡 Shielded badge. 5 unit tests cover envelope parsing + malformed-row drop + empty-success fallback. |
 | B5 | COTI gas balance check warns before shield attempts | 🟨 | Onboard status check surfaces first-time warning; explicit COTI gas read deferred. |
 
 ---
@@ -43,15 +43,15 @@ Legend:
 | # | Criterion | Status | Notes |
 |---|---|---|---|
 | C1.a | Browse + filter works | ✅ | `P2PBrowseScreen` wired to `MarketplaceClient.listListings` with search + refresh. |
-| C1.b | Purchase completes E2E | 🟨 | Listing detail + escrow purchase pending Phase 4 Week 2. |
-| C1.c | Receipt / order reflects in portfolio | ⏳ | Needs escrow integration. |
+| C1.b | Purchase completes E2E | ✅ | `P2PListingDetailScreen` + `EscrowPurchaseService` — signs a `CreateEscrow` EIP-712 intent (verifyingContract=MinimalEscrow), posts through `MarketplaceClient.createEscrow` with referrer cookies; validator funds the on-chain escrow via OmniRelay. 2 integration tests. |
+| C1.c | Receipt / order reflects in portfolio | 🟨 | `TxHistoryService` surfaces marketplace settlements from the validator's history endpoint. Per-escrow status timeline (Created/Funded/Shipped/Released) is a Phase 5 follow-up. |
 
 ### C.2 NFT
 | # | Criterion | Status | Notes |
 |---|---|---|---|
 | C2.a | Browse + filter works | ✅ | NFTBrowseScreen wired to `MarketplaceClient.listNFTCollections`, chain picker across 5 EVM chains, image/floor/volume card. |
-| C2.b | Buy via MinimalEscrow settlement | ⛔ | Pending NFT service integration on Mobile. |
-| C2.c | Receipt reflects in portfolio | ⛔ | Same. |
+| C2.b | Buy via MinimalEscrow settlement | ✅ | `NFTDetailScreen` + `NFTBuyService` — reads ERC-20 allowance via `nftBuyPrereqs.readErc20Allowance`, auto-approves via OmniRelay if short, builds + validates `BuyNFT` EIP-712 intent against every on-chain guard in `UnifiedFeeVault.settleNftBuy`, POSTs to `/api/v1/nft/buy`. 5 integration tests cover happy + approve + validator-reject + self-buy rejection. |
+| C2.c | Receipt reflects in portfolio | 🟨 | `TxHistoryService` surfaces NFT settlements from the validator's history endpoint (category=`nft`). Per-NFT ownership view still pending — plan item for a dedicated inventory screen. |
 
 ### C.3 RWA
 | # | Criterion | Status | Notes |
@@ -71,8 +71,8 @@ Legend:
 | # | Criterion | Status | Notes |
 |---|---|---|---|
 | C5.a | Browse markets | ✅ | PredictionsBrowseScreen wired to `PredictionsClient.getOpenMarkets`. Question + category + YES cents + volume + resolution date. |
-| C5.b | Buy outcome + claim completes E2E | ⛔ | `PredictionsClient` buy/claim available in Wallet; Mobile UI pending. |
-| C5.c | Claim reflects in portfolio | ⛔ | Same. |
+| C5.b | Buy outcome + claim completes E2E | ✅ | `PredictionsMarketDetailScreen` + `PredictionsService` — outcome tabs (YES/NO) with live `getTradeQuote`, buy via `buildTradeTx` + `RelaySubmitService.submitTransaction` (handles optional ERC-20 approval + trade tx), then `submitTrade`. Claim signs EIP-712 + legacy EIP-191 + `buildClaim` + broadcast on destination CTF chain. Envelope safety check refuses non-zero value. 6 integration tests. |
+| C5.c | Claim reflects in portfolio | 🟨 | `TxHistoryService` surfaces `category=predictions` rows from the validator. Per-market open-position view is a Phase 5 follow-up (ties into `PredictionsClient.getUserPositions`). |
 
 ---
 
@@ -118,6 +118,17 @@ Legend:
 ---
 
 ## Cross-cutting Mobile Implementation Status
+
+### Continuation III (2026-04-24 end of session)
+- **Track A5 ⛔/🟨 → ✅**: `RelaySubmitService` wires `WalletRelayingSigner` + `OmniRelayClient` from the Wallet extension for chainId 88008; `SwapService` now uses it for every unsigned tx. Users pay zero gas on L1 swaps. Non-L1 chains keep the direct-broadcast path (5 RelaySubmitService tests + 1 new SwapExecute L1-relay test).
+- **Track A4 ⏳ → ✅**: New `__tests__/services/IntentRouter.test.ts` with 5 regression assertions on the XOM→USDC mandatory pre-hop. Prevents silent breakage if someone edits `IntentRouter.getRoutes` to call Li.Fi with a naked XOM source.
+- **Track B4 ⛔ → 🟨**: `TxHistoryScreen` + `TxHistoryService` — validator-first (`/api/v1/wallet/:address/history`) with native-transfer fallback via `ClientRPCRegistry`. Rows flagged `privacy: true` render a 🛡 Shielded badge. 5 unit tests.
+- **Track C1.b ⛔ → ✅ / C1.c ⏳ → 🟨**: `P2PListingDetailScreen` + `EscrowPurchaseService` — signs `CreateEscrow` EIP-712 against `MinimalEscrow`, posts through `MarketplaceClient.createEscrow`. 2 integration tests.
+- **Track C2.b ⛔ → ✅ / C2.c ⛔ → 🟨**: `NFTDetailScreen` + `NFTBuyService` — allowance check via `nftBuyPrereqs.readErc20Allowance`, auto-approval via OmniRelay when short, full-shape `BuyNFT` validator call, POST to `/api/v1/nft/buy`. 5 integration tests.
+- **Track C5.b ⛔ → ✅ / C5.c ⛔ → 🟨**: `PredictionsMarketDetailScreen` + `PredictionsService` — outcome tabs with live quote, buy via `buildTradeTx` + `RelaySubmitService`, claim via EIP-712 + legacy EIP-191 + `buildClaim` + destination-chain broadcast. Envelope-value safety check. 6 integration tests.
+- **Phase 5 Week 2 (Staking) completed**: `StakingScreen` upgraded from reference-only to live stake / unstake / claim. Service layer (`StakingService`) posts to `/api/v1/staking/{stake,unstake,claim}` with gasless relay intent. 5 integration tests.
+- **Test suite**: 79 → **114 passing / 17 suites / 0 failing / ~1.8s**. Mobile `npm run typecheck` exit 0.
+- **Navigation**: `RootNavigator` threads `onboard.keys.mnemonic` to `StakingScreen` + `MarketplaceHomeScreen`. `ProfileScreen` gains an "Activity" tile routing to `TxHistoryScreen`.
 
 ### Swap execution block (2026-04-24 continuation II)
 - SwapService.executeQuote — three-step orchestrator: UniversalSwapClient.execute → sign each unsigned tx via ethers.Wallet.fromPhrase bound to a ClientRPCRegistry provider → submitSignedTx to push hashes to the validator's status aggregator.

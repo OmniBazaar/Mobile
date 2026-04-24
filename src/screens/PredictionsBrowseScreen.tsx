@@ -28,12 +28,22 @@ import {
 import Card from '@components/Card';
 import { colors } from '@theme/colors';
 
+/** Props. */
+export interface PredictionsBrowseScreenProps {
+  /** Called when the user taps a market row. Undefined disables tap. */
+  onSelectMarket?: (market: PredictionMarket) => void;
+}
+
 /**
  * Render the predictions-markets catalog.
+ * @param props - See {@link PredictionsBrowseScreenProps}.
  * @returns JSX.
  */
-export default function PredictionsBrowseScreen(): JSX.Element {
+export default function PredictionsBrowseScreen(
+  props: PredictionsBrowseScreenProps = {},
+): JSX.Element {
   const { t } = useTranslation();
+  const { onSelectMarket } = props;
   const [markets, setMarkets] = useState<readonly PredictionMarket[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
@@ -65,7 +75,12 @@ export default function PredictionsBrowseScreen(): JSX.Element {
       <FlatList
         data={markets}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <MarketRow market={item} />}
+        renderItem={({ item }) => (
+          <MarketRow
+            market={item}
+            onPress={onSelectMarket !== undefined ? () => onSelectMarket(item) : undefined}
+          />
+        )}
         contentContainerStyle={styles.listContent}
         refreshControl={
           <RefreshControl
@@ -91,7 +106,13 @@ export default function PredictionsBrowseScreen(): JSX.Element {
 }
 
 /** Single-market card. */
-function MarketRow({ market }: { market: PredictionMarket }): JSX.Element {
+function MarketRow({
+  market,
+  onPress,
+}: {
+  market: PredictionMarket;
+  onPress?: () => void;
+}): JSX.Element {
   const { t } = useTranslation();
   const yes = market.outcomes.find((o) => o.label.toLowerCase() === 'yes');
   const resolutionDate = new Date(market.resolutionDate);
@@ -100,7 +121,7 @@ function MarketRow({ market }: { market: PredictionMarket }): JSX.Element {
     : resolutionDate.toLocaleDateString();
 
   return (
-    <Pressable accessibilityRole="button" accessibilityLabel={market.question}>
+    <Pressable accessibilityRole="button" accessibilityLabel={market.question} onPress={onPress}>
       <Card style={styles.card}>
         <Text numberOfLines={2} style={styles.question}>
           {market.question}

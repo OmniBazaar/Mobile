@@ -37,6 +37,7 @@ import StakingScreen from '../screens/StakingScreen';
 import KYCScreen from '../screens/KYCScreen';
 import AboutScreen from '../screens/AboutScreen';
 import PrivacyScreen from '../screens/PrivacyScreen';
+import TxHistoryScreen from '../screens/TxHistoryScreen';
 
 /** Which onboarding step the user is currently on. */
 type OnboardingStep =
@@ -71,7 +72,8 @@ type AuthedRoute =
   | 'staking'
   | 'kyc'
   | 'about'
-  | 'privacy';
+  | 'privacy'
+  | 'tx-history';
 
 /**
  * Render the right screen based on the auth lifecycle state + the
@@ -195,6 +197,7 @@ export default function RootNavigator(): JSX.Element | null {
           <MarketplaceHomeScreen
             onBack={() => setAuthedRoute('wallet-home')}
             onOpenSwap={() => setAuthedRoute('swap')}
+            mnemonic={onboard.keys?.mnemonic ?? ''}
           />
         );
       case 'profile':
@@ -215,13 +218,20 @@ export default function RootNavigator(): JSX.Element | null {
           />
         );
       case 'staking':
-        return <StakingScreen onBack={() => setAuthedRoute('profile')} />;
+        return (
+          <StakingScreen
+            onBack={() => setAuthedRoute('profile')}
+            mnemonic={onboard.keys?.mnemonic ?? ''}
+          />
+        );
       case 'kyc':
         return <KYCScreen onBack={() => setAuthedRoute('profile')} />;
       case 'about':
         return <AboutScreen onBack={() => setAuthedRoute('profile')} />;
       case 'privacy':
         return <PrivacyScreen onBack={() => setAuthedRoute('swap')} />;
+      case 'tx-history':
+        return <TxHistoryScreen onBack={() => setAuthedRoute('profile')} />;
       case 'wallet-home':
       default:
         return (
