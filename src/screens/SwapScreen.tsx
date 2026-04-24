@@ -29,8 +29,10 @@ import {
   attributionLabel,
   classifySwap,
   COMMON_TOKENS,
+  executeQuote,
   formatPriceImpact,
   getQuote,
+  type ExecuteSwapResult,
   type QuoteResponse,
   type SwapQuote,
   type TokenShortcut,
@@ -43,6 +45,12 @@ export interface SwapScreenProps {
   onBack: () => void;
   /** Navigate to the privacy (pXOM) screen. */
   onOpenPrivacy: () => void;
+  /**
+   * Decrypted BIP39 mnemonic. Used only during swap execution and
+   * kept in memory for the duration of the user's session. Phase 3
+   * Week 3 moves this behind EncryptionService.
+   */
+  mnemonic: string;
 }
 
 /**
@@ -58,9 +66,11 @@ export default function SwapScreen(props: SwapScreenProps): JSX.Element {
   const [to, setTo] = useState<TokenShortcut>(COMMON_TOKENS[2]!);
   const [amount, setAmount] = useState('');
   const [busy, setBusy] = useState(false);
+  const [executing, setExecuting] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
   const [quote, setQuote] = useState<SwapQuote | undefined>(undefined);
   const [quoteResponse, setQuoteResponse] = useState<QuoteResponse | undefined>(undefined);
+  const [executionResult, setExecutionResult] = useState<ExecuteSwapResult | undefined>(undefined);
 
   const amountError = useMemo(() => {
     if (amount === '') return undefined;
@@ -117,6 +127,25 @@ export default function SwapScreen(props: SwapScreenProps): JSX.Element {
       setBusy(false);
     }
   }, [canQuote, from, to, amount, address, t]);
+
+  const handleExecute = useCallback(async (): Promise<void> => {
+    if (quote === undefined || address === '' || props.mnemonic === '') return;
+    setExecuting(true);
+    setError(undefined);
+    setExecutionResult(undefined);
+    try {
+      const result = await executeQuote({
+        quoteId: quote.quoteId,
+        address,
+        mnemonic: props.mnemonic,
+      });
+      setExecutionResult(result);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err));
+    } finally {
+      setExecuting(false);
+    }
+  }, [quote, address, props.mnemonic]);
 
   return (
     <View style={styles.root}>
@@ -240,6 +269,38 @@ export default function SwapScreen(props: SwapScreenProps): JSX.Element {
             disabled={!canQuote}
             style={styles.actionButton}
           />
+          {quote !== undefined && executionResult === undefined && (
+            <Button
+              title={
+                executing
+                  ? t('swap.cta.executing', { defaultValue: 'Signing & broadcasting…' })
+                  : t('swap.cta.execute', { defaultValue: 'Swap Now' })
+              }
+              onPress={() => void handleExecute()}
+              disabled={executing || props.mnemonic === ''}
+              style={styles.actionButton}
+            />
+          )}
+          {executionResult !== undefined && (
+            <View style={styles.successBox} accessibilityRole="alert" accessibilityLiveRegion="polite">
+              <Text style={styles.successTitle}>
+                {t('swap.success.title', { defaultValue: 'Submitted ✓' })}
+              </Text>
+              <Text style={styles.successBody}>
+                {t('swap.success.body', {
+                  defaultValue: 'Operation {{op}} — status: {{status}}',
+                  op: executionResult.operationId.slice(0, 10),
+                  status: executionResult.status,
+                })}
+              </Text>
+              {executionResult.txHashes.map((hash, i) => (
+                <Text key={hash} style={styles.successTx}>
+                  tx{i + 1} · chain {executionResult.chainIds[i] ?? '?'} ·{' '}
+                  {hash.slice(0, 10)}…{hash.slice(-6)}
+                </Text>
+              ))}
+            </View>
+          )}
           <Button
             title={t('common.back', { defaultValue: 'Back' })}
             onPress={props.onBack}
@@ -357,4 +418,15 @@ const styles = StyleSheet.create({
   error: { color: colors.danger, fontSize: 14, marginBottom: 12 },
   actions: { marginTop: 'auto' },
   actionButton: { marginBottom: 12 },
+  successBox: {
+    backgroundColor: colors.surface,
+    borderRadius: 10,
+    padding: 12,
+    borderWidth: 1,
+    borderColor: colors.success,
+    marginTop: 8,
+  },
+  successTitle: { color: colors.success, fontSize: 14, fontWeight: '700', marginBottom: 4 },
+  successBody: { color: colors.textPrimary, fontSize: 13, marginBottom: 6 },
+  successTx: { color: colors.textMuted, fontSize: 11, fontFamily: 'monospace' },
 });

@@ -186,7 +186,8 @@ export default function RootNavigator(): JSX.Element | null {
         return (
           <SwapScreen
             onBack={() => setAuthedRoute('wallet-home')}
-            onOpenPrivacy={() => setAuthedRoute('privacy')}
+            onOpenPrivacy={() => setAuthedRoute("privacy")}
+            mnemonic={onboard.keys?.mnemonic ?? ""}
           />
         );
       case 'marketplace':

@@ -14,14 +14,19 @@
  * route ranking.
  */
 
+import { ethers, Wallet } from 'ethers';
+
+import { getClientRPCRegistry } from '@wallet/core/providers/ClientRPCRegistry';
 import {
   getUniversalSwapClient,
+  type ExecuteResponse,
   type QuoteResponse,
   type SwapQuote,
+  type UnsignedSwapTransaction,
   type UniversalSwapQuoteParams,
 } from '@wallet/services/dex/UniversalSwapClient';
 
-export type { QuoteResponse, SwapQuote, UniversalSwapQuoteParams };
+export type { ExecuteResponse, QuoteResponse, SwapQuote, UniversalSwapQuoteParams };
 
 /** Canonical native-token sentinel used by the validator. */
 export const NATIVE_TOKEN_SENTINEL = '0x0000000000000000000000000000000000000000';
@@ -96,4 +101,113 @@ export function classifySwap(params: Pick<UniversalSwapQuoteParams, 'sourceChain
   if (sameChain) return 'same-chain-swap';
   if (sameToken) return 'bridge-only';
   return 'bridge-and-swap';
+}
+
+/** Final result of an executed swap. */
+export interface ExecuteSwapResult {
+  /** Validator-issued operation ID for status polling. */
+  operationId: string;
+  /** Hashes of every transaction the client broadcast, in execution order. */
+  txHashes: string[];
+  /** Chains each tx hash landed on — same length / order as txHashes. */
+  chainIds: number[];
+  /** The ExecuteResponse.status value as of the last call. */
+  status: string;
+  /** Human-readable status message from the validator. */
+  message: string;
+}
+
+/**
+ * Execute a previously-quoted swap.
+ *
+ * Flow:
+ *   1. Call `UniversalSwapClient.execute(quoteId, address)` — validator
+ *      returns an `operationId` plus an ordered array of unsigned txs.
+ *   2. Sign + broadcast each tx in sequence, waiting for inclusion
+ *      (1 confirmation) before moving to the next. This matches the
+ *      validator's expectation that a "bridge" step lands before it
+ *      polls the bridge oracle for attestation.
+ *   3. Call `submitSignedTx(opId, txHash, step)` after each on-chain
+ *      broadcast so the validator's status aggregator can track the
+ *      operation without waiting for its own mempool observer.
+ *
+ * The mnemonic is supplied by the caller and held in memory only for
+ * the duration of this function — Phase 3 Week 3 wires the decryption
+ * flow via EncryptionService so the caller never sees plaintext.
+ *
+ * @param params - Quote ID + address + mnemonic.
+ * @returns ExecuteSwapResult with every broadcast tx hash.
+ */
+export async function executeQuote(params: {
+  quoteId: string;
+  address: string;
+  mnemonic: string;
+}): Promise<ExecuteSwapResult> {
+  const client = getUniversalSwapClient();
+  const response: ExecuteResponse = await client.execute(params.quoteId, params.address);
+
+  const txHashes: string[] = [];
+  const chainIds: number[] = [];
+
+  const unsigned = response.transactions ?? [];
+  for (const tx of unsigned) {
+    const hash = await signAndBroadcast(tx, params.mnemonic);
+    txHashes.push(hash);
+    chainIds.push(tx.chainId);
+    // Route the on-chain hash back to the validator so it can track
+    // the operation. 'claim' is the only non-'deposit' step we see
+    // client-side today (CCTP/Wormhole manual claim); everything else
+    // reports as 'deposit'.
+    const reportStep = tx.step === 'claim' ? 'claim' : 'deposit';
+    try {
+      await client.submitSignedTx(response.operationId, hash, reportStep);
+    } catch (err) {
+      // Non-fatal — the validator will still observe the tx via its
+      // own mempool aggregator; we just lose the faster-path status
+      // push. Surface as a warn rather than throwing so the client
+      // considers the step successful.
+      console.warn('[swap-execute] submitSignedTx failed', err);
+    }
+  }
+
+  return {
+    operationId: response.operationId,
+    txHashes,
+    chainIds,
+    status: response.status,
+    message: response.message,
+  };
+}
+
+/**
+ * Sign and broadcast a single UnsignedSwapTransaction via Mobile's
+ * ClientRPCRegistry provider. Waits for 1 confirmation before
+ * returning so that the caller's next step in the sequence has a
+ * real on-chain receipt to reference.
+ *
+ * @param tx - Unsigned tx from the validator.
+ * @param mnemonic - BIP39 phrase used to derive the signer.
+ * @returns On-chain tx hash.
+ */
+async function signAndBroadcast(tx: UnsignedSwapTransaction, mnemonic: string): Promise<string> {
+  const provider = getClientRPCRegistry().getProvider(tx.chainId);
+  if (provider === undefined) {
+    throw new Error(`executeQuote: no RPC provider available for chainId ${tx.chainId}`);
+  }
+  const wallet = Wallet.fromPhrase(
+    mnemonic,
+    // Cross-realm ethers — same caveat as SendService.sendNative.
+    provider as unknown as ethers.Provider,
+  );
+  const request: ethers.TransactionRequest = {
+    to: tx.to,
+    data: tx.data,
+    value: BigInt(tx.value),
+    chainId: tx.chainId,
+  };
+  const sent = await wallet.sendTransaction(request);
+  // Wait for 1 confirmation so the validator's post-broadcast pull
+  // sees the tx reliably.
+  await sent.wait(1);
+  return sent.hash;
 }
