@@ -29,6 +29,7 @@ import SignInScreen from '../screens/SignInScreen';
 import WalletHomeScreen from '../screens/WalletHomeScreen';
 import SendScreen from '../screens/SendScreen';
 import ReceiveScreen from '../screens/ReceiveScreen';
+import SwapScreen from '../screens/SwapScreen';
 
 /** Which onboarding step the user is currently on. */
 type OnboardingStep =
@@ -52,7 +53,7 @@ interface OnboardingState {
 }
 
 /** Post-auth navigation state. */
-type AuthedRoute = 'wallet-home' | 'send' | 'receive';
+type AuthedRoute = 'wallet-home' | 'send' | 'receive' | 'swap';
 
 /**
  * Render the right screen based on the auth lifecycle state + the
@@ -163,15 +164,15 @@ export default function RootNavigator(): JSX.Element | null {
         );
       case 'receive':
         return <ReceiveScreen onBack={() => setAuthedRoute('wallet-home')} />;
+      case 'swap':
+        return <SwapScreen onBack={() => setAuthedRoute('wallet-home')} />;
       case 'wallet-home':
       default:
         return (
           <WalletHomeScreen
             onSend={() => setAuthedRoute('send')}
             onReceive={() => setAuthedRoute('receive')}
-            onSwap={() => {
-              /* Phase 3 */
-            }}
+            onSwap={() => setAuthedRoute('swap')}
             onSignOut={() => {
               clearAuth();
               setOnboard({ step: 'welcome' });
