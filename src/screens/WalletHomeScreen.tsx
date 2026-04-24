@@ -25,6 +25,7 @@ import { useTranslation } from 'react-i18next';
 import Card from '@components/Card';
 import { colors } from '@theme/colors';
 import {
+  fetchErc20Balances,
   fetchNativeBalances,
   formatRaw,
   summarize,
@@ -65,8 +66,20 @@ export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Elem
     if (address === '') return;
     setRefreshing(true);
     try {
-      const rows = await fetchNativeBalances(address);
-      setBalances(rows);
+      // Fetch native + ERC-20 balances in parallel. Native returns one
+      // row per chain (including zero); ERC-20 returns only non-zero
+      // rows plus any per-chain error rows.
+      const [nativeRows, erc20Rows] = await Promise.all([
+        fetchNativeBalances(address),
+        fetchErc20Balances(address),
+      ]);
+      // Hide zero-balance non-OmniCoin native rows to keep the list
+      // focused on assets the user actually holds. OmniCoin L1 always
+      // renders so the user sees their XOM home chain even at zero.
+      const filteredNative = nativeRows.filter(
+        (r) => r.chainId === 88008 || r.raw > 0n || r.error !== undefined,
+      );
+      setBalances([...filteredNative, ...erc20Rows]);
     } catch (err) {
       console.warn('[wallet-home] balance fetch failed', err);
     } finally {

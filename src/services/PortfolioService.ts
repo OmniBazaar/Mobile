@@ -18,7 +18,10 @@
  * for them for now so the UI can render a "pending" state.
  */
 
-import { getNativeBalances } from '@wallet/core/providers/MulticallService';
+import {
+  getErc20Balances,
+  getNativeBalances,
+} from '@wallet/core/providers/MulticallService';
 
 /** Per-chain native balance entry. */
 export interface ChainBalance {
@@ -119,6 +122,116 @@ export function summarize(balances: ChainBalance[]): {
     if (b.raw > 0n) nonZero += 1;
   }
   return { nonZeroChains: nonZero, totalErrorRows: errors };
+}
+
+/** ERC-20 token entry the portfolio knows how to query. */
+export interface Erc20Token {
+  chainId: number;
+  /** Contract address (EIP-55 or lowercase — both accepted). */
+  address: string;
+  /** Display symbol ("USDC", "USDT", …). */
+  symbol: string;
+  /** Decimals as declared on-chain. */
+  decimals: number;
+}
+
+/**
+ * Curated ERC-20 list matching the Phase 2 chain set. Every entry maps
+ * to a canonical contract address that the validator's price oracle
+ * understands. Extend as new tokens go live.
+ */
+export const ERC20_TOKENS: Erc20Token[] = [
+  { chainId: 1, address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', symbol: 'USDC', decimals: 6 },
+  { chainId: 1, address: '0xdAC17F958D2ee523a2206206994597C13D831ec7', symbol: 'USDT', decimals: 6 },
+  { chainId: 42161, address: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831', symbol: 'USDC', decimals: 6 },
+  { chainId: 42161, address: '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9', symbol: 'USDT', decimals: 6 },
+  { chainId: 8453, address: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', symbol: 'USDC', decimals: 6 },
+  { chainId: 137, address: '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359', symbol: 'USDC', decimals: 6 },
+  { chainId: 137, address: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F', symbol: 'USDT', decimals: 6 },
+  { chainId: 10, address: '0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85', symbol: 'USDC', decimals: 6 },
+  { chainId: 43114, address: '0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E', symbol: 'USDC', decimals: 6 },
+];
+
+/**
+ * Fetch ERC-20 balances for `address` across every configured token,
+ * grouped by chain. One Multicall3 batch per chain keeps the request
+ * count tight.
+ *
+ * @param address - EVM address to query.
+ * @returns Array of {@link ChainBalance} rows — one per ERC-20 with a
+ *   non-zero balance plus error rows when the chain-level call fails.
+ */
+export async function fetchErc20Balances(address: string): Promise<ChainBalance[]> {
+  if (!/^0x[0-9a-fA-F]{40}$/.test(address)) {
+    throw new Error(`PortfolioService.fetchErc20Balances: invalid address ${address}`);
+  }
+
+  // Group tokens by chain so each chain gets one Multicall3 batch.
+  const byChain = new Map<number, Erc20Token[]>();
+  for (const tok of ERC20_TOKENS) {
+    const existing = byChain.get(tok.chainId) ?? [];
+    existing.push(tok);
+    byChain.set(tok.chainId, existing);
+  }
+
+  const results: ChainBalance[] = [];
+  await Promise.all(
+    Array.from(byChain.entries()).map(async ([chainId, tokens]) => {
+      try {
+        const tokenAddresses = tokens.map((t) => t.address);
+        const balances = await getErc20Balances(chainId, address, tokenAddresses);
+        for (const tok of tokens) {
+          const key = tok.address.toLowerCase();
+          const raw = balances.get(key) ?? balances.get(tok.address) ?? 0n;
+          if (raw > 0n) {
+            results.push({
+              chainId,
+              chainName: chainNameFor(chainId),
+              symbol: tok.symbol,
+              decimals: tok.decimals,
+              raw,
+            });
+          }
+        }
+      } catch (err) {
+        // Surface the chain as a single error row so the UI shows a
+        // "refresh this chain" affordance instead of silently dropping it.
+        results.push({
+          chainId,
+          chainName: chainNameFor(chainId),
+          symbol: 'ERC-20',
+          decimals: 6,
+          raw: 0n,
+          error: err instanceof Error ? err.message : String(err),
+        });
+      }
+    }),
+  );
+  return results;
+}
+
+/** Map chain ID to the display name used in ChainBalance rows. */
+function chainNameFor(chainId: number): string {
+  switch (chainId) {
+    case 1:
+      return 'Ethereum';
+    case 10:
+      return 'Optimism';
+    case 56:
+      return 'BNB Chain';
+    case 137:
+      return 'Polygon';
+    case 8453:
+      return 'Base';
+    case 42161:
+      return 'Arbitrum';
+    case 43114:
+      return 'Avalanche';
+    case 88008:
+      return 'OmniCoin';
+    default:
+      return `Chain ${chainId}`;
+  }
 }
 
 /**

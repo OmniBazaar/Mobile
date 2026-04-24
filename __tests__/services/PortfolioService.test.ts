@@ -5,7 +5,12 @@
  * decimal-formatting math and the non-zero summary logic.
  */
 
-import { formatRaw, summarize, type ChainBalance } from '../../src/services/PortfolioService';
+import {
+  ERC20_TOKENS,
+  formatRaw,
+  summarize,
+  type ChainBalance,
+} from '../../src/services/PortfolioService';
 
 describe('PortfolioService.formatRaw', () => {
   it('returns "0" for zero', () => {
@@ -67,5 +72,39 @@ describe('PortfolioService.summarize', () => {
 
   it('zero-length input returns zero summary', () => {
     expect(summarize([])).toEqual({ nonZeroChains: 0, totalErrorRows: 0 });
+  });
+});
+
+describe('PortfolioService ERC20_TOKENS', () => {
+  it('every token has a 20-byte EVM address', () => {
+    for (const t of ERC20_TOKENS) {
+      expect(t.address).toMatch(/^0x[0-9a-fA-F]{40}$/);
+    }
+  });
+
+  it('stablecoins use 6 decimals', () => {
+    const stables = ERC20_TOKENS.filter((t) => t.symbol === 'USDC' || t.symbol === 'USDT');
+    expect(stables.length).toBeGreaterThan(0);
+    for (const t of stables) {
+      expect(t.decimals).toBe(6);
+    }
+  });
+
+  it('covers the Phase 2 chain set', () => {
+    const chainIds = new Set(ERC20_TOKENS.map((t) => t.chainId));
+    // At least ETH / ARB / BASE / POLY appear — the pairs we swap most often.
+    expect(chainIds.has(1)).toBe(true);
+    expect(chainIds.has(42161)).toBe(true);
+    expect(chainIds.has(8453)).toBe(true);
+    expect(chainIds.has(137)).toBe(true);
+  });
+
+  it('no duplicate (chainId, address) pairs', () => {
+    const seen = new Set<string>();
+    for (const t of ERC20_TOKENS) {
+      const key = `${t.chainId}:${t.address.toLowerCase()}`;
+      expect(seen.has(key)).toBe(false);
+      seen.add(key);
+    }
   });
 });
