@@ -45,7 +45,7 @@ npm run type-check && npm run build:chrome && npm run validate:dist:chrome
 **END OF HEADER — EVERYTHING BELOW IS CURRENT HANDOFF CONTEXT**
 ---
 
-## Current state (2026-04-25 end of session — continuation IV)
+## Current state (2026-04-25 end of session — continuation V)
 
 ### What's shipped
 Seven phases at MVP+ plus the remaining Track A / Track B4 / Track C / Phase 5 Week 2 gaps closed in continuation III:
@@ -65,7 +65,7 @@ Seven phases at MVP+ plus the remaining Track A / Track B4 / Track C / Phase 5 W
 | A Intent-based trading | **5/5 ✅** |
 | B Privacy (COTI pXOM) | 5/5 🟨 |
 | C 5 Marketplaces | **11/15 ✅** 4/15 🟨 (RWA/Yield deep-link to DEX) |
-| D Hardware wallets | 2/4 🟨 (Ledger BLE adapter shipped; physical-device gate pending) • 2/4 ⛔ (HID + Trezor) |
+| D Hardware wallets | 4/4 🟨 (BLE + USB-HID adapters shipped, Trezor WebView shipped; physical-device gate pending) |
 | E Perf / bundle / battery | 3/6 🟨 3/6 ⏳ |
 | F Store assets + compliance | 3/10 ✅ 1/10 🟨 2/10 ⏳ 4/10 ⛔ |
 
@@ -151,10 +151,10 @@ Wallet repo (`feat/platform-adapters` branch, 10 commits beyond `origin/main`) h
 
 ## Recommended next steps (for the next session)
 
-1. **Run EAS Build preview** — `eas build --profile preview --platform all` to land the first real binary. Feeds sizes into Track E1/E2, screenshots into Track F1, and gives Maestro something to install on a CI device farm.
-2. **Ledger round-trip smoke** — `expo prebuild` + `eas build --profile development --platform ios` with a Nano X paired over BLE. Assert `get_ethereum_address` + `signMessage` succeed end-to-end. That's the D1 / D4 ✅ flip.
-3. **Validator endpoints for inventory** — coordinate with backend on `/api/v1/nft/owned/:address`, `/api/v1/marketplace/escrows/:address`, `/api/v1/staking/:address/position`. Mobile already consumes whatever they return.
-4. **Ledger USB-HID + Trezor WebView** — one-shot Android extension, then Trezor via WebView.
+1. **Run the EAS preview** — `npm run build:preview` (script wrapper does typecheck + tests + login probe before kicking the build). Feeds sizes into Track E1/E2, screenshots into Track F1, and gives Maestro something to install on a real device farm.
+2. **Physical Ledger smoke** — follow `docs/LEDGER_SMOKE.md` end-to-end on iOS + Android. Once green: D1 + D2 + D4 flip ✅. Track Trezor with the same runbook (D3 ✅).
+3. **Wire the new validator endpoints into deploy** — `MobileInventoryRoutes` is registered in both entry points; the next deploy of `omnicoin-validator-{1..5}` exposes the four read paths. After deploy, validate from a phone: hit `GET /api/v1/staking/:address/position` and confirm the body shape matches Mobile's `InventoryService.normalize*` parsers.
+4. **Validator-side `wallet_activity` view** — `GET /api/v1/wallet/:address/history` is wired but currently returns `[]` because the underlying materialised view doesn't exist. The schema lives in the indexer plan; once the view lands, history rows flow into the Mobile Activity tab without further client changes.
 
 When context is tight in any future session, lean on `docs/PRODUCTION_READINESS_AUDIT.md` — its per-row status + priority ordering is the single source of truth.
 

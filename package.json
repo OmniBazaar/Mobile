@@ -24,6 +24,10 @@
     "e2e:test:android": "detox test --configuration android",
     "e2e:maestro": "maestro test .maestro/",
     "e2e:maestro:ci": "maestro test --format junit --output maestro-report.xml .maestro/",
+    "build:preview": "./scripts/eas-preview.sh",
+    "build:preview:ios": "./scripts/eas-preview.sh ios",
+    "build:preview:android": "./scripts/eas-preview.sh android",
+    "build:preview:apk": "./scripts/eas-preview.sh apk",
     "postinstall": "patch-package",
     "clean": "rm -rf node_modules ios/build android/build",
     "clean:all": "npm run clean && rm -rf ios/Pods .expo"
@@ -68,6 +72,7 @@
     "react-native-gesture-handler": "~2.14.0",
     "react-native-get-random-values": "~1.8.0",
     "react-native-mmkv": "^2.11.0",
+    "@ledgerhq/hw-transport-react-native-hid": "^6.29.5",
     "react-native-ble-plx": "^3.1.2",
     "react-native-qrcode-svg": "^6.3.21",
     "react-native-reanimated": "~3.6.0",

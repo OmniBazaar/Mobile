@@ -42,6 +42,7 @@ import OwnedNFTsScreen from '../screens/OwnedNFTsScreen';
 import EscrowsScreen from '../screens/EscrowsScreen';
 import PredictionPositionsScreen from '../screens/PredictionPositionsScreen';
 import HardwareWalletScreen from '../screens/HardwareWalletScreen';
+import TrezorWebViewScreen from '../screens/TrezorWebViewScreen';
 
 /** Which onboarding step the user is currently on. */
 type OnboardingStep =
@@ -81,7 +82,8 @@ type AuthedRoute =
   | 'nfts-owned'
   | 'escrows'
   | 'prediction-positions'
-  | 'hardware';
+  | 'hardware'
+  | 'trezor';
 
 /**
  * Render the right screen based on the auth lifecycle state + the
@@ -252,7 +254,14 @@ export default function RootNavigator(): JSX.Element | null {
           />
         );
       case 'hardware':
-        return <HardwareWalletScreen onBack={() => setAuthedRoute('profile')} />;
+        return (
+          <HardwareWalletScreen
+            onBack={() => setAuthedRoute('profile')}
+            onOpenTrezor={() => setAuthedRoute('trezor')}
+          />
+        );
+      case 'trezor':
+        return <TrezorWebViewScreen onBack={() => setAuthedRoute('hardware')} />;
       case 'wallet-home':
       default:
         return (

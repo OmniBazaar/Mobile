@@ -1,6 +1,6 @@
 # OmniBazaar Mobile — Production Readiness Audit
 
-**Version:** Audit snapshot 2026-04-25 (continuation IV — inventory views + hardware BLE + Maestro + EAS profiles)
+**Version:** Audit snapshot 2026-04-25 (continuation V — validator inventory endpoints + USB-HID + Trezor WebView + Ledger smoke runbook + EAS preview script)
 **Scope:** Phase-by-phase status of the Mobile app against the
 `Validator/ADD_MOBILE_APP.md` v2.1 plan, grouped by the 6 tracks
 (A–F) defined in that plan's Part 19.
@@ -81,8 +81,8 @@ Legend:
 | # | Criterion | Status | Notes |
 |---|---|---|---|
 | D1 | Ledger Nano X BLE signs challenge + EIP-712 + EIP-1559 on iOS + Android | 🟨 | `MobileBLEAdapter` implements the `@wallet/platform/adapters::BLEAdapter` contract using `react-native-ble-plx`: scans for Ledger Nano X service UUID, connects, frames APDU via the Nordic-UART write / notify characteristic pair, reassembles multi-chunk replies. `HardwareWalletScreen` registers the adapter lazily on first mount. Physical-device round-trip deferred to a Ledger-on-device smoke session. |
-| D2 | Ledger Nano S Plus USB-C signs on Android | ⛔ | Android-only; requires `@ledgerhq/hw-transport-react-native-hid` native module + manifest wiring. Tracking as a Phase 6 Week 2 follow-up. |
-| D3 | Trezor Model T signs via WebView fallback | ⛔ | `HardwareWalletScreen` surfaces a "Trezor coming with the next hardware batch" note. The WebView-hosted Trezor Connect integration ships after D1 is verified on-device. |
+| D2 | Ledger Nano S Plus USB-C signs on Android | 🟨 | `MobileUSBHIDAdapter` wraps `@ledgerhq/hw-transport-react-native-hid` behind the `@wallet/platform/adapters::USBHIDAdapter` contract. Lazily registered on Android only via `register-hardware-adapters.ts`. `package.json` pins the transport at `^6.29.5`. Physical-device round-trip deferred to the same on-device smoke session as D1. |
+| D3 | Trezor Model T signs via WebView fallback | 🟨 | `TrezorWebViewScreen` hosts `https://connect.trezor.io/9/popup.html`; `TrezorBridgeService` wires the postMessage protocol with three convenience helpers (`readEthereumAddress`, `signEthereumMessage`, `signEthereumTransaction`). Reachable from `HardwareWalletScreen` via an "Open Trezor Connect" button. |
 | D4 | Hardware challenge-response login completes | 🟨 | `ChallengeAuthClient.hardwareSigner()` already exists in Wallet; with `MobileBLEAdapter` registered the Ledger path is wired end-to-end. Login-screen UX entry point is the Phase 6 Week 2 follow-up (today the adapter is only exercised via `HardwareWalletScreen`'s pair-then-verify round-trip). |
 
 ---
@@ -118,6 +118,14 @@ Legend:
 ---
 
 ## Cross-cutting Mobile Implementation Status
+
+### Continuation V (2026-04-25 end of session)
+- **Validator-side endpoints landed**: `Validator/src/api/MobileInventoryRoutes.ts` registers `GET /api/v1/nft/owned/:address`, `GET /api/v1/marketplace/escrows/:address?role=buyer|seller`, `GET /api/v1/staking/:address/position`, and `GET /api/v1/wallet/:address/history`. Each route is defensively-wrapped (graceful empty-state on missing tables / view) so Mobile's UI behaves whether the indexer is warm, cold, or misbehaving. Registered from both `gateway-validator.ts` and `service-node.ts` BEFORE `StakingController.getRouter()` so `:address/position` resolves first.
+- **Track D2 ⛔ → 🟨**: `MobileUSBHIDAdapter` (Android-only) wraps `@ledgerhq/hw-transport-react-native-hid` behind the platform contract. `register-hardware-adapters.ts` registers it on Android only (iOS doesn't expose HID). Pinned at `^6.29.5` in `package.json`.
+- **Track D3 ⛔ → 🟨**: `TrezorBridgeService` + `TrezorWebViewScreen` host the official Connect v9 page in a WebView and exchange postMessage envelopes. Three convenience helpers cover get_address + sign_message + sign_tx. Reachable from `HardwareWalletScreen` ("Open Trezor Connect" button).
+- **Ledger smoke runbook**: `docs/LEDGER_SMOKE.md` — exact step-by-step for the iOS BLE / Android BLE / Android USB-C / Trezor WebView gates. Drives the D1–D4 ✅ flips when the user has physical hardware on hand.
+- **EAS preview wrapper**: `scripts/eas-preview.sh` + `npm run build:preview[:ios|:android|:apk]` — runs typecheck + tests + login check before invoking `eas build`. Documented prereqs included.
+- **Build gates**: Mobile `npm run typecheck` exit 0, **123/123** tests pass. Validator `npm run type-check` + `npm run build` + `npm run lint -- src/api/MobileInventoryRoutes.ts` all green.
 
 ### Continuation IV (2026-04-25 end of session)
 - **Track C.c rows 🟨 → ✅**: Three per-subsystem inventory screens — `OwnedNFTsScreen`, `EscrowsScreen`, `PredictionPositionsScreen`. Backed by `InventoryService` (`/api/v1/nft/owned/:address`, `/api/v1/marketplace/escrows/:address?role=buyer`, `PredictionsClient.getUserPositions`). All three defensive against missing validator endpoints — render honest empty state when the indexer is offline. 9 unit tests.

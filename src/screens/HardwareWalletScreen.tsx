@@ -32,6 +32,8 @@ import { registerHardwareAdapters } from '../platform/register-hardware-adapters
 export interface HardwareWalletScreenProps {
   /** Back-nav. */
   onBack: () => void;
+  /** Open the hosted Trezor Connect WebView. */
+  onOpenTrezor?: () => void;
 }
 
 interface FoundDevice {
@@ -176,9 +178,17 @@ export default function HardwareWalletScreen(
         <Text style={styles.note}>
           {t('hardware.trezorNote', {
             defaultValue:
-              'Trezor support on mobile uses the hosted Trezor Connect WebView and ships after the first round of BLE device testing.',
+              'Trezor support on mobile runs through the hosted Trezor Connect page in a secure WebView.',
           })}
         </Text>
+        {props.onOpenTrezor !== undefined && (
+          <View style={styles.row}>
+            <Button
+              title={t('hardware.openTrezor', { defaultValue: 'Open Trezor Connect' })}
+              onPress={props.onOpenTrezor}
+            />
+          </View>
+        )}
       </Card>
     </View>
   );
