@@ -34,15 +34,22 @@ export function bootstrap(): Promise<void> {
 
   readyPromise = (async (): Promise<void> => {
     const service = getDiscoveryService();
+    let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
     const discovery = service.initialize().catch((err: unknown) => {
       // Swallow — the getBaseUrl() fallback will serve a seed URL while
       // discovery retries in the background.
       console.warn('[bootstrap] validator discovery failed:', err);
     });
     const timeout = new Promise<void>((resolve) => {
-      setTimeout(resolve, DISCOVERY_TIMEOUT_MS);
+      timeoutHandle = setTimeout(resolve, DISCOVERY_TIMEOUT_MS);
     });
-    await Promise.race([discovery, timeout]);
+    try {
+      await Promise.race([discovery, timeout]);
+    } finally {
+      // Clear the timer whichever side of the race resolved first so
+      // Jest doesn't complain about lingering async handles.
+      if (timeoutHandle !== undefined) clearTimeout(timeoutHandle);
+    }
   })();
 
   return readyPromise;
