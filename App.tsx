@@ -8,6 +8,11 @@ import { StatusBar } from 'expo-status-bar';
 import { registerMobileAdapters } from './src/platform/register-mobile-adapters';
 registerMobileAdapters();
 
+// Initialize i18next with the 10 locales synced from Wallet.
+import { initI18n, pickLanguage } from './src/i18n';
+void initI18n(pickLanguage([]));
+
+import RootNavigator from './src/navigation/RootNavigator';
 import { VersionCheckService, type VersionCheckResult, type VersionStatus } from './src/services/VersionCheckService';
 
 /** Store URL for directing users to update the app */
@@ -113,10 +118,7 @@ export default function App(): JSX.Element {
       )}
 
       {/* ---- App content ---- */}
-      <Text style={styles.title}>OmniBazaar Mobile</Text>
-      <Text style={styles.subtitle}>
-        Decentralized Marketplace, Wallet & DEX
-      </Text>
+      <RootNavigator />
       <StatusBar style="auto" />
     </View>
   );
@@ -125,10 +127,7 @@ export default function App(): JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1a1a1a',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
+    backgroundColor: '#0f1117',
   },
   title: {
     fontSize: 24,
