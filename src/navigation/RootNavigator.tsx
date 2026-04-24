@@ -183,7 +183,12 @@ export default function RootNavigator(): JSX.Element | null {
       case 'swap':
         return <SwapScreen onBack={() => setAuthedRoute('wallet-home')} />;
       case 'marketplace':
-        return <MarketplaceHomeScreen onBack={() => setAuthedRoute('wallet-home')} />;
+        return (
+          <MarketplaceHomeScreen
+            onBack={() => setAuthedRoute('wallet-home')}
+            onOpenSwap={() => setAuthedRoute('swap')}
+          />
+        );
       case 'profile':
         return (
           <ProfileScreen

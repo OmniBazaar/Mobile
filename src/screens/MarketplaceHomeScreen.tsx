@@ -13,6 +13,8 @@ import { useTranslation } from 'react-i18next';
 
 import { colors } from '@theme/colors';
 import P2PBrowseScreen from './P2PBrowseScreen';
+import NFTBrowseScreen from './NFTBrowseScreen';
+import PredictionsBrowseScreen from './PredictionsBrowseScreen';
 
 /** Marketplace identifier. */
 export type MarketplaceKind = 'p2p' | 'nft' | 'rwa' | 'yield' | 'predictions';
@@ -21,6 +23,8 @@ export type MarketplaceKind = 'p2p' | 'nft' | 'rwa' | 'yield' | 'predictions';
 export interface MarketplaceHomeScreenProps {
   /** Back-navigation callback. */
   onBack: () => void;
+  /** Called when the user wants to open the DEX swap for RWA/Yield trading. */
+  onOpenSwap: () => void;
 }
 
 /**
@@ -68,51 +72,56 @@ export default function MarketplaceHomeScreen(props: MarketplaceHomeScreenProps)
       </ScrollView>
 
       <View style={styles.body}>
-        {kind === 'p2p' ? (
-          <P2PBrowseScreen />
-        ) : (
-          <ComingSoon kind={kind} />
+        {kind === 'p2p' && <P2PBrowseScreen />}
+        {kind === 'nft' && <NFTBrowseScreen />}
+        {kind === 'predictions' && <PredictionsBrowseScreen />}
+        {(kind === 'rwa' || kind === 'yield') && (
+          <DeepLinkToDex kind={kind} onOpenSwap={props.onOpenSwap} />
         )}
       </View>
     </View>
   );
 }
 
-/** Placeholder for the marketplaces not yet wired. */
-function ComingSoon({ kind }: { kind: MarketplaceKind }): JSX.Element {
+/**
+ * RWA + Yield marketplaces deep-link users into the DEX swap because
+ * that's where actual trading / deposit happens. Mobile shows a short
+ * explainer + a "Trade on DEX" button.
+ */
+function DeepLinkToDex({
+  kind,
+  onOpenSwap,
+}: {
+  kind: 'rwa' | 'yield';
+  onOpenSwap: () => void;
+}): JSX.Element {
   const { t } = useTranslation();
-  const messages: Record<MarketplaceKind, { title: string; body: string }> = {
-    p2p: { title: '', body: '' },
-    nft: {
-      title: t('marketplace.nft.title', { defaultValue: 'NFT Marketplace' }),
-      body: t('marketplace.nft.coming', {
-        defaultValue: 'Collections, floor prices, buy flow — coming soon.',
-      }),
-    },
+  const copy: Record<'rwa' | 'yield', { title: string; body: string; cta: string }> = {
     rwa: {
       title: t('marketplace.rwa.title', { defaultValue: 'Real-World Assets' }),
-      body: t('marketplace.rwa.coming', {
-        defaultValue: 'Tokenized stocks, bonds, and treasuries — coming soon.',
+      body: t('marketplace.rwa.deepLink', {
+        defaultValue:
+          'Tokenized stocks, bonds, and treasuries trade through the OmniBazaar DEX. Jurisdiction + KYC checks run at trade time.',
       }),
+      cta: t('marketplace.rwa.cta', { defaultValue: 'Trade RWA on DEX' }),
     },
     yield: {
       title: t('marketplace.yield.title', { defaultValue: 'Yield Catalog' }),
-      body: t('marketplace.yield.coming', {
-        defaultValue: 'Browse yield positions across L1 and beyond — coming soon.',
+      body: t('marketplace.yield.deepLink', {
+        defaultValue:
+          'Yield positions across OmniCoin L1 and connected chains. Deposit and withdraw through the DEX.',
       }),
-    },
-    predictions: {
-      title: t('marketplace.predictions.title', { defaultValue: 'Prediction Markets' }),
-      body: t('marketplace.predictions.coming', {
-        defaultValue: 'Polymarket CTF markets — coming soon.',
-      }),
+      cta: t('marketplace.yield.cta', { defaultValue: 'Open DEX' }),
     },
   };
-  const { title, body } = messages[kind];
+  const { title, body, cta } = copy[kind];
   return (
     <View style={styles.comingSoon}>
       <Text style={styles.comingTitle}>{title}</Text>
       <Text style={styles.comingBody}>{body}</Text>
+      <Pressable onPress={onOpenSwap} accessibilityRole="button" style={styles.dexButton}>
+        <Text style={styles.dexButtonText}>{cta}</Text>
+      </Pressable>
     </View>
   );
 }
@@ -141,4 +150,12 @@ const styles = StyleSheet.create({
   comingSoon: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 24 },
   comingTitle: { color: colors.textPrimary, fontSize: 20, fontWeight: '700', marginBottom: 12 },
   comingBody: { color: colors.textSecondary, fontSize: 14, textAlign: 'center', lineHeight: 20 },
+  dexButton: {
+    marginTop: 24,
+    backgroundColor: colors.primary,
+    borderRadius: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+  },
+  dexButtonText: { color: colors.background, fontWeight: '700', fontSize: 15 },
 });
