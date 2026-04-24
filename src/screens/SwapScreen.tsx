@@ -41,6 +41,8 @@ import { useAuthStore } from '../store/authStore';
 export interface SwapScreenProps {
   /** Back-navigation callback. */
   onBack: () => void;
+  /** Navigate to the privacy (pXOM) screen. */
+  onOpenPrivacy: () => void;
 }
 
 /**
@@ -118,9 +120,20 @@ export default function SwapScreen(props: SwapScreenProps): JSX.Element {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.title} accessibilityRole="header">
-        {t('swap.title', { defaultValue: 'Swap' })}
-      </Text>
+      <View style={styles.headerRow}>
+        <Text style={styles.title} accessibilityRole="header">
+          {t('swap.title', { defaultValue: 'Swap' })}
+        </Text>
+        <Pressable
+          onPress={props.onOpenPrivacy}
+          accessibilityRole="link"
+          style={styles.privacyLink}
+        >
+          <Text style={styles.privacyLinkText}>
+            {t('swap.privacyLink', { defaultValue: 'Privacy (pXOM)' })}
+          </Text>
+        </Pressable>
+      </View>
 
       <Card style={styles.pairCard}>
         <Text style={styles.fieldLabel}>{t('swap.from', { defaultValue: 'From' })}</Text>
@@ -304,7 +317,15 @@ const styles = StyleSheet.create({
     paddingTop: 56,
     paddingBottom: 32,
   },
-  title: { color: colors.textPrimary, fontSize: 26, fontWeight: '700', marginBottom: 16 },
+  title: { color: colors.textPrimary, fontSize: 26, fontWeight: '700' },
+  headerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  privacyLink: { paddingVertical: 4, paddingHorizontal: 10, borderRadius: 10, borderWidth: 1, borderColor: colors.primary },
+  privacyLinkText: { color: colors.primary, fontSize: 12, fontWeight: '600' },
   pairCard: { marginBottom: 16 },
   fieldLabel: { color: colors.textSecondary, fontSize: 12, marginBottom: 8, textTransform: 'uppercase' },
   tokenRow: { flexDirection: 'row', flexWrap: 'wrap' },
