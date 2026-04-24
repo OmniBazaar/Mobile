@@ -17,6 +17,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "typecheck": "tsc --noEmit",
+    "sync:i18n": "node scripts/sync-i18n.mjs",
     "e2e:build:ios": "detox build --configuration ios",
     "e2e:build:android": "detox build --configuration android",
     "e2e:test:ios": "detox test --configuration ios",
@@ -37,7 +38,6 @@
     "@tanstack/react-query": "^5.17.0",
     "expo": "~50.0.0",
     "expo-barcode-scanner": "~12.9.0",
-    "expo-biometrics": "~12.6.0",
     "expo-camera": "~14.0.0",
     "expo-constants": "~15.4.0",
     "expo-crypto": "~12.8.0",
@@ -119,8 +119,8 @@
   },
   "private": true,
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
+    "node": ">=22.18.0",
+    "npm": ">=10.0.0"
   },
   "repository": {
     "type": "git",

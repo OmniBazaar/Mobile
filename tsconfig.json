@@ -27,7 +27,9 @@
       "@theme/*": ["src/theme/*"],
       "@utils/*": ["src/utils/*"],
       "@assets/*": ["assets/*"],
-      "@shared/*": ["../shared/*"]
+      "@shared/*": ["../shared/*"],
+      "@wallet/*": ["../Wallet/src/*"],
+      "@webapp/*": ["../WebApp/src/*"]
     }
   },
   "include": [

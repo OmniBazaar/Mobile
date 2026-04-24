@@ -1,0 +1,1266 @@
+{
+  "splash": {
+    "title": "OmniWallet",
+    "loading": "A carregar..."
+  },
+  "header": {
+    "brand": "OmniWallet",
+    "settingsTitle": "Definições"
+  },
+  "nav": {
+    "wallet": "Carteira",
+    "dex": "DEX",
+    "marketplace": "Mercado",
+    "more": "Mais"
+  },
+  "quickActions": {
+    "send": "Enviar",
+    "receive": "Receber",
+    "swap": "Trocar",
+    "bridge": "Ponte"
+  },
+  "accountBar": {
+    "defaultAccountName": "Conta 1"
+  },
+  "common": {
+    "back": "Voltar",
+    "cancel": "Cancelar",
+    "close": "Fechar",
+    "continue": "Continuar",
+    "confirm": "Confirmar",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "loading": "A carregar..."
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "OmniWallet",
+      "subtitle": "A sua porta de entrada para 128 blockchains, o marketplace OmniBazaar e o DEX OmniCoin. Trustless, sem gás e privado por design.",
+      "createNew": "Criar nova carteira",
+      "importExisting": "Importar carteira existente",
+      "signIn": "Já tem uma conta? Iniciar sessão",
+      "termsPrefix": "Ao continuar concorda com os",
+      "termsLink": "Termos de Serviço"
+    },
+    "createWallet": {
+      "heading": "Criar carteira",
+      "passwordHint": "Defina uma palavra-passe para proteger a sua carteira neste dispositivo. A sua seed phrase é a verdadeira cópia de segurança — guarde-a num local seguro.",
+      "passwordLabel": "Palavra-passe",
+      "passwordPlaceholder": "Mínimo 8 caracteres",
+      "confirmPasswordLabel": "Confirmar palavra-passe",
+      "confirmPasswordPlaceholder": "Repita a palavra-passe",
+      "continue": "Continuar",
+      "creating": "A criar…",
+      "seedHeading": "A sua frase de recuperação",
+      "seedWarning": "⚠️ Escreva estas 12 palavras e guarde-as num local seguro. Qualquer pessoa com estas palavras pode aceder à sua carteira.",
+      "writtenDown": "Já as anotei →",
+      "confirmHeading": "Confirmar cópia de segurança",
+      "confirmHint": "Introduza as palavras nas posições {{positions}} para verificar a sua cópia de segurança.",
+      "wordLabel": "Palavra n.º {{position}}",
+      "wordPlaceholder": "Palavra {{position}}",
+      "wordIncorrect": "A palavra n.º {{position}} está incorreta",
+      "createWalletBtn": "Criar carteira",
+      "registering": "A registar…",
+      "passwordTooShort": "A palavra-passe deve ter pelo menos 8 caracteres",
+      "passwordMismatch": "As palavras-passe não coincidem",
+      "createFailed": "Falha ao criar a carteira",
+      "registerFailed": "Falha no registo"
+    },
+    "importWallet": {
+      "heading": "Importar carteira",
+      "importing": "A importar…",
+      "verifying": "A verificar seed e a registar carteira…",
+      "tabMnemonic": "Frase seed",
+      "tabPrivateKey": "Chave privada",
+      "mnemonicHint": "Introduza a sua frase de recuperação de 12 ou 24 palavras, separadas por espaços.",
+      "mnemonicPlaceholder": "palavra1 palavra2 palavra3 …",
+      "privateKeyHint": "Introduza a sua chave privada (hex, com ou sem prefixo 0x).",
+      "privateKeyPlaceholder": "0x…",
+      "newPasswordLabel": "Nova palavra-passe",
+      "newPasswordPlaceholder": "Mínimo 8 caracteres",
+      "confirmPasswordLabel": "Confirmar palavra-passe",
+      "confirmPasswordPlaceholder": "Repita a palavra-passe",
+      "submit": "Importar carteira",
+      "submitting": "A importar…",
+      "errorSeedWordCount": "A frase seed deve ter 12 ou 24 palavras",
+      "errorPrivateKeyRequired": "A chave privada é obrigatória",
+      "errorImportFailed": "Falha ao importar",
+      "passwordTooShort": "A palavra-passe deve ter pelo menos 8 caracteres",
+      "passwordMismatch": "As palavras-passe não coincidem"
+    },
+    "seedBackup": {
+      "heading": "Frase de recuperação",
+      "warning": "⚠️ Escreva estas {{count}} palavras e guarde-as num local seguro. Qualquer pessoa com estas palavras pode aceder à sua carteira.",
+      "writtenDown": "Já as anotei →",
+      "confirmHeading": "Confirmar cópia de segurança",
+      "confirmHint": "Introduza as palavras nas posições {{positions}} para verificar a sua cópia de segurança.",
+      "wordLabel": "Palavra n.º {{position}}",
+      "wordPlaceholder": "Palavra {{position}}",
+      "wordIncorrect": "A palavra n.º {{position}} está incorreta",
+      "verify": "Verificar cópia"
+    },
+    "login": {
+      "heading": "Bem-vindo de volta",
+      "passwordLabel": "Palavra-passe",
+      "passwordPlaceholder": "Introduza a sua palavra-passe",
+      "unlock": "Desbloquear",
+      "unlocking": "A desbloquear…",
+      "useDifferent": "Usar outra carteira",
+      "errorPasswordRequired": "A palavra-passe é obrigatória",
+      "errorIncorrectPassword": "Palavra-passe incorreta",
+      "unlockAria": "Desbloqueia a carteira com a palavra-passe introduzida",
+      "useDifferentAria": "Importar outra carteira ou criar uma nova"
+    }
+  },
+  "wallet": {
+    "tabs": {
+      "assets": "Ativos",
+      "nfts": "NFTs",
+      "activity": "Atividade"
+    },
+    "assets": {
+      "empty": "Nenhum ativo encontrado"
+    },
+    "asset": {
+      "invalidDecimals": "Metadados do token ausentes ou inválidos — saldo oculto por segurança",
+      "invalidDecimalsAria": "Saldo indisponível — os metadados do token são inválidos"
+    },
+    "activity": {
+      "heading": "Atividade",
+      "empty": "Ainda não há transações",
+      "received": "Recebido {{symbol}}",
+      "sent": "Enviado {{symbol}}",
+      "timeJustNow": "agora mesmo",
+      "timeMinutesAgo": "há {{count}}m",
+      "timeHoursAgo": "há {{count}}h",
+      "publicTab": "Público",
+      "privateTab": "Privado (pXOM)",
+      "revealAmount": "Mostrar valor",
+      "amountHidden": "Valor oculto — toque em Mostrar para decifrar",
+      "status": {
+        "confirmed": "confirmada",
+        "pending": "pendente",
+        "failed": "falhou"
+      }
+    },
+    "nfts": {
+      "heading": "NFTs",
+      "empty": "Nenhum NFT encontrado",
+      "placeholder": "NFT"
+    },
+    "send": {
+      "heading": "Enviar",
+      "networkLabel": "Rede",
+      "recipientLabel": "Endereço do destinatário",
+      "recipientPlaceholder": "0x… ou nome de utilizador",
+      "amountLabel": "Quantia",
+      "amountPlaceholder": "0,00",
+      "max": "MÁX",
+      "gaslessBadge": "⚡ Gás: grátis — powered by OmniRelay",
+      "gasFree": "Gás: Grátis (OmniRelay)",
+      "estimatedGas": "Gás estimado",
+      "submit": "Enviar",
+      "submitting": "A enviar…",
+      "errorFailed": "Transação falhou",
+      "successPrefix": "Enviado! Tx: {{shortHash}}",
+      "errorInvalidAddress": "O formato do endereço não é válido para esta cadeia. Verifique e cole novamente.",
+      "networkTooltip": "Selecione a rede de envio. Cada rede tem o seu próprio saldo.",
+      "gaslessTooltip": "Sem gas: esta transação é retransmitida pelo OmniRelay. Não paga gas nativo.",
+      "recipientTooltip": "Introduza um endereço válido para a rede selecionada. Forma e checksum são validados.",
+      "amountAria": "Quantia a enviar em {{symbol}}",
+      "maxAria": "Enviar o saldo máximo disponível",
+      "maxTooltip": "Preencher a quantia com o seu saldo máximo em {{symbol}}.",
+      "estimatedGasTooltip": "Taxa de rede estimada para esta transação."
+    },
+    "receive": {
+      "heading": "Receber",
+      "networkLabel": "Rede",
+      "copy": "Copiar",
+      "copied": "✓ Copiado",
+      "hint": "Envie apenas {{symbol}} e tokens compatíveis para este endereço em {{chainName}}.",
+      "networkTooltip": "Selecione a rede em que deseja receber. Cada rede tem o seu próprio endereço.",
+      "qrAria": "Código QR para o endereço {{address}} em {{chainName}}",
+      "qrAriaPending": "pendente",
+      "addressTooltip": "O seu endereço de receção em {{chainName}}. Qualquer pessoa com este endereço pode enviar-lhe {{symbol}}.",
+      "addressDeriving": "A derivar endereço…",
+      "copyAria": "Copiar o endereço {{chainName}} para a área de transferência",
+      "copyTooltip": "Copiar endereço para a área de transferência"
+    }
+  },
+  "settings": {
+    "home": {
+      "heading": "Definições",
+      "sectionSecurity": "Segurança",
+      "sectionNetwork": "Rede",
+      "sectionAccount": "Conta",
+      "securityPrivacyTitle": "Segurança e privacidade",
+      "securityPrivacySub": "Palavra-passe, biometria, seed phrase",
+      "connectedSitesTitle": "Sites conectados",
+      "connectedSitesSub": "Gerir ligações dApp",
+      "walletConnectTitle": "WalletConnect",
+      "walletConnectSub": "Emparelhar com dApps via QR code",
+      "networksTitle": "Redes",
+      "networksSub": "Gerir endpoints RPC",
+      "languageTitle": "Idioma",
+      "languageSub": "Escolha o idioma da interface",
+      "signOutTitle": "Terminar sessão",
+      "signOutSub": "Bloquear carteira",
+      "versionRow": "OmniWallet v{{version}}",
+      "sectionFeatures": "Recursos",
+      "sectionInfo": "Informações",
+      "stakingTitle": "Staking",
+      "stakingSub": "Faça staking de XOM e ganhe recompensas",
+      "kycTitle": "KYC e verificação",
+      "kycSub": "Aumente sua pontuação de participação",
+      "bridgeTitle": "Ponte",
+      "bridgeSub": "Mova ativos entre blockchains",
+      "addressBookTitle": "Catálogo de endereços",
+      "addressBookSub": "Contatos salvos",
+      "aboutTitle": "Sobre",
+      "aboutSub": "Versão, validadores, links",
+      "hardwareTitle": "Conectar Carteira de Hardware",
+      "hardwareSub": "Adicionar uma conta Ledger ou Trezor",
+      "portfolioTitle": "Análise do Portefólio",
+      "portfolioSub": "Saldos ERC-20 multi-cadeia",
+      "participationTitle": "Pontuação de Participação",
+      "participationSub": "Veja como a sua pontuação de {{score}}/100 é calculada",
+      "governanceTitle": "Governança",
+      "governanceSub": "Votação ODDAO (Em breve)",
+      "antiPhishingTitle": "Banner antiphishing",
+      "antiPhishingSub": "Escolha cor e palavra para verificar esta carteira",
+      "tokenApprovalsTitle": "Aprovações de tokens",
+      "tokenApprovalsSub": "Revise e revogue aprovações ERC-20 e NFT"
+    },
+    "security": {
+      "heading": "Segurança e privacidade",
+      "sectionWallet": "Carteira",
+      "showSeedTitle": "Mostrar frase de recuperação",
+      "showSeedSub": "Ver a sua seed de 12/24 palavras",
+      "exportKeyTitle": "Exportar chave privada",
+      "exportKeySub": "Apenas conta atual",
+      "revealLabel": "Introduza a palavra-passe para revelar a seed",
+      "revealPlaceholder": "Palavra-passe da sua carteira",
+      "reveal": "Revelar frase seed",
+      "verifying": "A verificar…",
+      "errorIncorrectPassword": "Palavra-passe incorreta",
+      "errorExportFailed": "Falha ao exportar",
+      "exportedAlert": "Chave privada copiada para a área de transferência. Guarde-a com segurança e limpe a área de transferência.",
+      "sectionAccess": "Acesso",
+      "passwordChangeTitle": "Alterar senha",
+      "passwordChangeSub": "Atualize a senha usada para desbloquear a carteira",
+      "passwordChangeHeading": "Alterar senha",
+      "currentPasswordLabel": "Senha atual",
+      "newPasswordLabel": "Nova senha",
+      "confirmNewPasswordLabel": "Confirmar nova senha",
+      "passwordChangeBtn": "Atualizar senha",
+      "passwordChangeOk": "Senha atualizada.",
+      "passwordTooShort": "A senha deve ter pelo menos 8 caracteres",
+      "passwordMismatch": "As senhas não coincidem",
+      "passwordChangeFailed": "Falha ao atualizar a senha",
+      "biometricTitle": "Desbloqueio biométrico",
+      "biometricSub": "Use Touch ID, Face ID ou Windows Hello",
+      "biometricUnavailable": "O desbloqueio biométrico não está disponível neste dispositivo.",
+      "biometricEnable": "Ativar desbloqueio biométrico",
+      "biometricDisable": "Desativar desbloqueio biométrico",
+      "biometricEnabled": "Desbloqueio biométrico ativado.",
+      "biometricDisabled": "Desbloqueio biométrico desativado.",
+      "biometricFailed": "Falha na configuração biométrica",
+      "autoLockTitle": "Bloqueio automático",
+      "autoLockSub": "Bloquear a carteira após um período de inatividade",
+      "autoLockNever": "Nunca",
+      "autoLock1m": "1 minuto",
+      "autoLock5m": "5 minutos",
+      "autoLock15m": "15 minutos",
+      "autoLock30m": "30 minutos"
+    },
+    "networks": {
+      "heading": "Redes",
+      "chainIdRow": "Cadeia {{id}}",
+      "gaslessBadge": "Sem gás",
+      "defaultChainHeading": "Chain padrão",
+      "defaultChainSub": "Mostrada por padrão na barra de conta do popup.",
+      "enabledHeading": "Redes ativadas",
+      "customRpcHeading": "RPC personalizado",
+      "customAddTitle": "Adicionar RPC personalizado",
+      "customNameLabel": "Nome",
+      "customNamePlaceholder": "Minha rede personalizada",
+      "customRpcLabel": "URL RPC",
+      "customRpcPlaceholder": "https://rpc.example.com",
+      "customChainIdLabel": "Chain ID",
+      "customChainIdPlaceholder": "0 para detectar automaticamente",
+      "customSymbolLabel": "Símbolo da moeda",
+      "customSymbolPlaceholder": "ETH",
+      "customExplorerLabel": "URL do explorador",
+      "customExplorerPlaceholder": "https://explorer.example.com",
+      "customAddBtn": "Adicionar rede",
+      "customAddOk": "Rede personalizada adicionada.",
+      "customAddFailed": "Falha ao adicionar a rede",
+      "customRemove": "Remover",
+      "customEmpty": "Nenhuma rede personalizada",
+      "toggleEnable": "Ativar",
+      "toggleDisable": "Desativar",
+      "familyHeading": {
+        "evm": "Redes EVM",
+        "bitcoin": "Família Bitcoin",
+        "solana": "Solana",
+        "polkadot": "Família Polkadot",
+        "cosmos": "Cosmos",
+        "cardano": "Cardano",
+        "xrp": "XRP Ledger",
+        "tron": "TRON",
+        "near": "NEAR",
+        "hedera": "Hedera",
+        "stellar": "Stellar",
+        "tezos": "Tezos"
+      }
+    },
+    "connected": {
+      "heading": "Sites conectados",
+      "empty": "Nenhum site conectado",
+      "connectedOn": "Conectado em {{date}}",
+      "disconnect": "Desconectar"
+    },
+    "locale": {
+      "heading": "Idioma",
+      "description": "Escolha o idioma de visualização da carteira. A alteração é aplicada imediatamente.",
+      "currentLabel": "Idioma atual"
+    },
+    "tokenApprovals": {
+      "title": "Aprovações de tokens",
+      "comingSoon": "Em breve",
+      "help": "Estamos construindo uma visão única de todas as aprovações concedidas pela sua carteira. Você poderá revogá-las aqui a qualquer momento."
+    }
+  },
+  "placeholders": {
+    "comingSoon": "Brevemente",
+    "thisFeature": "Esta funcionalidade",
+    "dexTitle": "DEX e Swap",
+    "marketplaceTitle": "Marketplace"
+  },
+  "dex": {
+    "subnav": {
+      "swap": "Troca",
+      "limit": "Limite",
+      "yield": "Rendimento",
+      "lp": "LP",
+      "rwa": "RWA",
+      "privacy": "Privacidade"
+    },
+    "comingSoon": "Em breve",
+    "swap": {
+      "youPay": "Você paga",
+      "youReceive": "Você recebe",
+      "max": "Máx",
+      "balance": "Saldo: {{amount}} {{symbol}}",
+      "route": "Rota",
+      "routeDetails": "detalhes",
+      "altRoutes": "Alternativas",
+      "via": {
+        "omnidex": "via OmniDEX",
+        "omnibridgeIctt": "via OmniBridge (ICTT)",
+        "omnibridgeCctp": "via OmniBridge (CCTP)",
+        "omnibridgeLifi": "via OmniDEX → Li.Fi",
+        "lifi": "via Li.Fi",
+        "zerox": "via 0x",
+        "unknown": "via {{protocol}}"
+      },
+      "feePct": "{{pct}}% DEX",
+      "relayFee": "0% relay",
+      "estTime": "~{{seconds}}s",
+      "swap": "Trocar",
+      "swapConfirm": "Trocar {{fromSymbol}} → {{toSymbol}}",
+      "signing": "Aguardando assinatura…",
+      "broadcasting": "Transmitindo…",
+      "inTransit": "Bridging — {{status}}",
+      "complete": "Troca concluída",
+      "failed": "Falha na troca: {{error}}",
+      "noRoutes": "Nenhuma rota disponível para este par",
+      "xomRoutingNotice": "XOM passa por OmniDEX → USDC antes do bridge",
+      "priceImpactWarning": "Impacto no preço: {{pct}}% — você perderá cerca de {{loss}} {{symbol}} devido à profundidade do mercado",
+      "priceImpactHigh": "Impacto no preço elevado ({{pct}}%). Você pode perder {{loss}} {{symbol}} por slippage. Confirme para prosseguir.",
+      "priceImpactDangerous": "Impacto no preço perigoso ({{pct}}%). Digite a frase de confirmação para desbloquear.",
+      "priceImpactConfirmPhrase": "IMPACTO ALTO",
+      "priceImpactAck": "Eu entendo — trocar mesmo assim",
+      "priceImpactConfirmLabel": "Digite «{{phrase}}» para confirmar",
+      "priceImpactDisabledTooltip": "Desativado: impacto no preço muito alto. Confirme para prosseguir.",
+      "slippageTooHigh": "Uma slippage acima de 5% é incomumente alta e pode ser explorada por bots MEV."
+    },
+    "limit": {
+      "title": "Ordem limite",
+      "buy": "Comprar",
+      "sell": "Vender",
+      "price": "Preço",
+      "amount": "Quantidade",
+      "expiry": "Validade",
+      "expiryPreset": {
+        "1h": "1h",
+        "1d": "1d",
+        "1w": "1sem",
+        "custom": "Personalizado"
+      },
+      "fee": "Taxa",
+      "makerRebate": "Reembolso do maker",
+      "place": "Colocar ordem",
+      "submitOk": "Ordem colocada",
+      "activeOrders": "Ordens ativas",
+      "noOrders": "Sem ordens abertas",
+      "loginHint": "Entre para colocar ordens limite",
+      "cancel": "Cancelar",
+      "status": {
+        "open": "Aberta",
+        "partial": "Parcial",
+        "filled": "Executada",
+        "cancelled": "Cancelada"
+      },
+      "orderBook": {
+        "bids": "Compras",
+        "asks": "Vendas",
+        "depth": "Profundidade"
+      }
+    },
+    "yield": {
+      "title": "Rendimento",
+      "empty": "Ainda sem oportunidades de rendimento",
+      "apy": "APY",
+      "tvl": "TVL",
+      "position": "Sua posição",
+      "deposit": "Depositar",
+      "withdraw": "Sacar",
+      "preview": "Quantidade",
+      "risk": {
+        "low": "Risco baixo",
+        "medium": "Risco médio",
+        "high": "Risco alto"
+      }
+    },
+    "lp": {
+      "title": "Pools de liquidez",
+      "earlyBonusBadge": "⭐ Bônus LP Antecipado",
+      "earlyBonusTooltip": "+15% APR até o lançamento em 30/04/2026",
+      "countdown": "O Bônus LP Antecipado termina em {{days}}d {{hours}}h",
+      "countdownEnded": "O Bônus LP Antecipado terminou",
+      "add": "Adicionar liquidez",
+      "remove": "Retirar liquidez",
+      "removePct": "Porcentagem a retirar",
+      "slippage": "Slippage",
+      "gasInfoLabel": "Limite de gás",
+      "gasInfoTooltip": "Adicionar liquidez a um novo pool requer um limite de gás de 5.000.000.",
+      "tvlTooltip": "Valor total bloqueado — valor em USD de toda a liquidez do pool.",
+      "tvlAria": "Valor total bloqueado: {{value}} USD",
+      "apyTooltip": "Rendimento anual estimado a partir de comissões recentes. Varia com o volume.",
+      "apyAria": "Rendimento anual estimado: {{pct}} por cento",
+      "positionTooltip": "A tua parte atual do pool em tokens LP.",
+      "addAria": "Adicionar liquidez ao pool {{pair}}",
+      "addTooltip": "Deposita ambos os tokens para ganhares parte das comissões.",
+      "removeAria": "Remover liquidez do pool {{pair}}",
+      "removeTooltip": "Retira a tua parte e para de ganhar comissões deste pool."
+    },
+    "rwa": {
+      "title": "Ativos do mundo real",
+      "empty": "Ainda sem RWAs disponíveis",
+      "price": "Preço",
+      "buy": "Comprar",
+      "sell": "Vender",
+      "compliance": {
+        "compliant": "Conforme",
+        "kycRequired": "Requer KYC Nível {{tier}}",
+        "restricted": "Não disponível na sua região"
+      }
+    },
+    "privacy": {
+      "title": "Privacidade",
+      "shield": "Proteger",
+      "unshield": "Revelar",
+      "feePct": "Taxa de privacidade: {{pct}}%",
+      "privateBalance": "Saldo privado",
+      "reveal": "Mostrar",
+      "safeOnboard": {
+        "title": "Configurar saldo privado",
+        "explain": "Seu saldo privado (pXOM) é criptografado on-chain via COTI V2. Uma configuração única é necessária.",
+        "cta": "Configurar"
+      }
+    }
+  },
+  "marketplace": {
+    "subnav": {
+      "p2p": "P2P",
+      "nft": "NFT",
+      "rwa": "RWA",
+      "yield": "Rendimento",
+      "predictions": "Previsões"
+    },
+    "home": {
+      "searchPlaceholder": "Buscar anúncios…",
+      "searchAria": "Buscar no marketplace"
+    },
+    "p2p": {
+      "empty": "Nenhum anúncio corresponde aos seus filtros",
+      "createListing": "➕ Criar anúncio",
+      "myListingsLink": "Meus anúncios",
+      "loadMore": "Carregar mais",
+      "unratedSeller": "Vendedor novo",
+      "categories": {
+        "all": "Tudo",
+        "products": "Produtos",
+        "services": "Serviços",
+        "jobs": "Empregos",
+        "realEstate": "Imóveis",
+        "vehicles": "Veículos",
+        "personal": "Pessoal",
+        "other": "Outros"
+      },
+      "sort": {
+        "label": "Ordenar por",
+        "newest": "Mais recentes",
+        "priceAsc": "Preço: crescente",
+        "priceDesc": "Preço: decrescente",
+        "popular": "Populares"
+      },
+      "status": {
+        "active": "Ativo",
+        "sold": "Vendido",
+        "draft": "Rascunho",
+        "cancelled": "Cancelado",
+        "expired": "Expirado"
+      }
+    },
+    "nft": {
+      "chainLabel": "Rede",
+      "empty": "Sem coleções nesta rede",
+      "stats": {
+        "floor": "Floor",
+        "volume24h": "Volume 24h",
+        "listed": "À venda"
+      },
+      "list": {
+        "openButton": "Colocar à venda",
+        "heading": "Vender {{name}}",
+        "priceLabel": "Preço",
+        "currencyLabel": "Moeda",
+        "durationLabel": "Duração",
+        "duration1d": "1 dia",
+        "duration7d": "7 dias",
+        "duration30d": "30 dias",
+        "royaltyNote": "Royalty: {{pct}}% (vai ao criador original)",
+        "confirm": "Publicar NFT",
+        "submitting": "Assinando…",
+        "errorFailed": "Falha ao publicar",
+        "step": "Passo 2 de 2: Assine o seu anúncio"
+      },
+      "buyConfirm": "Confirmar compra? XOM será enviado e o NFT transferido atomicamente on-chain.",
+      "buyToast": {
+        "success": "NFT comprado — transação {{tx}}",
+        "failed": "Compra de NFT falhou"
+      },
+      "buyUnavailable": "Compras de NFT ainda não estão disponíveis — por favor volte em breve.",
+      "approveCollection": {
+        "step": "Passo 1 de 2: Aprovar o marketplace para esta coleção NFT",
+        "button": "Aprovar (sem gás)",
+        "submitting": "Aprovando…",
+        "tooltip": "Aprovação única por coleção NFT. A OmniBazaar paga o gás.",
+        "success": "Coleção aprovada. Agora pode listar NFTs desta coleção.",
+        "failed": "Não foi possível aprovar a coleção.",
+        "notERC2771": "Esta coleção NFT não suporta aprovação sem gás — você vai precisar de um pouco de XOM para o gás.",
+        "mustApprove": "Aprove o marketplace para esta coleção antes de listar."
+      },
+      "approveXom": {
+        "step": "Passo 1 de 2: Aprovar {{amount}} XOM para esta compra",
+        "button": "Aprovar XOM (sem gás)",
+        "rememberLabel": "Lembrar aprovação para futuras compras de XOM na OmniBazaar",
+        "rememberTooltip": "Concede gasto ilimitado de XOM ao marketplace. Você pode revogar em Configurações > Aprovações de tokens.",
+        "success": "XOM aprovado. Concluindo a compra…"
+      },
+      "buy": {
+        "step1": "Passo 1 de 2: Aprovar XOM",
+        "step2": "Passo 2 de 2: Confirmar compra",
+        "confirmButton": "Confirmar compra",
+        "buyFloor": "Comprar pelo preço mínimo",
+        "fetchingFloor": "Carregando…",
+        "error": {
+          "selfReferral": "O indicador não pode ser você nem o vendedor.",
+          "sellerReferral": "O indicador não pode ser o vendedor.",
+          "buyerIsSeller": "Você não pode comprar o seu próprio anúncio.",
+          "duplicateReferrer": "O indicador de segundo nível não pode ser igual ao primeiro.",
+          "invalidAddress": "Um dos endereços de indicador é inválido.",
+          "missingBuyer": "Carteira ativa não definida — desbloqueie e tente novamente.",
+          "missingSeller": "O anúncio não tem vendedor — atualize e tente novamente.",
+          "prereqsNotMet": "Pré-requisitos da compra falharam. Tente novamente.",
+          "insufficientBalance": "XOM insuficiente na sua carteira para esta compra.",
+          "settlementNotDeployed": "O marketplace de NFT está em atualização — tente em instantes.",
+          "noFloorListing": "Não há anúncios ativos para esta coleção no momento."
+        },
+        "success": {
+          "toast": "NFT comprado — transação {{tx}}…"
+        }
+      }
+    },
+    "listing": {
+      "notFound": "Anúncio não encontrado",
+      "imagesAria": "Imagens do anúncio",
+      "sellerHeading": "Vendedor",
+      "feesHeading": "Taxas",
+      "kycTier": "Nível KYC {{tier}}",
+      "ratingLine": "⭐ {{rating}} · {{sales}} vendas",
+      "unratedSeller": "Sem avaliação",
+      "ownListing": "Este é o seu anúncio",
+      "buyNow": "Comprar agora",
+      "openChat": "Abrir chat",
+      "report": "Denunciar",
+      "reportSubmitted": "Denúncia enviada. O painel de árbitros vai analisá-la.",
+      "fees": {
+        "escrowBuyer": "Taxa de custódia (comprador)",
+        "marketplaceSeller": "Taxa de marketplace (vendedor)",
+        "marketplaceTooltip": "1% total: 0,50% indicação + 0,25% transação + 0,25% anúncio"
+      }
+    },
+    "create": {
+      "heading": "Criar anúncio",
+      "titleLabel": "Título",
+      "titlePlaceholder": "O que você está vendendo?",
+      "categoryLabel": "Categoria",
+      "descriptionLabel": "Descrição",
+      "descriptionPlaceholder": "Descreva o item, condição e detalhes de envio",
+      "priceLabel": "Preço",
+      "currencyLabel": "Moeda",
+      "imagesLabel": "Imagens ({{count}}/{{max}})",
+      "imagesHint": "Arraste imagens ou clique — até 10, ≤ 5 MB cada",
+      "imagesNone": "Nenhuma imagem anexada",
+      "imagesReady": "{{count}} imagem(ns) enviada(s) ao IPFS",
+      "submit": "Publicar anúncio",
+      "submitting": "Publicando…",
+      "errorFailed": "Falha ao criar anúncio"
+    },
+    "purchase": {
+      "heading": "Confirmar compra",
+      "priceLabel": "Preço do anúncio",
+      "escrowFeeLabel": "Taxa de custódia (0,25%)",
+      "recipientLabel": "Vendedor",
+      "totalLabel": "Total a pagar",
+      "confirm": "Confirmar",
+      "submitting": "Assinando custódia…",
+      "errorFailed": "Compra falhou"
+    },
+    "chat": {
+      "heading": "Chat · {{thread}}",
+      "empty": "Nenhuma mensagem ainda — diga olá!",
+      "composerPlaceholder": "Escreva uma mensagem…",
+      "send": "Enviar",
+      "errorFailed": "Falha ao enviar mensagem",
+      "unreadAria": "{{count}} mensagens não lidas",
+      "actions": {
+        "ship": "Marcar como enviado",
+        "shippedBody": "Item enviado",
+        "receive": "Marcar como recebido",
+        "receivedBody": "Item recebido — liberando custódia",
+        "dispute": "Abrir disputa",
+        "disputeBody": "Abrindo disputa"
+      }
+    },
+    "myListings": {
+      "heading": "Meus anúncios",
+      "empty": "Nada por aqui ainda",
+      "tabs": {
+        "active": "Ativos",
+        "sold": "Vendidos",
+        "draft": "Rascunhos"
+      },
+      "actions": {
+        "view": "Ver",
+        "viewStats": "Ver estatísticas"
+      }
+    },
+    "referral": {
+      "openButton": "Compartilhar link de indicação",
+      "heading": "Convide e ganhe",
+      "description": "Ganhe 70% da taxa de indicação de 0,50% em cada compra e swap DEX feito pelo seu link.",
+      "codeLabel": "Código: {{code}}",
+      "share": "Compartilhar",
+      "shareTitle": "Junte-se à OmniBazaar",
+      "shareText": "Cadastre-se na OmniBazaar e receba o bônus de boas-vindas.",
+      "qrAlt": "QR code de indicação"
+    },
+    "errors": {
+      "imageTooLarge": "A imagem excede o limite de 5 MB",
+      "imageTypeNotAllowed": "Formato de imagem não suportado",
+      "uploadFailed": "Falha no envio"
+    },
+    "rwa": {
+      "filter": {
+        "assetClass": {
+          "all": "Todos",
+          "realEstate": "Imóveis",
+          "equity": "Ações",
+          "bond": "Títulos",
+          "commodity": "Commodities",
+          "other": "Outros"
+        },
+        "jurisdiction": "Jurisdição"
+      },
+      "compliance": {
+        "compliant": "Conforme",
+        "tierRequired": "Necessário KYC Nível {{tier}}",
+        "restricted": "Não disponível na sua região"
+      },
+      "kycComingSoon": "Fluxos de upgrade de KYC chegam na Fase 5",
+      "trade": "Negociar no DEX",
+      "empty": "Nenhum ativo corresponde a estes filtros",
+      "connectHint": "Conecte uma carteira para negociar estes ativos",
+      "documents": "Ver documentos",
+      "stats": {
+        "price": "Preço",
+        "marketCap": "Capitalização",
+        "volume24h": "Volume 24h"
+      },
+      "priceTooltip": "Último preço por token registado em USD.",
+      "mcapTooltip": "Capitalização totalmente diluída — oferta em circulação × preço.",
+      "apyTooltip": "Rendimento on-chain pago aos detentores nos últimos 30 dias, anualizado.",
+      "complianceTooltip": "Regime regulatório do ativo; define quem o pode deter.",
+      "tradeAria": "Negociar {{symbol}} no DEX",
+      "tradeTooltip": "Abre o DEX com {{symbol}} preenchido.",
+      "tradeDisabledTooltip": "A negociação está restrita por regras de KYC e jurisdição para este ativo."
+    },
+    "yield": {
+      "filter": {
+        "all": "Todos",
+        "stable": "Estável",
+        "lp": "LP",
+        "lending": "Empréstimos",
+        "vault": "Cofre",
+        "other": "Outros"
+      },
+      "sort": {
+        "apy": "APY",
+        "tvl": "TVL",
+        "risk": "Risco",
+        "label": "Ordenar por"
+      },
+      "risk": {
+        "low": "Baixo",
+        "medium": "Médio",
+        "high": "Alto"
+      },
+      "maturity": {
+        "open": "Aberto",
+        "days": "{{count}} d"
+      },
+      "apy": "APY",
+      "tvl": "TVL",
+      "deposit": "Depositar",
+      "strategy": "Estratégia",
+      "empty": "Nenhuma oportunidade de rendimento corresponde"
+    },
+    "predictions": {
+      "filter": {
+        "category": {
+          "all": "Todas",
+          "sports": "Esportes",
+          "politics": "Política",
+          "crypto": "Cripto",
+          "entertainment": "Entretenimento",
+          "other": "Outros"
+        },
+        "status": {
+          "open": "Abertos",
+          "resolving": "Em resolução",
+          "resolved": "Resolvidos"
+        }
+      },
+      "outcomes": "Resultados",
+      "volume": "Volume",
+      "traders": "Traders",
+      "resolvesIn": "Resolve em {{time}}",
+      "buy": "Comprar",
+      "sell": "Vender",
+      "claim": "Resgatar ganhos",
+      "myPositions": "Minhas posições",
+      "noMarkets": "Nenhum mercado corresponde a estes filtros",
+      "noPositions": "Ainda sem posições neste mercado",
+      "amountUsd": "Valor (USD)",
+      "amountShares": "Quotas a vender",
+      "slippageBps": "Deslizamento máx (bps)",
+      "priceMid": "Preço médio",
+      "notFound": "Mercado não encontrado",
+      "yesPriceTooltip": "Preço atual das ações SIM. Uma ação SIM paga 1 $ se SIM ganhar, caso contrário 0 $.",
+      "noPriceTooltip": "Preço atual das ações NÃO. Uma ação NÃO paga 1 $ se NÃO ganhar, caso contrário 0 $.",
+      "volumeTooltip": "Volume total em USD nas últimas 24 horas.",
+      "liquidityTooltip": "Número de traders distintos — valores mais altos indicam mais liquidez.",
+      "resolutionTooltip": "Data de encerramento. O oráculo configurado decide SIM/NÃO pouco depois.",
+      "outcomeAria": "{{label}} a {{pct}} por cento",
+      "statsAria": "Estatísticas de saúde do mercado",
+      "volumeLabel": "Volume",
+      "tradersLabel": "Traders"
+    }
+  },
+  "errors": {
+    "unknown": {
+      "title": "Algo correu mal",
+      "body": "Não foi possível concluir a ação.",
+      "action": "Tenta novamente daqui a pouco. Se persistir, reinicia a carteira."
+    },
+    "invalidInput": "Entrada inválida",
+    "network": {
+      "title": "Problema de ligação",
+      "body": "A carteira não conseguiu aceder à Internet ou ao nosso validador.",
+      "action": "Verifica a ligação e tenta de novo."
+    },
+    "session": {
+      "title": "Sessão expirada",
+      "body": "A sessão segura já não é válida.",
+      "action": "Inicia sessão novamente para continuar."
+    },
+    "notFound": {
+      "title": "Não encontrado",
+      "body": "O item solicitado já não está disponível.",
+      "action": "Atualiza o ecrã e tenta novamente."
+    },
+    "rateLimit": {
+      "title": "Demasiados pedidos",
+      "body": "Estás a exceder os nossos limites de frequência.",
+      "action": "Espera cerca de um minuto e tenta novamente."
+    },
+    "serverDown": {
+      "title": "Serviço temporariamente indisponível",
+      "body": "Os nossos servidores estão inacessíveis.",
+      "action": "Tentamos automaticamente — deixa o ecrã aberto."
+    },
+    "locked": {
+      "title": "Carteira bloqueada",
+      "body": "Esta ação exige a carteira desbloqueada.",
+      "action": "Desbloqueia a carteira e tenta de novo."
+    },
+    "insufficient": {
+      "title": "Saldo insuficiente",
+      "body": "O saldo nesta cadeia é demasiado baixo.",
+      "action": "Recebe ou troca mais fundos antes de tentar."
+    },
+    "validation": {
+      "title": "Verifica os dados",
+      "body": "O pedido foi recusado porque um campo não é válido.",
+      "action": "Revê o formulário e tenta de novo."
+    },
+    "cancelled": {
+      "title": "Cancelado",
+      "body": "Cancelaste esta ação.",
+      "action": ""
+    },
+    "retry": "Tentar novamente",
+    "retryAria": "Tentar novamente a ação falhada",
+    "dismissAria": "Fechar a mensagem de erro",
+    "context": {
+      "approveNftCollection": "aprovar coleção NFT",
+      "approveXomForNftBuy": "aprovar XOM para compra NFT",
+      "buyNft": "comprar NFT"
+    }
+  },
+  "features": {
+    "staking": {
+      "heading": "Staking",
+      "tabStake": "Stake",
+      "tabUnstake": "Retirar",
+      "currentStake": "Stake atual",
+      "currentApr": "APR",
+      "accruedRewards": "Recompensas acumuladas",
+      "lockUntil": "Bloqueio termina",
+      "noActiveStake": "Sem stake ativo",
+      "amountLabel": "Quantia",
+      "amountPlaceholder": "0,00",
+      "lockLabel": "Período de bloqueio",
+      "lockNone": "Nenhum",
+      "lock1m": "1 mês",
+      "lock6m": "6 meses",
+      "lock2y": "2 anos",
+      "previewApr": "APR estimado",
+      "stakeBtn": "Stake",
+      "unstakeBtn": "Retirar",
+      "claimBtn": "Reivindicar recompensas",
+      "submitting": "Enviando…",
+      "earlyWarning": "Aplica-se penalidade por retirada antecipada.",
+      "stakeOk": "Stake enviado — Tx: {{shortHash}}",
+      "unstakeOk": "Retirada enviada — Tx: {{shortHash}}",
+      "claimOk": "Recompensas reivindicadas — Tx: {{shortHash}}",
+      "errorAmountRequired": "A quantia é obrigatória",
+      "errorFailed": "Operação falhou",
+      "tierTableHeading": "Níveis de APR",
+      "tierAmount": "Quantia (XOM)",
+      "tierBaseApr": "APR base",
+      "durationBonusHeading": "Bônus de duração",
+      "tier1": "1 – 999.999",
+      "tier2": "1 Mi – 9,99 Mi",
+      "tier3": "10 Mi – 99,99 Mi",
+      "tier4": "100 Mi – 999,99 Mi",
+      "tier5": "1 Bi+",
+      "loginHint": "Faça login para ver o staking",
+      "calculator": {
+        "tab": "Calculadora",
+        "heading": "Estimador de ganhos",
+        "intro": "Ganhos anuais aproximados de staking, indicações e atividade do mercado. Ignora juros compostos e limites de recompensa.",
+        "stakedAmountLabel": "Valor em staking (XOM)",
+        "stakedAmountPlaceholder": "0",
+        "lockDurationLabel": "Duração do bloqueio",
+        "referralsPerDayLabel": "Novas indicações por dia",
+        "monthlyTxLabel": "Transações mensais no mercado (XOM médio)",
+        "baseAprLine": "APR base: {{apr}}%",
+        "totalAprLine": "APR total: {{apr}}%",
+        "stakingEarnings": "Recompensas de staking",
+        "referralEarnings": "Recompensas por indicação",
+        "marketplaceEarnings": "Recompensas do mercado",
+        "welcomeBonus": "Bónus de boas-vindas (único)",
+        "totalAnnual": "Ganhos anuais estimados",
+        "disclaimer": "Os valores seguem curvas de staking, indicações e primeira venda, que diminuem com o crescimento da base de utilizadores. Não é aconselhamento financeiro."
+      }
+    },
+    "kyc": {
+      "heading": "KYC e verificação",
+      "currentTier": "Nível atual",
+      "participationScore": "Pontuação de participação",
+      "scoreOutOf": "{{score}} / 100",
+      "tier0": "Anônimo",
+      "tier1": "Básico",
+      "tier2": "Verificado",
+      "tier3": "Identidade",
+      "tier4": "Institucional",
+      "tier0Desc": "Apenas e-mail",
+      "tier1Desc": "E-mail + telefone + seguir nas redes sociais",
+      "tier2Desc": "Endereço + OCR de documento + AML/PEP",
+      "tier3Desc": "Documento oficial + reconhecimento facial (Persona)",
+      "tier4Desc": "Verificação de entidade empresarial (somente validadores)",
+      "scoreBonus": "+{{points}} de bônus",
+      "nextTierHeading": "Próximo nível",
+      "nextTierUpgrade": "Atualizar",
+      "alreadyAtMax": "Você atingiu o nível máximo.",
+      "tier4ComingSoon": "O Nível 4 (Institucional) abre com o lançamento definitivo.",
+      "uploadHeading": "Nível 2 — Comprovante de endereço",
+      "uploadHint": "Envie uma fatura recente, extrato bancário ou carta oficial (PDF, JPEG ou PNG; ≤10 MB).",
+      "uploadFileLabel": "Documento",
+      "uploadNameLabel": "Nome legal no documento",
+      "uploadAddressLabel": "Endereço mostrado no documento",
+      "uploadDocTypeLabel": "Tipo de documento",
+      "docTypeBank": "Extrato bancário",
+      "docTypeUtility": "Conta de serviço",
+      "docTypeTax": "Documento fiscal",
+      "docTypeOfficial": "Carta oficial",
+      "uploadBtn": "Enviar documento",
+      "uploading": "Enviando…",
+      "uploadOk": "Documento enviado — aguardando análise.",
+      "uploadFailed": "Falha no envio",
+      "uploadFileTooLarge": "O arquivo excede o limite de 10 MB.",
+      "uploadFileTypeInvalid": "Apenas arquivos PDF, JPEG e PNG são aceitos.",
+      "personaHeading": "Nível 3 — Verificação de identidade",
+      "personaHint": "Usamos a Persona para verificar um documento oficial e o rosto. O fluxo abre em uma nova aba.",
+      "personaCta": "Verificar identidade com a Persona",
+      "personaWaiting": "Aguardando confirmação da Persona…",
+      "personaConfirmed": "Verificação da Persona confirmada.",
+      "personaFailed": "A verificação da Persona não foi concluída.",
+      "loginHint": "Faça login para ver seu status KYC"
+    },
+    "bridge": {
+      "heading": "Ponte",
+      "fromHeading": "De",
+      "toHeading": "Para",
+      "amountLabel": "Quantia",
+      "amountPlaceholder": "0,00",
+      "loginHint": "Faça login para usar a ponte",
+      "noRoutes": "Nenhuma rota de ponte disponível para este par",
+      "routeLabel": "Rota",
+      "feeLabel": "Taxa da ponte",
+      "estTime": "~{{seconds}} s",
+      "submit": "Ponte",
+      "signing": "Aguardando assinatura…",
+      "depositing": "Depositando na chain de origem…",
+      "bridging": "Em transferência — {{status}}",
+      "claiming": "Reivindicando na chain de destino…",
+      "complete": "Ponte concluída",
+      "failed": "Falha na ponte: {{error}}",
+      "txHash": "Tx: {{shortHash}}",
+      "selectFromChain": "Chain de origem",
+      "selectToChain": "Chain de destino",
+      "selectFromToken": "Token de origem",
+      "selectToToken": "Token de destino",
+      "stepDeposit": "Depósito",
+      "stepBridge": "Ponte",
+      "stepClaim": "Reivindicar",
+      "stepComplete": "Concluído",
+      "explorer": "Ver no explorador"
+    },
+    "addressBook": {
+      "heading": "Catálogo de endereços",
+      "empty": "Sem contatos salvos",
+      "add": "Adicionar contato",
+      "edit": "Editar",
+      "delete": "Excluir",
+      "save": "Salvar",
+      "cancel": "Cancelar",
+      "nameLabel": "Nome",
+      "namePlaceholder": "Alice",
+      "addressLabel": "Endereço",
+      "addressPlaceholder": "0x… ou nome de usuário",
+      "chainLabel": "Rede",
+      "notesLabel": "Notas",
+      "notesPlaceholder": "Opcional",
+      "errorRequired": "Nome e endereço são obrigatórios",
+      "errorSaveFailed": "Falha ao salvar o contato",
+      "deleteConfirm": "Excluir este contato?"
+    },
+    "about": {
+      "heading": "Sobre",
+      "version": "Versão",
+      "validatorNetwork": "Rede de validadores",
+      "validatorsConnected": "{{count}} ativos",
+      "validatorRow": "{{url}} — {{latency}} ms",
+      "validatorRowOffline": "{{url}} — offline",
+      "noValidators": "Nenhum validador conectado",
+      "links": "Links",
+      "changelog": "Registro de alterações",
+      "support": "Suporte",
+      "privacyPolicy": "Política de privacidade",
+      "terms": "Termos de serviço",
+      "footer": "Construído sobre OmniCoin L1 — chain 88008"
+    },
+    "participation": {
+      "heading": "Pontuação de Participação",
+      "intro": "A sua pontuação combina nove fatores com máximo de 100. Pontuações mais altas desbloqueiam elegibilidade para validador e nó de listagem.",
+      "loginHint": "Inicie sessão para ver a sua pontuação de participação",
+      "totalLabel": "Pontuação total",
+      "outOf": "{{score}} / {{max}}",
+      "viewBreakdown": "Ver detalhes",
+      "components": {
+        "kycTrust": "Confiança KYC",
+        "kycTrustHint": "Nível 0 = 0, 1 = 5, 2 = 10, 3 = 15, 4 = 20.",
+        "marketplaceReputation": "Reputação do mercado",
+        "marketplaceReputationHint": "Avaliação média mapeada de −10 a +10.",
+        "stakingAmountDuration": "Valor + Duração do staking",
+        "stakingAmountDurationHint": "Tier de valor × 3 mais tier de duração × 3.",
+        "disseminator": "Divulgador (indicações)",
+        "disseminatorHint": "1 ponto por utilizador indicado, até 10.",
+        "publisher": "Publicador (anúncios)",
+        "publisherHint": "100 anúncios = 1, 1K = 2, 10K = 3, 100K = 4.",
+        "forumParticipation": "Participação no fórum",
+        "forumParticipationHint": "Decai com o tempo; posts, respostas e likes.",
+        "marketplaceActivity": "Atividade no mercado",
+        "marketplaceActivityHint": "Decai com o tempo; transações concluídas.",
+        "communityPolicing": "Moderação comunitária",
+        "communityPolicingHint": "Precisão das denúncias; decai com o tempo.",
+        "reliability": "Fiabilidade",
+        "reliabilityHint": "Sinais de disponibilidade e desempenho (−5 a +5).",
+        "vouchScore": "Pontuação de endosso",
+        "vouchScoreHint": "Endossos de confiança recebidos da comunidade (0 a 5)."
+      }
+    },
+    "governance": {
+      "heading": "Governança",
+      "badge": "Em breve",
+      "intro": "A governança on-chain ODDAO chegará após o lançamento oficial. Validadores e stakers XOM irão propor e votar sobre emissões, taxas e tesouraria.",
+      "learnMore": "Ler o plano de governança",
+      "notes": "Quando ativa, poderá votar neste ecrã. Entretanto, junte-se ao fórum para partilhar feedback.",
+      "ctaForum": "Abrir fórum"
+    },
+    "portfolio": {
+      "heading": "Análise do Portefólio",
+      "intro": "Saldos ERC-20 em cada cadeia EVM, agrupados numa única solicitação Multicall3 por cadeia.",
+      "loading": "A carregar saldos…",
+      "empty": "Nenhum saldo de token encontrado.",
+      "loginHint": "Inicie sessão para ver o seu portefólio.",
+      "partialError": "{{count}} cadeia não pôde ser lida — a mostrar resultados parciais.",
+      "partialError_other": "{{count}} cadeias não puderam ser lidas — a mostrar resultados parciais."
+    }
+  },
+  "dapp": {
+    "connect": {
+      "heading": "Ligar à dApp",
+      "intro": "{{origin}} quer ligar-se à sua carteira.",
+      "permissionsLabel": "Este site poderá:",
+      "permissionAccount": "Ver o endereço da sua carteira",
+      "permissionSign": "Solicitar assinaturas e transações (cada uma exige a sua aprovação)",
+      "approve": "Ligar",
+      "reject": "Cancelar"
+    },
+    "sign": {
+      "heading": "Pedido de assinatura",
+      "messageLabel": "Mensagem",
+      "legacyWarning": "⚠️ Este site usa o método legado eth_sign, que pode ser usado para assinar transações. Rejeite se não tiver a certeza.",
+      "approve": "Assinar",
+      "reject": "Cancelar"
+    },
+    "typed": {
+      "heading": "Assinatura de dados tipados",
+      "domainLabel": "Domínio",
+      "messageLabel": "{{primaryType}}",
+      "approve": "Assinar",
+      "reject": "Cancelar"
+    },
+    "tx": {
+      "heading": "Confirmar transação",
+      "toLabel": "Destinatário",
+      "valueLabel": "Valor nativo",
+      "functionLabel": "Função",
+      "unknownFunction": "(função desconhecida — calldata não descodificada)",
+      "gasLabel": "Comissão de rede",
+      "gasFreeOmniRelay": "Grátis (pago pelo OmniRelay)",
+      "gasOnChain": "Estimada ao preço de gás da rede",
+      "riskLabel": "Risco",
+      "simulationFailed": "A simulação falhou: {{reason}}",
+      "ackHighRisk": "Compreendo que esta transação parece arriscada e quero continuar.",
+      "approve": "Confirmar",
+      "reject": "Cancelar",
+      "reason": {
+        "scamAddress": "O destinatário consta numa lista de fraudes conhecidas.",
+        "unlimitedApprove": "Aprova um limite de gasto ilimitado.",
+        "approvalForAll": "Concede aprovação para todos os NFTs desta coleção.",
+        "transferFrom": "Retira tokens através de uma autorização preexistente.",
+        "zeroAddressTransfer": "Transfere para o endereço zero (burn)."
+      }
+    },
+    "switch": {
+      "heading": "Mudar de rede",
+      "fromLabel": "Da chain",
+      "toLabel": "Para a chain",
+      "approve": "Mudar",
+      "reject": "Cancelar"
+    },
+    "addchain": {
+      "heading": "Adicionar rede",
+      "nameLabel": "Nome da rede",
+      "chainIdLabel": "ID da chain",
+      "rpcLabel": "URL do RPC",
+      "symbolLabel": "Símbolo da moeda",
+      "explorerLabel": "Explorador de blocos",
+      "approve": "Adicionar rede",
+      "reject": "Cancelar",
+      "collisionWarning": "⚠️ Esta dApp está tentando adicionar uma chain com o mesmo ID ({{chainId}}) que {{knownName}}, mas com um {{fields}} DIFERENTE. Isto pode ser uma tentativa de phishing. Use a configuração original de {{knownName}}.",
+      "collisionDiffRpc": "URL do RPC",
+      "collisionDiffName": "nome da chain",
+      "collisionDiffSymbol": "símbolo da moeda nativa",
+      "iUnderstandRisk": "Entendo o risco e quero adicionar esta chain mesmo assim",
+      "forceApproveDisabledTooltip": "Desativado: confirme que entende o risco para continuar."
+    },
+    "addtoken": {
+      "heading": "Adicionar token",
+      "symbolLabel": "Símbolo",
+      "decimalsLabel": "Decimais",
+      "addressLabel": "Endereço do contrato",
+      "imageLabel": "URL da imagem",
+      "approve": "Adicionar token",
+      "reject": "Cancelar"
+    },
+    "walletconnect": {
+      "heading": "WalletConnect",
+      "intro": "Faça a leitura do QR code do WalletConnect no telemóvel, copie o URI wc: e cole-o aqui para emparelhar.",
+      "pasteUriPlaceholder": "wc:…",
+      "connect": "Emparelhar",
+      "pairOk": "Emparelhado. À espera de uma proposta de sessão da dApp.",
+      "activeSessions": "Sessões ativas",
+      "empty": "Sem sessões ativas no WalletConnect"
+    },
+    "education": {
+      "body": "O OmniWallet suporta EIP-6963 — aparece no seletor de carteiras de qualquer dApp moderna. Em dApps antigas que mostrem apenas \"Connect MetaMask\", procure OmniWallet na lista ou use o WalletConnect."
+    },
+    "risk": {
+      "green": "Baixo",
+      "amber": "Atenção",
+      "red": "Alto",
+      "explanation": "Nenhum padrão de risco detetado. Verifique sempre o destinatário e o valor."
+    },
+    "originTooltip": "O site que está a pedir esta aprovação.",
+    "chainTooltip": "A rede a que este pedido se destina.",
+    "chainAria": "Rede de destino: {{chain}}",
+    "requestFrom": "Pedido de {{origin}}",
+    "rejectAria": "Rejeitar este pedido e fechar a janela",
+    "approveAria": "Aprovar este pedido",
+    "embeddedFrameTooltip": "Este pedido vem de um iframe incorporado noutro site. Aprova apenas se confias tanto no dApp como no site principal.",
+    "embeddedFrame": "Este pedido vem de um iframe incorporado, não da página principal.",
+    "embeddedFrameFull": "iframe incorporado: {{origin}} dentro de {{topOrigin}}"
+  },
+  "hardware": {
+    "selector": {
+      "title": "Conectar Carteira de Hardware",
+      "ledgerUsb": "Ledger (USB)",
+      "ledgerBle": "Ledger (Bluetooth)",
+      "trezorUsb": "Trezor (USB)"
+    },
+    "connect": {
+      "step1": "Conectar dispositivo",
+      "step2": "Desbloquear dispositivo",
+      "step3": "Abrir o app Ethereum",
+      "step4": "Derivando contas...",
+      "noDevice": "Nenhum dispositivo detectado. Conecte-o e tente novamente.",
+      "denied": "Acesso ao dispositivo negado. Permita o acesso no seu navegador."
+    },
+    "sign": {
+      "title": "Confirme no {{device}}",
+      "subtitle": "Revise e confirme a transação no seu dispositivo",
+      "cancel": "Cancelar"
+    },
+    "accounts": {
+      "title": "Selecionar Contas",
+      "showMore": "Mostrar mais 5",
+      "balance": "Saldo",
+      "addSelected": "Adicionar {{count}} contas",
+      "addedToast": "{{count}} contas de hardware adicionadas"
+    },
+    "badge": {
+      "ledger": "Ledger",
+      "trezor": "Trezor"
+    },
+    "advanced": {
+      "title": "Avançado",
+      "hdPath": "Caminho de derivação"
+    }
+  },
+  "antiPhishing": {
+    "stepTitle": "Escolha o seu banner antiphishing",
+    "stepHelp": "Escolha uma cor e uma palavra curta. O OmniWallet os exibirá sob o cabeçalho sempre que abrir o popup. Uma carteira falsa não pode conhecer sua escolha; se você não vir sua cor e palavra, o popup não é o OmniWallet real.",
+    "colorLabel": "Cor",
+    "wordLabel": "Palavra ou frase curta",
+    "wordPlaceholder": "ex. sol42",
+    "wordRules": "Apenas letras, dígitos e espaços. {{min}}–{{max}} caracteres.",
+    "preview": "Pré-visualização",
+    "previewEmpty": "Seu banner aparecerá aqui",
+    "previewAria": "Pré-visualização ao vivo do banner antiphishing",
+    "confirm": "Salvar banner",
+    "saving": "Salvando…",
+    "skip": "Pular por enquanto",
+    "changeTitle": "Alterar banner antiphishing",
+    "changeRequiresPassword": "Digite sua senha para salvar a alteração",
+    "passwordPlaceholder": "Senha da carteira",
+    "lockScreenFallback": "Antiphishing: desbloqueie para verificar",
+    "bannerAriaLabel": "Banner antiphishing",
+    "bannerTooltip": "Este é seu marcador antiphishing. Se você não vir SUA cor e palavra aqui, NÃO é o OmniWallet real.",
+    "addPrompt": "Adicionar banner antiphishing (recomendado)",
+    "addPromptAria": "Adicionar banner antiphishing — abre a página de configurações",
+    "colorSwatchAria": "Selecionar cor {{color}}",
+    "savedOk": "Banner atualizado.",
+    "errColorInvalid": "Escolha uma cor.",
+    "errWordTooShort": "Use pelo menos 3 caracteres.",
+    "errWordTooLong": "Use no máximo 24 caracteres.",
+    "errWordChars": "Apenas letras, dígitos e espaços são permitidos.",
+    "errSanitized": "Corrija os campos do banner antes de salvar.",
+    "errPasswordRequired": "Digite a senha da carteira para salvar a alteração.",
+    "errGeneric": "Não foi possível salvar o banner antiphishing. Tente novamente."
+  },
+  "chains": {
+    "cardano": {
+      "send": {
+        "minAmountError": "O envio mínimo no Cardano é de 1 ADA. Aumente o valor e tente novamente.",
+        "insufficientUtxo": "Os UTXOs disponíveis não cobrem o valor mais a taxa. Adicione mais ADA à carteira de origem.",
+        "feeEstimate": "Taxa de rede estimada: {{ada}} ADA",
+        "ttlExpired": "A transação expirou antes de podermos enviá-la. Atualize e tente novamente.",
+        "broadcastPending": "Enviando para a rede Cardano…",
+        "broadcastSuccess": "Transação Cardano enviada. Tx: {{shortHash}}",
+        "broadcastFailed": "Não foi possível enviar a transação Cardano. Tente novamente."
+      }
+    }
+  },
+  "predictions": {
+    "claim": {
+      "button": "Resgatar ganhos do mercado \"{{title}}\"",
+      "confirming": "Confirmando na Polygon…",
+      "successToast": "Resgate enviado — Tx: {{shortHash}}",
+      "explorerLink": "Ver transação no explorador de blocos",
+      "insufficientGasTitle": "Você precisa de {{symbol}} na {{chain}} para resgatar",
+      "insufficientGasBody": "Resgatar ganhos na {{chain}} requer {{symbol}} para gás. Faça uma ponte de XOM aqui para cobrir a taxa e tente novamente.",
+      "bridgeForGas": "Fazer ponte de XOM para gás",
+      "failed": "Não foi possível resgatar os ganhos. Tente novamente.",
+      "disabledTooltip": "Este mercado ainda não foi resolvido. O resgate estará disponível quando o resultado for finalizado."
+    }
+  }
+}

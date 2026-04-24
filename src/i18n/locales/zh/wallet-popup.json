@@ -1,0 +1,1266 @@
+{
+  "splash": {
+    "title": "OmniWallet",
+    "loading": "加载中..."
+  },
+  "header": {
+    "brand": "OmniWallet",
+    "settingsTitle": "设置"
+  },
+  "nav": {
+    "wallet": "钱包",
+    "dex": "DEX",
+    "marketplace": "市场",
+    "more": "更多"
+  },
+  "quickActions": {
+    "send": "发送",
+    "receive": "接收",
+    "swap": "兑换",
+    "bridge": "跨链桥"
+  },
+  "accountBar": {
+    "defaultAccountName": "账户 1"
+  },
+  "common": {
+    "back": "返回",
+    "cancel": "取消",
+    "close": "关闭",
+    "continue": "继续",
+    "confirm": "确认",
+    "copy": "复制",
+    "copied": "已复制",
+    "loading": "加载中..."
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "OmniWallet",
+      "subtitle": "通往 128 条区块链、OmniBazaar 市场和 OmniCoin DEX 的门户。无需信任、无 Gas 费、设计即保护隐私。",
+      "createNew": "创建新钱包",
+      "importExisting": "导入现有钱包",
+      "signIn": "已有账户？登录",
+      "termsPrefix": "继续即表示您同意",
+      "termsLink": "服务条款"
+    },
+    "createWallet": {
+      "heading": "创建钱包",
+      "passwordHint": "设置一个密码以在此设备上保护您的钱包。您的助记词才是真正的备份——请妥善保管。",
+      "passwordLabel": "密码",
+      "passwordPlaceholder": "至少 8 个字符",
+      "confirmPasswordLabel": "确认密码",
+      "confirmPasswordPlaceholder": "再次输入密码",
+      "continue": "继续",
+      "creating": "创建中…",
+      "seedHeading": "您的恢复助记词",
+      "seedWarning": "⚠️ 请将这 12 个单词写下来并妥善保管。任何获得这些单词的人都可以访问您的钱包。",
+      "writtenDown": "我已记录 →",
+      "confirmHeading": "确认备份",
+      "confirmHint": "请输入位置 {{positions}} 处的单词以验证您的备份。",
+      "wordLabel": "第 {{position}} 个单词",
+      "wordPlaceholder": "第 {{position}} 个单词",
+      "wordIncorrect": "第 {{position}} 个单词不正确",
+      "createWalletBtn": "创建钱包",
+      "registering": "注册中…",
+      "passwordTooShort": "密码至少需要 8 个字符",
+      "passwordMismatch": "两次输入的密码不一致",
+      "createFailed": "创建钱包失败",
+      "registerFailed": "注册失败"
+    },
+    "importWallet": {
+      "heading": "导入钱包",
+      "importing": "导入中…",
+      "verifying": "正在验证助记词并注册钱包…",
+      "tabMnemonic": "助记词",
+      "tabPrivateKey": "私钥",
+      "mnemonicHint": "请输入您的 12 或 24 个单词的恢复短语,用空格分隔。",
+      "mnemonicPlaceholder": "word1 word2 word3 …",
+      "privateKeyHint": "请输入您的私钥(十六进制,可带或不带 0x 前缀)。",
+      "privateKeyPlaceholder": "0x…",
+      "newPasswordLabel": "新密码",
+      "newPasswordPlaceholder": "至少 8 个字符",
+      "confirmPasswordLabel": "确认密码",
+      "confirmPasswordPlaceholder": "再次输入密码",
+      "submit": "导入钱包",
+      "submitting": "导入中…",
+      "errorSeedWordCount": "助记词必须是 12 或 24 个单词",
+      "errorPrivateKeyRequired": "必须提供私钥",
+      "errorImportFailed": "导入失败",
+      "passwordTooShort": "密码至少需要 8 个字符",
+      "passwordMismatch": "两次输入的密码不一致"
+    },
+    "seedBackup": {
+      "heading": "恢复助记词",
+      "warning": "⚠️ 请将这 {{count}} 个单词写下来并妥善保管。任何获得这些单词的人都可以访问您的钱包。",
+      "writtenDown": "我已记录 →",
+      "confirmHeading": "确认备份",
+      "confirmHint": "请输入位置 {{positions}} 处的单词以验证您的备份。",
+      "wordLabel": "第 {{position}} 个单词",
+      "wordPlaceholder": "第 {{position}} 个单词",
+      "wordIncorrect": "第 {{position}} 个单词不正确",
+      "verify": "验证备份"
+    },
+    "login": {
+      "heading": "欢迎回来",
+      "passwordLabel": "密码",
+      "passwordPlaceholder": "请输入您的密码",
+      "unlock": "解锁",
+      "unlocking": "解锁中…",
+      "useDifferent": "使用其他钱包",
+      "errorPasswordRequired": "必须输入密码",
+      "errorIncorrectPassword": "密码错误",
+      "unlockAria": "使用已输入的密码解锁您的钱包",
+      "useDifferentAria": "导入其他钱包或创建新钱包"
+    }
+  },
+  "wallet": {
+    "tabs": {
+      "assets": "资产",
+      "nfts": "NFT",
+      "activity": "活动"
+    },
+    "assets": {
+      "empty": "未找到资产"
+    },
+    "asset": {
+      "invalidDecimals": "代币元数据缺失或无效 — 出于安全考虑已隐藏余额",
+      "invalidDecimalsAria": "余额不可用 — 代币元数据无效"
+    },
+    "activity": {
+      "heading": "活动",
+      "empty": "暂无交易",
+      "received": "收到 {{symbol}}",
+      "sent": "发送 {{symbol}}",
+      "timeJustNow": "刚刚",
+      "timeMinutesAgo": "{{count}} 分钟前",
+      "timeHoursAgo": "{{count}} 小时前",
+      "publicTab": "公开",
+      "privateTab": "隐私 (pXOM)",
+      "revealAmount": "显示金额",
+      "amountHidden": "金额已隐藏 — 点击 显示 进行解密",
+      "status": {
+        "confirmed": "已确认",
+        "pending": "待处理",
+        "failed": "失败"
+      }
+    },
+    "nfts": {
+      "heading": "NFT",
+      "empty": "未找到 NFT",
+      "placeholder": "NFT"
+    },
+    "send": {
+      "heading": "发送",
+      "networkLabel": "网络",
+      "recipientLabel": "接收方地址",
+      "recipientPlaceholder": "0x… 或用户名",
+      "amountLabel": "数量",
+      "amountPlaceholder": "0.00",
+      "max": "最大",
+      "gaslessBadge": "⚡ Gas:免费 —— 由 OmniRelay 提供",
+      "gasFree": "Gas：免费（OmniRelay）",
+      "estimatedGas": "预估 Gas",
+      "submit": "发送",
+      "submitting": "发送中…",
+      "errorFailed": "交易失败",
+      "successPrefix": "已发送!交易:{{shortHash}}",
+      "errorInvalidAddress": "此链上的地址格式无效。请重新检查并粘贴。",
+      "networkTooltip": "选择发送链。每条链有自己的余额。",
+      "gaslessTooltip": "免燃料费:此交易通过 OmniRelay 中继,您无需支付原生燃料费。",
+      "recipientTooltip": "为所选链输入有效地址。系统将验证地址结构和校验和。",
+      "amountAria": "以 {{symbol}} 计的发送金额",
+      "maxAria": "发送最大可用余额",
+      "maxTooltip": "将金额填为您的 {{symbol}} 最大余额。",
+      "estimatedGasTooltip": "本笔交易的预估网络费用。"
+    },
+    "receive": {
+      "heading": "接收",
+      "networkLabel": "网络",
+      "copy": "复制",
+      "copied": "✓ 已复制",
+      "hint": "仅向此地址在 {{chainName}} 上发送 {{symbol}} 及兼容代币。",
+      "networkTooltip": "选择您要接收的链。每条链有自己的地址。",
+      "qrAria": "{{chainName}} 地址 {{address}} 的二维码",
+      "qrAriaPending": "待生成",
+      "addressTooltip": "您在 {{chainName}} 的接收地址。任何人凭此地址都能向您发送 {{symbol}}。",
+      "addressDeriving": "正在派生地址…",
+      "copyAria": "将 {{chainName}} 地址复制到剪贴板",
+      "copyTooltip": "复制地址到剪贴板"
+    }
+  },
+  "settings": {
+    "home": {
+      "heading": "设置",
+      "sectionSecurity": "安全",
+      "sectionNetwork": "网络",
+      "sectionAccount": "账户",
+      "securityPrivacyTitle": "安全与隐私",
+      "securityPrivacySub": "密码、生物识别、助记词",
+      "connectedSitesTitle": "已连接的网站",
+      "connectedSitesSub": "管理 dApp 连接",
+      "walletConnectTitle": "WalletConnect",
+      "walletConnectSub": "通过二维码与 dApp 配对",
+      "networksTitle": "网络",
+      "networksSub": "管理 RPC 端点",
+      "languageTitle": "语言",
+      "languageSub": "选择显示语言",
+      "signOutTitle": "退出登录",
+      "signOutSub": "锁定钱包",
+      "versionRow": "OmniWallet v{{version}}",
+      "sectionFeatures": "功能",
+      "sectionInfo": "信息",
+      "stakingTitle": "质押",
+      "stakingSub": "质押 XOM 并获得奖励",
+      "kycTitle": "KYC 与验证",
+      "kycSub": "提升您的参与积分",
+      "bridgeTitle": "跨链桥",
+      "bridgeSub": "在区块链之间移动资产",
+      "addressBookTitle": "通讯录",
+      "addressBookSub": "已保存的联系人",
+      "aboutTitle": "关于",
+      "aboutSub": "版本、验证者、链接",
+      "hardwareTitle": "连接硬件钱包",
+      "hardwareSub": "添加 Ledger 或 Trezor 账户",
+      "portfolioTitle": "投资组合分析",
+      "portfolioSub": "多链 ERC-20 余额明细",
+      "participationTitle": "参与度评分",
+      "participationSub": "查看您的 {{score}}/100 分数是如何计算的",
+      "governanceTitle": "治理",
+      "governanceSub": "ODDAO 投票（即将推出）",
+      "antiPhishingTitle": "防钓鱼横幅",
+      "antiPhishingSub": "选择颜色和词语，用于验证这是你的钱包",
+      "tokenApprovalsTitle": "代币授权",
+      "tokenApprovalsSub": "查看并撤销 ERC-20 + NFT 授权"
+    },
+    "security": {
+      "heading": "安全与隐私",
+      "sectionWallet": "钱包",
+      "showSeedTitle": "显示恢复助记词",
+      "showSeedSub": "查看您的 12/24 个单词助记词",
+      "exportKeyTitle": "导出私钥",
+      "exportKeySub": "仅限当前账户",
+      "revealLabel": "请输入密码以显示助记词",
+      "revealPlaceholder": "您的钱包密码",
+      "reveal": "显示助记词",
+      "verifying": "验证中…",
+      "errorIncorrectPassword": "密码错误",
+      "errorExportFailed": "导出失败",
+      "exportedAlert": "私钥已复制到剪贴板。请妥善保管并清空剪贴板。",
+      "sectionAccess": "访问",
+      "passwordChangeTitle": "修改密码",
+      "passwordChangeSub": "更新用于解锁钱包的密码",
+      "passwordChangeHeading": "修改密码",
+      "currentPasswordLabel": "当前密码",
+      "newPasswordLabel": "新密码",
+      "confirmNewPasswordLabel": "确认新密码",
+      "passwordChangeBtn": "更新密码",
+      "passwordChangeOk": "密码已更新。",
+      "passwordTooShort": "密码必须至少 8 个字符",
+      "passwordMismatch": "两次密码不一致",
+      "passwordChangeFailed": "更新密码失败",
+      "biometricTitle": "生物识别解锁",
+      "biometricSub": "使用 Touch ID、Face ID 或 Windows Hello 解锁",
+      "biometricUnavailable": "此设备不支持生物识别解锁。",
+      "biometricEnable": "启用生物识别",
+      "biometricDisable": "关闭生物识别",
+      "biometricEnabled": "生物识别已启用。",
+      "biometricDisabled": "生物识别已关闭。",
+      "biometricFailed": "生物识别设置失败",
+      "autoLockTitle": "自动锁定",
+      "autoLockSub": "在一段时间无操作后锁定钱包",
+      "autoLockNever": "从不",
+      "autoLock1m": "1 分钟",
+      "autoLock5m": "5 分钟",
+      "autoLock15m": "15 分钟",
+      "autoLock30m": "30 分钟"
+    },
+    "networks": {
+      "heading": "网络",
+      "chainIdRow": "链 {{id}}",
+      "gaslessBadge": "免 Gas",
+      "defaultChainHeading": "默认链",
+      "defaultChainSub": "默认显示在弹窗账户栏中。",
+      "enabledHeading": "已启用网络",
+      "customRpcHeading": "自定义 RPC",
+      "customAddTitle": "添加自定义 RPC",
+      "customNameLabel": "名称",
+      "customNamePlaceholder": "我的自定义网络",
+      "customRpcLabel": "RPC 网址",
+      "customRpcPlaceholder": "https://rpc.example.com",
+      "customChainIdLabel": "Chain ID",
+      "customChainIdPlaceholder": "填 0 自动检测",
+      "customSymbolLabel": "币种符号",
+      "customSymbolPlaceholder": "ETH",
+      "customExplorerLabel": "区块浏览器网址",
+      "customExplorerPlaceholder": "https://explorer.example.com",
+      "customAddBtn": "添加网络",
+      "customAddOk": "已添加自定义网络。",
+      "customAddFailed": "添加网络失败",
+      "customRemove": "移除",
+      "customEmpty": "暂无自定义网络",
+      "toggleEnable": "启用",
+      "toggleDisable": "停用",
+      "familyHeading": {
+        "evm": "EVM 网络",
+        "bitcoin": "比特币系列",
+        "solana": "Solana",
+        "polkadot": "波卡系列",
+        "cosmos": "Cosmos",
+        "cardano": "Cardano",
+        "xrp": "XRP 账本",
+        "tron": "波场",
+        "near": "NEAR",
+        "hedera": "Hedera",
+        "stellar": "Stellar",
+        "tezos": "Tezos"
+      }
+    },
+    "connected": {
+      "heading": "已连接的网站",
+      "empty": "没有已连接的网站",
+      "connectedOn": "连接时间:{{date}}",
+      "disconnect": "断开连接"
+    },
+    "locale": {
+      "heading": "语言",
+      "description": "选择钱包的显示语言,更改将立即生效。",
+      "currentLabel": "当前语言"
+    },
+    "tokenApprovals": {
+      "title": "代币授权",
+      "comingSoon": "即将推出",
+      "help": "我们正在构建您钱包授予的所有代币授权的统一视图。您可以在此处随时撤销。"
+    }
+  },
+  "placeholders": {
+    "comingSoon": "即将推出",
+    "thisFeature": "此功能",
+    "dexTitle": "DEX 与兑换",
+    "marketplaceTitle": "市场"
+  },
+  "dex": {
+    "subnav": {
+      "swap": "兑换",
+      "limit": "限价",
+      "yield": "收益",
+      "lp": "LP",
+      "rwa": "RWA",
+      "privacy": "隐私"
+    },
+    "comingSoon": "即将推出",
+    "swap": {
+      "youPay": "您支付",
+      "youReceive": "您收到",
+      "max": "最大",
+      "balance": "余额：{{amount}} {{symbol}}",
+      "route": "路由",
+      "routeDetails": "详情",
+      "altRoutes": "备选",
+      "via": {
+        "omnidex": "通过 OmniDEX",
+        "omnibridgeIctt": "通过 OmniBridge (ICTT)",
+        "omnibridgeCctp": "通过 OmniBridge (CCTP)",
+        "omnibridgeLifi": "通过 OmniDEX → Li.Fi",
+        "lifi": "通过 Li.Fi",
+        "zerox": "通过 0x",
+        "unknown": "通过 {{protocol}}"
+      },
+      "feePct": "{{pct}}% DEX",
+      "relayFee": "0% 中继",
+      "estTime": "约 {{seconds}} 秒",
+      "swap": "兑换",
+      "swapConfirm": "兑换 {{fromSymbol}} → {{toSymbol}}",
+      "signing": "等待签名…",
+      "broadcasting": "广播中…",
+      "inTransit": "跨链中 — {{status}}",
+      "complete": "兑换完成",
+      "failed": "兑换失败：{{error}}",
+      "noRoutes": "此交易对暂无可用路由",
+      "xomRoutingNotice": "XOM 先通过 OmniDEX → USDC 再跨链",
+      "priceImpactWarning": "价格影响: {{pct}}% — 由于市场深度,您将损失约 {{loss}} {{symbol}}",
+      "priceImpactHigh": "价格影响较高 ({{pct}}%)。您可能因滑点损失 {{loss}} {{symbol}}。请确认以继续。",
+      "priceImpactDangerous": "价格影响危险 ({{pct}}%)。请输入确认短语以解锁。",
+      "priceImpactConfirmPhrase": "HIGH IMPACT",
+      "priceImpactAck": "我理解 — 仍要兑换",
+      "priceImpactConfirmLabel": "输入「{{phrase}}」以确认",
+      "priceImpactDisabledTooltip": "已禁用: 价格影响过高。请确认以继续。",
+      "slippageTooHigh": "滑点高于 5% 异常高,可能被 MEV 机器人利用。"
+    },
+    "limit": {
+      "title": "限价单",
+      "buy": "买入",
+      "sell": "卖出",
+      "price": "价格",
+      "amount": "数量",
+      "expiry": "有效期",
+      "expiryPreset": {
+        "1h": "1小时",
+        "1d": "1天",
+        "1w": "1周",
+        "custom": "自定义"
+      },
+      "fee": "手续费",
+      "makerRebate": "Maker返佣",
+      "place": "下单",
+      "submitOk": "已下单",
+      "activeOrders": "活跃订单",
+      "noOrders": "无未结订单",
+      "loginHint": "请登录以下限价单",
+      "cancel": "取消",
+      "status": {
+        "open": "未结",
+        "partial": "部分成交",
+        "filled": "已成交",
+        "cancelled": "已取消"
+      },
+      "orderBook": {
+        "bids": "买单",
+        "asks": "卖单",
+        "depth": "深度"
+      }
+    },
+    "yield": {
+      "title": "收益",
+      "empty": "暂无收益机会",
+      "apy": "APY",
+      "tvl": "TVL",
+      "position": "您的持仓",
+      "deposit": "存入",
+      "withdraw": "提取",
+      "preview": "数量",
+      "risk": {
+        "low": "低风险",
+        "medium": "中风险",
+        "high": "高风险"
+      }
+    },
+    "lp": {
+      "title": "流动性池",
+      "earlyBonusBadge": "⭐ 早期 LP 奖励",
+      "earlyBonusTooltip": "在 2026-04-30 正式启动前 +15% APR",
+      "countdown": "早期 LP 奖励将在 {{days}} 天 {{hours}} 小时后结束",
+      "countdownEnded": "早期 LP 奖励已结束",
+      "add": "添加流动性",
+      "remove": "移除流动性",
+      "removePct": "移除百分比",
+      "slippage": "滑点",
+      "gasInfoLabel": "Gas 上限",
+      "gasInfoTooltip": "向新池添加流动性需要 5,000,000 的 Gas 上限。",
+      "tvlTooltip": "总锁仓价值 —— 该池全部流动性的美元价值。",
+      "tvlAria": "总锁仓价值:{{value}} 美元",
+      "apyTooltip": "根据近期手续费估算的年化收益率。实际收益随交易量波动。",
+      "apyAria": "估算年化收益率:{{pct}} %",
+      "positionTooltip": "您当前在池中的份额,以 LP 代币表示。",
+      "addAria": "向 {{pair}} 池添加流动性",
+      "addTooltip": "同时存入两种代币以赚取交易费分成。",
+      "removeAria": "从 {{pair}} 池中移除流动性",
+      "removeTooltip": "提取您的份额,不再从此池赚取手续费。"
+    },
+    "rwa": {
+      "title": "现实世界资产",
+      "empty": "暂无可用 RWA",
+      "price": "价格",
+      "buy": "买入",
+      "sell": "卖出",
+      "compliance": {
+        "compliant": "合规",
+        "kycRequired": "需要 KYC 等级 {{tier}}",
+        "restricted": "您的地区不可用"
+      }
+    },
+    "privacy": {
+      "title": "隐私",
+      "shield": "屏蔽",
+      "unshield": "解蔽",
+      "feePct": "隐私手续费：{{pct}}%",
+      "privateBalance": "隐私余额",
+      "reveal": "显示",
+      "safeOnboard": {
+        "title": "设置隐私余额",
+        "explain": "您的隐私余额（pXOM）通过 COTI V2 在链上加密。需要进行一次性设置。",
+        "cta": "开始设置"
+      }
+    }
+  },
+  "marketplace": {
+    "subnav": {
+      "p2p": "P2P",
+      "nft": "NFT",
+      "rwa": "RWA",
+      "yield": "收益",
+      "predictions": "预测"
+    },
+    "home": {
+      "searchPlaceholder": "搜索商品…",
+      "searchAria": "搜索市场"
+    },
+    "p2p": {
+      "empty": "没有匹配筛选条件的商品",
+      "createListing": "➕ 创建商品",
+      "myListingsLink": "我的商品",
+      "loadMore": "加载更多",
+      "unratedSeller": "新卖家",
+      "categories": {
+        "all": "全部",
+        "products": "商品",
+        "services": "服务",
+        "jobs": "工作",
+        "realEstate": "房产",
+        "vehicles": "车辆",
+        "personal": "个人",
+        "other": "其他"
+      },
+      "sort": {
+        "label": "排序",
+        "newest": "最新",
+        "priceAsc": "价格:低到高",
+        "priceDesc": "价格:高到低",
+        "popular": "热门"
+      },
+      "status": {
+        "active": "在售",
+        "sold": "已售",
+        "draft": "草稿",
+        "cancelled": "已取消",
+        "expired": "已过期"
+      }
+    },
+    "nft": {
+      "chainLabel": "链",
+      "empty": "此链上暂无收藏集",
+      "stats": {
+        "floor": "地板价",
+        "volume24h": "24h 成交",
+        "listed": "在售"
+      },
+      "list": {
+        "openButton": "上架出售",
+        "heading": "出售 {{name}}",
+        "priceLabel": "价格",
+        "currencyLabel": "币种",
+        "durationLabel": "期限",
+        "duration1d": "1 天",
+        "duration7d": "7 天",
+        "duration30d": "30 天",
+        "royaltyNote": "版税:{{pct}}%(支付给原创者)",
+        "confirm": "上架 NFT",
+        "submitting": "签名中…",
+        "errorFailed": "上架失败",
+        "step": "第 2 步(共 2 步):签署您的挂单"
+      },
+      "buyConfirm": "确认购买？XOM 将被发送，NFT 将在链上原子化转移。",
+      "buyToast": {
+        "success": "NFT 已购买 — 交易 {{tx}}",
+        "failed": "NFT 购买失败"
+      },
+      "buyUnavailable": "NFT 购买尚未开放 — 请稍后再试。",
+      "approveCollection": {
+        "step": "第 1 步(共 2 步):授权市场访问此 NFT 合集",
+        "button": "授权(免 Gas)",
+        "submitting": "正在授权…",
+        "tooltip": "每个 NFT 合集仅需一次授权。OmniBazaar 代付 Gas。",
+        "success": "合集已授权。现在可以上架该合集中的 NFT。",
+        "failed": "无法授权该合集。",
+        "notERC2771": "此 NFT 合集不支持免 Gas 授权 — 您需要少量 XOM 作为 Gas。",
+        "mustApprove": "上架前请先授权市场访问此合集。"
+      },
+      "approveXom": {
+        "step": "第 1 步(共 2 步):为此次购买授权 {{amount}} XOM",
+        "button": "授权 XOM(免 Gas)",
+        "rememberLabel": "记住授权以便将来在 OmniBazaar 上使用 XOM 购买",
+        "rememberTooltip": "授予市场无限制的 XOM 支付权限。可在“设置 > 代币授权”中随时撤销。",
+        "success": "XOM 已授权,正在完成购买…"
+      },
+      "buy": {
+        "step1": "第 1 步(共 2 步):授权 XOM",
+        "step2": "第 2 步(共 2 步):确认购买",
+        "confirmButton": "确认购买",
+        "buyFloor": "按底价购买",
+        "fetchingFloor": "加载中…",
+        "error": {
+          "selfReferral": "推荐人不能是您本人或卖家。",
+          "sellerReferral": "推荐人不能是卖家。",
+          "buyerIsSeller": "您不能购买自己的挂单。",
+          "duplicateReferrer": "第二级推荐人不能与主推荐人相同。",
+          "invalidAddress": "其中一个推荐人地址无效。",
+          "missingBuyer": "未设置活动钱包 — 请解锁后重试。",
+          "missingSeller": "挂单缺少卖家信息 — 请刷新后重试。",
+          "prereqsNotMet": "购买前置条件未满足。请重试。",
+          "insufficientBalance": "您的 XOM 余额不足以完成此次购买。",
+          "settlementNotDeployed": "NFT 市场正在升级 — 请稍后再试。",
+          "noFloorListing": "此合集暂无可购买的挂单。"
+        },
+        "success": {
+          "toast": "NFT 已购买 — 交易 {{tx}}…"
+        }
+      }
+    },
+    "listing": {
+      "notFound": "未找到商品",
+      "imagesAria": "商品图片",
+      "sellerHeading": "卖家",
+      "feesHeading": "费用",
+      "kycTier": "KYC 等级 {{tier}}",
+      "ratingLine": "⭐ {{rating}} · {{sales}} 笔成交",
+      "unratedSeller": "暂无评价",
+      "ownListing": "这是你的商品",
+      "buyNow": "立即购买",
+      "openChat": "打开聊天",
+      "report": "举报",
+      "reportSubmitted": "举报已提交,仲裁人员将进行审核。",
+      "fees": {
+        "escrowBuyer": "托管费(买家)",
+        "marketplaceSeller": "市场费(卖家)",
+        "marketplaceTooltip": "总计 1%:0.50% 推荐 + 0.25% 交易 + 0.25% 上架"
+      }
+    },
+    "create": {
+      "heading": "创建商品",
+      "titleLabel": "标题",
+      "titlePlaceholder": "你要出售什么?",
+      "categoryLabel": "类别",
+      "descriptionLabel": "描述",
+      "descriptionPlaceholder": "请描述商品、状况和发货详情",
+      "priceLabel": "价格",
+      "currencyLabel": "币种",
+      "imagesLabel": "图片 ({{count}}/{{max}})",
+      "imagesHint": "拖入或点击选择 — 最多 10 张,每张 ≤ 5 MB",
+      "imagesNone": "未附加图片",
+      "imagesReady": "已上传 {{count}} 张图片到 IPFS",
+      "submit": "发布商品",
+      "submitting": "发布中…",
+      "errorFailed": "创建商品失败"
+    },
+    "purchase": {
+      "heading": "确认购买",
+      "priceLabel": "商品价格",
+      "escrowFeeLabel": "托管费 (0.25%)",
+      "recipientLabel": "卖家",
+      "totalLabel": "合计支付",
+      "confirm": "确认",
+      "submitting": "签名托管…",
+      "errorFailed": "购买失败"
+    },
+    "chat": {
+      "heading": "聊天 · {{thread}}",
+      "empty": "暂无消息 — 来打个招呼!",
+      "composerPlaceholder": "输入消息…",
+      "send": "发送",
+      "errorFailed": "消息发送失败",
+      "unreadAria": "{{count}} 条未读消息",
+      "actions": {
+        "ship": "标记已发货",
+        "shippedBody": "商品已发货",
+        "receive": "标记已收到",
+        "receivedBody": "商品已收到 — 释放托管",
+        "dispute": "发起争议",
+        "disputeBody": "正在发起争议"
+      }
+    },
+    "myListings": {
+      "heading": "我的商品",
+      "empty": "暂时还没有内容",
+      "tabs": {
+        "active": "在售",
+        "sold": "已售",
+        "draft": "草稿"
+      },
+      "actions": {
+        "view": "查看",
+        "viewStats": "查看统计"
+      }
+    },
+    "referral": {
+      "openButton": "分享推荐链接",
+      "heading": "邀请赚奖励",
+      "description": "通过你的链接产生的每笔购买和 DEX 交易,你都能赚到 0.50% 推荐费的 70%。",
+      "codeLabel": "邀请码:{{code}}",
+      "share": "分享",
+      "shareTitle": "加入 OmniBazaar",
+      "shareText": "注册 OmniBazaar 即可获得新人奖励。",
+      "qrAlt": "推荐二维码"
+    },
+    "errors": {
+      "imageTooLarge": "图片超过 5 MB 限制",
+      "imageTypeNotAllowed": "不支持的图片格式",
+      "uploadFailed": "上传失败"
+    },
+    "rwa": {
+      "filter": {
+        "assetClass": {
+          "all": "全部",
+          "realEstate": "房地产",
+          "equity": "股权",
+          "bond": "债券",
+          "commodity": "大宗商品",
+          "other": "其他"
+        },
+        "jurisdiction": "司法管辖区"
+      },
+      "compliance": {
+        "compliant": "合规",
+        "tierRequired": "需要 KYC 等级 {{tier}}",
+        "restricted": "您所在地区不可用"
+      },
+      "kycComingSoon": "KYC 升级流程将在第 5 阶段上线",
+      "trade": "前往 DEX 交易",
+      "empty": "没有符合这些筛选条件的资产",
+      "connectHint": "连接钱包以交易这些资产",
+      "documents": "查看文档",
+      "stats": {
+        "price": "价格",
+        "marketCap": "市值",
+        "volume24h": "24 小时成交量"
+      },
+      "priceTooltip": "最近记录的每代币美元价格。",
+      "mcapTooltip": "完全稀释市值 —— 流通量 × 价格。",
+      "apyTooltip": "过去 30 天支付给持有人的链上收益年化值。",
+      "complianceTooltip": "资产发行的监管框架;决定谁可以持有。",
+      "tradeAria": "在 DEX 上交易 {{symbol}}",
+      "tradeTooltip": "打开已预填 {{symbol}} 的 DEX。",
+      "tradeDisabledTooltip": "此资产的交易受 KYC 和司法辖区规则限制。"
+    },
+    "yield": {
+      "filter": {
+        "all": "全部",
+        "stable": "稳定币",
+        "lp": "LP",
+        "lending": "借贷",
+        "vault": "金库",
+        "other": "其他"
+      },
+      "sort": {
+        "apy": "APY",
+        "tvl": "TVL",
+        "risk": "风险",
+        "label": "排序方式"
+      },
+      "risk": {
+        "low": "低",
+        "medium": "中",
+        "high": "高"
+      },
+      "maturity": {
+        "open": "开放式",
+        "days": "{{count}} 天"
+      },
+      "apy": "APY",
+      "tvl": "TVL",
+      "deposit": "存入",
+      "strategy": "策略",
+      "empty": "没有匹配的收益机会"
+    },
+    "predictions": {
+      "filter": {
+        "category": {
+          "all": "全部",
+          "sports": "体育",
+          "politics": "政治",
+          "crypto": "加密货币",
+          "entertainment": "娱乐",
+          "other": "其他"
+        },
+        "status": {
+          "open": "开放",
+          "resolving": "结算中",
+          "resolved": "已结算"
+        }
+      },
+      "outcomes": "结果",
+      "volume": "成交量",
+      "traders": "交易者",
+      "resolvesIn": "{{time}}后揭晓",
+      "buy": "买入",
+      "sell": "卖出",
+      "claim": "领取奖金",
+      "myPositions": "我的持仓",
+      "noMarkets": "没有匹配的市场",
+      "noPositions": "此市场暂无持仓",
+      "amountUsd": "金额(USD)",
+      "amountShares": "卖出份额",
+      "slippageBps": "最大滑点 (bps)",
+      "priceMid": "中间价",
+      "notFound": "未找到市场",
+      "yesPriceTooltip": "YES 股票当前市场价格。若 YES 获胜,每股 YES 支付 1 美元,否则为 0 美元。",
+      "noPriceTooltip": "NO 股票当前市场价格。若 NO 获胜,每股 NO 支付 1 美元,否则为 0 美元。",
+      "volumeTooltip": "过去 24 小时的总交易量(美元)。",
+      "liquidityTooltip": "独立交易者数量 —— 数字越大通常代表流动性越好。",
+      "resolutionTooltip": "市场结束日期。随后将由预设预言机决定 YES/NO。",
+      "outcomeAria": "{{label}} 位于 {{pct}}%",
+      "statsAria": "市场健康指标",
+      "volumeLabel": "成交量",
+      "tradersLabel": "交易者"
+    }
+  },
+  "errors": {
+    "unknown": {
+      "title": "出现问题",
+      "body": "我们无法完成该操作。",
+      "action": "请稍后重试。若问题持续,请重启钱包。"
+    },
+    "invalidInput": "输入无效",
+    "network": {
+      "title": "连接问题",
+      "body": "钱包无法访问互联网或验证节点。",
+      "action": "请检查网络连接后重试。"
+    },
+    "session": {
+      "title": "会话已过期",
+      "body": "您的安全会话已失效。",
+      "action": "请重新登录以继续。"
+    },
+    "notFound": {
+      "title": "未找到",
+      "body": "您请求的条目已不可用。",
+      "action": "请刷新页面后重试。"
+    },
+    "rateLimit": {
+      "title": "请求过多",
+      "body": "操作速度超出了我们的限制。",
+      "action": "请等待约一分钟后重试。"
+    },
+    "serverDown": {
+      "title": "服务暂时不可用",
+      "body": "我们的服务器暂时无法访问。",
+      "action": "系统会自动重试,请保持此页面打开。"
+    },
+    "locked": {
+      "title": "钱包已锁定",
+      "body": "此操作需要已解锁的钱包。",
+      "action": "请解锁钱包后再试。"
+    },
+    "insufficient": {
+      "title": "余额不足",
+      "body": "您在此链上的余额不足以完成操作。",
+      "action": "请先接收或兑换更多资产再重试。"
+    },
+    "validation": {
+      "title": "请检查输入",
+      "body": "由于某个字段无效,请求被拒绝。",
+      "action": "请检查表单后重试。"
+    },
+    "cancelled": {
+      "title": "已取消",
+      "body": "您已取消此操作。",
+      "action": ""
+    },
+    "retry": "重试",
+    "retryAria": "重试失败的操作",
+    "dismissAria": "关闭错误信息",
+    "context": {
+      "approveNftCollection": "授权 NFT 合集",
+      "approveXomForNftBuy": "为 NFT 购买授权 XOM",
+      "buyNft": "购买 NFT"
+    }
+  },
+  "features": {
+    "staking": {
+      "heading": "质押",
+      "tabStake": "质押",
+      "tabUnstake": "解除质押",
+      "currentStake": "当前质押",
+      "currentApr": "年化收益率",
+      "accruedRewards": "累计奖励",
+      "lockUntil": "锁定结束",
+      "noActiveStake": "无有效质押",
+      "amountLabel": "数量",
+      "amountPlaceholder": "0.00",
+      "lockLabel": "锁定期",
+      "lockNone": "无",
+      "lock1m": "1 个月",
+      "lock6m": "6 个月",
+      "lock2y": "2 年",
+      "previewApr": "预计年化",
+      "stakeBtn": "质押",
+      "unstakeBtn": "解除质押",
+      "claimBtn": "领取奖励",
+      "submitting": "提交中…",
+      "earlyWarning": "在锁定期结束前提取将收取罚金。",
+      "stakeOk": "质押已提交 — Tx：{{shortHash}}",
+      "unstakeOk": "解除质押已提交 — Tx：{{shortHash}}",
+      "claimOk": "已领取奖励 — Tx：{{shortHash}}",
+      "errorAmountRequired": "数量为必填",
+      "errorFailed": "操作失败",
+      "tierTableHeading": "年化等级",
+      "tierAmount": "数量(XOM)",
+      "tierBaseApr": "基础年化",
+      "durationBonusHeading": "期限加成",
+      "tier1": "1 – 999,999",
+      "tier2": "100 万 – 999.9 万",
+      "tier3": "1000 万 – 9999 万",
+      "tier4": "1 亿 – 9.999 亿",
+      "tier5": "10 亿+",
+      "loginHint": "请登录查看质押",
+      "calculator": {
+        "tab": "计算器",
+        "heading": "收益估算器",
+        "intro": "来自质押、推荐和市场活动的大致年收入。不含复利或奖励池上限。",
+        "stakedAmountLabel": "质押金额（XOM）",
+        "stakedAmountPlaceholder": "0",
+        "lockDurationLabel": "锁定时长",
+        "referralsPerDayLabel": "每日新推荐人数",
+        "monthlyTxLabel": "每月市场交易（平均 XOM）",
+        "baseAprLine": "基础 APR：{{apr}}%",
+        "totalAprLine": "总 APR：{{apr}}%",
+        "stakingEarnings": "质押奖励",
+        "referralEarnings": "推荐奖励",
+        "marketplaceEarnings": "市场奖励",
+        "welcomeBonus": "欢迎奖金（一次性）",
+        "totalAnnual": "预计年收益",
+        "disclaimer": "数值随质押、推荐和首次销售曲线变化，曲线会随用户基数增长而下降。非财务建议。"
+      }
+    },
+    "kyc": {
+      "heading": "KYC 与验证",
+      "currentTier": "当前等级",
+      "participationScore": "参与积分",
+      "scoreOutOf": "{{score}} / 100",
+      "tier0": "匿名",
+      "tier1": "基础",
+      "tier2": "已核验",
+      "tier3": "身份",
+      "tier4": "机构",
+      "tier0Desc": "仅邮箱",
+      "tier1Desc": "邮箱 + 手机 + 社交关注",
+      "tier2Desc": "地址 + 文档 OCR + AML/PEP",
+      "tier3Desc": "政府证件 + 人脸匹配(Persona)",
+      "tier4Desc": "企业实体核验(仅限验证者)",
+      "scoreBonus": "+{{points}} 积分加成",
+      "nextTierHeading": "下一等级",
+      "nextTierUpgrade": "升级",
+      "alreadyAtMax": "您已达到最高等级。",
+      "tier4ComingSoon": "第 4 级(机构)将在硬启动时开放。",
+      "uploadHeading": "第 2 级 — 地址证明",
+      "uploadHint": "请上传近期账单、银行对账单或官方信件(PDF、JPEG 或 PNG;≤10 MB)。",
+      "uploadFileLabel": "文件",
+      "uploadNameLabel": "文件上的法定姓名",
+      "uploadAddressLabel": "文件上的地址",
+      "uploadDocTypeLabel": "文件类型",
+      "docTypeBank": "银行对账单",
+      "docTypeUtility": "水电账单",
+      "docTypeTax": "税务文件",
+      "docTypeOfficial": "官方信件",
+      "uploadBtn": "提交文件",
+      "uploading": "上传中…",
+      "uploadOk": "文件已提交 — 等待审核。",
+      "uploadFailed": "上传失败",
+      "uploadFileTooLarge": "文件超过 10 MB 限制。",
+      "uploadFileTypeInvalid": "仅接受 PDF、JPEG 和 PNG 文件。",
+      "personaHeading": "第 3 级 — 身份核验",
+      "personaHint": "我们使用 Persona 验证政府证件和人脸。验证将在新标签页中打开。",
+      "personaCta": "使用 Persona 验证身份",
+      "personaWaiting": "等待 Persona 确认…",
+      "personaConfirmed": "Persona 验证已确认。",
+      "personaFailed": "Persona 验证未完成。",
+      "loginHint": "请登录查看您的 KYC 状态"
+    },
+    "bridge": {
+      "heading": "跨链桥",
+      "fromHeading": "来源",
+      "toHeading": "目标",
+      "amountLabel": "数量",
+      "amountPlaceholder": "0.00",
+      "loginHint": "请登录使用跨链桥",
+      "noRoutes": "此交易对没有可用的跨链路径",
+      "routeLabel": "路径",
+      "feeLabel": "跨链桥费用",
+      "estTime": "约 {{seconds}} 秒",
+      "submit": "跨链",
+      "signing": "等待签名…",
+      "depositing": "在源链上存款…",
+      "bridging": "跨链中 — {{status}}",
+      "claiming": "在目标链上领取…",
+      "complete": "跨链完成",
+      "failed": "跨链失败:{{error}}",
+      "txHash": "Tx:{{shortHash}}",
+      "selectFromChain": "源链",
+      "selectToChain": "目标链",
+      "selectFromToken": "源代币",
+      "selectToToken": "目标代币",
+      "stepDeposit": "存款",
+      "stepBridge": "跨链",
+      "stepClaim": "领取",
+      "stepComplete": "完成",
+      "explorer": "在区块浏览器中查看"
+    },
+    "addressBook": {
+      "heading": "通讯录",
+      "empty": "尚无已保存的联系人",
+      "add": "添加联系人",
+      "edit": "编辑",
+      "delete": "删除",
+      "save": "保存",
+      "cancel": "取消",
+      "nameLabel": "名称",
+      "namePlaceholder": "Alice",
+      "addressLabel": "地址",
+      "addressPlaceholder": "0x… 或用户名",
+      "chainLabel": "网络",
+      "notesLabel": "备注",
+      "notesPlaceholder": "可选",
+      "errorRequired": "名称和地址为必填",
+      "errorSaveFailed": "保存联系人失败",
+      "deleteConfirm": "确定要删除此联系人吗?"
+    },
+    "about": {
+      "heading": "关于",
+      "version": "版本",
+      "validatorNetwork": "验证者网络",
+      "validatorsConnected": "{{count}} 个在线",
+      "validatorRow": "{{url}} — {{latency}} 毫秒",
+      "validatorRowOffline": "{{url}} — 离线",
+      "noValidators": "没有连接的验证者",
+      "links": "链接",
+      "changelog": "更新日志",
+      "support": "支持",
+      "privacyPolicy": "隐私政策",
+      "terms": "服务条款",
+      "footer": "基于 OmniCoin L1 构建 — chain 88008"
+    },
+    "participation": {
+      "heading": "参与度评分",
+      "intro": "您的参与度评分由九项因素组成，总分上限 100 分。分数越高，越有资格成为验证者或挂单节点。",
+      "loginHint": "登录以查看参与度评分",
+      "totalLabel": "总分",
+      "outOf": "{{score}} / {{max}}",
+      "viewBreakdown": "查看明细",
+      "components": {
+        "kycTrust": "KYC 信任",
+        "kycTrustHint": "0 级 = 0，1 级 = 5，2 级 = 10，3 级 = 15，4 级 = 20。",
+        "marketplaceReputation": "市场声誉",
+        "marketplaceReputationHint": "平均评分映射到 −10 至 +10。",
+        "stakingAmountDuration": "质押金额 + 时长",
+        "stakingAmountDurationHint": "金额档 × 3 加上 时长档 × 3。",
+        "disseminator": "推广者（推荐）",
+        "disseminatorHint": "每推荐一位用户得 1 分，上限 10。",
+        "publisher": "发布者（挂单）",
+        "publisherHint": "100 条 = 1，1K = 2，10K = 3，100K = 4。",
+        "forumParticipation": "论坛参与",
+        "forumParticipationHint": "随时间衰减；帖子、回复、点赞。",
+        "marketplaceActivity": "市场活动",
+        "marketplaceActivityHint": "随时间衰减；已完成交易。",
+        "communityPolicing": "社区监督",
+        "communityPolicingHint": "举报准确度；随时间衰减。",
+        "reliability": "可靠性",
+        "reliabilityHint": "运行时间与性能信号（−5 至 +5）。",
+        "vouchScore": "担保评分",
+        "vouchScoreHint": "从社区收到的信任担保（0 到 5）。"
+      }
+    },
+    "governance": {
+      "heading": "治理",
+      "badge": "即将推出",
+      "intro": "ODDAO 链上治理将在硬启动后上线。验证者和 XOM 质押者将对发行量、费用参数和金库分配进行提案和投票。",
+      "learnMore": "阅读治理计划",
+      "notes": "上线后，您可以在此页面投票。在此之前，欢迎加入论坛提交反馈。",
+      "ctaForum": "打开论坛"
+    },
+    "portfolio": {
+      "heading": "投资组合分析",
+      "intro": "每条 EVM 链上的 ERC-20 余额，每条链通过单次 Multicall3 请求批量获取。",
+      "loading": "正在加载余额…",
+      "empty": "未找到代币余额。",
+      "loginHint": "请登录以查看您的投资组合。",
+      "partialError": "{{count}} 条链无法读取 — 显示部分结果。",
+      "partialError_other": "{{count}} 条链无法读取 — 显示部分结果。"
+    }
+  },
+  "dapp": {
+    "connect": {
+      "heading": "连接到 dApp",
+      "intro": "{{origin}} 想要连接到您的钱包。",
+      "permissionsLabel": "该网站将能够：",
+      "permissionAccount": "查看您的钱包地址",
+      "permissionSign": "请求签名和交易（每一项都需要您的批准）",
+      "approve": "连接",
+      "reject": "取消"
+    },
+    "sign": {
+      "heading": "签名请求",
+      "messageLabel": "消息",
+      "legacyWarning": "⚠️ 该网站使用的是已弃用的 eth_sign 方法，可能被滥用以签署交易。如有疑问请拒绝。",
+      "approve": "签名",
+      "reject": "取消"
+    },
+    "typed": {
+      "heading": "类型化数据签名",
+      "domainLabel": "域",
+      "messageLabel": "{{primaryType}}",
+      "approve": "签名",
+      "reject": "取消"
+    },
+    "tx": {
+      "heading": "确认交易",
+      "toLabel": "接收方",
+      "valueLabel": "原生币数量",
+      "functionLabel": "函数",
+      "unknownFunction": "（未知函数 — calldata 未解码）",
+      "gasLabel": "网络手续费",
+      "gasFreeOmniRelay": "免费（由 OmniRelay 支付）",
+      "gasOnChain": "按网络当前 gas 价格估算",
+      "riskLabel": "风险",
+      "simulationFailed": "模拟回滚：{{reason}}",
+      "ackHighRisk": "我了解此交易看起来有风险，仍希望继续。",
+      "approve": "确认",
+      "reject": "取消",
+      "reason": {
+        "scamAddress": "接收方位于已知诈骗黑名单中。",
+        "unlimitedApprove": "批准了无限制的支出额度。",
+        "approvalForAll": "授予该集合中所有 NFT 的批准。",
+        "transferFrom": "通过既有授权提取代币。",
+        "zeroAddressTransfer": "转账到零地址（销毁）。"
+      }
+    },
+    "switch": {
+      "heading": "切换网络",
+      "fromLabel": "从链",
+      "toLabel": "到链",
+      "approve": "切换",
+      "reject": "取消"
+    },
+    "addchain": {
+      "heading": "添加网络",
+      "nameLabel": "网络名称",
+      "chainIdLabel": "链 ID",
+      "rpcLabel": "RPC URL",
+      "symbolLabel": "货币符号",
+      "explorerLabel": "区块浏览器",
+      "approve": "添加网络",
+      "reject": "取消",
+      "collisionWarning": "⚠️ 此 dApp 正在尝试添加一个与 {{knownName}} 具有相同 ID ({{chainId}}) 但具有不同{{fields}}的链。这可能是网络钓鱼。请改用 {{knownName}} 的原始配置。",
+      "collisionDiffRpc": "RPC URL",
+      "collisionDiffName": "链名称",
+      "collisionDiffSymbol": "原生货币符号",
+      "iUnderstandRisk": "我了解风险,仍要添加此链",
+      "forceApproveDisabledTooltip": "已禁用: 确认您了解风险后继续。"
+    },
+    "addtoken": {
+      "heading": "添加代币",
+      "symbolLabel": "符号",
+      "decimalsLabel": "小数位",
+      "addressLabel": "合约地址",
+      "imageLabel": "图标 URL",
+      "approve": "添加代币",
+      "reject": "取消"
+    },
+    "walletconnect": {
+      "heading": "WalletConnect",
+      "intro": "用手机扫描 WalletConnect 二维码，复制 wc: URI 并在此处粘贴以配对。",
+      "pasteUriPlaceholder": "wc:…",
+      "connect": "配对",
+      "pairOk": "已配对。等待 dApp 发送会话提议。",
+      "activeSessions": "活跃会话",
+      "empty": "没有活跃的 WalletConnect 会话"
+    },
+    "education": {
+      "body": "OmniWallet 支持 EIP-6963 — 它会出现在任何现代 dApp 的钱包选择器中。对于仅显示“Connect MetaMask”的旧版 dApp，请在列表中查找 OmniWallet 或使用 WalletConnect。"
+    },
+    "risk": {
+      "green": "低",
+      "amber": "注意",
+      "red": "高",
+      "explanation": "未检测到风险模式。请始终核实接收方和金额。"
+    },
+    "originTooltip": "请求此次授权的网站。",
+    "chainTooltip": "此请求指向的链。",
+    "chainAria": "目标链:{{chain}}",
+    "requestFrom": "来自 {{origin}} 的请求",
+    "rejectAria": "拒绝此请求并关闭弹窗",
+    "approveAria": "批准此请求",
+    "embeddedFrameTooltip": "此请求来自嵌入在另一个网站中的 iframe。只有同时信任该 dApp 和父站点时才应批准。",
+    "embeddedFrame": "此请求来自嵌入的 iframe,而不是顶层页面。",
+    "embeddedFrameFull": "嵌入 iframe:{{origin}} 位于 {{topOrigin}} 内"
+  },
+  "hardware": {
+    "selector": {
+      "title": "连接硬件钱包",
+      "ledgerUsb": "Ledger (USB)",
+      "ledgerBle": "Ledger (蓝牙)",
+      "trezorUsb": "Trezor (USB)"
+    },
+    "connect": {
+      "step1": "连接设备",
+      "step2": "解锁设备",
+      "step3": "打开以太坊应用",
+      "step4": "正在派生账户...",
+      "noDevice": "未检测到设备。请插入并重试。",
+      "denied": "设备访问被拒绝。请在浏览器中允许访问。"
+    },
+    "sign": {
+      "title": "在 {{device}} 上确认",
+      "subtitle": "请在您的设备上检查并确认交易",
+      "cancel": "取消"
+    },
+    "accounts": {
+      "title": "选择账户",
+      "showMore": "再显示 5 个",
+      "balance": "余额",
+      "addSelected": "添加 {{count}} 个账户",
+      "addedToast": "已添加 {{count}} 个硬件账户"
+    },
+    "badge": {
+      "ledger": "Ledger",
+      "trezor": "Trezor"
+    },
+    "advanced": {
+      "title": "高级",
+      "hdPath": "派生路径"
+    }
+  },
+  "antiPhishing": {
+    "stepTitle": "选择你的防钓鱼横幅",
+    "stepHelp": "请选择一种颜色和一个简短的词语。每次打开弹窗时，OmniWallet 都会在标题栏下方显示它们。假冒钱包无法得知你的选择；如果看不到你的颜色和词语，该弹窗就不是真正的 OmniWallet。",
+    "colorLabel": "颜色",
+    "wordLabel": "词语或短语",
+    "wordPlaceholder": "例如 sun42",
+    "wordRules": "仅限字母、数字和空格。{{min}}–{{max}} 个字符。",
+    "preview": "预览",
+    "previewEmpty": "你的横幅将在这里显示",
+    "previewAria": "防钓鱼横幅的实时预览",
+    "confirm": "保存横幅",
+    "saving": "保存中…",
+    "skip": "暂时跳过",
+    "changeTitle": "修改防钓鱼横幅",
+    "changeRequiresPassword": "输入密码以保存更改",
+    "passwordPlaceholder": "钱包密码",
+    "lockScreenFallback": "防钓鱼：解锁以验证",
+    "bannerAriaLabel": "防钓鱼横幅",
+    "bannerTooltip": "这是你的防钓鱼标记。如果这里没有显示你的颜色和词语，这就不是真正的 OmniWallet。",
+    "addPrompt": "添加防钓鱼横幅（推荐）",
+    "addPromptAria": "添加防钓鱼横幅 — 打开设置页面",
+    "colorSwatchAria": "选择颜色 {{color}}",
+    "savedOk": "横幅已更新。",
+    "errColorInvalid": "请选择一种颜色。",
+    "errWordTooShort": "请至少输入 3 个字符。",
+    "errWordTooLong": "最多 24 个字符。",
+    "errWordChars": "仅允许字母、数字和空格。",
+    "errSanitized": "保存前请修正横幅字段。",
+    "errPasswordRequired": "请输入钱包密码以保存更改。",
+    "errGeneric": "无法保存防钓鱼横幅，请重试。"
+  },
+  "chains": {
+    "cardano": {
+      "send": {
+        "minAmountError": "Cardano 的最低发送金额为 1 ADA。请调高金额后重试。",
+        "insufficientUtxo": "可用的 UTXO 不足以支付金额和手续费。请向发送钱包添加更多 ADA。",
+        "feeEstimate": "预计网络手续费：{{ada}} ADA",
+        "ttlExpired": "交易在我们发送之前已过期。请刷新后重试。",
+        "broadcastPending": "正在向 Cardano 网络提交…",
+        "broadcastSuccess": "Cardano 交易已提交。Tx：{{shortHash}}",
+        "broadcastFailed": "无法提交 Cardano 交易。请重试。"
+      }
+    }
+  },
+  "predictions": {
+    "claim": {
+      "button": "从市场 “{{title}}” 领取奖金",
+      "confirming": "正在 Polygon 上确认…",
+      "successToast": "领取已提交 — 交易：{{shortHash}}",
+      "explorerLink": "在区块浏览器中查看交易",
+      "insufficientGasTitle": "在 {{chain}} 上领取需要 {{symbol}}",
+      "insufficientGasBody": "在 {{chain}} 上领取奖金需要 {{symbol}} 作为燃气费。请在此处跨链 XOM 以支付手续费，然后重试。",
+      "bridgeForGas": "跨链 XOM 支付燃气",
+      "failed": "无法领取奖金，请重试。",
+      "disabledTooltip": "该市场尚未结算。结果最终确定后即可领取。"
+    }
+  }
+}

@@ -1,0 +1,1101 @@
+{
+  "kyc": {
+    "loading": "KYC ステータスを読み込み中...",
+    "title": "KYC 認証",
+    "subtitle": "認証を完了して取引上限を引き上げ、手数料を節約しましょう",
+    "tier": "ティア",
+    "currentTier": "現在のティア",
+    "yourStatus": {
+      "title": "認証状況",
+      "currentTier": "現在のティア: {{tier}} / 4",
+      "verificationStatus": "認証状況"
+    },
+    "transactionLimits": {
+      "title": "取引上限",
+      "daily": "1日の上限",
+      "monthly": "1か月の上限",
+      "format": "${{used}} / ${{limit}}",
+      "unlimited": "無制限"
+    },
+    "tiers": {
+      "anonymous": {
+        "name": "未認証",
+        "description": "取引金額が制限された基本的なマーケットプレイスアクセス。",
+        "requirements": {
+          "items": [
+            "認証不要"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "マーケットプレイスの閲覧",
+            "限定的な売買",
+            "基本チャット"
+          ]
+        }
+      },
+      "basic": {
+        "name": "基本認証",
+        "description": "メール、電話番号、ソーシャルメディアを認証して、ウェルカムボーナスと高い上限を解放しましょう。",
+        "requirements": {
+          "items": [
+            "メール認証",
+            "電話番号認証",
+            "ソーシャルメディアアカウント"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "ウェルカムボーナス対象",
+            "紹介ボーナス対象",
+            "マーケットプレイス全機能アクセス",
+            "チャット機能"
+          ]
+        }
+      },
+      "identity": {
+        "name": "認証済み",
+        "description": "住所証明書をアップロードし、AML審査を通過して、リスティングノード資格を解放しましょう。",
+        "requirements": {
+          "items": [
+            "ティア1の全要件",
+            "住所証明書",
+            "改ざん検知とOCR認証",
+            "AML/PEP制裁スクリーニング"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "ティア1の全機能",
+            "リスティングノード資格",
+            "優先リスティング",
+            "優先サポート"
+          ]
+        }
+      },
+      "enhanced": {
+        "name": "本人確認",
+        "description": "Persona による政府発行身分証明書の認証と顔照合を完了して、バリデーターまたはアービトレーターの資格を取得しましょう。",
+        "requirements": {
+          "items": [
+            "ティア2の全要件",
+            "Persona による身分証明書/パスポート認証",
+            "ライブセルフィーによる顔照合"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "ティア2の全機能",
+            "バリデーターノード資格",
+            "アービトレーター資格",
+            "OTCアクセス"
+          ]
+        }
+      },
+      "institutional": {
+        "name": "機関投資家",
+        "description": "無制限の取引上限を持つ法人アカウント向けの完全な機関認証。",
+        "requirements": {
+          "items": [
+            "ティア3の全要件",
+            "Persona による法人認証",
+            "事業者登録書類",
+            "役員認証"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "全機能",
+            "無制限取引",
+            "APIアクセス",
+            "カスタム統合",
+            "専任サポート"
+          ]
+        }
+      }
+    },
+    "requirements": "必要要件",
+    "privileges": "特典",
+    "completeVerification": "認証を完了",
+    "verified": "認証済み",
+    "verify": "認証する",
+    "verification": {
+      "email": {
+        "label": "メールアドレス",
+        "title": "メール認証"
+      },
+      "phone": {
+        "label": "電話番号",
+        "title": "電話番号認証",
+        "placeholder": "+1234567890"
+      },
+      "social": {
+        "label": "ソーシャルメディア",
+        "title": "ソーシャルメディア認証",
+        "instructions": "X (Twitter) で @OmniBazaar をフォローし、OmniBazaar の Telegram グループに参加して認証を完了してください。",
+        "twitter": "X (Twitter)",
+        "telegram": "Telegram",
+        "twitterPlaceholder": "@your_twitter_handle",
+        "telegramPlaceholder": "@your_telegram_username",
+        "verifyTwitter": "X (Twitter) フォローを確認",
+        "verifyTelegram": "Telegram グループ参加を確認"
+      },
+      "id": {
+        "label": "身分証明書"
+      },
+      "sendCode": "コードを送信",
+      "enterCode": "認証コードを入力",
+      "basic": {
+        "title": "基本認証を完了"
+      },
+      "identity": {
+        "title": "本人確認",
+        "description": "認証のため政府発行の身分証明書をアップロードしてください",
+        "uploadButton": "書類をアップロード"
+      },
+      "success": {
+        "emailSent": "認証メールを送信しました！受信トレイをご確認ください。",
+        "codeSent": "電話番号に認証コードを送信しました！",
+        "phoneVerified": "電話番号の認証が完了しました！",
+        "socialVerified": "{{platform}} アカウントの認証が完了しました！",
+        "documentUploaded": "書類のアップロードが完了しました！認証を処理中です。"
+      },
+      "errors": {
+        "loadFailed": "KYCステータスの読み込みに失敗しました。ページを更新してお試しください。",
+        "emailFailed": "認証メールの送信に失敗しました。メールアドレスを確認して再度お試しください。",
+        "codeFailed": "認証コードの送信に失敗しました。電話番号を確認して再度お試しください。",
+        "enterPhone": "認証コードを受信するには電話番号を入力してください。",
+        "enterCode": "電話番号に送信された認証コードを入力してください。",
+        "invalidCode": "認証コードが無効です。コードを確認して再度お試しください。",
+        "enterTwitterHandle": "フォローを確認するためにX (Twitter) のハンドルを入力してください。",
+        "enterTelegramUsername": "グループ参加を確認するためにTelegramのユーザー名を入力してください。",
+        "socialFailed": "ソーシャル認証に失敗しました。@OmniBazaar をフォローしていることを確認して再度お試しください。",
+        "selectFile": "アップロードする書類を選択してください。",
+        "uploadFailed": "書類のアップロードに失敗しました。ファイル形式とサイズを確認して再度お試しください。",
+        "fileTooLarge": "ファイルサイズは10MB未満である必要があります。より小さいファイルを選択してください。",
+        "invalidFileType": "JPG、PNG、PDFファイルのみ許可されています。サポートされているファイル形式を選択してください。"
+      }
+    },
+    "uploadDocument": {
+      "title": "認証書類をアップロード",
+      "description": "政府発行の身分証明書の鮮明な写真またはスキャンをアップロードしてください",
+      "documentType": "書類の種類",
+      "types": {
+        "passport": "パスポート",
+        "driversLicense": "運転免許証",
+        "nationalId": "国民IDカード"
+      },
+      "selectFile": "ファイルを選択"
+    },
+    "uploading": "アップロード中...",
+    "upload": "アップロード",
+    "tooltips": {
+      "uploadDocument": "認証のため政府発行の身分証明書または住所証明をご提出ください",
+      "verifyEmail": "メールアドレスに認証コードを送信します",
+      "verifyPhone": "電話番号に認証コードを送信します",
+      "linkSocial": "ソーシャルメディアアカウントを連携して認証ティアを向上させます",
+      "viewLimits": "認証レベルに基づいた現在の取引上限をご確認ください",
+      "tierInfo": "より高いKYCティアでは、取引上限の引き上げと追加機能が解放されます"
+    },
+    "tier2": {
+      "title": "書類およびAML認証",
+      "description": "住所証明書をアップロードしてください。AML審査は書類認証の通過後に自動的に実行されます。",
+      "steps": {
+        "documentUpload": "書類のアップロードと認証（OCR + 改ざん検知）",
+        "amlScreening": "AML/PEP審査（書類承認後に自動実行）"
+      },
+      "aml": {
+        "title": "AML/PEPスクリーニング状況",
+        "cleared": "AML承認済み",
+        "pending": "AML保留中",
+        "flagged": "AMLフラグ付き",
+        "clearedMessage": "AML/PEPスクリーニングに合格しました。制裁またはPEPの一致は見つかりませんでした。",
+        "pendingMessage": "AML/PEPスクリーニングは書類認証通過後に自動的に実行されます。",
+        "flaggedMessage": "AML/PEPスクリーニングで潜在的な一致が検出されました。サポートまでお問い合わせください。"
+      }
+    },
+    "persona": {
+      "tier3": {
+        "successMessage": "本人確認認証が承認されました！ティアがアップグレードされました。"
+      },
+      "tier4": {
+        "successMessage": "機関認証が承認されました！ティアがアップグレードされました。"
+      }
+    }
+  },
+  "aml": {
+    "title": "AML コンプライアンス",
+    "subtitle": "マネーロンダリング防止ポリシーと手続き",
+    "lastUpdated": "最終更新: 2025年1月",
+    "toc": {
+      "title": "目次"
+    },
+    "sections": {
+      "overview": {
+        "title": "概要",
+        "intro": "OmniBazaar は、堅牢なコンプライアンス措置を通じてマネーロンダリングおよびテロ資金供与の防止に取り組んでいます。",
+        "keyPoints": [
+          "リスクベースの顧客デューデリジェンスアプローチ",
+          "継続的な取引監視",
+          "不審な活動の報告",
+          "定期的なコンプライアンス監査"
+        ]
+      },
+      "customerDueDiligence": {
+        "title": "顧客デューデリジェンス (CDD)",
+        "content": "リスクレベルに基づいて徹底的な顧客認証を実施します:",
+        "levels": {
+          "basic": {
+            "title": "基本CDD",
+            "requirements": [
+              "氏名認証",
+              "メール確認",
+              "IPジオロケーションチェック"
+            ]
+          },
+          "enhanced": {
+            "title": "強化CDD",
+            "requirements": [
+              "政府発行の身分証明書認証",
+              "住所証明",
+              "資金源文書",
+              "強化バックグラウンドチェック"
+            ]
+          }
+        }
+      },
+      "transactionMonitoring": {
+        "title": "取引監視",
+        "content": "すべての取引は高度なアルゴリズムを使用してリアルタイムで監視され、以下を検出します:",
+        "flags": [
+          "異常な取引パターン",
+          "高額送金",
+          "資金の急速な移動",
+          "高リスク管轄区域との取引"
+        ]
+      },
+      "reporting": {
+        "title": "報告義務",
+        "content": "厳格な報告手続きを維持しています:",
+        "procedures": [
+          "疑わしい活動報告書(SAR)は24時間以内に提出",
+          "大口取引の通貨取引報告書(CTR)",
+          "定期的な規制当局への報告",
+          "法執行機関との協力"
+        ]
+      },
+      "riskAssessment": {
+        "title": "リスク評価",
+        "content": "考慮されるリスク要因:",
+        "factors": [
+          "顧客タイプと所在地",
+          "取引量と頻度",
+          "商品・サービスの利用状況",
+          "実質的所有者の構造"
+        ]
+      },
+      "recordKeeping": {
+        "title": "記録保持",
+        "content": "以下について包括的な記録を保持します:",
+        "duration": "口座閉鎖後最低5年間",
+        "records": [
+          "顧客の本人確認書類",
+          "取引履歴",
+          "リスク評価",
+          "通信および決定事項"
+        ]
+      },
+      "training": {
+        "title": "スタッフ研修",
+        "content": "すべての担当者は定期的にAML研修を受けます。内容:",
+        "topics": [
+          "AML規制と要件",
+          "レッドフラグ指標",
+          "報告手続き",
+          "制裁スクリーニング"
+        ]
+      },
+      "sanctions": {
+        "title": "制裁スクリーニング",
+        "content": "すべての顧客を以下に照らしてスクリーニングします:",
+        "lists": [
+          "OFAC制裁リスト",
+          "国連制裁リスト",
+          "EU統合リスト",
+          "その他の関連ウォッチリスト"
+        ]
+      },
+      "compliance": {
+        "title": "コンプライアンスプログラム",
+        "content": "AMLコンプライアンスプログラムには以下が含まれます:",
+        "elements": [
+          "指定コンプライアンス責任者",
+          "文書化されたポリシーと手続き",
+          "独立したテストと監査",
+          "取締役会の監督とガバナンス"
+        ]
+      },
+      "contact": {
+        "title": "連絡先情報",
+        "content": "AML関連のお問い合わせ:",
+        "email": "アプリ内サポートページをご利用ください",
+        "response": "2営業日以内に回答いたします"
+      },
+      "monitoring": {
+        "title": "レッドフラグ",
+        "description": "当社のシステムは不審な活動の指標を監視しています",
+        "automated": {
+          "title": "自動監視",
+          "items": [
+            "リアルタイム取引分析",
+            "パターン認識アルゴリズム",
+            "リスクスコアリングシステム",
+            "異常検出",
+            "ベロシティチェック"
+          ]
+        },
+        "privacy": {
+          "title": "プライバシー保護",
+          "items": [
+            "ゼロ知識証明",
+            "暗号化データストレージ",
+            "最小限のデータ収集",
+            "分散型検証",
+            "ユーザー管理のデータ"
+          ]
+        }
+      },
+      "reportingDetails": {
+        "triggers": [
+          "規制上の閾値を超える取引",
+          "マネーロンダリングを示すパターン",
+          "KYC手続きを回避する試み",
+          "制裁対象エンティティとの取引"
+        ],
+        "userRights": [
+          "誤検出に対する異議申し立ての権利",
+          "コンプライアンスステータスへのアクセス",
+          "データポータビリティ",
+          "削除リクエスト（法律で許可される場合）"
+        ]
+      },
+      "internationalFrameworks": {
+        "title": "国際的な枠組み",
+        "items": [
+          "FATF勧告",
+          "EUマネーロンダリング防止指令",
+          "米国銀行秘密法",
+          "トラベルルールの遵守",
+          "GDPRデータ保護"
+        ]
+      },
+      "sanctionedCountries": {
+        "northKorea": "北朝鮮",
+        "iran": "イラン",
+        "syria": "シリア",
+        "cuba": "キューバ",
+        "others": "+ その他"
+      },
+      "userResponsibilities": {
+        "title": "お客様の責任",
+        "intro": "OmniBazaarのユーザーとして、AMLポリシーを遵守することが求められます：",
+        "items": [
+          "KYC認証時に正確かつ真実の情報を提供する",
+          "プラットフォームを違法行為やマネーロンダリングに使用しない",
+          "不審な活動をコンプライアンスチームに報告する",
+          "アカウントのセキュリティを維持し、不正アクセスを速やかに報告する",
+          "コンプライアンスの要求や調査に協力する"
+        ]
+      },
+      "kycTiers": {
+        "tier0": {
+          "name": "未認証",
+          "requirements": [
+            "メール認証",
+            "ウォレット接続",
+            "利用規約の承諾"
+          ],
+          "limits": [
+            "マーケットプレイスの閲覧制限",
+            "基本チャット機能",
+            "低い取引上限"
+          ]
+        },
+        "tier1": {
+          "name": "基本",
+          "requirements": [
+            "メール認証",
+            "電話番号認証",
+            "ソーシャルメディアのフォロー"
+          ],
+          "limits": [
+            "ウェルカムボーナス対象",
+            "マーケットプレイス全機能アクセス",
+            "標準取引上限"
+          ]
+        },
+        "tier2": {
+          "name": "認証済み",
+          "requirements": [
+            "住所証明（銀行取引明細書、公共料金の請求書）",
+            "書類の改ざん検知とOCR",
+            "AML/PEP制裁スクリーニング"
+          ],
+          "limits": [
+            "より高い取引上限",
+            "リスティングノード資格",
+            "優先リスティング"
+          ]
+        },
+        "tier3": {
+          "name": "本人確認",
+          "requirements": [
+            "Persona による身分証明書/パスポート認証",
+            "ライブセルフィーによる顔照合",
+            "適格投資家（任意）"
+          ],
+          "limits": [
+            "バリデーターノード資格",
+            "アービトレーター資格",
+            "OTC取引アクセス"
+          ]
+        },
+        "tier4": {
+          "name": "機関投資家",
+          "requirements": [
+            "Persona による法人認証",
+            "事業者登録書類",
+            "役員認証"
+          ],
+          "limits": [
+            "取引上限なし",
+            "すべてのプラットフォーム機能",
+            "専任サポート"
+          ]
+        }
+      },
+      "walletScreening": {
+        "title": "ウォレットレベルの審査",
+        "content": "外部ウォレットを接続すると、OmniBazaarは制裁規制に準拠するため、ウォレットアドレスをOFAC SDN（特別指定国民）リストと自動的に照合します。",
+        "features": [
+          "接続時にウォレットアドレスがOFAC SDNリストと照合されます",
+          "制裁対象のウォレットはプラットフォーム機能へのアクセスがブロックされます",
+          "審査は自動的に行われ、ユーザーの操作は不要です",
+          "サービスエラーの場合、正当なユーザーをブロックしないようアクセスが許可されます"
+        ]
+      },
+      "startKycButton": "KYC認証を完了する"
+    }
+  },
+  "cookies": {
+    "title": "Cookie ポリシー",
+    "subtitle": "Cookie および類似技術の使用方法",
+    "lastUpdated": "最終更新: 2025年1月",
+    "banner": {
+      "message": "より良い体験のため Cookie を使用しています。OmniBazaar を引き続き使用することで、Cookie ポリシーに同意したものとみなされます。",
+      "accept": "すべて受け入れる",
+      "customize": "カスタマイズ",
+      "reject": "必須以外を拒否"
+    },
+    "categories": {
+      "essential": {
+        "name": "必須 Cookie",
+        "description": "ウェブサイトが正常に機能するために必要です。",
+        "required": "必須"
+      },
+      "functional": {
+        "name": "機能 Cookie",
+        "description": "強化された機能とパーソナライゼーションを有効にします。",
+        "required": ""
+      },
+      "analytics": {
+        "name": "分析 Cookie",
+        "description": "訪問者がウェブサイトとどのように対話しているかを理解するのに役立ちます。",
+        "required": ""
+      },
+      "marketing": {
+        "name": "マーケティング Cookie",
+        "description": "関連する広告を配信するために使用されます。",
+        "required": ""
+      }
+    },
+    "table": {
+      "name": "Cookie 名",
+      "provider": "提供者",
+      "purpose": "目的",
+      "expiry": "有効期限",
+      "type": "タイプ"
+    },
+    "preferences": {
+      "title": "Cookie 設定",
+      "subtitle": "Cookie 設定を管理",
+      "save": "設定を保存",
+      "saved": "設定が保存されました",
+      "acceptAll": "すべて受け入れる",
+      "rejectNonEssential": "非必須を拒否"
+    },
+    "tooltips": {
+      "acceptAll": "最高の体験のためすべての Cookie を許可します",
+      "rejectNonEssential": "基本機能に必要な Cookie のみを使用します",
+      "customize": "許可する Cookie のタイプを選択します",
+      "savePreferences": "Cookie 設定を保存します"
+    },
+    "details": {
+      "whatAreCookies": {
+        "title": "Cookie とは？",
+        "content": "Cookie は、ウェブサイトにアクセスしたときにデバイスに保存される小さなテキストファイルです。ウェブサイトが設定を記憶し、体験を向上させるのに役立ちます。"
+      },
+      "howWeUse": {
+        "title": "Cookie の使用方法",
+        "content": "Cookie を使用してセッションを維持し、設定を記憶し、サイトの使用状況を分析し、パーソナライズされたコンテンツを提供します。"
+      },
+      "yourChoices": {
+        "title": "選択肢",
+        "content": "ブラウザ設定または設定センターを通じて Cookie を制御できます。特定の Cookie を無効にすると、サイトの機能に影響する場合があります。"
+      },
+      "thirdParty": {
+        "title": "サードパーティ Cookie",
+        "content": "一部の Cookie は、当社のページに表示されるサードパーティサービスによって配置されます。これらの Cookie は当社が管理していません。"
+      }
+    }
+  },
+  "dispute": {
+    "title": "紛争解決",
+    "subtitle": "公正で透明性のある紛争解決プロセス",
+    "lastUpdated": "最終更新: 2025年1月",
+    "toc": {
+      "title": "目次"
+    },
+    "sections": {
+      "overview": {
+        "title": "概要",
+        "content": "OmniBazaar は、すべての当事者に公正な結果を保証するため、複数の紛争解決メカニズムを提供しています。",
+        "principles": {
+          "title": "基本原則",
+          "items": [
+            "公平で透明性のあるプロセス",
+            "証拠に基づく決定",
+            "迅速な解決",
+            "コミュニティの参加"
+          ]
+        }
+      },
+      "types": {
+        "title": "紛争の種類",
+        "transaction": {
+          "title": "取引紛争",
+          "description": "マーケットプレイス取引に関する問題",
+          "examples": [
+            "商品が説明と異なる",
+            "未配送",
+            "品質問題",
+            "偽造品"
+          ]
+        },
+        "account": {
+          "title": "アカウント紛争",
+          "description": "アカウント関連の紛争",
+          "examples": [
+            "不正アクセス",
+            "アカウント制限",
+            "本人確認",
+            "手数料に関する紛争"
+          ]
+        },
+        "community": {
+          "title": "コミュニティ紛争",
+          "description": "ユーザー間の紛争",
+          "examples": [
+            "ハラスメント",
+            "虚偽レビュー",
+            "知的財産権侵害",
+            "利用規約違反"
+          ]
+        }
+      },
+      "process": {
+        "title": "紛争解決プロセス",
+        "steps": {
+          "1": {
+            "title": "直接解決",
+            "description": "当事者間で問題の直接解決を試みます",
+            "timeframe": "48時間"
+          },
+          "2": {
+            "title": "調停",
+            "description": "プラットフォーム支援の交渉",
+            "timeframe": "3〜5日"
+          },
+          "3": {
+            "title": "仲裁",
+            "description": "資格のある仲裁人による拘束力のある決定",
+            "timeframe": "7〜14日"
+          },
+          "4": {
+            "title": "上訴",
+            "description": "上訴の理由は限定的",
+            "timeframe": "30日"
+          }
+        }
+      },
+      "filing": {
+        "title": "紛争の申し立て",
+        "requirements": {
+          "title": "必要事項",
+          "items": [
+            "問題の明確な説明",
+            "裏付け証拠",
+            "解決の試み",
+            "希望する結果"
+          ]
+        },
+        "evidence": {
+          "title": "受理可能な証拠",
+          "items": [
+            "取引記録",
+            "通信記録",
+            "写真・動画",
+            "配送書類",
+            "専門家意見"
+          ]
+        }
+      },
+      "mediation": {
+        "title": "調停プロセス",
+        "description": "訓練を受けた調停人が、当事者が相互に受け入れ可能な解決策に到達するのを支援します。",
+        "benefits": [
+          "仲裁より迅速",
+          "低コスト",
+          "柔軟な解決策",
+          "関係を維持"
+        ]
+      },
+      "arbitration": {
+        "title": "仲裁",
+        "description": "コミュニティから選ばれた資格のある仲裁人による拘束力のある決定。",
+        "qualifications": {
+          "title": "仲裁人の資格",
+          "items": [
+            "高い参加スコア (80+)",
+            "クリーンな取引履歴",
+            "仲裁研修を完了",
+            "利益相反がないこと"
+          ]
+        },
+        "process": {
+          "title": "仲裁プロセス",
+          "items": [
+            "3名の仲裁人への事件割り当て",
+            "証拠審査期間",
+            "任意の公聴会",
+            "多数決による決定",
+            "理由を記載した決定書"
+          ]
+        },
+        "incentives": [
+          "解決した事例ごとにXOMトークンを獲得",
+          "全会一致の決定に対するXOMボーナス",
+          "参加スコアの向上",
+          "コミュニティ表彰バッジ",
+          "ガバナンス投票へのアクセス",
+          "プラットフォームの優先機能"
+        ]
+      },
+      "enforcement": {
+        "title": "執行",
+        "mechanisms": {
+          "title": "執行メカニズム",
+          "items": [
+            "スマートコントラクトの実行",
+            "アカウント制限",
+            "手数料調整",
+            "評判への影響"
+          ]
+        },
+        "compliance": {
+          "title": "コンプライアンス",
+          "content": "紛争解決に従わない場合、アカウントの停止または終了となる可能性があります。"
+        }
+      },
+      "costs": {
+        "title": "費用と手数料",
+        "structure": {
+          "mediation": "1,000 XOM 未満の金額は無料",
+          "arbitration": "係争金額の5%（買い手と売り手で50/50分担）",
+          "appeal": "仲裁手数料の50%（異議申し立て成功時は返金）"
+        },
+        "payment": "特に定めのない限り、手数料は通常当事者間で分担されます。"
+      },
+      "prevention": {
+        "title": "紛争の予防",
+        "tips": {
+          "title": "ベストプラクティス",
+          "items": [
+            "明確なコミュニケーション",
+            "詳細な商品説明",
+            "迅速な発送",
+            "正確な説明",
+            "プロフェッショナルな対応"
+          ]
+        },
+        "buyerTips": [
+          "商品説明を注意深く読む",
+          "購入前に質問する",
+          "販売者の評判とレビューを確認する",
+          "受取時に商品状態を記録する",
+          "問題を速やかに連絡する"
+        ],
+        "sellerTips": [
+          "正確な説明を提供する",
+          "全角度から鮮明な写真を掲載する",
+          "商品を安全に梱包する",
+          "追跡番号付きで迅速に発送する",
+          "購入者のメッセージに素早く対応する"
+        ]
+      },
+      "contact": {
+        "title": "お問い合わせ",
+        "content": "紛争解決に関するサポート:",
+        "email": "アプリ内紛争解決ページをご利用ください",
+        "response": "24時間以内に初期対応"
+      },
+      "appeals": {
+        "intro": "仲裁の決定が不公平と判断された例外的な場合、裁定から7日以内に不服申立てを提出できます。不服申立てには次が必要です："
+      }
+    },
+    "tooltips": {
+      "fileDispute": "この取引について正式な紛争を申し立てます",
+      "uploadEvidence": "事例を強化するため裏付け書類や写真を追加します",
+      "viewStatus": "紛争の現在の状態を確認します",
+      "contactArbitrator": "割り当てられた仲裁人にメッセージを送信します",
+      "acceptDecision": "仲裁人の決定を受け入れ、紛争を終了します"
+    },
+    "protectionFeatures": [
+      "配達まで資金を安全にエスクローで保管",
+      "買い手確認後に即時リリース",
+      "紛争によるホールドで早期リリースを防止",
+      "スマートコントラクト執行 — 仲介者不要"
+    ]
+  },
+  "rwa": {
+    "title": "RWA コンプライアンス",
+    "subtitle": "現実世界資産取引のコンプライアンスと要件",
+    "lastUpdated": "最終更新: 2025年12月",
+    "toc": {
+      "title": "目次"
+    },
+    "overview": {
+      "title": "概要",
+      "description": "現実世界資産（RWA）は、不動産、商品、証券などの物理資産をトークン化したものです。RWA の取引には、規制コンプライアンスを確保するため追加のコンプライアンスチェックが必要です。",
+      "keyPoints": [
+        "地理的制限の確認",
+        "トークンコンプライアンス標準（ERC-3643、ERC-1400）",
+        "KYC ティア要件",
+        "手数料の透明性"
+      ]
+    },
+    "geofence": {
+      "title": "地理的制限",
+      "description": "規制要件により、特定の管轄区域では RWA 取引が制限されています。",
+      "blockedCountries": {
+        "title": "ブロック地域",
+        "description": "以下の地域では現在 RWA 取引をご利用いただけません:",
+        "reasons": {
+          "US": "規制の不確実性",
+          "CU": "OFAC 制裁",
+          "IR": "OFAC 制裁",
+          "KP": "OFAC 制裁",
+          "SY": "OFAC 制裁",
+          "RU": "国際制裁"
+        }
+      },
+      "vpnWarning": {
+        "title": "VPN 検出",
+        "message": "VPN の使用が検出されました。RWA 取引には実際の所在地の確認が必要です。",
+        "action": "VPN を無効にしてページを更新し、RWA 機能にアクセスしてください。"
+      },
+      "accessDenied": {
+        "title": "アクセス制限",
+        "message": "お住まいの地域では RWA 取引をご利用いただけません。",
+        "contact": "地域の利用可能性に関するご質問は、サポートまでお問い合わせください。"
+      }
+    },
+    "tokenCompliance": {
+      "title": "トークンコンプライアンス",
+      "description": "RWA トークンは取引前に特定のコンプライアンス標準を満たす必要があります。",
+      "standards": {
+        "erc3643": {
+          "name": "ERC-3643 (T-REX)",
+          "description": "コンプライアンスと本人確認が組み込まれたセキュリティトークン標準"
+        },
+        "erc1400": {
+          "name": "ERC-1400",
+          "description": "分割残高と譲渡制限を持つセキュリティトークン標準"
+        }
+      },
+      "status": {
+        "compliant": "コンプライアンス適合",
+        "nonCompliant": "コンプライアンス非適合",
+        "pending": "確認待ち",
+        "unknown": "状態不明"
+      },
+      "checks": {
+        "tokenImported": "トークンがシステムにインポート済み",
+        "kycVerified": "KYC 認証完了",
+        "transferAllowed": "譲渡制限がクリア",
+        "accreditedStatus": "適格投資家ステータス確認済み"
+      }
+    },
+    "kycRequirements": {
+      "title": "KYC 要件",
+      "description": "異なる RWA トークンには異なるレベルの本人確認が必要です。",
+      "tiers": {
+        "tier1": {
+          "name": "基本認証",
+          "description": "メールと電話番号の認証が必要",
+          "limit": "取引あたり最大 $10,000"
+        },
+        "tier2": {
+          "name": "本人確認",
+          "description": "政府発行の身分証明書と住所証明が必要",
+          "limit": "取引あたり最大 $100,000"
+        },
+        "tier3": {
+          "name": "強化認証",
+          "description": "資金源文書を含む完全な KYC",
+          "limit": "取引あたり最大 $1,000,000"
+        },
+        "tier4": {
+          "name": "適格投資家",
+          "description": "適格投資家認定が必要",
+          "limit": "取引上限なし"
+        }
+      },
+      "upgrade": "KYC ティアをアップグレードしてより高い取引上限にアクセス"
+    },
+    "fees": {
+      "title": "手数料構造",
+      "description": "RWA スワップには、複数の構成要素からなる透明な手数料構造があります。",
+      "breakdown": {
+        "title": "手数料内訳",
+        "protocol": {
+          "name": "プロトコル手数料",
+          "rate": "0.30%",
+          "description": "ネットワークセキュリティと運用のための基本手数料",
+          "distribution": {
+            "lp": "70% が流動性プロバイダーへ",
+            "staking": "20% がステーキングプールへ",
+            "liquidity": "10% が流動性プールへ"
+          }
+        },
+        "frontend": {
+          "name": "フロントエンド手数料",
+          "rate": "1.00%",
+          "description": "OmniBazaar インターフェイス使用料",
+          "distribution": {
+            "transaction": "0.25% 取引手数料",
+            "referral": "0.50% 紹介報酬",
+            "listing": "0.25% リスティング手数料"
+          },
+          "bypassable": "直接コントラクトアクセスでバイパス可能"
+        },
+        "priority": {
+          "name": "優先手数料",
+          "rate": "0〜3%",
+          "description": "優先処理のためのオプション手数料",
+          "distribution": {
+            "listing": "70% がリスティングノードへ",
+            "selling": "20% が販売ノードへ",
+            "oddao": "10% が ODDAO へ"
+          }
+        }
+      },
+      "calculator": {
+        "title": "手数料計算機",
+        "inputAmount": "入力金額",
+        "protocolFee": "プロトコル手数料",
+        "frontendFee": "フロントエンド手数料",
+        "priorityFee": "優先手数料",
+        "totalFees": "手数料合計",
+        "netOutput": "正味出力金額"
+      }
+    },
+    "swap": {
+      "title": "RWA スワップ",
+      "complianceCheck": "コンプライアンスを確認中...",
+      "eligible": "このスワップを実行する資格があります",
+      "notEligible": "このスワップの資格がありません",
+      "reason": "理由: {{reason}}",
+      "multiHop": {
+        "title": "マルチホップルート",
+        "description": "このスワップは最適な価格のため複数のプールを使用します",
+        "complianceWarning": "各ホップはコンプライアンスチェックに合格する必要があります"
+      }
+    },
+    "errors": {
+      "GEO_BLOCKED": "お住まいの国は RWA 取引がブロックされています",
+      "VPN_DETECTED": "VPN 使用が検出されました - VPN を無効にしてください",
+      "KYC_INSUFFICIENT": "KYC ティアが必要レベルを下回っています",
+      "TOKEN_NOT_IMPORTED": "この RWA トークンはシステムにインポートされていません",
+      "COMPLIANCE_CHECK_FAILED": "トークンコンプライアンス検証に失敗しました",
+      "TRANSFER_LIMIT_EXCEEDED": "金額が譲渡上限を超えています",
+      "ACCREDITED_REQUIRED": "このトークンには適格投資家ステータスが必要です",
+      "UNKNOWN_ERROR": "コンプライアンスチェック中に不明なエラーが発生しました"
+    },
+    "actions": {
+      "checkEligibility": "資格を確認",
+      "viewDetails": "詳細を表示",
+      "upgradeKyc": "KYC をアップグレード",
+      "contactSupport": "サポートに連絡",
+      "tryAgain": "再試行"
+    },
+    "tooltips": {
+      "complianceStatus": "この RWA トークンのコンプライアンス状態を表示",
+      "feeBreakdown": "すべての手数料の詳細内訳を表示",
+      "kycRequirement": "このトークンの取引に必要な KYC レベル",
+      "geoRestriction": "このトークンの地理的制限",
+      "priorityFee": "より高速な処理のため優先手数料を追加",
+      "multiHopRoute": "このスワップが流動性プールを経由するルートを表示"
+    }
+  },
+  "support": {
+    "title": "サポートセンター",
+    "subtitle": "コミュニティボランティアからサポートを受ける",
+    "loading": "読み込み中...",
+    "stats": {
+      "activeVolunteers": "アクティブボランティア",
+      "avgWaitTime": "平均待ち時間",
+      "sessionsToday": "今日のセッション数",
+      "satisfactionRate": "満足度",
+      "minutes": "{{time}}分"
+    },
+    "tabs": {
+      "getSupport": "サポートを受ける",
+      "mySessions": "マイセッション",
+      "volunteer": "ボランティア"
+    },
+    "quickLinks": {
+      "documentation": {
+        "title": "ドキュメント",
+        "description": "ガイドとチュートリアルを閲覧"
+      },
+      "forum": {
+        "title": "コミュニティフォーラム",
+        "description": "質問して議論する"
+      },
+      "volunteerSupport": {
+        "title": "ボランティアサポート",
+        "description": "個別サポートのためコミュニティボランティアと連絡"
+      }
+    },
+    "session": {
+      "title": "サポートセッション",
+      "waitingForVolunteer": "ボランティアを待っています...",
+      "chattingWith": "{{name}} とチャット中",
+      "endSession": "セッションを終了",
+      "sessionStarted": "セッション開始 {{date}}",
+      "category": "カテゴリ: {{category}} • 優先度: {{priority}}",
+      "findingVolunteer": "利用可能なボランティアを探しています...",
+      "usuallyTakesLess": "通常1分未満で完了します",
+      "typeMessage": "メッセージを入力...",
+      "assistedBy": "{{name}} がサポート"
+    },
+    "noSessions": "まだサポートセッションがありません",
+    "requestSupport": {
+      "title": "サポートをリクエスト",
+      "description": "サポートが必要な内容をお知らせください",
+      "category": "カテゴリ",
+      "priority": "優先度",
+      "language": "言語",
+      "describeIssue": "問題を説明",
+      "placeholder": "サポートが必要な内容を説明してください...",
+      "cancel": "キャンセル",
+      "request": "サポートをリクエスト",
+      "requesting": "リクエスト中..."
+    },
+    "categories": {
+      "general": "一般的な質問",
+      "wallet_setup": "ウォレットのセットアップ",
+      "technical_issue": "技術的な問題",
+      "trading": "取引と DEX",
+      "marketplace": "マーケットプレイス",
+      "validator": "バリデーターのセットアップ"
+    },
+    "priorities": {
+      "low": "低",
+      "medium": "中",
+      "high": "高",
+      "urgent": "緊急"
+    },
+    "volunteer": {
+      "become": "サポートボランティアになる",
+      "description": "コミュニティの他の人を助けて参加報酬を獲得",
+      "requirements": {
+        "title": "要件",
+        "items": [
+          "参加スコア 50 以上",
+          "コミュニティで良好な評価",
+          "プロフェッショナルに他者を助けるコミットメント"
+        ]
+      },
+      "benefits": {
+        "earnRewards": {
+          "title": "報酬を獲得",
+          "description": "参加ポイントと XOM 報酬を獲得"
+        },
+        "buildReputation": {
+          "title": "評判を構築",
+          "description": "コミュニティでの評価を向上"
+        },
+        "helpGlobally": {
+          "title": "世界中でサポート",
+          "description": "世界中のユーザーをサポート"
+        }
+      },
+      "apply": "ボランティアに応募",
+      "application": {
+        "title": "ボランティア応募",
+        "description": "サポートチームに参加してコミュニティを支援",
+        "displayName": "表示名",
+        "displayNamePlaceholder": "ユーザーに表示される名前",
+        "languages": "言語",
+        "expertise": "専門分野",
+        "maxSessions": "最大同時セッション数",
+        "sessions": "{{count}} セッション",
+        "sessions_plural": "{{count}} セッション",
+        "cancel": "キャンセル",
+        "submit": "応募を送信",
+        "applying": "応募中..."
+      }
+    },
+    "messages": {
+      "authRequired": "{{action}}にはサインインが必要です",
+      "requestSupport": "サポートをリクエスト",
+      "becomeVolunteer": "ボランティアになる",
+      "supportRequested": "サポートをリクエストしました",
+      "volunteerWillHelp": "まもなくボランティアがサポートします",
+      "errorCreating": "サポートリクエストの作成に失敗しました",
+      "errorSending": "メッセージの送信に失敗しました",
+      "sessionClosed": "セッションが終了しました",
+      "thanksFeedback": "フィードバックありがとうございます！",
+      "sessionClosedSimple": "サポートセッションが終了しました",
+      "errorClosing": "セッションの終了に失敗しました",
+      "displayNameRequired": "表示名を入力してください",
+      "registrationSuccess": "サポートボランティアとして登録されました！",
+      "errorRegistering": "ボランティアとしての登録に失敗しました",
+      "messageRequired": "サポートが必要な内容を説明してください"
+    },
+    "tooltips": {
+      "requestSupport": "ボランティアとの新しいサポートセッションを開始",
+      "endSession": "現在のサポートセッションを終了",
+      "becomeVolunteer": "他のユーザーを助けて報酬を獲得するため登録",
+      "sendMessage": "サポートチャットでメッセージを送信",
+      "rateVolunteer": "受けたサポートの質を評価"
+    }
+  },
+  "rwaCompliance": {
+    "contact": {
+      "supportGuidance": "RWAコンプライアンスに関するご質問は、アプリ内サポートページをご覧ください。24時間以内に回答いたします。"
+    }
+  }
+}

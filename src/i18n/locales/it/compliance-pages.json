@@ -1,0 +1,1101 @@
+{
+  "kyc": {
+    "loading": "Caricamento stato KYC...",
+    "title": "Verifica KYC",
+    "subtitle": "Completa la verifica per sbloccare limiti di transazione piu elevati e risparmiare sulle commissioni",
+    "tier": "Livello",
+    "currentTier": "Livello attuale",
+    "yourStatus": {
+      "title": "Il tuo stato di verifica",
+      "currentTier": "Livello attuale: {{tier}} di 4",
+      "verificationStatus": "Stato della verifica"
+    },
+    "transactionLimits": {
+      "title": "Limiti di transazione",
+      "daily": "Limite giornaliero",
+      "monthly": "Limite mensile",
+      "format": "${{used}} / ${{limit}}",
+      "unlimited": "Illimitato"
+    },
+    "tiers": {
+      "anonymous": {
+        "name": "Nessuna verifica",
+        "description": "Accesso base al marketplace con importi di transazione limitati.",
+        "requirements": {
+          "items": [
+            "Nessuna verifica richiesta"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "Esplora il marketplace",
+            "Acquisti e vendite limitati",
+            "Chat base"
+          ]
+        }
+      },
+      "basic": {
+        "name": "Verifica base",
+        "description": "Sblocca il Bonus di Benvenuto e limiti piu alti verificando email, telefono e social media.",
+        "requirements": {
+          "items": [
+            "Verifica email",
+            "Verifica telefono",
+            "Account social media"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "Idoneo al Bonus di Benvenuto",
+            "Idoneo al Bonus Referral",
+            "Accesso completo al marketplace",
+            "Funzioni di chat"
+          ]
+        }
+      },
+      "identity": {
+        "name": "Verificato",
+        "description": "Carica un comprovante di indirizzo e supera la verifica AML per sbloccare l'idoneita a Nodo di Annuncio.",
+        "requirements": {
+          "items": [
+            "Tutti i requisiti del Livello 1",
+            "Comprovante di indirizzo",
+            "Rilevamento manomissione e verifica OCR",
+            "Verifica sanzioni AML/PEP"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "Tutte le funzioni del Livello 1",
+            "Idoneo a Nodo di Annuncio",
+            "Annunci prioritari",
+            "Supporto prioritario"
+          ]
+        }
+      },
+      "enhanced": {
+        "name": "Identita",
+        "description": "Completa la verifica del documento d'identita governativo con Persona e il riconoscimento facciale per diventare idoneo come Validatore o Arbitro.",
+        "requirements": {
+          "items": [
+            "Tutti i requisiti del Livello 2",
+            "Verifica documento d'identita/passaporto con Persona",
+            "Selfie dal vivo con riconoscimento facciale"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "Tutte le funzioni del Livello 2",
+            "Idoneo a Nodo Validatore",
+            "Idoneo come Arbitro",
+            "Accesso OTC"
+          ]
+        }
+      },
+      "institutional": {
+        "name": "Istituzionale",
+        "description": "Verifica istituzionale completa per account aziendali con limiti di transazione illimitati.",
+        "requirements": {
+          "items": [
+            "Tutti i requisiti del Livello 3",
+            "Verifica entita aziendale con Persona",
+            "Documenti di registrazione aziendale",
+            "Verifica dei dirigenti"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "Tutte le funzioni",
+            "Transazioni illimitate",
+            "Accesso API",
+            "Integrazione personalizzata",
+            "Supporto dedicato"
+          ]
+        }
+      }
+    },
+    "requirements": "Requisiti",
+    "privileges": "Privilegi",
+    "completeVerification": "Completa la verifica",
+    "verified": "Verificato",
+    "verify": "Verifica",
+    "verification": {
+      "email": {
+        "label": "Email",
+        "title": "Verifica email"
+      },
+      "phone": {
+        "label": "Telefono",
+        "title": "Verifica telefono",
+        "placeholder": "+391234567890"
+      },
+      "social": {
+        "label": "Social media",
+        "title": "Verifica social media",
+        "instructions": "Segui @OmniBazaar su X (Twitter) e unisciti al gruppo Telegram di OmniBazaar per verificarti.",
+        "twitter": "X (Twitter)",
+        "telegram": "Telegram",
+        "twitterPlaceholder": "@your_twitter_handle",
+        "telegramPlaceholder": "@your_telegram_username",
+        "verifyTwitter": "Verifica il follow su X (Twitter)",
+        "verifyTelegram": "Verifica l'iscrizione a Telegram"
+      },
+      "id": {
+        "label": "Documento"
+      },
+      "sendCode": "Invia codice",
+      "enterCode": "Inserisci il codice di verifica",
+      "basic": {
+        "title": "Completa la verifica base"
+      },
+      "identity": {
+        "title": "Verifica dell'identita",
+        "description": "Carica il tuo documento d'identita rilasciato dal governo per la verifica",
+        "uploadButton": "Carica documenti"
+      },
+      "success": {
+        "emailSent": "Email di verifica inviata! Controlla la tua casella di posta.",
+        "codeSent": "Codice di verifica inviato al tuo telefono!",
+        "phoneVerified": "Numero di telefono verificato con successo!",
+        "socialVerified": "Account {{platform}} verificato con successo!",
+        "documentUploaded": "Documento caricato con successo! Verifica in corso."
+      },
+      "errors": {
+        "loadFailed": "Impossibile caricare lo stato KYC. Prova ad aggiornare la pagina.",
+        "emailFailed": "Impossibile inviare l'email di verifica. Controlla il tuo indirizzo email e riprova.",
+        "codeFailed": "Impossibile inviare il codice di verifica. Controlla il numero di telefono e riprova.",
+        "enterPhone": "Inserisci il tuo numero di telefono per ricevere un codice di verifica.",
+        "enterCode": "Inserisci il codice di verifica inviato al tuo telefono.",
+        "invalidCode": "Codice di verifica non valido. Controlla il codice e riprova.",
+        "enterTwitterHandle": "Inserisci il tuo nome utente X (Twitter) per verificare che lo segui.",
+        "enterTelegramUsername": "Inserisci il tuo nome utente Telegram per verificare la tua iscrizione.",
+        "socialFailed": "Verifica social non riuscita. Assicurati di seguire @OmniBazaar e riprova.",
+        "selectFile": "Seleziona un documento da caricare.",
+        "uploadFailed": "Impossibile caricare il documento. Controlla il formato e la dimensione del file, quindi riprova.",
+        "fileTooLarge": "La dimensione del file deve essere inferiore a 10 MB. Seleziona un file piu piccolo.",
+        "invalidFileType": "Sono consentiti solo file JPG, PNG e PDF. Seleziona un tipo di file supportato."
+      }
+    },
+    "uploadDocument": {
+      "title": "Carica documento di verifica",
+      "description": "Carica una foto nitida o scansione del tuo documento d'identita rilasciato dal governo",
+      "documentType": "Tipo di documento",
+      "types": {
+        "passport": "Passaporto",
+        "driversLicense": "Patente di guida",
+        "nationalId": "Carta d'identita nazionale"
+      },
+      "selectFile": "Seleziona file"
+    },
+    "uploading": "Caricamento in corso...",
+    "upload": "Carica",
+    "tooltips": {
+      "uploadDocument": "Invia un documento d'identita o una prova di indirizzo per la verifica",
+      "verifyEmail": "Invia un codice di verifica al tuo indirizzo email",
+      "verifyPhone": "Invia un codice di verifica al tuo numero di telefono",
+      "linkSocial": "Collega il tuo account social media per migliorare il tuo livello di verifica",
+      "viewLimits": "Visualizza i tuoi limiti di transazione attuali in base al livello di verifica",
+      "tierInfo": "Livelli KYC piu alti sbloccano limiti di transazione maggiori e funzioni aggiuntive"
+    },
+    "tier2": {
+      "title": "Verifica documenti e AML",
+      "description": "Carica un comprovante di indirizzo. La verifica AML viene eseguita automaticamente dopo la verifica del documento.",
+      "steps": {
+        "documentUpload": "Caricamento e verifica del documento (OCR + rilevamento manomissione)",
+        "amlScreening": "Verifica AML/PEP (automatica dopo l'approvazione del documento)"
+      },
+      "aml": {
+        "title": "Stato verifica AML/PEP",
+        "cleared": "AML approvato",
+        "pending": "AML in attesa",
+        "flagged": "AML segnalato",
+        "clearedMessage": "Verifica AML/PEP superata. Nessuna corrispondenza con sanzioni o PEP trovata.",
+        "pendingMessage": "La verifica AML/PEP verra eseguita automaticamente dopo l'approvazione della verifica del documento.",
+        "flaggedMessage": "La verifica AML/PEP ha segnalato una possibile corrispondenza. Contatta il supporto per assistenza."
+      }
+    },
+    "persona": {
+      "tier3": {
+        "successMessage": "Verifica dell'identita approvata! Il tuo livello e stato aggiornato."
+      },
+      "tier4": {
+        "successMessage": "Verifica istituzionale approvata! Il tuo livello e stato aggiornato."
+      }
+    }
+  },
+  "aml": {
+    "title": "AML Compliance",
+    "subtitle": "Anti-Money Laundering policies and procedures",
+    "lastUpdated": "Last updated: January 2025",
+    "toc": {
+      "title": "Indice"
+    },
+    "sections": {
+      "overview": {
+        "title": "Panoramica",
+        "intro": "OmniBazaar is committed to preventing money laundering and terrorist financing through robust compliance measures.",
+        "keyPoints": [
+          "Risk-based approach to customer due diligence",
+          "Ongoing transaction monitoring",
+          "Suspicious activity reporting",
+          "Regular compliance audits"
+        ]
+      },
+      "customerDueDiligence": {
+        "title": "Customer Due Diligence (CDD)",
+        "content": "We conduct thorough customer verification based on risk levels:",
+        "levels": {
+          "basic": {
+            "title": "Basic CDD",
+            "requirements": [
+              "Name verification",
+              "Email confirmation",
+              "IP geolocation check"
+            ]
+          },
+          "enhanced": {
+            "title": "Enhanced CDD",
+            "requirements": [
+              "Government ID verification",
+              "Proof of address",
+              "Source of funds documentation",
+              "Enhanced background checks"
+            ]
+          }
+        }
+      },
+      "transactionMonitoring": {
+        "title": "Transaction Monitoring",
+        "content": "All transactions are monitored in real-time using advanced algorithms to detect:",
+        "flags": [
+          "Unusual transaction patterns",
+          "High-value transfers",
+          "Rapid movement of funds",
+          "Transactions with high-risk jurisdictions"
+        ]
+      },
+      "reporting": {
+        "title": "Reporting Obligations",
+        "content": "We maintain strict reporting procedures:",
+        "procedures": [
+          "Suspicious Activity Reports (SARs) filed within 24 hours",
+          "Currency Transaction Reports (CTRs) for large transactions",
+          "Regular regulatory reporting",
+          "Law enforcement cooperation"
+        ]
+      },
+      "riskAssessment": {
+        "title": "Risk Assessment",
+        "content": "Risk factors considered include:",
+        "factors": [
+          "Customer type and location",
+          "Transaction volume and frequency",
+          "Product and service usage",
+          "Beneficial ownership structure"
+        ]
+      },
+      "recordKeeping": {
+        "title": "Record Keeping",
+        "content": "We maintain comprehensive records for:",
+        "duration": "Minimum of 5 years after account closure",
+        "records": [
+          "Customer identification documents",
+          "Transaction history",
+          "Risk assessments",
+          "Communications and decisions"
+        ]
+      },
+      "training": {
+        "title": "Staff Training",
+        "content": "All personnel receive regular AML training covering:",
+        "topics": [
+          "AML regulations and requirements",
+          "Red flag indicators",
+          "Reporting procedures",
+          "Sanctions screening"
+        ]
+      },
+      "sanctions": {
+        "title": "Sanctions Screening",
+        "content": "We screen all customers against:",
+        "lists": [
+          "OFAC Sanctions Lists",
+          "UN Sanctions Lists",
+          "EU Consolidated List",
+          "Other relevant watchlists"
+        ]
+      },
+      "compliance": {
+        "title": "Compliance Program",
+        "content": "Our AML compliance program includes:",
+        "elements": [
+          "Designated compliance officer",
+          "Written policies and procedures",
+          "Independent testing and audits",
+          "Board oversight and governance"
+        ]
+      },
+      "contact": {
+        "title": "Contact Information",
+        "content": "For AML-related inquiries:",
+        "email": "Usa la nostra pagina di Supporto in-app",
+        "response": "We aim to respond within 2 business days"
+      },
+      "monitoring": {
+        "title": "Segnali di allarme",
+        "description": "I nostri sistemi monitorano gli indicatori di attivita sospetta",
+        "automated": {
+          "title": "Monitoraggio automatizzato",
+          "items": [
+            "Analisi delle transazioni in tempo reale",
+            "Algoritmi di riconoscimento dei pattern",
+            "Sistema di valutazione del rischio",
+            "Rilevamento delle anomalie",
+            "Controlli di velocita"
+          ]
+        },
+        "privacy": {
+          "title": "Protezioni della privacy",
+          "items": [
+            "Prove a conoscenza zero",
+            "Archiviazione dati crittografata",
+            "Raccolta dati minima",
+            "Verifica decentralizzata",
+            "Dati controllati dall'utente"
+          ]
+        }
+      },
+      "reportingDetails": {
+        "triggers": [
+          "Transazioni che superano le soglie regolamentari",
+          "Pattern indicativi di riciclaggio di denaro",
+          "Tentativi di eludere le procedure KYC",
+          "Transazioni con entita sanzionate"
+        ],
+        "userRights": [
+          "Diritto di contestare i falsi positivi",
+          "Accesso allo stato di conformita",
+          "Portabilita dei dati",
+          "Richieste di cancellazione (ove consentito dalla legge)"
+        ]
+      },
+      "internationalFrameworks": {
+        "title": "Quadri normativi internazionali",
+        "items": [
+          "Raccomandazioni del GAFI",
+          "Direttive antiriciclaggio dell'UE",
+          "Bank Secrecy Act degli Stati Uniti",
+          "Conformita alla Travel Rule",
+          "Protezione dati GDPR"
+        ]
+      },
+      "sanctionedCountries": {
+        "northKorea": "Corea del Nord",
+        "iran": "Iran",
+        "syria": "Siria",
+        "cuba": "Cuba",
+        "others": "+ Altri"
+      },
+      "userResponsibilities": {
+        "title": "Le tue responsabilita",
+        "intro": "Come utente di OmniBazaar, sei tenuto a rispettare le nostre politiche AML:",
+        "items": [
+          "Fornire informazioni accurate e veritiere durante la verifica KYC",
+          "Non utilizzare la piattaforma per attivita illegali o riciclaggio di denaro",
+          "Segnalare attivita sospette al nostro team di conformita",
+          "Mantenere la sicurezza del tuo account e segnalare tempestivamente accessi non autorizzati",
+          "Cooperare con le richieste e le indagini di conformita"
+        ]
+      },
+      "kycTiers": {
+        "tier0": {
+          "name": "Nessuna verifica",
+          "requirements": [
+            "Verifica email",
+            "Connessione del portafoglio",
+            "Accettazione dei termini"
+          ],
+          "limits": [
+            "Navigazione limitata del marketplace",
+            "Funzioni di chat base",
+            "Limiti di transazione inferiori"
+          ]
+        },
+        "tier1": {
+          "name": "Base",
+          "requirements": [
+            "Verifica email",
+            "Verifica telefono",
+            "Seguire sui social media"
+          ],
+          "limits": [
+            "Idoneo al Bonus di Benvenuto",
+            "Accesso completo al marketplace",
+            "Limiti di transazione standard"
+          ]
+        },
+        "tier2": {
+          "name": "Verificato",
+          "requirements": [
+            "Comprovante di indirizzo (estratto conto, bolletta)",
+            "Rilevamento manomissione e OCR del documento",
+            "Verifica sanzioni AML/PEP"
+          ],
+          "limits": [
+            "Limiti di transazione piu elevati",
+            "Idoneo a Nodo di Annuncio",
+            "Annunci prioritari"
+          ]
+        },
+        "tier3": {
+          "name": "Identita",
+          "requirements": [
+            "Documento d'identita/passaporto con Persona",
+            "Selfie dal vivo con riconoscimento facciale",
+            "Investitore accreditato (opzionale)"
+          ],
+          "limits": [
+            "Idoneo a Nodo Validatore",
+            "Idoneo come Arbitro",
+            "Accesso al trading OTC"
+          ]
+        },
+        "tier4": {
+          "name": "Istituzionale",
+          "requirements": [
+            "Verifica entita aziendale con Persona",
+            "Documenti di registrazione aziendale",
+            "Verifica dei dirigenti"
+          ],
+          "limits": [
+            "Nessun limite di transazione",
+            "Tutte le funzioni della piattaforma",
+            "Supporto dedicato"
+          ]
+        }
+      },
+      "walletScreening": {
+        "title": "Verifica a livello di portafoglio",
+        "content": "Quando connetti un portafoglio esterno, OmniBazaar verifica automaticamente l'indirizzo del portafoglio contro la lista OFAC SDN (Specially Designated Nationals) per conformarsi alle normative sulle sanzioni.",
+        "features": [
+          "Gli indirizzi dei portafogli vengono verificati contro la lista OFAC SDN alla connessione",
+          "I portafogli sanzionati vengono bloccati dall'accesso alle funzioni della piattaforma",
+          "La verifica e automatica e non richiede azioni da parte dell'utente",
+          "In caso di errori del servizio, la verifica consente l'accesso per non bloccare gli utenti legittimi"
+        ]
+      },
+      "startKycButton": "Completa la verifica KYC"
+    }
+  },
+  "cookies": {
+    "title": "Cookie Policy",
+    "subtitle": "How we use cookies and similar technologies",
+    "lastUpdated": "Last updated: January 2025",
+    "banner": {
+      "message": "We use cookies to improve your experience. By continuing to use OmniBazaar, you agree to our cookie policy.",
+      "accept": "Accetta tutto",
+      "customize": "Personalizza",
+      "reject": "Rifiuta non essenziali"
+    },
+    "categories": {
+      "essential": {
+        "name": "Essential Cookies",
+        "description": "Required for the website to function properly.",
+        "required": "Richiesto"
+      },
+      "functional": {
+        "name": "Functional Cookies",
+        "description": "Enable enhanced functionality and personalization.",
+        "required": ""
+      },
+      "analytics": {
+        "name": "Analytics Cookies",
+        "description": "Help us understand how visitors interact with our website.",
+        "required": ""
+      },
+      "marketing": {
+        "name": "Marketing Cookies",
+        "description": "Used to deliver relevant advertisements.",
+        "required": ""
+      }
+    },
+    "table": {
+      "name": "Cookie Name",
+      "provider": "Fornitore",
+      "purpose": "Purpose",
+      "expiry": "Expiry",
+      "type": "Digita"
+    },
+    "preferences": {
+      "title": "Cookie Preferences",
+      "subtitle": "Manage your cookie settings",
+      "save": "Salva preferenze",
+      "saved": "Il tuo preferences have been saved",
+      "acceptAll": "Accetta tutto",
+      "rejectNonEssential": "Rifiuta i non essenziali"
+    },
+    "tooltips": {
+      "acceptAll": "Allow all cookies for the best experience",
+      "rejectNonEssential": "Only use cookies required for basic functionality",
+      "customize": "Choose which types of cookies you want to allow",
+      "savePreferences": "Save your cookie preferences"
+    },
+    "details": {
+      "whatAreCookies": {
+        "title": "What are cookies?",
+        "content": "Cookies are small text files stored on your device when you visit a website. They help the website remember your preferences and improve your experience."
+      },
+      "howWeUse": {
+        "title": "How we use cookies",
+        "content": "We use cookies to maintain your session, remember your preferences, analyze site usage, and provide personalized content."
+      },
+      "yourChoices": {
+        "title": "Il tuo choices",
+        "content": "You can control cookies through your browser settings or our preference center. Note that disabling certain cookies may affect site functionality."
+      },
+      "thirdParty": {
+        "title": "Third-party cookies",
+        "content": "Some cookies are placed by third-party services that appear on our pages. We don't control these cookies."
+      }
+    }
+  },
+  "dispute": {
+    "title": "Dispute Resolution",
+    "subtitle": "Fair and transparent dispute resolution process",
+    "lastUpdated": "Last updated: January 2025",
+    "toc": {
+      "title": "Indice"
+    },
+    "sections": {
+      "overview": {
+        "title": "Panoramica",
+        "content": "OmniBazaar provides multiple dispute resolution mechanisms to ensure fair outcomes for all parties.",
+        "principles": {
+          "title": "Our Principles",
+          "items": [
+            "Impartial and transparent process",
+            "Evidence-based decisions",
+            "Timely resolution",
+            "Community participation"
+          ]
+        }
+      },
+      "types": {
+        "title": "Types of Disputes",
+        "transaction": {
+          "title": "Transaction Disputes",
+          "description": "Issues with marketplace transactions",
+          "examples": [
+            "Item not as described",
+            "Non-delivery",
+            "Quality issues",
+            "Counterfeit items"
+          ]
+        },
+        "account": {
+          "title": "Account Disputes",
+          "description": "Account-related conflicts",
+          "examples": [
+            "Unauthorized access",
+            "Account restrictions",
+            "Identity verification",
+            "Fee disputes"
+          ]
+        },
+        "community": {
+          "title": "Community Disputes",
+          "description": "Conflicts between users",
+          "examples": [
+            "Harassment",
+            "False reviews",
+            "IP violations",
+            "Terms of service violations"
+          ]
+        }
+      },
+      "process": {
+        "title": "Dispute Resolution Process",
+        "steps": {
+          "1": {
+            "title": "Direct Resolution",
+            "description": "Parties attempt to resolve the issue directly",
+            "timeframe": "48 hours"
+          },
+          "2": {
+            "title": "Mediation",
+            "description": "Platform-assisted negotiation",
+            "timeframe": "3-5 days"
+          },
+          "3": {
+            "title": "Arbitration",
+            "description": "Binding decision by qualified arbitrators",
+            "timeframe": "7-14 days"
+          },
+          "4": {
+            "title": "Appeal",
+            "description": "Limited grounds for appeal",
+            "timeframe": "30 days"
+          }
+        }
+      },
+      "filing": {
+        "title": "Filing a Dispute",
+        "requirements": {
+          "title": "Requisiti",
+          "items": [
+            "Clear description of the issue",
+            "Supporting evidence",
+            "Attempted resolution steps",
+            "Desired outcome"
+          ]
+        },
+        "evidence": {
+          "title": "Acceptable Evidence",
+          "items": [
+            "Transaction records",
+            "Communications",
+            "Photos/videos",
+            "Shipping documentation",
+            "Expert opinions"
+          ]
+        }
+      },
+      "mediation": {
+        "title": "Mediation Process",
+        "description": "Our trained mediators help parties reach mutually acceptable solutions.",
+        "benefits": [
+          "Faster than arbitration",
+          "Lower cost",
+          "Flexible solutions",
+          "Preserves relationships"
+        ]
+      },
+      "arbitration": {
+        "title": "Arbitration",
+        "description": "Binding decisions by qualified arbitrators selected from our community.",
+        "qualifications": {
+          "title": "Arbitrator Qualifications",
+          "items": [
+            "High participation score (80+)",
+            "Clean transaction history",
+            "Completed arbitration training",
+            "No conflicts of interest"
+          ]
+        },
+        "process": {
+          "title": "Arbitration Process",
+          "items": [
+            "Case assignment to 3 arbitrators",
+            "Evidence review period",
+            "Optional hearing",
+            "Majority decision",
+            "Written decision with reasoning"
+          ]
+        },
+        "incentives": [
+          "Guadagna token XOM per ogni caso risolto",
+          "Bonus XOM per decisioni unanimi",
+          "Punteggio di partecipazione aumentato",
+          "Badge di riconoscimento della comunità",
+          "Accesso alla votazione di governance",
+          "Funzionalità prioritarie della piattaforma"
+        ]
+      },
+      "enforcement": {
+        "title": "Enforcement",
+        "mechanisms": {
+          "title": "Enforcement Mechanisms",
+          "items": [
+            "Smart contract execution",
+            "Account restrictions",
+            "Fee adjustments",
+            "Reputation impacts"
+          ]
+        },
+        "compliance": {
+          "title": "Compliance",
+          "content": "Failure to comply with dispute resolutions may result in account suspension or termination."
+        }
+      },
+      "costs": {
+        "title": "Costs and Fees",
+        "structure": {
+          "mediation": "Free for amounts under 1,000 XOM",
+          "arbitration": "5% dell'importo contestato (diviso 50/50 tra acquirente e venditore)",
+          "appeal": "50% della commissione di arbitraggio (rimborsabile in caso di successo dell'appello)"
+        },
+        "payment": "Fees are typically split between parties unless otherwise determined."
+      },
+      "prevention": {
+        "title": "Dispute Prevention",
+        "tips": {
+          "title": "Best Practices",
+          "items": [
+            "Clear communication",
+            "Detailed listings",
+            "Prompt shipping",
+            "Accurate descriptions",
+            "Professional conduct"
+          ]
+        },
+        "buyerTips": [
+          "Leggi attentamente le descrizioni degli articoli",
+          "Fai domande prima di acquistare",
+          "Controlla la reputazione del venditore e le recensioni",
+          "Documenta le condizioni dell'articolo alla ricezione",
+          "Comunica prontamente i problemi"
+        ],
+        "sellerTips": [
+          "Fornisci descrizioni accurate",
+          "Includi foto chiare da tutte le angolazioni",
+          "Imballaggia gli articoli in modo sicuro",
+          "Spedisci prontamente con tracciamento",
+          "Rispondi rapidamente ai messaggi dell'acquirente"
+        ]
+      },
+      "contact": {
+        "title": "Contatto",
+        "content": "For dispute resolution assistance:",
+        "email": "Usa la nostra pagina Controversie in-app",
+        "response": "Initial response within 24 hours"
+      },
+      "appeals": {
+        "intro": "Nei rari casi in cui le parti ritengono che la decisione arbitrale fosse ingiusta, è possibile presentare appello entro 7 giorni. Gli appelli richiedono:"
+      }
+    },
+    "tooltips": {
+      "fileDispute": "Submit a formal dispute for this transaction",
+      "uploadEvidence": "Aggiungi supporting documents or photos to strengthen your case",
+      "viewStatus": "Check the current status of your dispute",
+      "contactArbitrator": "Send a message to the assigned arbitrator",
+      "acceptDecision": "Accept the arbitrator's decision and close the dispute"
+    },
+    "protectionFeatures": [
+      "Fondi mantenuti in deposito a garanzia fino alla consegna",
+      "Rilascio immediato alla conferma dell'acquirente",
+      "Il blocco per disputa impedisce il rilascio prematuro",
+      "Applicazione tramite smart contract — nessun intermediario richiesto"
+    ]
+  },
+  "rwa": {
+    "title": "RWA Compliance",
+    "subtitle": "Real World Asset trading compliance and requirements",
+    "lastUpdated": "Last updated: December 2025",
+    "toc": {
+      "title": "Indice"
+    },
+    "overview": {
+      "title": "Panoramica",
+      "description": "Real World Assets (RWA) are tokenized representations of physical assets like real estate, commodities, or securities. Trading RWAs requires additional compliance checks to ensure regulatory compliance.",
+      "keyPoints": [
+        "Geographic restriction verification",
+        "Token compliance standards (ERC-3643, ERC-1400)",
+        "KYC tier requirements",
+        "Fee transparency"
+      ]
+    },
+    "geofence": {
+      "title": "Geographic Restrictions",
+      "description": "RWA trading is restricted in certain jurisdictions due to regulatory requirements.",
+      "blockedCountries": {
+        "title": "Blocked Regions",
+        "description": "RWA trading is currently unavailable in the following regions:",
+        "reasons": {
+          "US": "Regulatory uncertainty",
+          "CU": "OFAC sanctions",
+          "IR": "OFAC sanctions",
+          "KP": "OFAC sanctions",
+          "SY": "OFAC sanctions",
+          "RU": "International sanctions"
+        }
+      },
+      "vpnWarning": {
+        "title": "VPN Detection",
+        "message": "VPN usage has been detected. RWA trading requires verification of your actual location.",
+        "action": "Si prega di disable your VPN and refresh the page to access RWA features."
+      },
+      "accessDenied": {
+        "title": "Access Restricted",
+        "message": "RWA trading is not available in your region.",
+        "contact": "For questions about regional availability, contact support."
+      }
+    },
+    "tokenCompliance": {
+      "title": "Token Compliance",
+      "description": "RWA tokens must meet specific compliance standards before trading.",
+      "standards": {
+        "erc3643": {
+          "name": "ERC-3643 (T-REX)",
+          "description": "Security token standard with built-in compliance and identity verification"
+        },
+        "erc1400": {
+          "name": "ERC-1400",
+          "description": "Security token standard with partitioned balances and transfer restrictions"
+        }
+      },
+      "status": {
+        "compliant": "Compliant",
+        "nonCompliant": "Non-Compliant",
+        "pending": "Verification Pending",
+        "unknown": "Unknown Status"
+      },
+      "checks": {
+        "tokenImported": "Token imported to system",
+        "kycVerified": "KYC verification complete",
+        "transferAllowed": "Transfer restrictions cleared",
+        "accreditedStatus": "Accredited investor status verified"
+      }
+    },
+    "kycRequirements": {
+      "title": "KYC Requirements",
+      "description": "Different RWA tokens require different levels of identity verification.",
+      "tiers": {
+        "tier1": {
+          "name": "Basic Verification",
+          "description": "Email and phone verification required",
+          "limit": "Up to $10,000 per transaction"
+        },
+        "tier2": {
+          "name": "Identity Verification",
+          "description": "Government ID and address proof required",
+          "limit": "Up to $100,000 per transaction"
+        },
+        "tier3": {
+          "name": "Enhanced Verification",
+          "description": "Full KYC with source of funds documentation",
+          "limit": "Up to $1,000,000 per transaction"
+        },
+        "tier4": {
+          "name": "Accredited Investor",
+          "description": "Accredited investor certification required",
+          "limit": "No transaction limits"
+        }
+      },
+      "upgrade": "Upgrade your KYC tier to access higher trading limits"
+    },
+    "fees": {
+      "title": "Fee Structure",
+      "description": "RWA swaps have a transparent fee structure with multiple components.",
+      "breakdown": {
+        "title": "Fee Breakdown",
+        "protocol": {
+          "name": "Protocol Fee",
+          "rate": "0.30%",
+          "description": "Base fee for network security and operations",
+          "distribution": {
+            "lp": "70% to Liquidity Providers",
+            "staking": "20% to Staking Pool",
+            "liquidity": "10% to Liquidity Pool"
+          }
+        },
+        "frontend": {
+          "name": "Frontend Fee",
+          "rate": "1.00%",
+          "description": "Fee for using the OmniBazaar interface",
+          "distribution": {
+            "transaction": "0.25% Transaction Fee",
+            "referral": "0.50% Referral Reward",
+            "listing": "0.25% Listing Fee"
+          },
+          "bypassable": "Can be bypassed by using direct contract access"
+        },
+        "priority": {
+          "name": "Priority Fee",
+          "rate": "0-3%",
+          "description": "Optional fee for priority processing",
+          "distribution": {
+            "listing": "70% to Listing Node",
+            "selling": "20% to Selling Node",
+            "oddao": "10% to ODDAO"
+          }
+        }
+      },
+      "calculator": {
+        "title": "Fee Calculator",
+        "inputAmount": "Input Amount",
+        "protocolFee": "Protocol Fee",
+        "frontendFee": "Frontend Fee",
+        "priorityFee": "Priority Fee",
+        "totalFees": "Total Fees",
+        "netOutput": "Net Output Amount"
+      }
+    },
+    "swap": {
+      "title": "RWA Swap",
+      "complianceCheck": "Checking compliance...",
+      "eligible": "You are eligible to perform this swap",
+      "notEligible": "You are not eligible for this swap",
+      "reason": "Reason: {{reason}}",
+      "multiHop": {
+        "title": "Multi-hop Route",
+        "description": "This swap uses multiple pools for optimal pricing",
+        "complianceWarning": "Each hop must pass compliance checks"
+      }
+    },
+    "errors": {
+      "GEO_BLOCKED": "Il tuo country is blocked from RWA trading",
+      "VPN_DETECTED": "VPN usage detected - please disable VPN",
+      "KYC_INSUFFICIENT": "Il tuo KYC tier is below the required level",
+      "TOKEN_NOT_IMPORTED": "This RWA token has not been imported to the system",
+      "COMPLIANCE_CHECK_FAILED": "Token compliance verification failed",
+      "TRANSFER_LIMIT_EXCEEDED": "Amount exceeds your transfer limit",
+      "ACCREDITED_REQUIRED": "Accredited investor status is required for this token",
+      "UNKNOWN_ERROR": "An unknown error occurred during compliance check"
+    },
+    "actions": {
+      "checkEligibility": "Check Eligibility",
+      "viewDetails": "Vedi dettagli",
+      "upgradeKyc": "Upgrade KYC",
+      "contactSupport": "Contact Support",
+      "tryAgain": "Riprova"
+    },
+    "tooltips": {
+      "complianceStatus": "Visualizza the compliance status for this RWA token",
+      "feeBreakdown": "See detailed breakdown of all fees",
+      "kycRequirement": "KYC level required to trade this token",
+      "geoRestriction": "Geographic restrictions for this token",
+      "priorityFee": "Aggiungi priority fee for faster processing",
+      "multiHopRoute": "Visualizza the route this swap will take through liquidity pools"
+    }
+  },
+  "support": {
+    "title": "Support Center",
+    "subtitle": "Get help from our community volunteers",
+    "loading": "Caricamento...",
+    "stats": {
+      "activeVolunteers": "Active Volunteers",
+      "avgWaitTime": "Avg Wait Time",
+      "sessionsToday": "Sessions Today",
+      "satisfactionRate": "Satisfaction Rate",
+      "minutes": "{{time}}min"
+    },
+    "tabs": {
+      "getSupport": "Get Support",
+      "mySessions": "Il mio Sessioni",
+      "volunteer": "Volunteer"
+    },
+    "quickLinks": {
+      "documentation": {
+        "title": "Documentazione",
+        "description": "Browse guides and tutorials"
+      },
+      "forum": {
+        "title": "Community Forum",
+        "description": "Ask questions and discuss"
+      },
+      "volunteerSupport": {
+        "title": "Volunteer Support",
+        "description": "Connect with community volunteers for personalized assistance"
+      }
+    },
+    "session": {
+      "title": "Support Session",
+      "waitingForVolunteer": "Waiting for a volunteer...",
+      "chattingWith": "Chatting with {{name}}",
+      "endSession": "End Session",
+      "sessionStarted": "Session started {{date}}",
+      "category": "Category: {{category}} • Priority: {{priority}}",
+      "findingVolunteer": "Finding an available volunteer...",
+      "usuallyTakesLess": "This usually takes less than a minute",
+      "typeMessage": "Type your message...",
+      "assistedBy": "Assisted by {{name}}"
+    },
+    "noSessions": "No support sessions yet",
+    "requestSupport": {
+      "title": "Request Support",
+      "description": "Tell us what you need help with",
+      "category": "Categoria",
+      "priority": "Priority",
+      "language": "Lingua",
+      "describeIssue": "Describe your issue",
+      "placeholder": "Si prega di describe what you need help with...",
+      "cancel": "Annulla",
+      "request": "Request Support",
+      "requesting": "Requesting..."
+    },
+    "categories": {
+      "general": "General Questions",
+      "wallet_setup": "Wallet Setup",
+      "technical_issue": "Technical Issues",
+      "trading": "Trading & DEX",
+      "marketplace": "Marketplace",
+      "validator": "Validator Setup"
+    },
+    "priorities": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "urgent": "Urgent"
+    },
+    "volunteer": {
+      "become": "Become a Support Volunteer",
+      "description": "Help others in the community and earn participation rewards",
+      "requirements": {
+        "title": "Requisiti",
+        "items": [
+          "Participation score of 50 or higher",
+          "Good standing in the community",
+          "Commitment to help others professionally"
+        ]
+      },
+      "benefits": {
+        "earnRewards": {
+          "title": "Earn Rewards",
+          "description": "Get participation points and XOM rewards"
+        },
+        "buildReputation": {
+          "title": "Build Reputation",
+          "description": "Increase your community standing"
+        },
+        "helpGlobally": {
+          "title": "Help Globally",
+          "description": "Support users worldwide"
+        }
+      },
+      "apply": "Apply to Volunteer",
+      "application": {
+        "title": "Volunteer Application",
+        "description": "Join our support team and help the community",
+        "displayName": "Display Name",
+        "displayNamePlaceholder": "How users will see you",
+        "languages": "Lingue",
+        "expertise": "Areas of Expertise",
+        "maxSessions": "Max Concurrent Sessions",
+        "sessions": "{{count}} session",
+        "sessions_plural": "{{count}} sessions",
+        "cancel": "Annulla",
+        "submit": "Submit Application",
+        "applying": "Applying..."
+      }
+    },
+    "messages": {
+      "authRequired": "Si prega di sign in to {{action}}",
+      "requestSupport": "request support",
+      "becomeVolunteer": "become a volunteer",
+      "supportRequested": "Support requested",
+      "volunteerWillHelp": "A volunteer will be with you shortly",
+      "errorCreating": "Impossibile Crea support request",
+      "errorSending": "Impossibile Invia messaggio",
+      "sessionClosed": "Session closed",
+      "thanksFeedback": "Thank you for your feedback!",
+      "sessionClosedSimple": "Support session has been closed",
+      "errorClosing": "Impossibile close session",
+      "displayNameRequired": "Si prega di provide a display name",
+      "registrationSuccess": "You are now registered as a support volunteer!",
+      "errorRegistering": "Impossibile register as volunteer",
+      "messageRequired": "Si prega di describe what you need help with"
+    },
+    "tooltips": {
+      "requestSupport": "Start a new support session with a volunteer",
+      "endSession": "Close the current support session",
+      "becomeVolunteer": "Register to help other users and earn rewards",
+      "sendMessage": "Send your message in the support chat",
+      "rateVolunteer": "Rate the quality of support you received"
+    }
+  },
+  "rwaCompliance": {
+    "contact": {
+      "supportGuidance": "Per domande sulla conformità RWA, visita la pagina di Supporto in-app. Rispondiamo entro 24 ore."
+    }
+  }
+}

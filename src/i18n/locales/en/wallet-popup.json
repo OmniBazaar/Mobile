@@ -1,0 +1,1266 @@
+{
+  "splash": {
+    "title": "OmniWallet",
+    "loading": "Loading..."
+  },
+  "header": {
+    "brand": "OmniWallet",
+    "settingsTitle": "Settings"
+  },
+  "nav": {
+    "wallet": "Wallet",
+    "dex": "DEX",
+    "marketplace": "Market",
+    "more": "More"
+  },
+  "quickActions": {
+    "send": "Send",
+    "receive": "Receive",
+    "swap": "Swap",
+    "bridge": "Bridge"
+  },
+  "accountBar": {
+    "defaultAccountName": "Account 1"
+  },
+  "common": {
+    "back": "Back",
+    "cancel": "Cancel",
+    "close": "Close",
+    "continue": "Continue",
+    "confirm": "Confirm",
+    "copy": "Copy",
+    "copied": "Copied",
+    "loading": "Loading..."
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "OmniWallet",
+      "subtitle": "Your gateway to 128 blockchains, the OmniBazaar marketplace, and the OmniCoin DEX. Trustless, gasless, and private by design.",
+      "createNew": "Create New Wallet",
+      "importExisting": "Import Existing Wallet",
+      "signIn": "Already have an account? Sign In",
+      "termsPrefix": "By continuing you agree to the",
+      "termsLink": "Terms of Service"
+    },
+    "createWallet": {
+      "heading": "Create Wallet",
+      "passwordHint": "Set a password to protect your wallet on this device. Your seed phrase is the true backup — keep it safe.",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Min 8 characters",
+      "confirmPasswordLabel": "Confirm Password",
+      "confirmPasswordPlaceholder": "Repeat password",
+      "continue": "Continue",
+      "creating": "Creating…",
+      "seedHeading": "Your Recovery Phrase",
+      "seedWarning": "⚠️ Write these 12 words down and store them somewhere safe. Anyone with these words can access your wallet.",
+      "writtenDown": "I've Written It Down →",
+      "confirmHeading": "Confirm Backup",
+      "confirmHint": "Enter the words at positions {{positions}} to verify your backup.",
+      "wordLabel": "Word #{{position}}",
+      "wordPlaceholder": "Word {{position}}",
+      "wordIncorrect": "Word #{{position}} is incorrect",
+      "createWalletBtn": "Create Wallet",
+      "registering": "Registering…",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "passwordMismatch": "Passwords do not match",
+      "createFailed": "Failed to create wallet",
+      "registerFailed": "Registration failed"
+    },
+    "importWallet": {
+      "heading": "Import Wallet",
+      "importing": "Importing…",
+      "verifying": "Verifying seed and registering wallet…",
+      "tabMnemonic": "Seed Phrase",
+      "tabPrivateKey": "Private Key",
+      "mnemonicHint": "Enter your 12 or 24-word recovery phrase, separated by spaces.",
+      "mnemonicPlaceholder": "word1 word2 word3 …",
+      "privateKeyHint": "Enter your private key (hex, with or without 0x prefix).",
+      "privateKeyPlaceholder": "0x…",
+      "newPasswordLabel": "New Password",
+      "newPasswordPlaceholder": "Min 8 characters",
+      "confirmPasswordLabel": "Confirm Password",
+      "confirmPasswordPlaceholder": "Repeat password",
+      "submit": "Import Wallet",
+      "submitting": "Importing…",
+      "errorSeedWordCount": "Seed phrase must be 12 or 24 words",
+      "errorPrivateKeyRequired": "Private key is required",
+      "errorImportFailed": "Import failed",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "passwordMismatch": "Passwords do not match"
+    },
+    "seedBackup": {
+      "heading": "Recovery Phrase",
+      "warning": "⚠️ Write these {{count}} words down and store them somewhere safe. Anyone with these words can access your wallet.",
+      "writtenDown": "I've Written It Down →",
+      "confirmHeading": "Confirm Backup",
+      "confirmHint": "Enter the words at positions {{positions}} to verify your backup.",
+      "wordLabel": "Word #{{position}}",
+      "wordPlaceholder": "Word {{position}}",
+      "wordIncorrect": "Word #{{position}} is incorrect",
+      "verify": "Verify Backup"
+    },
+    "login": {
+      "heading": "Welcome Back",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "unlock": "Unlock",
+      "unlocking": "Unlocking…",
+      "useDifferent": "Use a different wallet",
+      "errorPasswordRequired": "Password is required",
+      "errorIncorrectPassword": "Incorrect password",
+      "unlockAria": "Unlock your wallet with the entered password",
+      "useDifferentAria": "Import a different wallet or create a new one"
+    }
+  },
+  "wallet": {
+    "tabs": {
+      "assets": "Assets",
+      "nfts": "NFTs",
+      "activity": "Activity"
+    },
+    "assets": {
+      "empty": "No assets found"
+    },
+    "asset": {
+      "invalidDecimals": "Token metadata is missing or invalid — balance hidden for safety",
+      "invalidDecimalsAria": "Balance unavailable — token metadata is invalid"
+    },
+    "activity": {
+      "heading": "Activity",
+      "empty": "No transactions yet",
+      "received": "Received {{symbol}}",
+      "sent": "Sent {{symbol}}",
+      "timeJustNow": "just now",
+      "timeMinutesAgo": "{{count}}m ago",
+      "timeHoursAgo": "{{count}}h ago",
+      "publicTab": "Public",
+      "privateTab": "Private (pXOM)",
+      "revealAmount": "Reveal amount",
+      "amountHidden": "Amount hidden — tap Reveal to decrypt",
+      "status": {
+        "confirmed": "confirmed",
+        "pending": "pending",
+        "failed": "failed"
+      }
+    },
+    "nfts": {
+      "heading": "NFTs",
+      "empty": "No NFTs found",
+      "placeholder": "NFT"
+    },
+    "send": {
+      "heading": "Send",
+      "networkLabel": "Network",
+      "recipientLabel": "Recipient Address",
+      "recipientPlaceholder": "0x… or username",
+      "amountLabel": "Amount",
+      "amountPlaceholder": "0.00",
+      "max": "MAX",
+      "gaslessBadge": "⚡ Gas: Free — powered by OmniRelay",
+      "gasFree": "Gas: Free (OmniRelay)",
+      "estimatedGas": "Estimated gas",
+      "submit": "Send",
+      "submitting": "Sending…",
+      "errorFailed": "Transaction failed",
+      "successPrefix": "Sent! Tx: {{shortHash}}",
+      "errorInvalidAddress": "Address format isn't valid for this chain. Please double-check and re-paste.",
+      "networkTooltip": "Select the chain to send from. Each chain has its own balance.",
+      "gaslessTooltip": "Gasless: this transaction is relayed through OmniRelay. You pay zero native gas.",
+      "recipientTooltip": "Enter a valid address for the selected chain. Addresses are validated for shape and checksum.",
+      "amountAria": "Amount to send in {{symbol}}",
+      "maxAria": "Send the maximum available balance",
+      "maxTooltip": "Fill the amount with your maximum {{symbol}} balance.",
+      "estimatedGasTooltip": "Estimated network fee for this transaction."
+    },
+    "receive": {
+      "heading": "Receive",
+      "networkLabel": "Network",
+      "copy": "Copy",
+      "copied": "✓ Copied",
+      "hint": "Only send {{symbol}} and compatible tokens to this address on {{chainName}}.",
+      "networkTooltip": "Select the chain you want to receive on. Each chain has its own address.",
+      "qrAria": "QR code for {{chainName}} address {{address}}",
+      "qrAriaPending": "pending",
+      "addressTooltip": "Your {{chainName}} receive address. Anyone with this address can send you {{symbol}}.",
+      "addressDeriving": "Deriving address…",
+      "copyAria": "Copy {{chainName}} address to clipboard",
+      "copyTooltip": "Copy address to clipboard"
+    }
+  },
+  "settings": {
+    "home": {
+      "heading": "Settings",
+      "sectionSecurity": "Security",
+      "sectionNetwork": "Network",
+      "sectionAccount": "Account",
+      "sectionFeatures": "Features",
+      "sectionInfo": "Info",
+      "securityPrivacyTitle": "Security & Privacy",
+      "securityPrivacySub": "Password, biometrics, seed phrase",
+      "connectedSitesTitle": "Connected Sites",
+      "connectedSitesSub": "Manage dApp connections",
+      "walletConnectTitle": "WalletConnect",
+      "walletConnectSub": "Pair with dApps via QR code",
+      "networksTitle": "Networks",
+      "networksSub": "Manage RPC endpoints",
+      "languageTitle": "Language",
+      "languageSub": "Choose your display language",
+      "signOutTitle": "Sign Out",
+      "signOutSub": "Lock wallet",
+      "versionRow": "OmniWallet v{{version}}",
+      "stakingTitle": "Staking",
+      "stakingSub": "Stake XOM and earn rewards",
+      "kycTitle": "KYC & Verification",
+      "kycSub": "Increase your participation score",
+      "bridgeTitle": "Bridge",
+      "bridgeSub": "Move assets across chains",
+      "addressBookTitle": "Address Book",
+      "addressBookSub": "Saved contacts",
+      "hardwareTitle": "Connect Hardware Wallet",
+      "hardwareSub": "Add a Ledger or Trezor account",
+      "portfolioTitle": "Portfolio Analytics",
+      "portfolioSub": "Multi-chain ERC-20 balance breakdown",
+      "aboutTitle": "About",
+      "aboutSub": "Version, validators, links",
+      "participationTitle": "Participation Score",
+      "participationSub": "See how your {{score}}/100 score is calculated",
+      "governanceTitle": "Governance",
+      "governanceSub": "ODDAO voting (Coming Soon)",
+      "antiPhishingTitle": "Anti-phishing banner",
+      "antiPhishingSub": "Choose a color and word to verify this is your wallet",
+      "tokenApprovalsTitle": "Token Approvals",
+      "tokenApprovalsSub": "Review and revoke ERC-20 + NFT approvals"
+    },
+    "security": {
+      "heading": "Security & Privacy",
+      "sectionWallet": "Wallet",
+      "sectionAccess": "Access",
+      "showSeedTitle": "Show Recovery Phrase",
+      "showSeedSub": "View your 12/24-word seed",
+      "exportKeyTitle": "Export Private Key",
+      "exportKeySub": "Current account only",
+      "revealLabel": "Enter password to reveal seed",
+      "revealPlaceholder": "Your wallet password",
+      "reveal": "Reveal Seed Phrase",
+      "verifying": "Verifying…",
+      "errorIncorrectPassword": "Incorrect password",
+      "errorExportFailed": "Export failed",
+      "exportedAlert": "Private key copied to clipboard. Store it safely and clear your clipboard.",
+      "passwordChangeTitle": "Change Password",
+      "passwordChangeSub": "Update the password used to unlock the wallet",
+      "passwordChangeHeading": "Change password",
+      "currentPasswordLabel": "Current password",
+      "newPasswordLabel": "New password",
+      "confirmNewPasswordLabel": "Confirm new password",
+      "passwordChangeBtn": "Update password",
+      "passwordChangeOk": "Password updated.",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "passwordMismatch": "Passwords do not match",
+      "passwordChangeFailed": "Failed to update password",
+      "biometricTitle": "Biometric Unlock",
+      "biometricSub": "Use Touch ID, Face ID, or Windows Hello to unlock",
+      "biometricUnavailable": "Biometric unlock is not available on this device.",
+      "biometricEnable": "Enable biometric unlock",
+      "biometricDisable": "Disable biometric unlock",
+      "biometricEnabled": "Biometric unlock enabled.",
+      "biometricDisabled": "Biometric unlock disabled.",
+      "biometricFailed": "Biometric setup failed",
+      "autoLockTitle": "Auto-lock",
+      "autoLockSub": "Lock the wallet after a period of inactivity",
+      "autoLockNever": "Never",
+      "autoLock1m": "1 minute",
+      "autoLock5m": "5 minutes",
+      "autoLock15m": "15 minutes",
+      "autoLock30m": "30 minutes"
+    },
+    "networks": {
+      "heading": "Networks",
+      "chainIdRow": "Chain {{id}}",
+      "gaslessBadge": "Gasless",
+      "defaultChainHeading": "Default chain",
+      "defaultChainSub": "Shown in the popup account bar by default.",
+      "enabledHeading": "Enabled networks",
+      "customRpcHeading": "Custom RPC",
+      "customAddTitle": "Add Custom RPC",
+      "customNameLabel": "Name",
+      "customNamePlaceholder": "My Custom Network",
+      "customRpcLabel": "RPC URL",
+      "customRpcPlaceholder": "https://rpc.example.com",
+      "customChainIdLabel": "Chain ID",
+      "customChainIdPlaceholder": "0 to auto-detect",
+      "customSymbolLabel": "Currency symbol",
+      "customSymbolPlaceholder": "ETH",
+      "customExplorerLabel": "Explorer URL",
+      "customExplorerPlaceholder": "https://explorer.example.com",
+      "customAddBtn": "Add network",
+      "customAddOk": "Custom network added.",
+      "customAddFailed": "Failed to add network",
+      "customRemove": "Remove",
+      "customEmpty": "No custom networks",
+      "toggleEnable": "Enable",
+      "toggleDisable": "Disable",
+      "familyHeading": {
+        "evm": "EVM Networks",
+        "bitcoin": "Bitcoin Family",
+        "solana": "Solana",
+        "polkadot": "Polkadot Family",
+        "cosmos": "Cosmos",
+        "cardano": "Cardano",
+        "xrp": "XRP Ledger",
+        "tron": "TRON",
+        "near": "NEAR",
+        "hedera": "Hedera",
+        "stellar": "Stellar",
+        "tezos": "Tezos"
+      }
+    },
+    "connected": {
+      "heading": "Connected Sites",
+      "empty": "No connected sites",
+      "connectedOn": "Connected {{date}}",
+      "disconnect": "Disconnect"
+    },
+    "locale": {
+      "heading": "Language",
+      "description": "Choose the display language for the wallet. The change applies immediately.",
+      "currentLabel": "Current language"
+    },
+    "tokenApprovals": {
+      "title": "Token Approvals",
+      "comingSoon": "Coming soon",
+      "help": "We are building a one-click view of every token approval your wallet has granted. You will be able to revoke approvals here at any time."
+    }
+  },
+  "placeholders": {
+    "comingSoon": "Coming soon",
+    "thisFeature": "This Feature",
+    "dexTitle": "DEX & Swap",
+    "marketplaceTitle": "Marketplace"
+  },
+  "dex": {
+    "subnav": {
+      "swap": "Swap",
+      "limit": "Limit",
+      "yield": "Yield",
+      "lp": "LP",
+      "rwa": "RWA",
+      "privacy": "Privacy"
+    },
+    "comingSoon": "Coming Soon",
+    "swap": {
+      "youPay": "You Pay",
+      "youReceive": "You Receive",
+      "max": "Max",
+      "balance": "Balance: {{amount}} {{symbol}}",
+      "route": "Route",
+      "routeDetails": "details",
+      "altRoutes": "Alternatives",
+      "via": {
+        "omnidex": "via OmniDEX",
+        "omnibridgeIctt": "via OmniBridge (ICTT)",
+        "omnibridgeCctp": "via OmniBridge (CCTP)",
+        "omnibridgeLifi": "via OmniDEX → Li.Fi",
+        "lifi": "via Li.Fi",
+        "zerox": "via 0x",
+        "unknown": "via {{protocol}}"
+      },
+      "feePct": "{{pct}}% DEX",
+      "relayFee": "0% relay",
+      "estTime": "~{{seconds}}s",
+      "swap": "Swap",
+      "swapConfirm": "Swap {{fromSymbol}} → {{toSymbol}}",
+      "signing": "Waiting for signature…",
+      "broadcasting": "Broadcasting…",
+      "inTransit": "Bridging — {{status}}",
+      "complete": "Swap complete",
+      "failed": "Swap failed: {{error}}",
+      "noRoutes": "No routes available for this pair",
+      "xomRoutingNotice": "XOM routes via OmniDEX → USDC before bridging",
+      "priceImpactWarning": "Price impact: {{pct}}% — you'll lose roughly {{loss}} {{symbol}} to market depth",
+      "priceImpactHigh": "High price impact ({{pct}}%). You may lose {{loss}} {{symbol}} to slippage. Confirm to proceed.",
+      "priceImpactDangerous": "Dangerous price impact ({{pct}}%). Type the confirmation phrase to unlock.",
+      "priceImpactConfirmPhrase": "HIGH IMPACT",
+      "priceImpactAck": "I understand — swap anyway",
+      "priceImpactConfirmLabel": "Type \"{{phrase}}\" to confirm",
+      "priceImpactDisabledTooltip": "Disabled: price impact too high. Confirm to proceed.",
+      "slippageTooHigh": "Setting slippage above 5% is unusually high and can be exploited by MEV bots."
+    },
+    "limit": {
+      "title": "Limit order",
+      "buy": "Buy",
+      "sell": "Sell",
+      "price": "Price",
+      "amount": "Amount",
+      "expiry": "Expiry",
+      "expiryPreset": {
+        "1h": "1h",
+        "1d": "1d",
+        "1w": "1w",
+        "custom": "Custom"
+      },
+      "fee": "Fee",
+      "makerRebate": "Maker rebate",
+      "place": "Place order",
+      "submitOk": "Order placed",
+      "activeOrders": "Active orders",
+      "noOrders": "No open orders",
+      "loginHint": "Sign in to place limit orders",
+      "cancel": "Cancel",
+      "status": {
+        "open": "Open",
+        "partial": "Partial",
+        "filled": "Filled",
+        "cancelled": "Cancelled"
+      },
+      "orderBook": {
+        "bids": "Bids",
+        "asks": "Asks",
+        "depth": "Depth"
+      }
+    },
+    "yield": {
+      "title": "Yield",
+      "empty": "No yield opportunities yet",
+      "apy": "APY",
+      "tvl": "TVL",
+      "position": "Your position",
+      "deposit": "Deposit",
+      "withdraw": "Withdraw",
+      "preview": "Amount",
+      "risk": {
+        "low": "Low risk",
+        "medium": "Medium risk",
+        "high": "High risk"
+      }
+    },
+    "lp": {
+      "title": "Liquidity pools",
+      "earlyBonusBadge": "⭐ Early LP Bonus",
+      "earlyBonusTooltip": "+15% APR until hard launch on 2026-04-30",
+      "countdown": "Early LP Bonus ends in {{days}}d {{hours}}h",
+      "countdownEnded": "Early LP Bonus has ended",
+      "add": "Add liquidity",
+      "remove": "Remove liquidity",
+      "removePct": "Percent to remove",
+      "slippage": "Slippage",
+      "gasInfoLabel": "Gas limit",
+      "gasInfoTooltip": "Adding liquidity to a new pool requires a 5,000,000 gas limit.",
+      "tvlTooltip": "Total value locked — the USD value of all liquidity in this pool.",
+      "tvlAria": "Total value locked: {{value}} USD",
+      "apyTooltip": "Annualised yield estimated from the pool’s recent trading fees. Real yield fluctuates with volume.",
+      "apyAria": "Estimated annual yield: {{pct}} percent",
+      "positionTooltip": "Your current share of the pool expressed in LP tokens.",
+      "addAria": "Add liquidity to the {{pair}} pool",
+      "addTooltip": "Deposit both tokens to earn a share of trading fees.",
+      "removeAria": "Remove liquidity from the {{pair}} pool",
+      "removeTooltip": "Withdraw your share and stop earning fees from this pool."
+    },
+    "rwa": {
+      "title": "Real-world assets",
+      "empty": "No RWAs available yet",
+      "price": "Price",
+      "buy": "Buy",
+      "sell": "Sell",
+      "compliance": {
+        "compliant": "Compliant",
+        "kycRequired": "KYC Tier {{tier}} required",
+        "restricted": "Not available in your region"
+      }
+    },
+    "privacy": {
+      "title": "Privacy",
+      "shield": "Shield",
+      "unshield": "Unshield",
+      "feePct": "Privacy fee: {{pct}}%",
+      "privateBalance": "Private balance",
+      "reveal": "Reveal",
+      "safeOnboard": {
+        "title": "Set up private balance",
+        "explain": "Your private balance (pXOM) is encrypted on-chain via COTI V2. A one-time setup is required.",
+        "cta": "Set up"
+      }
+    }
+  },
+  "marketplace": {
+    "subnav": {
+      "p2p": "P2P",
+      "nft": "NFT",
+      "rwa": "RWA",
+      "yield": "Yield",
+      "predictions": "Predictions"
+    },
+    "home": {
+      "searchPlaceholder": "Search listings…",
+      "searchAria": "Search marketplace"
+    },
+    "p2p": {
+      "empty": "No listings match your filters",
+      "createListing": "➕ Create Listing",
+      "myListingsLink": "My Listings",
+      "loadMore": "Load more",
+      "unratedSeller": "New seller",
+      "categories": {
+        "all": "All",
+        "products": "Products",
+        "services": "Services",
+        "jobs": "Jobs",
+        "realEstate": "Real Estate",
+        "vehicles": "Vehicles",
+        "personal": "Personal",
+        "other": "Other"
+      },
+      "sort": {
+        "label": "Sort by",
+        "newest": "Newest",
+        "priceAsc": "Price: Low → High",
+        "priceDesc": "Price: High → Low",
+        "popular": "Popular"
+      },
+      "status": {
+        "active": "Active",
+        "sold": "Sold",
+        "draft": "Draft",
+        "cancelled": "Cancelled",
+        "expired": "Expired"
+      }
+    },
+    "nft": {
+      "chainLabel": "Chain",
+      "empty": "No collections on this chain",
+      "stats": {
+        "floor": "Floor",
+        "volume24h": "24h Volume",
+        "listed": "Listed"
+      },
+      "list": {
+        "openButton": "List for Sale",
+        "heading": "List {{name}}",
+        "priceLabel": "Price",
+        "currencyLabel": "Currency",
+        "durationLabel": "Duration",
+        "duration1d": "1 day",
+        "duration7d": "7 days",
+        "duration30d": "30 days",
+        "royaltyNote": "Royalty: {{pct}}% (paid to original creator)",
+        "confirm": "List NFT",
+        "submitting": "Signing…",
+        "errorFailed": "Listing failed",
+        "step": "Step 2 of 2: Sign your listing"
+      },
+      "approveCollection": {
+        "step": "Step 1 of 2: Approve marketplace for this NFT collection",
+        "button": "Approve (gasless)",
+        "submitting": "Approving…",
+        "tooltip": "One-time approval per NFT collection. OmniBazaar pays the gas.",
+        "success": "Collection approved. You can now list NFTs from this collection.",
+        "failed": "Could not approve the collection.",
+        "notERC2771": "This NFT collection doesn't support gasless approve — you'll need a small amount of XOM for gas.",
+        "mustApprove": "Approve the marketplace for this collection before listing."
+      },
+      "approveXom": {
+        "step": "Step 1 of 2: Approve {{amount}} XOM for this purchase",
+        "button": "Approve XOM (gasless)",
+        "rememberLabel": "Remember approval for future XOM purchases on OmniBazaar",
+        "rememberTooltip": "Grants unlimited XOM spend to the marketplace. You can revoke anytime in Settings > Token Approvals.",
+        "success": "XOM approved. Finishing purchase…"
+      },
+      "buy": {
+        "step1": "Step 1 of 2: Approve XOM",
+        "step2": "Step 2 of 2: Confirm purchase",
+        "confirmButton": "Confirm purchase",
+        "buyFloor": "Buy Floor",
+        "fetchingFloor": "Loading…",
+        "error": {
+          "selfReferral": "Referrer cannot be you or the seller.",
+          "sellerReferral": "Referrer cannot be the seller.",
+          "buyerIsSeller": "You cannot buy your own listing.",
+          "duplicateReferrer": "Second-level referrer cannot equal the primary referrer.",
+          "invalidAddress": "One of the referrer addresses is invalid.",
+          "missingBuyer": "Active wallet not set — unlock the wallet and retry.",
+          "missingSeller": "Listing is missing a seller — please refresh and retry.",
+          "prereqsNotMet": "Purchase prerequisites failed. Please retry.",
+          "insufficientBalance": "Not enough XOM in your wallet for this purchase.",
+          "settlementNotDeployed": "NFT marketplace is being upgraded — please try again shortly.",
+          "noFloorListing": "No listings are currently available for this collection."
+        },
+        "success": {
+          "toast": "NFT purchased — transaction {{tx}}…"
+        }
+      },
+      "buyConfirm": "Confirm purchase? XOM will be sent and the NFT transferred atomically on-chain.",
+      "buyToast": {
+        "success": "NFT purchased — transaction {{tx}}",
+        "failed": "NFT purchase failed"
+      },
+      "buyUnavailable": "NFT purchases are not yet available — please check back soon."
+    },
+    "listing": {
+      "notFound": "Listing not found",
+      "imagesAria": "Listing images",
+      "sellerHeading": "Seller",
+      "feesHeading": "Fees",
+      "kycTier": "KYC Tier {{tier}}",
+      "ratingLine": "⭐ {{rating}} · {{sales}} sales",
+      "unratedSeller": "No rating yet",
+      "ownListing": "This is your listing",
+      "buyNow": "Buy Now",
+      "openChat": "Open Chat",
+      "report": "Report",
+      "reportSubmitted": "Report submitted. The arbitrator pool will review it.",
+      "fees": {
+        "escrowBuyer": "Escrow fee (buyer)",
+        "marketplaceSeller": "Marketplace fee (seller)",
+        "marketplaceTooltip": "1% total: 0.50% referral + 0.25% txn + 0.25% listing"
+      }
+    },
+    "create": {
+      "heading": "Create Listing",
+      "titleLabel": "Title",
+      "titlePlaceholder": "What are you selling?",
+      "categoryLabel": "Category",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Describe the item, condition, and any shipping details",
+      "priceLabel": "Price",
+      "currencyLabel": "Currency",
+      "imagesLabel": "Images ({{count}}/{{max}})",
+      "imagesHint": "Drop images here or click to pick — up to 10, ≤ 5 MB each",
+      "imagesNone": "No images attached",
+      "imagesReady": "{{count}} image(s) uploaded to IPFS",
+      "submit": "Publish listing",
+      "submitting": "Publishing…",
+      "errorFailed": "Failed to create listing"
+    },
+    "purchase": {
+      "heading": "Confirm Purchase",
+      "priceLabel": "Listing price",
+      "escrowFeeLabel": "Escrow fee (0.25%)",
+      "recipientLabel": "Seller",
+      "totalLabel": "Total to pay",
+      "confirm": "Confirm",
+      "submitting": "Signing escrow…",
+      "errorFailed": "Purchase failed"
+    },
+    "chat": {
+      "heading": "Chat · {{thread}}",
+      "empty": "No messages yet — say hi!",
+      "composerPlaceholder": "Type a message…",
+      "send": "Send",
+      "errorFailed": "Message failed to send",
+      "unreadAria": "{{count}} unread messages",
+      "actions": {
+        "ship": "Mark Shipped",
+        "shippedBody": "Item shipped",
+        "receive": "Mark Received",
+        "receivedBody": "Item received — releasing escrow",
+        "dispute": "Open Dispute",
+        "disputeBody": "Opening a dispute"
+      }
+    },
+    "myListings": {
+      "heading": "My Listings",
+      "empty": "Nothing here yet",
+      "tabs": {
+        "active": "Active",
+        "sold": "Sold",
+        "draft": "Draft"
+      },
+      "actions": {
+        "view": "View",
+        "viewStats": "View stats"
+      }
+    },
+    "referral": {
+      "openButton": "Share referral link",
+      "heading": "Invite & Earn",
+      "description": "Earn 70% of the 0.50% referral fee on every purchase and DEX swap referred through your link.",
+      "codeLabel": "Code: {{code}}",
+      "share": "Share",
+      "shareTitle": "Join me on OmniBazaar",
+      "shareText": "Sign up on OmniBazaar and get the welcome bonus.",
+      "qrAlt": "Referral QR code"
+    },
+    "errors": {
+      "imageTooLarge": "Image exceeds 5 MB limit",
+      "imageTypeNotAllowed": "Unsupported image format",
+      "uploadFailed": "Upload failed"
+    },
+    "rwa": {
+      "filter": {
+        "assetClass": {
+          "all": "All",
+          "realEstate": "Real Estate",
+          "equity": "Equity",
+          "bond": "Bond",
+          "commodity": "Commodity",
+          "other": "Other"
+        },
+        "jurisdiction": "Jurisdiction"
+      },
+      "compliance": {
+        "compliant": "Compliant",
+        "tierRequired": "KYC Tier {{tier}} required",
+        "restricted": "Not available in your region"
+      },
+      "kycComingSoon": "KYC upgrade flows ship in Phase 5",
+      "trade": "Trade in DEX",
+      "empty": "No assets match these filters",
+      "connectHint": "Connect a wallet to trade these assets",
+      "documents": "View documents",
+      "stats": {
+        "price": "Price",
+        "marketCap": "Market cap",
+        "volume24h": "24h volume"
+      },
+      "priceTooltip": "Last recorded per-token price in USD.",
+      "mcapTooltip": "Fully-diluted market cap — circulating supply × price.",
+      "apyTooltip": "On-chain yield paid to holders over the last 30 days, annualised.",
+      "complianceTooltip": "Regulatory regime this asset ships under; gates who can hold it.",
+      "tradeAria": "Trade {{symbol}} on the DEX",
+      "tradeTooltip": "Open the DEX pre-filled with {{symbol}}.",
+      "tradeDisabledTooltip": "Trading is gated by KYC and jurisdiction rules for this asset."
+    },
+    "yield": {
+      "filter": {
+        "all": "All",
+        "stable": "Stable",
+        "lp": "LP",
+        "lending": "Lending",
+        "vault": "Vault",
+        "other": "Other"
+      },
+      "sort": {
+        "apy": "APY",
+        "tvl": "TVL",
+        "risk": "Risk",
+        "label": "Sort by"
+      },
+      "risk": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
+      },
+      "maturity": {
+        "open": "Open",
+        "days": "{{count}}d"
+      },
+      "apy": "APY",
+      "tvl": "TVL",
+      "deposit": "Deposit",
+      "strategy": "Strategy",
+      "empty": "No yield opportunities match these filters"
+    },
+    "predictions": {
+      "filter": {
+        "category": {
+          "all": "All",
+          "sports": "Sports",
+          "politics": "Politics",
+          "crypto": "Crypto",
+          "entertainment": "Entertainment",
+          "other": "Other"
+        },
+        "status": {
+          "open": "Open",
+          "resolving": "Resolving",
+          "resolved": "Resolved"
+        }
+      },
+      "outcomes": "Outcomes",
+      "volume": "Volume",
+      "traders": "Traders",
+      "resolvesIn": "Resolves in {{time}}",
+      "buy": "Buy",
+      "sell": "Sell",
+      "claim": "Claim winnings",
+      "myPositions": "My Positions",
+      "noMarkets": "No markets match these filters",
+      "noPositions": "No positions in this market yet",
+      "amountUsd": "Amount (USD)",
+      "amountShares": "Shares to sell",
+      "slippageBps": "Max slippage (bps)",
+      "priceMid": "Mid price",
+      "notFound": "Market not found",
+      "yesPriceTooltip": "Current market price for YES shares. One YES share pays $1 if YES wins, $0 otherwise.",
+      "noPriceTooltip": "Current market price for NO shares. One NO share pays $1 if NO wins, $0 otherwise.",
+      "volumeTooltip": "Total trading volume over the last 24 hours in USD.",
+      "liquidityTooltip": "Number of distinct traders — higher counts mean deeper liquidity.",
+      "resolutionTooltip": "The market end date. YES/NO is decided by the configured oracle shortly after.",
+      "outcomeAria": "{{label}} at {{pct}} percent",
+      "statsAria": "Market health stats",
+      "volumeLabel": "Volume",
+      "tradersLabel": "Traders"
+    }
+  },
+  "features": {
+    "staking": {
+      "heading": "Staking",
+      "tabStake": "Stake",
+      "tabUnstake": "Unstake",
+      "currentStake": "Current Stake",
+      "currentApr": "APR",
+      "accruedRewards": "Accrued Rewards",
+      "lockUntil": "Lock ends",
+      "noActiveStake": "No active stake",
+      "amountLabel": "Amount",
+      "amountPlaceholder": "0.00",
+      "lockLabel": "Lock period",
+      "lockNone": "None",
+      "lock1m": "1 month",
+      "lock6m": "6 months",
+      "lock2y": "2 years",
+      "previewApr": "Estimated APR",
+      "stakeBtn": "Stake",
+      "unstakeBtn": "Unstake",
+      "claimBtn": "Claim Rewards",
+      "submitting": "Submitting…",
+      "earlyWarning": "Early withdrawal penalty applies before lock expiry.",
+      "stakeOk": "Stake submitted — Tx: {{shortHash}}",
+      "unstakeOk": "Unstake submitted — Tx: {{shortHash}}",
+      "claimOk": "Rewards claimed — Tx: {{shortHash}}",
+      "errorAmountRequired": "Amount is required",
+      "errorFailed": "Operation failed",
+      "tierTableHeading": "APR tiers",
+      "tierAmount": "Amount (XOM)",
+      "tierBaseApr": "Base APR",
+      "durationBonusHeading": "Duration bonus",
+      "tier1": "1 – 999,999",
+      "tier2": "1M – 9.99M",
+      "tier3": "10M – 99.99M",
+      "tier4": "100M – 999.99M",
+      "tier5": "1B+",
+      "loginHint": "Sign in to view staking",
+      "calculator": {
+        "tab": "Calculator",
+        "heading": "Earnings estimator",
+        "intro": "Rough annual earnings across staking, referrals, and marketplace activity. Figures ignore compounding and reward-pool caps.",
+        "stakedAmountLabel": "Staked amount (XOM)",
+        "stakedAmountPlaceholder": "0",
+        "lockDurationLabel": "Lock duration",
+        "referralsPerDayLabel": "New referrals per day",
+        "monthlyTxLabel": "Marketplace transactions per month (avg XOM)",
+        "baseAprLine": "Base APR: {{apr}}%",
+        "totalAprLine": "Total APR: {{apr}}%",
+        "stakingEarnings": "Staking rewards",
+        "referralEarnings": "Referral rewards",
+        "marketplaceEarnings": "Marketplace rewards",
+        "welcomeBonus": "Welcome bonus (once)",
+        "totalAnnual": "Estimated annual earnings",
+        "disclaimer": "Values scale with staking, referral, and first-sale curves that decrease as the user base grows. Not financial advice."
+      }
+    },
+    "kyc": {
+      "heading": "KYC & Verification",
+      "currentTier": "Current tier",
+      "participationScore": "Participation score",
+      "scoreOutOf": "{{score}} / 100",
+      "tier0": "Anonymous",
+      "tier1": "Basic",
+      "tier2": "Verified",
+      "tier3": "Identity",
+      "tier4": "Institutional",
+      "tier0Desc": "Email only",
+      "tier1Desc": "Email + phone + social follow",
+      "tier2Desc": "Address + document OCR + AML/PEP screening",
+      "tier3Desc": "Government ID + facial match (Persona)",
+      "tier4Desc": "Business entity verification (validators only)",
+      "scoreBonus": "+{{points}} score bonus",
+      "nextTierHeading": "Next tier",
+      "nextTierUpgrade": "Upgrade",
+      "alreadyAtMax": "You have reached the maximum tier.",
+      "tier4ComingSoon": "Tier 4 (Institutional) opens at hard launch.",
+      "uploadHeading": "Tier 2 — Proof of address",
+      "uploadHint": "Upload a recent utility bill, bank statement, or official letter (PDF, JPEG, or PNG; ≤10 MB).",
+      "uploadFileLabel": "Document",
+      "uploadNameLabel": "Legal name on document",
+      "uploadAddressLabel": "Address shown on document",
+      "uploadDocTypeLabel": "Document type",
+      "docTypeBank": "Bank statement",
+      "docTypeUtility": "Utility bill",
+      "docTypeTax": "Tax document",
+      "docTypeOfficial": "Official letter",
+      "uploadBtn": "Submit document",
+      "uploading": "Uploading…",
+      "uploadOk": "Document submitted — pending review.",
+      "uploadFailed": "Upload failed",
+      "uploadFileTooLarge": "File exceeds 10 MB limit.",
+      "uploadFileTypeInvalid": "Only PDF, JPEG, and PNG files are accepted.",
+      "personaHeading": "Tier 3 — Identity verification",
+      "personaHint": "We use Persona to verify a government-issued ID and facial likeness. The flow opens in a new tab.",
+      "personaCta": "Verify Identity with Persona",
+      "personaWaiting": "Waiting for Persona to confirm…",
+      "personaConfirmed": "Persona verification confirmed.",
+      "personaFailed": "Persona verification did not complete.",
+      "loginHint": "Sign in to view your KYC status"
+    },
+    "bridge": {
+      "heading": "Bridge",
+      "fromHeading": "From",
+      "toHeading": "To",
+      "amountLabel": "Amount",
+      "amountPlaceholder": "0.00",
+      "loginHint": "Sign in to bridge assets",
+      "noRoutes": "No bridge route available for this pair",
+      "routeLabel": "Route",
+      "feeLabel": "Bridge fee",
+      "estTime": "~{{seconds}}s",
+      "submit": "Bridge",
+      "signing": "Waiting for signature…",
+      "depositing": "Depositing on source chain…",
+      "bridging": "Bridging — {{status}}",
+      "claiming": "Claiming on destination chain…",
+      "complete": "Bridge complete",
+      "failed": "Bridge failed: {{error}}",
+      "txHash": "Tx: {{shortHash}}",
+      "selectFromChain": "From chain",
+      "selectToChain": "To chain",
+      "selectFromToken": "From token",
+      "selectToToken": "To token",
+      "stepDeposit": "Deposit",
+      "stepBridge": "Bridge",
+      "stepClaim": "Claim",
+      "stepComplete": "Complete",
+      "explorer": "View on explorer"
+    },
+    "addressBook": {
+      "heading": "Address Book",
+      "empty": "No saved contacts",
+      "add": "Add contact",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save",
+      "cancel": "Cancel",
+      "nameLabel": "Name",
+      "namePlaceholder": "Alice",
+      "addressLabel": "Address",
+      "addressPlaceholder": "0x… or username",
+      "chainLabel": "Network",
+      "notesLabel": "Notes",
+      "notesPlaceholder": "Optional",
+      "errorRequired": "Name and address are required",
+      "errorSaveFailed": "Failed to save contact",
+      "deleteConfirm": "Delete this contact?"
+    },
+    "about": {
+      "heading": "About",
+      "version": "Version",
+      "validatorNetwork": "Validator network",
+      "validatorsConnected": "{{count}} healthy",
+      "validatorRow": "{{url}} — {{latency}}ms",
+      "validatorRowOffline": "{{url}} — offline",
+      "noValidators": "No validators connected",
+      "links": "Links",
+      "changelog": "Changelog",
+      "support": "Support",
+      "privacyPolicy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "footer": "Built on OmniCoin L1 — chain 88008"
+    },
+    "participation": {
+      "heading": "Participation Score",
+      "intro": "Your participation score combines nine factors capped at 100. A higher score unlocks validator and listing-node eligibility.",
+      "loginHint": "Sign in to view your participation score",
+      "totalLabel": "Total score",
+      "outOf": "{{score}} / {{max}}",
+      "viewBreakdown": "View Breakdown",
+      "components": {
+        "kycTrust": "KYC Trust",
+        "kycTrustHint": "Tier 0 = 0, Tier 1 = 5, Tier 2 = 10, Tier 3 = 15, Tier 4 = 20.",
+        "marketplaceReputation": "Marketplace Reputation",
+        "marketplaceReputationHint": "Average star rating mapped to −   − 10 … +10.",
+        "stakingAmountDuration": "Staking Amount + Duration",
+        "stakingAmountDurationHint": "Amount tier × 3 plus duration tier × 3.",
+        "disseminator": "Disseminator (referrals)",
+        "disseminatorHint": "1 point per referred user, capped at 10.",
+        "publisher": "Publisher (listings)",
+        "publisherHint": "100 listings = 1, 1K = 2, 10K = 3, 100K = 4.",
+        "forumParticipation": "Forum Participation",
+        "forumParticipationHint": "Decays over time; posts, replies, and likes.",
+        "marketplaceActivity": "Marketplace Activity",
+        "marketplaceActivityHint": "Decays over time; completed transactions.",
+        "communityPolicing": "Community Policing",
+        "communityPolicingHint": "Report accuracy; decays over time.",
+        "reliability": "Reliability",
+        "reliabilityHint": "Uptime and performance signals (− 5 to +5).",
+        "vouchScore": "Vouch Score",
+        "vouchScoreHint": "Community trust vouches received (0 to 5)."
+      }
+    },
+    "governance": {
+      "heading": "Governance",
+      "badge": "Coming Soon",
+      "intro": "ODDAO on-chain governance arrives after hard launch. Validators and XOM stakers will propose and vote on emissions, fee parameters, and treasury allocations.",
+      "learnMore": "Read the governance plan",
+      "notes": "Once live you will be able to vote from this screen. Until then, join the forum to share feedback.",
+      "ctaForum": "Open Forum"
+    },
+    "portfolio": {
+      "heading": "Portfolio Analytics",
+      "intro": "ERC-20 balances across every EVM chain, batched in one Multicall3 request per chain.",
+      "loading": "Loading balances…",
+      "empty": "No token balances found.",
+      "loginHint": "Sign in to view your portfolio.",
+      "partialError": "{{count}} chain could not be read — showing partial results.",
+      "partialError_other": "{{count}} chains could not be read — showing partial results."
+    }
+  },
+  "errors": {
+    "unknown": {
+      "title": "Something went wrong",
+      "body": "We could not complete that action.",
+      "action": "Try again in a moment. If the error repeats, restart the wallet."
+    },
+    "invalidInput": "Invalid input",
+    "network": {
+      "title": "Connection problem",
+      "body": "Your wallet could not reach the internet or our validator.",
+      "action": "Check your connection and tap retry."
+    },
+    "session": {
+      "title": "Session expired",
+      "body": "Your secure session is no longer valid.",
+      "action": "Sign in again to continue."
+    },
+    "notFound": {
+      "title": "Not found",
+      "body": "The item you requested is no longer available.",
+      "action": "Refresh the screen and try again."
+    },
+    "rateLimit": {
+      "title": "Too many requests",
+      "body": "You are going faster than our limits allow.",
+      "action": "Wait about a minute, then retry."
+    },
+    "serverDown": {
+      "title": "Service temporarily unavailable",
+      "body": "Our servers are unreachable right now.",
+      "action": "We retry automatically — leave this screen open."
+    },
+    "locked": {
+      "title": "Wallet is locked",
+      "body": "This action requires your unlocked wallet.",
+      "action": "Unlock the wallet and try again."
+    },
+    "insufficient": {
+      "title": "Not enough balance",
+      "body": "Your balance on this chain is too low for the requested action.",
+      "action": "Receive or swap more before retrying."
+    },
+    "validation": {
+      "title": "Check your input",
+      "body": "The request was rejected because one of the fields is not valid.",
+      "action": "Review the form and try again."
+    },
+    "cancelled": {
+      "title": "Cancelled",
+      "body": "You cancelled this action.",
+      "action": ""
+    },
+    "retry": "Retry",
+    "retryAria": "Retry the failed action",
+    "dismissAria": "Dismiss error message",
+    "context": {
+      "approveNftCollection": "approve NFT collection",
+      "approveXomForNftBuy": "approve XOM for NFT purchase",
+      "buyNft": "buy NFT"
+    }
+  },
+  "dapp": {
+    "connect": {
+      "heading": "Connect to dApp",
+      "intro": "{{origin}} wants to connect to your wallet.",
+      "permissionsLabel": "This site will be able to:",
+      "permissionAccount": "View your wallet address",
+      "permissionSign": "Request signatures and transactions (each one needs your approval)",
+      "approve": "Connect",
+      "reject": "Cancel"
+    },
+    "sign": {
+      "heading": "Signature request",
+      "messageLabel": "Message",
+      "legacyWarning": "⚠️ This site is using the legacy eth_sign method, which can be misused to sign transactions. Reject if you are unsure.",
+      "approve": "Sign",
+      "reject": "Cancel"
+    },
+    "typed": {
+      "heading": "Typed-data signature",
+      "domainLabel": "Domain",
+      "messageLabel": "{{primaryType}}",
+      "approve": "Sign",
+      "reject": "Cancel"
+    },
+    "tx": {
+      "heading": "Confirm transaction",
+      "toLabel": "Recipient",
+      "valueLabel": "Native value",
+      "functionLabel": "Function",
+      "unknownFunction": "(unknown function — calldata not decoded)",
+      "gasLabel": "Network fee",
+      "gasFreeOmniRelay": "Free (paid by OmniRelay)",
+      "gasOnChain": "Estimated at network gas price",
+      "riskLabel": "Risk",
+      "simulationFailed": "Simulation reverted: {{reason}}",
+      "ackHighRisk": "I understand this transaction looks risky and want to proceed anyway.",
+      "approve": "Confirm",
+      "reject": "Cancel",
+      "reason": {
+        "scamAddress": "Recipient is on a known scam blocklist.",
+        "unlimitedApprove": "Approves unlimited spending allowance.",
+        "approvalForAll": "Grants approval for all NFTs in this collection.",
+        "transferFrom": "Pulls tokens via a pre-existing allowance.",
+        "zeroAddressTransfer": "Transfers to the zero address (burn)."
+      }
+    },
+    "switch": {
+      "heading": "Switch network",
+      "fromLabel": "From chain",
+      "toLabel": "To chain",
+      "approve": "Switch",
+      "reject": "Cancel"
+    },
+    "addchain": {
+      "heading": "Add network",
+      "nameLabel": "Network name",
+      "chainIdLabel": "Chain ID",
+      "rpcLabel": "RPC URL",
+      "symbolLabel": "Currency symbol",
+      "explorerLabel": "Block explorer",
+      "approve": "Add network",
+      "reject": "Cancel",
+      "collisionWarning": "⚠️ This dApp is trying to add a chain with the same ID ({{chainId}}) as {{knownName}}, but with a DIFFERENT {{fields}}. This could be a phishing attempt. Use the original {{knownName}} configuration instead.",
+      "collisionDiffRpc": "RPC URL",
+      "collisionDiffName": "chain name",
+      "collisionDiffSymbol": "native currency symbol",
+      "iUnderstandRisk": "I understand the risk and want to add this chain anyway",
+      "forceApproveDisabledTooltip": "Disabled: confirm you understand the risk to continue."
+    },
+    "addtoken": {
+      "heading": "Add token",
+      "symbolLabel": "Symbol",
+      "decimalsLabel": "Decimals",
+      "addressLabel": "Contract address",
+      "imageLabel": "Image URL",
+      "approve": "Add token",
+      "reject": "Cancel"
+    },
+    "walletconnect": {
+      "heading": "WalletConnect",
+      "intro": "Scan a WalletConnect QR with your phone, copy the wc: URI, and paste it here to pair.",
+      "pasteUriPlaceholder": "wc:…",
+      "connect": "Pair",
+      "pairOk": "Paired. Waiting for the dApp to send a session proposal.",
+      "activeSessions": "Active sessions",
+      "empty": "No active WalletConnect sessions"
+    },
+    "education": {
+      "body": "OmniWallet supports EIP-6963 — it appears in any modern dApp's wallet picker. For legacy dApps that only show \"Connect MetaMask\", look for OmniWallet in the list, or use WalletConnect."
+    },
+    "risk": {
+      "green": "Low",
+      "amber": "Caution",
+      "red": "High",
+      "explanation": "No risky patterns detected. Always verify the recipient and amount."
+    },
+    "originTooltip": "The website that is asking for this approval.",
+    "chainTooltip": "The chain this request targets.",
+    "chainAria": "Target chain: {{chain}}",
+    "requestFrom": "Request from {{origin}}",
+    "rejectAria": "Reject this request and close the popup",
+    "approveAria": "Approve this request",
+    "embeddedFrameTooltip": "This request is coming from an iframe embedded inside another site. Approve only if you trust both the dApp AND the parent site.",
+    "embeddedFrame": "This request comes from an embedded iframe, not the top-level page.",
+    "embeddedFrameFull": "Embedded iframe: {{origin}} inside {{topOrigin}}"
+  },
+  "hardware": {
+    "selector": {
+      "title": "Connect Hardware Wallet",
+      "ledgerUsb": "Ledger (USB)",
+      "ledgerBle": "Ledger (Bluetooth)",
+      "trezorUsb": "Trezor (USB)"
+    },
+    "connect": {
+      "step1": "Connect device",
+      "step2": "Unlock device",
+      "step3": "Open Ethereum app",
+      "step4": "Deriving accounts...",
+      "noDevice": "No device detected. Plug it in and try again.",
+      "denied": "Device access denied. Please allow access in your browser."
+    },
+    "sign": {
+      "title": "Confirm on {{device}}",
+      "subtitle": "Review and confirm the transaction on your device",
+      "cancel": "Cancel"
+    },
+    "accounts": {
+      "title": "Select Accounts",
+      "showMore": "Show 5 more",
+      "balance": "Balance",
+      "addSelected": "Add {{count}} accounts",
+      "addedToast": "Added {{count}} hardware accounts"
+    },
+    "badge": {
+      "ledger": "Ledger",
+      "trezor": "Trezor"
+    },
+    "advanced": {
+      "title": "Advanced",
+      "hdPath": "Derivation path"
+    }
+  },
+  "antiPhishing": {
+    "stepTitle": "Choose your anti-phishing banner",
+    "stepHelp": "Pick a color and a short word. OmniWallet will show them under the header every time you open the popup. A fake wallet cannot know your choice, so if you do not see your color and word, the popup is not the real OmniWallet.",
+    "colorLabel": "Color",
+    "wordLabel": "Word or short phrase",
+    "wordPlaceholder": "e.g. sunshine42",
+    "wordRules": "Letters, digits, and spaces only. {{min}}–{{max}} characters.",
+    "preview": "Preview",
+    "previewEmpty": "Your banner will appear here",
+    "previewAria": "Live preview of your anti-phishing banner",
+    "confirm": "Save banner",
+    "saving": "Saving…",
+    "skip": "Skip for now",
+    "changeTitle": "Change anti-phishing banner",
+    "changeRequiresPassword": "Enter your password to save the change",
+    "passwordPlaceholder": "Your wallet password",
+    "lockScreenFallback": "Anti-phishing: unlock to verify",
+    "bannerAriaLabel": "Anti-phishing banner",
+    "bannerTooltip": "This is your anti-phishing marker. If you don't see YOUR color and word here, this is NOT the real OmniWallet.",
+    "addPrompt": "Add anti-phishing banner (recommended)",
+    "addPromptAria": "Add an anti-phishing banner — opens the settings page",
+    "colorSwatchAria": "Select color {{color}}",
+    "savedOk": "Banner updated.",
+    "errColorInvalid": "Please pick a color.",
+    "errWordTooShort": "Use at least 3 characters.",
+    "errWordTooLong": "Use no more than 24 characters.",
+    "errWordChars": "Only letters, digits, and spaces are allowed.",
+    "errSanitized": "Please fix the banner fields before saving.",
+    "errPasswordRequired": "Enter your wallet password to save the change.",
+    "errGeneric": "Could not save the anti-phishing banner. Please try again."
+  },
+  "chains": {
+    "cardano": {
+      "send": {
+        "minAmountError": "Minimum send on Cardano is 1 ADA. Raise the amount and try again.",
+        "insufficientUtxo": "Available UTXOs do not cover amount plus fee. Add more ADA to the sending wallet.",
+        "feeEstimate": "Estimated network fee: {{ada}} ADA",
+        "ttlExpired": "This transaction expired before we could send it. Refresh and try again.",
+        "broadcastPending": "Submitting to the Cardano network…",
+        "broadcastSuccess": "Cardano transaction submitted. Tx: {{shortHash}}",
+        "broadcastFailed": "Could not submit the Cardano transaction. Please try again."
+      }
+    }
+  },
+  "predictions": {
+    "claim": {
+      "button": "Claim winnings from market \"{{title}}\"",
+      "confirming": "Confirming on Polygon…",
+      "successToast": "Claim submitted — Tx: {{shortHash}}",
+      "explorerLink": "View transaction in block explorer",
+      "insufficientGasTitle": "You need {{symbol}} on {{chain}} to claim",
+      "insufficientGasBody": "Claiming winnings on {{chain}} requires {{symbol}} for gas. Bridge XOM here to cover the transaction fee, then try again.",
+      "bridgeForGas": "Bridge XOM for gas",
+      "failed": "Could not claim winnings. Please try again.",
+      "disabledTooltip": "This market has not resolved yet. Claim will be available once the outcome is finalized."
+    }
+  }
+}

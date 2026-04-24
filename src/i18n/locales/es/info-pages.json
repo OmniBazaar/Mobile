@@ -1,0 +1,705 @@
+{
+  "contact": {
+    "title": "Contacte con nosotros",
+    "subtitle": "Póngase en contacto con el equipo de OmniBazaar",
+    "email": {
+      "title": "Asistencia por correo electrónico",
+      "description": "Obtenga ayuda con su cuenta, transacciones o problemas técnicos",
+      "address": "Use nuestra página de Soporte en la aplicación"
+    },
+    "chat": {
+      "title": "Chat en directo",
+      "description": "Chatee con nuestro equipo de asistencia para obtener ayuda inmediata",
+      "action": "Iniciar chat",
+      "comingSoon": "Próximamente, chat en directo"
+    },
+    "community": {
+      "title": "Comunidad",
+      "description": "Conéctate con otros usuarios y obtén apoyo de tus compañeros",
+      "action": "Únete a la Comunidad"
+    },
+    "form": {
+      "title": "Envíenos un mensaje",
+      "description": "¿Tiene alguna pregunta o necesita ayuda? Rellene el siguiente formulario y nos pondremos en contacto con usted lo antes posible.",
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "messagePlaceholder": "Describa detalladamente su problema o pregunta...",
+      "send": "Enviar mensaje",
+      "sending": "Enviando...",
+      "successMessage": "Su mensaje se ha enviado correctamente",
+      "errorMessage": "No se ha podido enviar el mensaje. Por favor, inténtelo de nuevo.",
+      "subjects": {
+        "general": "Investigación general",
+        "account": "Cuestiones contables",
+        "transaction": "Problemas de transacción",
+        "technical": "Asistencia técnica",
+        "feature": "Solicitud de funciones",
+        "bug": "Informe de error"
+      }
+    },
+    "other": {
+      "title": "Otras formas de contactar con nosotros",
+      "business": {
+        "title": "Consultas comerciales",
+        "email": "Visite nuestro Foro de la Comunidad"
+      },
+      "media": {
+        "title": "Medios de comunicación y prensa",
+        "email": "Visite nuestro Foro de la Comunidad"
+      },
+      "security": {
+        "title": "Cuestiones de seguridad",
+        "email": "Use nuestra página de Soporte en la aplicación"
+      }
+    },
+    "tooltips": {
+      "sendEmail": "Abrir su cliente de correo electrónico para enviarnos un mensaje",
+      "startChat": "Comenzar una sesión de chat en vivo con nuestro equipo de soporte",
+      "joinCommunity": "Visite nuestro foro comunitario para obtener ayuda entre pares",
+      "submitForm": "Enviar su mensaje a nuestro equipo de soporte"
+    }
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "subtitle": "Respuestas a las preguntas más frecuentes sobre OmniBazaar",
+    "categoryDescription": "Preguntas frecuentes sobre {{category}}",
+    "categories": {
+      "general": "General",
+      "buying": "Comprar",
+      "selling": "Vender",
+      "payments": "Pagos",
+      "security": "Seguridad",
+      "xom": "Ficha XOM",
+      "dex": "DEX",
+      "rwa": "Activos Reales",
+      "yield": "Rendimiento",
+      "predictions": "Predicciones",
+      "incentives": "Incentivos",
+      "wallet": "Billetera"
+    },
+    "general": {
+      "whatIsOmniBazaar": {
+        "question": "¿Qué es OmniBazaar?",
+        "answer": "OmniBazaar es un mercado peer-to-peer descentralizado basado en la tecnología blockchain. Permite a los usuarios comprar y vender bienes físicos, activos digitales, NFT y servicios directamente sin intermediarios, utilizando contratos inteligentes para transacciones seguras."
+      },
+      "howToStart": {
+        "question": "¿Cómo empiezo a vender en OmniBazaar?",
+        "answer": "Para empezar a vender: 1) Crea una cuenta o conecta tu monedero, 2) Completa la verificación KYC opcional para límites más altos, 3) Haz clic en \"Crear anuncio\" y rellena los detalles del producto, 4) Establece tu precio en XOM o criptomonedas compatibles, 5) Publica tu anuncio en la blockchain."
+      },
+      "fees": {
+        "question": "¿Qué comisiones cobra OmniBazaar?",
+        "answer": "OmniBazaar cobra una comisión total del 1% sobre las ventas realizadas, pagada por el vendedor: 0,50% comisión de referido, 0,25% comisión de transacción y 0,25% comisión de listado. No se cobran comisiones por crear anuncios y los compradores no pagan comisiones de plataforma. Una comisión de prioridad opcional (0-3%) está disponible para mayor visibilidad del anuncio."
+      }
+    },
+    "buying": {
+      "howToBuy": {
+        "question": "¿Cómo puedo comprar artículos en OmniBazaar?",
+        "answer": "Navegue por los anuncios, haga clic en los artículos que desee, revise las valoraciones y los detalles del vendedor y, a continuación, haga clic en \"Comprar ahora\" o \"Hacer oferta\". El pago se mantiene en custodia hasta que confirme la recepción."
+      },
+      "paymentMethods": {
+        "question": "¿Puedo utilizar métodos de pago tradicionales?",
+        "answer": "Aunque OmniBazaar utiliza principalmente criptomonedas, estamos integrando pasarelas de pago fiat en las regiones compatibles. Los usuarios pueden comprar XOM directamente con tarjetas de crédito o transferencias bancarias a través de nuestros socios."
+      },
+      "buyerProtection": {
+        "question": "¿Cómo funciona la protección del comprador?",
+        "answer": "La custodia de contratos inteligentes protege a los compradores reteniendo el pago hasta que se confirma la entrega. Si surgen problemas, nuestro sistema de arbitraje descentralizado resuelve las disputas de forma justa."
+      }
+    },
+    "selling": {
+      "howToSell": {
+        "question": "¿Qué puedo vender en OmniBazaar?",
+        "answer": "Puedes vender productos físicos, digitales, NFT y servicios. Todos los anuncios deben cumplir la legislación local y las directrices de la plataforma."
+      },
+      "listingRequirements": {
+        "question": "¿Cuáles son los requisitos de cotización?",
+        "answer": "Los anuncios deben incluir descripciones claras, fotos precisas, informes honestos sobre el estado de los artículos y precios razonables. Entre los artículos prohibidos se incluyen los ilegales, robados o que violen los derechos de propiedad intelectual."
+      },
+      "sellerFees": {
+        "question": "¿Cuáles son los honorarios del vendedor?",
+        "answer": "Los vendedores pagan una comisión del 1% sobre las transacciones completadas (0,50% referido + 0,25% transacción + 0,25% listado). No hay comisiones de publicación por adelantado."
+      }
+    },
+    "payments": {
+      "acceptedCrypto": {
+        "question": "¿Qué criptomonedas se aceptan?",
+        "answer": "OmniBazaar acepta XOM (token nativo), AVAX, USDC, USDT y otras criptodivisas importantes de la red Avalanche."
+      },
+      "escrowSystem": {
+        "question": "¿Cómo protege el sistema de plica a compradores y vendedores?",
+        "answer": "Nuestro contrato inteligente de custodia retiene automáticamente el pago cuando un comprador realiza una compra. Los fondos sólo se liberan al vendedor cuando: 1) El comprador confirma la recepción y satisfacción, 2) La entrega se confirma a través del seguimiento, o 3) El período de custodia expira sin disputa. Esto protege a ambas partes del fraude."
+      },
+      "withdrawals": {
+        "question": "¿Cómo puedo retirar mis ganancias?",
+        "answer": "Las ganancias están disponibles inmediatamente después de la liberación de la plica. Simplemente vaya a su monedero y retire a cualquier dirección compatible. Las transacciones de OmniCoin (XOM) no tienen comisiones de gas: los validadores absorben el costo. Las comisiones de gas solo se aplican para retiros a otras blockchains."
+      }
+    },
+    "security": {
+      "accountSecurity": {
+        "question": "¿Cómo puedo proteger mi cuenta?",
+        "answer": "Utilice un monedero físico para obtener la máxima seguridad, active la función 2FA si está disponible, no comparta nunca sus claves privadas ni su frase semilla, y verifique los detalles de la transacción antes de confirmarla."
+      },
+      "disputeResolution": {
+        "question": "¿Cómo se resuelven los litigios?",
+        "answer": "Las disputas se resuelven mediante nuestro sistema de arbitraje descentralizado. Los árbitros de la comunidad revisan las pruebas de ambas partes y votan el resultado. El contrato inteligente ejecuta automáticamente la decisión. Los árbitros son recompensados en XOM por sentencias justas."
+      },
+      "kycRequirement": {
+        "question": "¿Es necesaria la verificación KYC?",
+        "answer": "Las compras y ventas básicas no requieren CSC. Sin embargo, los usuarios verificados disfrutan de límites de transacción más altos, acceso a funciones premium y puntuaciones de confianza mejoradas. Nuestra red descentralizada de oráculos se encarga de gestionar el KYC para proteger la privacidad."
+      }
+    },
+    "xom": {
+      "whatIsXOM": {
+        "question": "¿Qué es la ficha XOM?",
+        "answer": "XOM (OmniCoin) es la criptomoneda nativa de la plataforma OmniBazaar. Se utiliza para transacciones, stakings, votaciones de gobierno y obtención de recompensas. Los titulares de XOM reciben descuentos en las comisiones y pueden participar en las decisiones de la plataforma."
+      },
+      "howToEarnXOM": {
+        "question": "¿Cómo puedo ganar fichas XOM?",
+        "answer": "Gana XOM: vendiendo artículos (recibe pagos en XOM), haciendo staking XOM existentes para obtener recompensas, participando en la gobernanza, recomendando nuevos usuarios, alojando nodos de listas o validando transacciones."
+      },
+      "stakingBenefits": {
+        "question": "¿Cuáles son las ventajas de hacer staking por XOM?",
+        "answer": "Staking XOM ofrece: recompensas de staking (5-12% APR según el monto y los niveles de duración), derechos de voto en la gobernanza, mayor puntuación de participación y acceso a funciones exclusivas."
+      }
+    },
+    "dex": {
+      "whatIsDex": {
+        "question": "¿Qué es el DEX de OmniBazaar?",
+        "answer": "El DEX (Exchange Descentralizado) de OmniBazaar es una plataforma de trading integrada que te permite intercambiar tokens, operar en mercados spot y acceder a futuros perpetuos directamente desde tu cuenta de OmniBazaar. Utiliza un modelo híbrido de libro de órdenes y AMM (Creador de Mercado Automatizado) para proporcionar liquidez profunda y spreads ajustados sin depender de un exchange centralizado."
+      },
+      "orderTypes": {
+        "question": "¿Qué tipos de órdenes están disponibles en el DEX?",
+        "answer": "El DEX admite órdenes de Mercado, Límite, Stop, Stop-Límite, OCO (Una-Cancela-Otra), Iceberg, TWAP (Precio Promedio Ponderado por Tiempo) y VWAP (Precio Promedio Ponderado por Volumen). Esto te brinda herramientas de trading de nivel profesional, ya sea que realices un simple intercambio o ejecutes una estrategia de trading compleja."
+      },
+      "perpetualFutures": {
+        "question": "¿Cómo funcionan los futuros perpetuos en OmniBazaar?",
+        "answer": "Los futuros perpetuos te permiten operar con apalancamiento de 1x a 100x sin fechas de vencimiento. Las tasas de financiación se calculan cada 8 horas para mantener el precio del contrato alineado con el precio spot. El sistema incluye protección automática contra liquidación, y la protección MEV (Valor Extraíble por Mineros) garantiza que tus operaciones se ejecuten de forma justa sin front-running."
+      },
+      "dexFees": {
+        "question": "¿Cuáles son las comisiones de trading del DEX?",
+        "answer": "Las comisiones de trading del DEX son de 20 puntos base (0,20%) para takers, con un rebate de -5 puntos base (0,05%) para makers. Distribución de comisiones: 70% va al LP Pool (proveedores de liquidez), 20% va al ODDAO Treasury y 10% va al Protocol Treasury. Los takers referidos pagan un recargo adicional de 5bp (70% referidor, 20% referidor de segundo nivel, 10% ODDAO)."
+      },
+      "privacySwaps": {
+        "question": "¿Qué son los intercambios de privacidad?",
+        "answer": "Los intercambios de privacidad te permiten convertir entre XOM y pXOM (OmniCoin Privado) utilizando circuitos ofuscados de COTI V2 (computación multipartita). Los montos de las transacciones se cifran para que solo tú puedas verlos. Tu dirección de billetera sigue siendo visible en la cadena de bloques. La comisión de conversión es del 0,3%, gestionada por la red COTI."
+      }
+    },
+    "rwa": {
+      "whatAreRwas": {
+        "question": "¿Qué son los Activos del Mundo Real (RWA) en OmniBazaar?",
+        "answer": "Los Activos del Mundo Real son representaciones tokenizadas de activos físicos como bienes raíces, materias primas, arte o coleccionables. En OmniBazaar, puedes comprar y vender propiedad fraccionada de estos activos, haciendo accesibles para todos inversiones que antes solo estaban disponibles para inversores adinerados."
+      },
+      "rwaCompliance": {
+        "question": "¿Cómo se regulan los RWA en OmniBazaar?",
+        "answer": "Los listados de RWA deben cumplir con las regulaciones locales de valores. OmniBazaar proporciona herramientas de cumplimiento que incluyen verificación KYC para operadores de RWA, aplicación de restricciones geográficas, verificación de inversores acreditados cuando sea necesario y auditorías transparentes. Cada listado de RWA incluye información de cumplimiento específica por jurisdicción."
+      },
+      "rwaTrading": {
+        "question": "¿Cómo opero con RWA en OmniBazaar?",
+        "answer": "Navega al mercado de RWA desde la sección de Exchange de Criptomonedas. Puedes buscar tipos específicos de activos, ver información detallada incluyendo valoraciones y documentación legal, y colocar órdenes de compra o venta. Las operaciones con RWA utilizan el mismo sistema de custodia que las compras en el marketplace para una liquidación segura."
+      },
+      "rwaValuation": {
+        "question": "¿Cómo se determinan los precios de los RWA?",
+        "answer": "Los precios de los RWA son determinados por el servicio de Agregador de Oráculos, que obtiene datos de múltiples fuentes independientes de precios y valoraciones. Para bienes raíces, esto incluye datos de ventas comparables y tasaciones profesionales. Para materias primas, utiliza precios del mercado spot. El sistema señala anomalías de precios para revisión humana."
+      },
+      "rwaFractional": {
+        "question": "¿Puedo comprar una fracción de un RWA?",
+        "answer": "Sí. La mayoría de los RWA en OmniBazaar están fraccionados en unidades más pequeñas, lo que te permite invertir con tan solo unos pocos dólares en XOM. Los propietarios fraccionados reciben retornos proporcionales de cualquier ingreso que genere el activo, como alquileres de bienes raíces o dividendos de propiedad empresarial."
+      }
+    },
+    "yield": {
+      "whatIsYield": {
+        "question": "¿Qué son los programas de rendimiento en OmniBazaar?",
+        "answer": "Los programas de rendimiento te permiten obtener ingresos pasivos con tus tenencias de criptomonedas. OmniBazaar agrega oportunidades de pools de liquidez del DEX, programas de staking y protocolos de préstamos. Puedes comparar rendimientos porcentuales anuales (APY), niveles de riesgo y períodos de bloqueo en todos los programas disponibles desde un solo panel."
+      },
+      "yieldVsStaking": {
+        "question": "¿Cuál es la diferencia entre yield farming y staking?",
+        "answer": "El staking bloquea tus XOM para asegurar la red y ganar entre 5-12% APR según el monto y la duración. El yield farming implica proporcionar liquidez a pares de trading del DEX o protocolos de préstamos, lo que puede ofrecer mayores retornos pero conlleva riesgo de pérdida impermanente. Ambos están disponibles en OmniBazaar y puedes usar ambos simultáneamente con diferentes porciones de tus tenencias."
+      },
+      "yieldRisks": {
+        "question": "¿Cuáles son los riesgos de los programas de rendimiento?",
+        "answer": "Los riesgos principales incluyen pérdida impermanente (cuando los precios de los tokens divergen en los pools de liquidez), riesgo de contratos inteligentes (aunque nuestros contratos están auditados) y volatilidad del mercado que afecta el valor de las recompensas. OmniBazaar muestra una calificación de riesgo para cada oportunidad de rendimiento y te permite filtrar por tolerancia al riesgo. Los programas de mayor rendimiento generalmente conllevan mayor riesgo."
+      },
+      "yieldRewards": {
+        "question": "¿Cómo y cuándo se distribuyen las recompensas de rendimiento?",
+        "answer": "Las recompensas de staking se distribuyen proporcionalmente del pool de recompensas de bloque (hasta el 50% de la recompensa de 15,6 XOM de cada bloque). Las recompensas de liquidez del DEX se distribuyen continuamente a medida que ocurren las operaciones. Puedes reclamar las recompensas acumuladas en cualquier momento desde el panel de rendimiento, o habilitar el auto-compounding para reinvertir las recompensas automáticamente."
+      },
+      "yieldWithdrawal": {
+        "question": "¿Puedo retirar de los programas de rendimiento en cualquier momento?",
+        "answer": "El staking flexible y la mayoría de los pools de liquidez permiten el retiro en cualquier momento. El staking con bloqueo temporal (1 mes, 6 meses o 2 años) ofrece un APR bonus pero aplica una penalización por retiro anticipado si sales antes de que termine el período de compromiso. Siempre verifica los términos de bloqueo antes de depositar."
+      }
+    },
+    "predictions": {
+      "whatArePredictions": {
+        "question": "¿Qué son los mercados de predicciones en OmniBazaar?",
+        "answer": "Los mercados de predicciones te permiten comprar y vender posiciones sobre los resultados de eventos futuros, como movimientos de precios de criptomonedas, votaciones de gobernanza de protocolos o eventos del mundo real. Cada mercado tiene acciones binarias o de múltiples resultados que pagan según el resultado real. Es una forma de expresar tu opinión sobre resultados probables y potencialmente beneficiarte de predicciones precisas."
+      },
+      "howPredictionsWork": {
+        "question": "¿Cómo funcionan los mercados de predicciones?",
+        "answer": "Cada mercado tiene acciones que representan posibles resultados (por ejemplo, 'Sí' y 'No'). Los precios de las acciones van de $0 a $1 y reflejan la probabilidad de consenso del mercado. Si compras acciones de 'Sí' a $0,30 y el evento ocurre, cada acción paga $1,00, dándote una ganancia de $0,70 por acción. Si el evento no ocurre, tus acciones expiran sin valor."
+      },
+      "predictionSettlement": {
+        "question": "¿Cómo se resuelven los mercados de predicciones?",
+        "answer": "Los mercados se resuelven utilizando el Agregador de Oráculos, que verifica los resultados de múltiples fuentes de datos confiables. Para eventos en cadena, la resolución es automática. Para eventos del mundo real, oráculos designados envían resultados que son verificados por consenso entre validadores. Las disputas pueden escalarse al sistema de arbitraje comunitario."
+      },
+      "predictionLimits": {
+        "question": "¿Hay límites en la participación en mercados de predicciones?",
+        "answer": "Los límites de posición dependen de tu nivel de verificación KYC. Los usuarios de Nivel 0 pueden participar con tamaños de posición más pequeños, mientras que los usuarios completamente verificados (Nivel 3+) no tienen límites. La participación en mercados de predicciones sigue los mismos límites de transacción que otras actividades del marketplace. Los mercados que involucran eventos regulados pueden tener restricciones geográficas."
+      },
+      "predictionFees": {
+        "question": "¿Qué comisiones se aplican a los mercados de predicciones?",
+        "answer": "Los mercados de predicción utilizan una tarifa dinámica basada en la probabilidad del resultado. La tasa varía de 0.50% a 2.00%, con la fórmula: tasa = 7% x P x (1-P). A probabilidades 50/50 la tarifa es ~1.75%; resultados casi seguros (P > 0.90) pagan tan solo 0.63%. No hay tarifa de liquidación. Todas las tarifas se dividen 70% Tesorería ODDAO / 20% Pool de Staking / 10% Protocolo. La tarifa exacta se muestra antes de confirmar cualquier operación."
+      }
+    },
+    "incentives": {
+      "welcomeBonus": {
+        "question": "¿Qué es el Bono de Bienvenida?",
+        "answer": "Los nuevos usuarios que completen la verificación básica (correo electrónico, teléfono y seguimiento en redes sociales) reciben un Bono de Bienvenida de hasta 10.000 XOM para los primeros adoptantes. El monto del bono disminuye a medida que se unen más usuarios: los primeros 1.000 usuarios reciben 10.000 XOM cada uno, los siguientes 9.000 reciben 5.000 XOM, y así sucesivamente. Los bonos están limitados a uno por persona."
+      },
+      "referralProgram": {
+        "question": "¿Cómo funciona el programa de referidos?",
+        "answer": "Cada usuario obtiene un enlace de referido único. Cuando alguien se registra a través de tu enlace y realiza su primera compra, ganas un Bono de Referido (hasta 2.500 XOM para referidos tempranos). Además, ganas el 70% de la comisión de referido del 0,50% en cada venta que haga tu referido, y si tu referido refiere a alguien, ganas el 20% de sus comisiones de referido como bono de segundo nivel."
+      },
+      "firstSaleBonus": {
+        "question": "¿Qué es el Bono de Primera Venta?",
+        "answer": "Cuando creas tu primer listado y completas tu primera venta, ganas un Bono de Primera Venta de hasta 500 XOM (el monto disminuye a medida que más vendedores se unen a la plataforma). Este bono único incentiva a los vendedores a listar productos reales y completar transacciones genuinas. El sistema distingue entre ventas reales y simples transferencias de fondos."
+      },
+      "stakingIncentives": {
+        "question": "¿Qué incentivos de staking están disponibles?",
+        "answer": "El staking de XOM ofrece un APR escalonado del 5% al 12%. Las tasas base van del 5% (menos de 1M XOM) al 9% (más de 1B XOM). Los bonos por duración añaden hasta +3% APR por compromisos de 2 años. Los stakers también reciben descuentos en comisiones de transacciones del marketplace, derechos de voto de gobernanza y soporte prioritario. Los XOM en staking se utilizan productivamente para la provisión de liquidez del DEX."
+      },
+      "participationScore": {
+        "question": "¿Qué es la Puntuación de Participación y por qué importa?",
+        "answer": "Tu Puntuación de Participación (0-100 puntos) mide tu contribución general al ecosistema de OmniBazaar. Se calcula a partir del nivel KYC (hasta 20 pts), reputación en el marketplace (hasta 10 pts), monto y duración del staking (hasta 24 pts), referidos (hasta 10 pts), actividad de listados (hasta 4 pts), participación en foros (hasta 5 pts) y más. Una puntuación de 50+ te califica para operar un nodo validador, y puntuaciones más altas aumentan tu potencial de ganancias."
+      }
+    },
+    "wallet": {
+      "whatIsWallet": {
+        "question": "¿Qué es la Billetera de OmniBazaar?",
+        "answer": "La Billetera de OmniBazaar es una billetera de criptomonedas multi-cadena integrada que admite 128 blockchains incluyendo Ethereum, Bitcoin, Solana, Polkadot y todas las principales cadenas EVM. Utiliza tecnología de billetera HD BIP39 para la generación segura de claves y es compatible con billeteras de hardware (Ledger, Trezor) para máxima seguridad."
+      },
+      "walletSecurity": {
+        "question": "¿Qué tan segura es la Billetera de OmniBazaar?",
+        "answer": "La billetera utiliza cifrado AES-256-GCM estándar de la industria para datos almacenados, protección contra ataques de temporización para operaciones con claves, borrado seguro de memoria para datos sensibles después de su uso, protección anti-phishing y validación integral de transacciones. Las claves privadas nunca salen de tu dispositivo. Para seguridad adicional, conecta una billetera de hardware como Ledger o Trezor."
+      },
+      "walletRecovery": {
+        "question": "¿Cómo recupero mi billetera si pierdo el acceso?",
+        "answer": "Cuando creas tu billetera, recibes una frase de recuperación de 12 o 24 palabras (frase semilla). Guarda esta frase de forma segura sin conexión. Puede restaurar tu billetera y todas las cuentas en cualquier dispositivo compatible. Nunca compartas tu frase semilla con nadie, y nunca la ingreses en un sitio web. El personal de OmniBazaar nunca te pedirá tu frase semilla."
+      },
+      "walletMultiChain": {
+        "question": "¿Cómo funciona el soporte multi-cadena?",
+        "answer": "Tu billetera única deriva direcciones para todas las cadenas compatibles a partir de una sola frase semilla. Puedes mantener ETH, BTC, SOL, DOT, XOM y tokens en 128 redes simultáneamente. La billetera detecta automáticamente la red correcta para cada transacción y puede transferir activos entre cadenas utilizando el puente cross-chain integrado."
+      },
+      "walletConnect": {
+        "question": "¿Puedo usar mi billetera existente con OmniBazaar?",
+        "answer": "Sí. OmniBazaar admite la conexión de billeteras externas como MetaMask, billeteras compatibles con WalletConnect y billeteras de hardware. Puedes usar tu billetera existente para transacciones mientras accedes a todas las funciones del marketplace, DEX y plataforma. El botón 'Conectar Billetera' en la navegación es compatible con todos los principales proveedores de billeteras."
+      }
+    },
+    "stillHaveQuestions": {
+      "title": "¿Aún tiene preguntas?",
+      "description": "¿No encuentra lo que busca? Nuestro equipo de asistencia está aquí para ayudarle.",
+      "contactUs": "Póngase en contacto con nosotros",
+      "joinCommunity": "Únete a la Comunidad"
+    },
+    "tooltips": {
+      "expandAnswer": "Haga clic para ver la respuesta completa a esta pregunta",
+      "contactSupport": "Enviar un mensaje a nuestro equipo de soporte",
+      "joinCommunity": "Conéctese con otros usuarios de OmniBazaar para obtener soporte entre pares"
+    }
+  },
+  "privacy": {
+    "title": "Política de privacidad",
+    "subtitle": "Cómo manejamos sus datos en un mundo descentralizado",
+    "lastUpdated": "Última actualización: 15 de enero de 2025",
+    "toc": {
+      "title": "Índice"
+    },
+    "notice": {
+      "title": "Arquitectura descentralizada que da prioridad a la privacidad",
+      "description": "OmniBazaar se basa en tecnologías descentralizadas que dan prioridad a la privacidad del usuario. La mayoría de sus datos se almacenan localmente o en redes distribuidas bajo su control, no en servidores centralizados. Esta política explica cómo tratamos los datos limitados que procesamos y sus derechos con respecto a su información."
+    },
+    "sections": {
+      "overview": {
+        "title": "Protección de datos",
+        "intro": "OmniBazaar funciona como un protocolo de mercado descentralizado que minimiza la recopilación de datos y maximiza el control del usuario sobre su información personal:",
+        "principles": {
+          "decentralized": {
+            "title": "Descentralizado por diseño",
+            "description": "La mayoría de los datos se almacenan en tu dispositivo o en redes distribuidas"
+          },
+          "minimal": {
+            "title": "Recogida mínima de datos",
+            "description": "Sólo recopilamos lo necesario para las funciones básicas"
+          },
+          "control": {
+            "title": "Control de usuarios",
+            "description": "Usted decide qué información compartir y con quién"
+          },
+          "transparent": {
+            "title": "Tratamiento transparente",
+            "description": "Todo el tratamiento de datos se rige por contratos inteligentes y protocolos abiertos"
+          }
+        },
+        "keyPrinciple": {
+          "title": "Principio clave",
+          "description": "Sus datos le pertenecen. Nosotros te proporcionamos herramientas e infraestructura, pero tú mantienes el control sobre tu información."
+        }
+      },
+      "collection": {
+        "title": "Información que recopilamos",
+        "tabs": {
+          "provided": "Información que facilita",
+          "automatic": "Recogida automática",
+          "notCollected": "Lo que no recogemos"
+        },
+        "table": {
+          "dataType": "Tipo de datos",
+          "storage": "Almacenamiento",
+          "purpose": "Propósito"
+        },
+        "data": {
+          "profile": {
+            "type": "Información sobre el perfil",
+            "storage": "IPFS/Local",
+            "purpose": "Nombre para mostrar, biografía, avatar para la identidad del mercado"
+          },
+          "listings": {
+            "type": "Datos del listado",
+            "storage": "IPFS/Cadena de bloques",
+            "purpose": "Descripciones de productos, imágenes, precios"
+          },
+          "messages": {
+            "type": "Mensajes",
+            "storage": "P2P cifrado",
+            "purpose": "Comunicación entre compradores y vendedores"
+          },
+          "wallet": {
+            "type": "Direcciones de monedero",
+            "storage": "Blockchain",
+            "purpose": "Procesamiento de transacciones y pagos"
+          }
+        },
+        "automatic": {
+          "transaction": "Datos de la transacción",
+          "transactionDesc": "Registrado en blockchains públicas",
+          "analytics": "Análisis de uso",
+          "analyticsDesc": "Datos de interacción anónimos (opt-in)",
+          "technical": "Datos técnicos",
+          "technicalDesc": "Direcciones IP, tipo de navegador, información del dispositivo (temporal)",
+          "performance": "Datos de rendimiento",
+          "performanceDesc": "Registros de errores y métricas de rendimiento"
+        },
+        "notCollected": {
+          "documents": "Documentos de identificación personal (gestionados por terceros proveedores de KYC si es necesario)",
+          "creditCard": "Datos de la tarjeta de crédito o cuenta bancaria",
+          "governmentId": "Números de la seguridad social o documentos de identidad oficiales",
+          "browsingHistory": "Historial de navegación detallado o seguimiento en otros sitios web",
+          "privateKeys": "Claves privadas o frases semilla (siempre permanecen con usted)"
+        }
+      },
+      "usage": {
+        "title": "Cómo utilizamos la información",
+        "intro": "Utilizamos la información limitada que recopilamos para proporcionar y mejorar los servicios de OmniBazaar:",
+        "purposes": {
+          "marketplace": "Facilitar las transacciones del mercado entre compradores y vendedores",
+          "identity": "Verificar la identidad del usuario cuando sea necesario para el cumplimiento de KYC",
+          "reputation": "Calcular las puntuaciones de participación y las calificaciones de reputación",
+          "communication": "Habilitar la mensajería cifrada entre pares",
+          "security": "Detectar y prevenir fraudes, abusos y amenazas de seguridad",
+          "improvement": "Mejorar el rendimiento de la plataforma y la experiencia del usuario mediante análisis anonimizados"
+        },
+        "noSale": "Nunca vendemos, alquilamos ni intercambiamos su información personal con terceros con fines de marketing o publicidad.",
+        "automated": "Cualquier toma de decisiones automatizada se limita a la detección de fraudes y la prevención de spam. Puede solicitar una revisión humana de cualquier decisión automatizada."
+      },
+      "storage": {
+        "title": "Almacenamiento de datos e IPFS",
+        "subtitle": "Arquitectura de almacenamiento distribuido",
+        "ipfs": {
+          "title": "IPFS (Sistema de archivos interplanetario)",
+          "description": "Tus listados, imágenes y datos de perfil se almacenan en la red distribuida IPFS, que controlas a través de tus claves privadas."
+        },
+        "table": {
+          "type": "Tipo de almacenamiento",
+          "data": "Datos almacenados",
+          "control": "Controlar",
+          "privacy": "Nivel de privacidad"
+        },
+        "types": {
+          "local": {
+            "name": "Dispositivo local",
+            "data": "Ajustes, preferencias, borradores",
+            "control": "Control total del usuario",
+            "privacy": "Privacidad total"
+          },
+          "ipfs": {
+            "name": "Red IPFS",
+            "data": "Listados, imágenes, datos del perfil público",
+            "control": "Teclas controladas por el usuario",
+            "privacy": "Pseudónimo"
+          },
+          "blockchain": {
+            "name": "Blockchain",
+            "data": "Transacciones, interacciones de contratos inteligentes",
+            "control": "Inmutable y transparente",
+            "privacy": "Pseudónimo"
+          },
+          "p2p": {
+            "name": "P2P cifrado",
+            "data": "Mensajes privados, comunicación",
+            "control": "Cifrado de extremo a extremo",
+            "controlE2E": "Cifrado de extremo a extremo (X25519 + AES-256-GCM)",
+            "controlTransport": "Cifrado de transporte",
+            "privacy": "Privado"
+          }
+        }
+      },
+      "sharing": {
+        "title": "Intercambio de información",
+        "intro": "Como plataforma descentralizada, el intercambio de información se minimiza por diseño. A continuación se describe cómo pueden compartirse sus datos:",
+        "categories": {
+          "public": {
+            "title": "Información pública",
+            "content": "Sus anuncios en el mercado, su nombre de perfil público y sus puntuaciones de reputación son visibles para todos los usuarios de la plataforma. Los hashes de las transacciones se registran en blockchains públicas."
+          },
+          "p2p": {
+            "title": "Intercambio entre pares",
+            "content": "Los mensajes y los detalles de las transacciones se comparten directamente entre compradores y vendedores a través de canales cifrados de extremo a extremo. Ningún tercero, incluido OmniBazaar, puede leer estas comunicaciones."
+          },
+          "validators": {
+            "title": "Red de validadores",
+            "content": "Los validadores procesan las transacciones y mantienen el consenso de la red. Tienen acceso a los datos de las transacciones necesarios para la verificación, pero están obligados por el Código de conducta de los validadores a proteger la privacidad de los usuarios."
+          },
+          "legal": {
+            "title": "Requisitos legales",
+            "content": "Podemos divulgar información si así lo exige la ley, una orden judicial o una regulación gubernamental. Notificaremos a los usuarios afectados cuando la ley nos lo permita."
+          }
+        },
+        "noSale": "Nunca venderemos, intercambiaremos ni monetizaremos sus datos personales. Su información no es un producto."
+      },
+      "cookies": {
+        "title": "Cookies y rastreo",
+        "intro": "OmniBazaar adopta un enfoque que prioriza la privacidad en cuanto a cookies y rastreo:",
+        "items": {
+          "localStorage": "Almacenamiento local: Utilizamos el almacenamiento local del navegador para guardar sus preferencias, configuración del tema y datos de sesión. Estos datos nunca abandonan su dispositivo.",
+          "noCookies": "Sin cookies de terceros: No utilizamos cookies de rastreo ni cookies publicitarias de terceros.",
+          "noTracking": "Sin rastreo entre sitios: No rastreamos su actividad en otros sitios web ni servicios.",
+          "essential": "Solo lo esencial: El único almacenamiento del navegador que utilizamos es estrictamente necesario para el correcto funcionamiento de la plataforma."
+        },
+        "dnt": "Respetamos las señales Do Not Track (DNT) del navegador. Cuando DNT está activado, deshabilitamos todos los análisis y la telemetría opcionales."
+      },
+      "thirdParty": {
+        "title": "Servicios de terceros",
+        "intro": "OmniBazaar se integra con los siguientes servicios de terceros para proporcionar funcionalidades esenciales:",
+        "services": {
+          "blockchain": {
+            "title": "Red Avalanche",
+            "content": "La liquidación de transacciones y la ejecución de contratos inteligentes se realizan en la blockchain de Avalanche. Todos los datos de la blockchain son públicos e inmutables. OmniBazaar no controla la red Avalanche."
+          },
+          "ipfs": {
+            "title": "Red IPFS",
+            "content": "Las imágenes y los metadatos de los anuncios se almacenan en el Sistema de Archivos Interplanetario (IPFS), una red de almacenamiento descentralizada. Los datos anclados en IPFS son accesibles para cualquier persona que disponga del hash del contenido."
+          },
+          "kyc": {
+            "title": "Proveedores de verificación KYC",
+            "content": "Para los usuarios que opten por la verificación de identidad, colaboramos con proveedores externos de KYC. Sus documentos de identidad son procesados por estos proveedores conforme a sus propias políticas de privacidad. OmniBazaar no almacena documentos de identidad."
+          },
+          "rpc": {
+            "title": "Proveedores de RPC",
+            "content": "Las consultas a la blockchain pueden encaminarse a través de proveedores externos de RPC cuando las conexiones directas con los validadores no estén disponibles. Estos proveedores pueden registrar direcciones IP y metadatos de las solicitudes."
+          }
+        },
+        "disclaimer": "Seleccionamos cuidadosamente a los socios externos que comparten nuestro compromiso con la privacidad. No obstante, sus servicios se rigen por sus propias políticas de privacidad, que le recomendamos revisar."
+      },
+      "rights": {
+        "title": "Sus derechos de privacidad",
+        "dataControl": {
+          "title": "Derechos de control de datos",
+          "access": "Acceda a",
+          "accessDesc": "Solicitar una copia de sus datos personales",
+          "portability": "Portabilidad",
+          "portabilityDesc": "Exporte sus datos en un formato legible por máquina",
+          "correction": "Corrección",
+          "correctionDesc": "Actualizar o corregir información inexacta",
+          "deletion": "Supresión",
+          "deletionDesc": "Solicitar la supresión de sus datos personales (cuando sea técnicamente posible)",
+          "restriction": "Restricción",
+          "restrictionDesc": "Limitar el tratamiento de sus datos"
+        }
+      },
+      "security": {
+        "title": "Seguridad de los datos",
+        "intro": "Implementamos múltiples capas de seguridad para proteger sus datos:",
+        "measures": {
+          "encryption": {
+            "title": "Cifrado de extremo a extremo",
+            "content": "Todos los mensajes entre pares se cifran mediante el intercambio de claves X25519 y el cifrado simétrico AES-256-GCM. Solo el remitente y el destinatario pueden leer el contenido de los mensajes."
+          },
+          "keys": {
+            "title": "Seguridad de las claves privadas",
+            "content": "Sus claves privadas y frases semilla se cifran con AES-256-GCM y se almacenan únicamente en su dispositivo. Nunca se transmiten a servidores ni a otros usuarios. Se utiliza el borrado seguro de memoria para eliminar los datos sensibles después de su uso."
+          },
+          "decentralized": {
+            "title": "Arquitectura descentralizada",
+            "content": "No existe una base de datos central que pueda ser vulnerada. Sus datos se distribuyen entre su dispositivo local, IPFS y la blockchain, lo que reduce significativamente la superficie de ataque en comparación con las plataformas centralizadas."
+          },
+          "smartContracts": {
+            "title": "Contratos inteligentes auditados",
+            "content": "Todos los contratos inteligentes que gestionan fondos son auditados en busca de vulnerabilidades de seguridad. Los contratos de custodia utilizan mecanismos de liberación con bloqueo temporal y protecciones de firma múltiple."
+          }
+        },
+        "disclaimer": "Si bien implementamos prácticas de seguridad líderes en la industria, ningún sistema es completamente inmune al riesgo. Recomendamos a todos los usuarios que activen la protección con monedero físico y practiquen buenos hábitos de seguridad."
+      },
+      "children": {
+        "title": "Privacidad infantil",
+        "content": "OmniBazaar no está destinado al uso por parte de personas menores de 18 años. No recopilamos deliberadamente información personal de menores.",
+        "action": "Si tenemos conocimiento de que un usuario menor de 18 años ha proporcionado información personal, tomaremos medidas para eliminar dicha información y cancelar la cuenta asociada.",
+        "verification": "Los padres o tutores que crean que su hijo pudo haber proporcionado información personal a OmniBazaar deben contactarnos a través de nuestra página de Soporte en la aplicación para su eliminación inmediata."
+      },
+      "changes": {
+        "title": "Cambios en la política",
+        "content": "Podemos actualizar esta política de privacidad periódicamente para reflejar cambios en nuestras prácticas, tecnología o requisitos legales.",
+        "notification": "Los cambios significativos se anunciarán a través del sistema de notificaciones de la plataforma y se publicarán en esta página. Le recomendamos que revise esta política periódicamente.",
+        "history": "Un registro de cambios de todas las versiones anteriores de esta política está disponible bajo solicitud a través de nuestra página de Soporte en la aplicación."
+      },
+      "contact": {
+        "title": "Información de contacto",
+        "description": "Si tiene alguna pregunta sobre esta política de privacidad o sus datos personales, póngase en contacto con nosotros:",
+        "email": "Correo electrónico",
+        "address": "Dirección",
+        "addressDetails": "Descentralizado - Sin sede física",
+        "supportGuidance": "Visite nuestra página de Soporte en la aplicación para consultas de privacidad"
+      }
+    }
+  },
+  "terms": {
+    "title": "Condiciones de uso",
+    "subtitle": "Acuerdo de mercado descentralizado",
+    "lastUpdated": "Última actualización: 15 de enero de 2025",
+    "toc": {
+      "title": "Índice"
+    },
+    "notice": {
+      "title": "Aviso importante - Mercado descentralizado",
+      "description": "Ni Omni Development DAO, ni sus miembros, empleados, asesores o proveedores son parte de ninguna transacción en OmniBazaar. Dado que OmniBazaar está completamente descentralizado, las partes de cada transacción son siempre el comprador y el vendedor. OmniBazaar proporciona servicios de custodia, arbitraje, puntuaciones de reputación, vigilancia comunitaria, apoyo comunitario y otras funciones automatizadas y gestionadas por la comunidad. Sin embargo, usted es el responsable último de sus propias transacciones de compra, venta e intercambio."
+    },
+    "sections": {
+      "acceptance": {
+        "title": "Aceptación de las condiciones",
+        "content": "Al acceder o utilizar OmniBazaar, acepta quedar vinculado por las presentes Condiciones de servicio y por todas las leyes y normativas aplicables. Si no está de acuerdo con alguna parte de estas condiciones, se le prohíbe utilizar o acceder a este servicio.",
+        "keyPoint": {
+          "title": "Punto clave",
+          "description": "OmniBazaar funciona como un protocolo descentralizado. Al utilizar este servicio, usted reconoce que está interactuando directamente con otros usuarios y contratos inteligentes, no con una empresa centralizada."
+        }
+      },
+      "description": {
+        "title": "Descripción del servicio",
+        "intro": "OmniBazaar es un protocolo de mercado peer-to-peer descentralizado que permite a los usuarios:",
+        "features": {
+          "listing": "Listar y vender bienes físicos, activos digitales, NFT y servicios",
+          "purchase": "Comprar artículos directamente a otros usuarios",
+          "reputation": "Participar en un sistema de confianza basado en la reputación",
+          "escrow": "Utilizar servicios de custodia basados en blockchain",
+          "disputes": "Acceso a la resolución de litigios por parte de la comunidad",
+          "storage": "Almacenar datos en redes distribuidas, incluido IPFS"
+        },
+        "decentralized": {
+          "title": "Naturaleza descentralizada",
+          "content": "OmniBazaar funciona como un protocolo más que como un mercado centralizado tradicional. La DAO Omni Development proporciona herramientas e infraestructura, pero todas las transacciones se producen directamente entre los usuarios a través de contratos inteligentes."
+        }
+      },
+      "userAgreement": {
+        "title": "Acuerdo de usuario",
+        "intro": "Como usuario de OmniBazaar, usted acepta:",
+        "responsibilities": {
+          "accurate": "Proporcionar información precisa y veraz en todos los listados e interacciones",
+          "comply": "Cumplir todas las leyes locales, estatales, nacionales e internacionales aplicables",
+          "respect": "Respetar los derechos y la propiedad de los demás usuarios",
+          "goodFaith": "Utilizar la plataforma de buena fe y únicamente con fines legítimos",
+          "security": "Mantenga la seguridad de su monedero y sus claves privadas",
+          "responsibility": "Asuma la responsabilidad de sus propias transacciones e interacciones"
+        },
+        "account": {
+          "title": "Responsabilidad de la cuenta",
+          "content": "Usted es el único responsable de mantener la seguridad de las credenciales de su cuenta, claves privadas y cualquier monedero conectado. OmniBazaar no puede recuperar claves privadas perdidas ni revertir transacciones."
+        }
+      },
+      "prohibitedUses": {
+        "title": "Usos prohibidos",
+        "intro": "No podrá utilizar OmniBazaar para:",
+        "activities": {
+          "illegal": "Vender bienes o servicios ilegales en cualquier jurisdicción",
+          "fraud": "Participar en fraude, blanqueo de dinero u otros delitos financieros",
+          "ip": "Violar los derechos de propiedad intelectual",
+          "harassment": "Acosar, amenazar o abusar de otros usuarios",
+          "malware": "Distribuir malware, virus o código dañino",
+          "manipulation": "Manipular el sistema de reputación o crear cuentas falsas",
+          "hack": "Intentar piratear o comprometer la seguridad de la plataforma",
+          "standards": "Vender artículos que infrinjan las normas comunitarias de la plataforma"
+        },
+        "enforcement": {
+          "title": "Aplicación de la normativa comunitaria",
+          "description": "Las actividades prohibidas se hacen cumplir a través de la gobernanza comunitaria y los sistemas automatizados, ya que no existe una autoridad central que controle todas las transacciones."
+        }
+      },
+      "intellectualProperty": {
+        "title": "Propiedad intelectual"
+      },
+      "transactions": {
+        "title": "Transacciones y pagos",
+        "intro": "Todas las transacciones en OmniBazaar se realizan con criptomoneda y se rigen por contratos inteligentes:",
+        "features": {
+          "blockchain": "Los pagos se procesan a través de redes blockchain",
+          "escrow": "Los servicios de custodia se prestan mediante contratos inteligentes",
+          "fees": "Las comisiones por transacción se muestran de forma transparente",
+          "final": "Todas las ventas son definitivas una vez confirmadas en la cadena de bloques",
+          "disputes": "La resolución de conflictos sigue los procedimientos establecidos por la comunidad"
+        },
+        "escrow": {
+          "title": "Sistema Escrow",
+          "content": "El sistema de custodia retiene los fondos hasta que ambas partes confirman que la transacción se ha completado con éxito. En caso de litigio, el sistema comunitario de arbitraje determina el resultado."
+        }
+      },
+      "disclaimers": {
+        "title": "Descargo de responsabilidad",
+        "intro": "OmniBazaar se proporciona \"tal cual\", sin garantías de ningún tipo:",
+        "items": {
+          "availability": "No garantizamos la disponibilidad ni la fiabilidad del servicio",
+          "quality": "No nos hacemos responsables de la calidad o legalidad de los artículos que aparecen en la lista",
+          "identity": "No verificamos la identidad ni la reputación de los usuarios",
+          "irreversible": "Las transacciones de Blockchain son irreversibles",
+          "bugs": "Pueden existir errores o vulnerabilidades en los contratos inteligentes"
+        },
+        "warning": {
+          "title": "Advertencia",
+          "description": "Los usuarios interactúan con contratos inteligentes y otros usuarios bajo su propia responsabilidad. Verifica siempre los detalles de la transacción y la reputación de la contraparte antes de proceder."
+        }
+      },
+      "limitation": {
+        "title": "Limitación de responsabilidad",
+        "content": "En la medida máxima permitida por la ley, OmniBazaar y sus colaboradores no serán responsables de ningún daño indirecto, incidental, especial, consecuente o punitivo que resulte del uso que usted haga de la plataforma."
+      },
+      "indemnification": {
+        "title": "Indemnización"
+      },
+      "disputes": {
+        "title": "Resolución de litigios",
+        "platform": {
+          "title": "Conflictos en la plataforma",
+          "content": "Las disputas sobre transacciones se resuelven a través del sistema de arbitraje descentralizado. Los usuarios aceptan acatar las decisiones arbitrales ejecutadas mediante contratos inteligentes."
+        },
+        "legal": {
+          "title": "Conflictos jurídicos",
+          "content": "Cualquier disputa legal relacionada con estas condiciones se resolverá mediante arbitraje vinculante de acuerdo con las normas de la jurisdicción especificada en la sección Ley aplicable."
+        }
+      },
+      "governingLaw": {
+        "title": "Derecho aplicable"
+      },
+      "changes": {
+        "title": "Cambios en las condiciones",
+        "content": "Nos reservamos el derecho a modificar estas condiciones en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación. El uso continuado de la plataforma implica la aceptación de los términos modificados.",
+        "notice": "Consulte esta página periódicamente para ver las actualizaciones. Los cambios importantes se anunciarán a través de la plataforma."
+      }
+    }
+  }
+}

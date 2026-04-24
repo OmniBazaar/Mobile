@@ -1,0 +1,1101 @@
+{
+  "kyc": {
+    "loading": "正在加载 KYC 状态...",
+    "title": "KYC 身份验证",
+    "subtitle": "完成验证以解锁更高的交易限额并节省手续费",
+    "tier": "等级",
+    "currentTier": "当前等级",
+    "yourStatus": {
+      "title": "您的验证状态",
+      "currentTier": "当前等级：第 {{tier}} 级（共 4 级）",
+      "verificationStatus": "验证状态"
+    },
+    "transactionLimits": {
+      "title": "交易限额",
+      "daily": "每日限额",
+      "monthly": "每月限额",
+      "format": "${{used}} / ${{limit}}",
+      "unlimited": "无限制"
+    },
+    "tiers": {
+      "anonymous": {
+        "name": "未验证",
+        "description": "交易金额受限的基本市场访问权限。",
+        "requirements": {
+          "items": [
+            "无需验证"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "浏览市场",
+            "有限的买卖",
+            "基础聊天"
+          ]
+        }
+      },
+      "basic": {
+        "name": "基础验证",
+        "description": "验证电子邮箱、手机号码和社交媒体，解锁欢迎奖金和更高限额。",
+        "requirements": {
+          "items": [
+            "电子邮箱验证",
+            "手机号码验证",
+            "社交媒体账户"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "有资格获得欢迎奖金",
+            "有资格获得推荐奖金",
+            "完整市场访问权限",
+            "聊天功能"
+          ]
+        }
+      },
+      "identity": {
+        "name": "已验证",
+        "description": "上传地址证明文件并通过 AML 筛查，解锁挂单节点资格。",
+        "requirements": {
+          "items": [
+            "所有第 1 级要求",
+            "地址证明文件",
+            "篡改检测和 OCR 验证",
+            "AML/PEP 制裁筛查"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "所有第 1 级功能",
+            "挂单节点资格",
+            "优先挂单",
+            "优先客服"
+          ]
+        }
+      },
+      "enhanced": {
+        "name": "身份",
+        "description": "完成 Persona 政府身份证件验证和面部匹配，以获得验证节点或仲裁员资格。",
+        "requirements": {
+          "items": [
+            "所有第 2 级要求",
+            "Persona 身份证/护照验证",
+            "实时自拍面部匹配"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "所有第 2 级功能",
+            "验证节点资格",
+            "仲裁员资格",
+            "场外交易访问"
+          ]
+        }
+      },
+      "institutional": {
+        "name": "机构验证",
+        "description": "面向企业账户的完整机构验证，享有无限交易限额。",
+        "requirements": {
+          "items": [
+            "所有第 3 级要求",
+            "Persona 企业实体验证",
+            "企业注册文件",
+            "董事验证"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "所有功能",
+            "无限制交易",
+            "API 访问",
+            "自定义集成",
+            "专属客服"
+          ]
+        }
+      }
+    },
+    "requirements": "要求",
+    "privileges": "权益",
+    "completeVerification": "完成验证",
+    "verified": "已验证",
+    "verify": "验证",
+    "verification": {
+      "email": {
+        "label": "电子邮箱",
+        "title": "电子邮箱验证"
+      },
+      "phone": {
+        "label": "手机号码",
+        "title": "手机号码验证",
+        "placeholder": "+8613800138000"
+      },
+      "social": {
+        "label": "社交媒体",
+        "title": "社交媒体验证",
+        "instructions": "请关注 X (Twitter) 上的 @OmniBazaar 并加入 OmniBazaar 的 Telegram 群组以完成验证。",
+        "twitter": "X (Twitter)",
+        "telegram": "Telegram",
+        "twitterPlaceholder": "@your_twitter_handle",
+        "telegramPlaceholder": "@your_telegram_username",
+        "verifyTwitter": "验证 X (Twitter) 关注",
+        "verifyTelegram": "验证 Telegram 群组成员身份"
+      },
+      "id": {
+        "label": "身份证件"
+      },
+      "sendCode": "发送验证码",
+      "enterCode": "输入验证码",
+      "basic": {
+        "title": "完成基础验证"
+      },
+      "identity": {
+        "title": "身份验证",
+        "description": "上传您的政府签发身份证件进行验证",
+        "uploadButton": "上传证件"
+      },
+      "success": {
+        "emailSent": "验证邮件已发送！请检查您的收件箱。",
+        "codeSent": "验证码已发送到您的手机！",
+        "phoneVerified": "手机号码验证成功！",
+        "socialVerified": "{{platform}} 账户验证成功！",
+        "documentUploaded": "证件上传成功！正在验证中。"
+      },
+      "errors": {
+        "loadFailed": "加载 KYC 状态失败。请尝试刷新页面。",
+        "emailFailed": "发送验证邮件失败。请检查您的电子邮箱地址后重试。",
+        "codeFailed": "发送验证码失败。请检查手机号码后重试。",
+        "enterPhone": "请输入手机号码以接收验证码。",
+        "enterCode": "请输入发送到您手机的验证码。",
+        "invalidCode": "验证码无效。请检查验证码后重试。",
+        "enterTwitterHandle": "请输入您的 X (Twitter) 用户名以验证您的关注。",
+        "enterTelegramUsername": "请输入您的 Telegram 用户名以验证您的群组成员身份。",
+        "socialFailed": "社交验证失败。请确保您已关注 @OmniBazaar 后重试。",
+        "selectFile": "请选择要上传的证件。",
+        "uploadFailed": "证件上传失败。请检查文件格式和大小后重试。",
+        "fileTooLarge": "文件大小不能超过 10MB。请选择较小的文件。",
+        "invalidFileType": "仅允许 JPG、PNG 和 PDF 格式的文件。请选择支持的文件格式。"
+      }
+    },
+    "uploadDocument": {
+      "title": "上传验证文件",
+      "description": "上传您政府签发身份证件的清晰照片或扫描件",
+      "documentType": "证件类型",
+      "types": {
+        "passport": "护照",
+        "driversLicense": "驾驶证",
+        "nationalId": "身份证"
+      },
+      "selectFile": "选择文件"
+    },
+    "uploading": "上传中...",
+    "upload": "上传",
+    "tooltips": {
+      "uploadDocument": "提交政府身份证件或地址证明进行验证",
+      "verifyEmail": "发送验证码到您的电子邮箱",
+      "verifyPhone": "发送验证码到您的手机号码",
+      "linkSocial": "关联您的社交媒体账户以提升验证等级",
+      "viewLimits": "查看基于验证等级的当前交易限额",
+      "tierInfo": "更高的 KYC 等级可解锁更大的交易限额和额外功能"
+    },
+    "tier2": {
+      "title": "文件与 AML 验证",
+      "description": "上传地址证明文件。AML 筛查将在文件验证通过后自动运行。",
+      "steps": {
+        "documentUpload": "文件上传与验证（OCR + 篡改检测）",
+        "amlScreening": "AML/PEP 筛查（文件通过后自动进行）"
+      },
+      "aml": {
+        "title": "AML/PEP 筛查状态",
+        "cleared": "AML 已通过",
+        "pending": "AML 待处理",
+        "flagged": "AML 已标记",
+        "clearedMessage": "AML/PEP 筛查已通过。未发现制裁或 PEP 匹配。",
+        "pendingMessage": "AML/PEP 筛查将在文件验证通过后自动运行。",
+        "flaggedMessage": "AML/PEP 筛查标记了一个潜在匹配。请联系客服获取帮助。"
+      }
+    },
+    "persona": {
+      "tier3": {
+        "successMessage": "身份验证已通过！您的等级已升级。"
+      },
+      "tier4": {
+        "successMessage": "机构验证已通过！您的等级已升级。"
+      }
+    }
+  },
+  "aml": {
+    "title": "反洗钱合规",
+    "subtitle": "反洗钱政策与程序",
+    "lastUpdated": "最后更新：2025 年 1 月",
+    "toc": {
+      "title": "目录"
+    },
+    "sections": {
+      "overview": {
+        "title": "概述",
+        "intro": "OmniBazaar 致力于通过严格的合规措施防止洗钱和恐怖主义融资。",
+        "keyPoints": [
+          "基于风险的客户尽职调查方法",
+          "持续的交易监控",
+          "可疑活动报告",
+          "定期合规审计"
+        ]
+      },
+      "customerDueDiligence": {
+        "title": "客户尽职调查 (CDD)",
+        "content": "我们根据风险等级进行全面的客户验证：",
+        "levels": {
+          "basic": {
+            "title": "基础尽职调查",
+            "requirements": [
+              "姓名验证",
+              "电子邮箱确认",
+              "IP 地理位置检查"
+            ]
+          },
+          "enhanced": {
+            "title": "增强尽职调查",
+            "requirements": [
+              "政府身份证件验证",
+              "地址证明",
+              "资金来源文件",
+              "增强背景调查"
+            ]
+          }
+        }
+      },
+      "transactionMonitoring": {
+        "title": "交易监控",
+        "content": "所有交易均通过先进算法进行实时监控，以检测：",
+        "flags": [
+          "异常交易模式",
+          "大额转账",
+          "资金快速流动",
+          "与高风险司法管辖区的交易"
+        ]
+      },
+      "reporting": {
+        "title": "报告义务",
+        "content": "我们遵守严格的报告程序：",
+        "procedures": [
+          "可疑活动报告 (SAR) 在 24 小时内提交",
+          "大额交易的货币交易报告 (CTR)",
+          "定期监管报告",
+          "执法机构配合"
+        ]
+      },
+      "riskAssessment": {
+        "title": "风险评估",
+        "content": "考虑的风险因素包括：",
+        "factors": [
+          "客户类型和所在地",
+          "交易量和频率",
+          "产品和服务使用情况",
+          "实际受益所有权结构"
+        ]
+      },
+      "recordKeeping": {
+        "title": "记录保存",
+        "content": "我们保存完整记录，保存期限为：",
+        "duration": "账户关闭后至少保存 5 年",
+        "records": [
+          "客户身份证明文件",
+          "交易历史记录",
+          "风险评估记录",
+          "沟通记录和决策记录"
+        ]
+      },
+      "training": {
+        "title": "员工培训",
+        "content": "所有人员定期接受反洗钱培训，内容涵盖：",
+        "topics": [
+          "反洗钱法规和要求",
+          "危险信号指标",
+          "报告程序",
+          "制裁筛查"
+        ]
+      },
+      "sanctions": {
+        "title": "制裁筛查",
+        "content": "我们对所有客户进行以下名单筛查：",
+        "lists": [
+          "OFAC 制裁名单",
+          "联合国制裁名单",
+          "欧盟综合名单",
+          "其他相关观察名单"
+        ]
+      },
+      "compliance": {
+        "title": "合规计划",
+        "content": "我们的反洗钱合规计划包括：",
+        "elements": [
+          "指定合规官",
+          "书面政策和程序",
+          "独立测试和审计",
+          "董事会监督和治理"
+        ]
+      },
+      "contact": {
+        "title": "联系信息",
+        "content": "如有反洗钱相关咨询：",
+        "email": "请使用应用内支持页面",
+        "response": "我们将在 2 个工作日内回复"
+      },
+      "monitoring": {
+        "title": "危险信号",
+        "description": "我们的系统监控可疑活动指标",
+        "automated": {
+          "title": "自动化监控",
+          "items": [
+            "实时交易分析",
+            "模式识别算法",
+            "风险评分系统",
+            "异常检测",
+            "速度检查"
+          ]
+        },
+        "privacy": {
+          "title": "隐私保护",
+          "items": [
+            "零知识证明",
+            "加密数据存储",
+            "最小化数据收集",
+            "去中心化验证",
+            "用户控制数据"
+          ]
+        }
+      },
+      "reportingDetails": {
+        "triggers": [
+          "超过监管门槛的交易",
+          "显示洗钱迹象的模式",
+          "试图规避 KYC 程序",
+          "与受制裁实体的交易"
+        ],
+        "userRights": [
+          "申诉误报的权利",
+          "访问合规状态",
+          "数据可携性",
+          "删除请求（在法律允许的情况下）"
+        ]
+      },
+      "internationalFrameworks": {
+        "title": "国际框架",
+        "items": [
+          "FATF 建议",
+          "欧盟反洗钱指令",
+          "美国银行保密法",
+          "旅行规则合规",
+          "GDPR 数据保护"
+        ]
+      },
+      "sanctionedCountries": {
+        "northKorea": "朝鲜",
+        "iran": "伊朗",
+        "syria": "叙利亚",
+        "cuba": "古巴",
+        "others": "+ 其他"
+      },
+      "userResponsibilities": {
+        "title": "您的责任",
+        "intro": "作为 OmniBazaar 的用户，您应遵守我们的反洗钱政策：",
+        "items": [
+          "在 KYC 验证期间提供准确、真实的信息",
+          "不使用平台进行非法活动或洗钱",
+          "向我们的合规团队报告可疑活动",
+          "维护账户安全并及时报告未经授权的访问",
+          "配合合规请求和调查"
+        ]
+      },
+      "kycTiers": {
+        "tier0": {
+          "name": "未验证",
+          "requirements": [
+            "电子邮箱验证",
+            "钱包连接",
+            "接受条款"
+          ],
+          "limits": [
+            "有限的市场浏览",
+            "基础聊天功能",
+            "较低的交易限额"
+          ]
+        },
+        "tier1": {
+          "name": "基础",
+          "requirements": [
+            "电子邮箱验证",
+            "手机号码验证",
+            "关注社交媒体"
+          ],
+          "limits": [
+            "有资格获得欢迎奖金",
+            "完整市场访问权限",
+            "标准交易限额"
+          ]
+        },
+        "tier2": {
+          "name": "已验证",
+          "requirements": [
+            "地址证明（银行对账单、水电费账单）",
+            "文件篡改检测和 OCR",
+            "AML/PEP 制裁筛查"
+          ],
+          "limits": [
+            "更高的交易限额",
+            "挂单节点资格",
+            "优先挂单"
+          ]
+        },
+        "tier3": {
+          "name": "身份",
+          "requirements": [
+            "Persona 身份证/护照验证",
+            "实时自拍面部匹配",
+            "合格投资者（可选）"
+          ],
+          "limits": [
+            "验证节点资格",
+            "仲裁员资格",
+            "场外交易访问"
+          ]
+        },
+        "tier4": {
+          "name": "机构",
+          "requirements": [
+            "Persona 企业实体验证",
+            "企业注册文件",
+            "董事验证"
+          ],
+          "limits": [
+            "无交易限额",
+            "所有平台功能",
+            "专属客服"
+          ]
+        }
+      },
+      "walletScreening": {
+        "title": "钱包级别筛查",
+        "content": "当您连接外部钱包时，OmniBazaar 会自动将钱包地址与 OFAC SDN（特别指定国民）名单进行比对，以遵守制裁法规。",
+        "features": [
+          "连接时钱包地址会与 OFAC SDN 名单进行比对",
+          "受制裁的钱包将被阻止访问平台功能",
+          "筛查是自动的，不需要用户任何操作",
+          "在服务出错时，筛查将放行以避免阻止合法用户"
+        ]
+      },
+      "startKycButton": "完成 KYC 验证"
+    }
+  },
+  "cookies": {
+    "title": "Cookie 政策",
+    "subtitle": "我们如何使用 Cookie 及类似技术",
+    "lastUpdated": "最后更新：2025 年 1 月",
+    "banner": {
+      "message": "我们使用 Cookie 来改善您的体验。继续使用 OmniBazaar 即表示您同意我们的 Cookie 政策。",
+      "accept": "全部接受",
+      "customize": "自定义",
+      "reject": "拒绝非必要 Cookie"
+    },
+    "categories": {
+      "essential": {
+        "name": "必要 Cookie",
+        "description": "网站正常运行所必需的 Cookie。",
+        "required": "必需"
+      },
+      "functional": {
+        "name": "功能 Cookie",
+        "description": "用于增强功能和个性化体验。",
+        "required": ""
+      },
+      "analytics": {
+        "name": "分析 Cookie",
+        "description": "帮助我们了解访问者如何与网站互动。",
+        "required": ""
+      },
+      "marketing": {
+        "name": "营销 Cookie",
+        "description": "用于投放相关广告。",
+        "required": ""
+      }
+    },
+    "table": {
+      "name": "Cookie 名称",
+      "provider": "提供方",
+      "purpose": "用途",
+      "expiry": "有效期",
+      "type": "类型"
+    },
+    "preferences": {
+      "title": "Cookie 偏好设置",
+      "subtitle": "管理您的 Cookie 设置",
+      "save": "保存偏好设置",
+      "saved": "您的偏好设置已保存",
+      "acceptAll": "全部接受",
+      "rejectNonEssential": "拒绝非必要"
+    },
+    "tooltips": {
+      "acceptAll": "允许所有 Cookie 以获得最佳体验",
+      "rejectNonEssential": "仅使用基本功能所需的 Cookie",
+      "customize": "选择您希望允许的 Cookie 类型",
+      "savePreferences": "保存您的 Cookie 偏好设置"
+    },
+    "details": {
+      "whatAreCookies": {
+        "title": "什么是 Cookie？",
+        "content": "Cookie 是您访问网站时存储在设备上的小型文本文件。它们帮助网站记住您的偏好并改善您的体验。"
+      },
+      "howWeUse": {
+        "title": "我们如何使用 Cookie",
+        "content": "我们使用 Cookie 来维护您的会话、记住您的偏好、分析网站使用情况以及提供个性化内容。"
+      },
+      "yourChoices": {
+        "title": "您的选择",
+        "content": "您可以通过浏览器设置或我们的偏好中心来管理 Cookie。请注意，禁用某些 Cookie 可能会影响网站功能。"
+      },
+      "thirdParty": {
+        "title": "第三方 Cookie",
+        "content": "某些 Cookie 由出现在我们页面上的第三方服务放置。我们无法控制这些 Cookie。"
+      }
+    }
+  },
+  "dispute": {
+    "title": "争议解决",
+    "subtitle": "公平透明的争议解决流程",
+    "lastUpdated": "最后更新：2025 年 1 月",
+    "toc": {
+      "title": "目录"
+    },
+    "sections": {
+      "overview": {
+        "title": "概述",
+        "content": "OmniBazaar 提供多种争议解决机制，确保所有各方获得公平的结果。",
+        "principles": {
+          "title": "我们的原则",
+          "items": [
+            "公正透明的流程",
+            "基于证据的裁决",
+            "及时解决",
+            "社区参与"
+          ]
+        }
+      },
+      "types": {
+        "title": "争议类型",
+        "transaction": {
+          "title": "交易争议",
+          "description": "市场交易相关问题",
+          "examples": [
+            "商品与描述不符",
+            "未收到商品",
+            "质量问题",
+            "假冒商品"
+          ]
+        },
+        "account": {
+          "title": "账户争议",
+          "description": "账户相关纠纷",
+          "examples": [
+            "未经授权的访问",
+            "账户限制",
+            "身份验证",
+            "费用争议"
+          ]
+        },
+        "community": {
+          "title": "社区争议",
+          "description": "用户之间的纠纷",
+          "examples": [
+            "骚扰行为",
+            "虚假评价",
+            "知识产权侵权",
+            "违反服务条款"
+          ]
+        }
+      },
+      "process": {
+        "title": "争议解决流程",
+        "steps": {
+          "1": {
+            "title": "直接协商",
+            "description": "双方尝试直接解决问题",
+            "timeframe": "48 小时"
+          },
+          "2": {
+            "title": "调解",
+            "description": "平台协助谈判",
+            "timeframe": "3-5 天"
+          },
+          "3": {
+            "title": "仲裁",
+            "description": "由合格仲裁员作出有约束力的裁决",
+            "timeframe": "7-14 天"
+          },
+          "4": {
+            "title": "上诉",
+            "description": "有限的上诉理由",
+            "timeframe": "30 天"
+          }
+        }
+      },
+      "filing": {
+        "title": "提起争议",
+        "requirements": {
+          "title": "要求",
+          "items": [
+            "清楚描述问题",
+            "提供支持证据",
+            "已尝试的解决步骤",
+            "期望的结果"
+          ]
+        },
+        "evidence": {
+          "title": "可接受的证据",
+          "items": [
+            "交易记录",
+            "通讯记录",
+            "照片/视频",
+            "物流单据",
+            "专家意见"
+          ]
+        }
+      },
+      "mediation": {
+        "title": "调解流程",
+        "description": "我们经过培训的调解员帮助各方达成双方都能接受的解决方案。",
+        "benefits": [
+          "比仲裁更快速",
+          "成本更低",
+          "解决方案更灵活",
+          "维护双方关系"
+        ]
+      },
+      "arbitration": {
+        "title": "仲裁",
+        "description": "由从社区中选出的合格仲裁员作出有约束力的裁决。",
+        "qualifications": {
+          "title": "仲裁员资格",
+          "items": [
+            "参与度评分达到 80 分以上",
+            "良好的交易记录",
+            "已完成仲裁培训",
+            "无利益冲突"
+          ]
+        },
+        "process": {
+          "title": "仲裁流程",
+          "items": [
+            "案件分配给 3 名仲裁员",
+            "证据审查期",
+            "可选的听证会",
+            "多数决定",
+            "附有理由的书面裁决"
+          ]
+        },
+        "incentives": [
+          "每解决一个案件获得XOM代币",
+          "一致决定获得额外XOM奖励",
+          "参与分数提升",
+          "社区认可徽章",
+          "参与治理投票权",
+          "平台优先功能"
+        ]
+      },
+      "enforcement": {
+        "title": "执行",
+        "mechanisms": {
+          "title": "执行机制",
+          "items": [
+            "智能合约执行",
+            "账户限制",
+            "费用调整",
+            "信誉影响"
+          ]
+        },
+        "compliance": {
+          "title": "合规",
+          "content": "未遵守争议解决裁决可能导致账户暂停或终止。"
+        }
+      },
+      "costs": {
+        "title": "费用",
+        "structure": {
+          "mediation": "1,000 XOM 以下的争议免费调解",
+          "arbitration": "争议金额的 5%（买卖双方各承担 50%）",
+          "appeal": "仲裁费的 50%（上诉成功可退还）"
+        },
+        "payment": "费用通常由双方分担，除非另有裁定。"
+      },
+      "prevention": {
+        "title": "争议预防",
+        "tips": {
+          "title": "最佳实践",
+          "items": [
+            "清晰沟通",
+            "详细的商品列表",
+            "及时发货",
+            "准确描述",
+            "专业行为"
+          ]
+        },
+        "buyerTips": [
+          "仔细阅读商品描述",
+          "购买前提问",
+          "查看卖家声誉和评价",
+          "收到商品时记录状态",
+          "及时沟通问题"
+        ],
+        "sellerTips": [
+          "提供准确的描述",
+          "包含各角度的清晰照片",
+          "安全包装商品",
+          "及时发货并附追踪信息",
+          "快速回复买家消息"
+        ]
+      },
+      "contact": {
+        "title": "联系方式",
+        "content": "如需争议解决帮助：",
+        "email": "请使用应用内争议页面",
+        "response": "24 小时内进行初始回复"
+      },
+      "appeals": {
+        "intro": "在极少数情况下，如当事方认为仲裁裁决不公平，可在裁决后7天内提出上诉。上诉需要："
+      }
+    },
+    "tooltips": {
+      "fileDispute": "为此交易提交正式争议",
+      "uploadEvidence": "添加支持文件或照片以加强您的案件",
+      "viewStatus": "查看争议的当前状态",
+      "contactArbitrator": "向指定仲裁员发送消息",
+      "acceptDecision": "接受仲裁员的裁决并关闭争议"
+    },
+    "protectionFeatures": [
+      "资金安全托管至交货",
+      "买家确认后立即释放",
+      "纠纷触发的冻结防止提前释放",
+      "智能合约执行 — 无需中间人"
+    ]
+  },
+  "rwa": {
+    "title": "RWA 合规",
+    "subtitle": "真实世界资产交易合规要求",
+    "lastUpdated": "最后更新：2025 年 12 月",
+    "toc": {
+      "title": "目录"
+    },
+    "overview": {
+      "title": "概述",
+      "description": "真实世界资产 (RWA) 是实物资产（如房地产、大宗商品或证券）的代币化表示。交易 RWA 需要进行额外的合规检查以确保符合监管要求。",
+      "keyPoints": [
+        "地理限制验证",
+        "代币合规标准 (ERC-3643, ERC-1400)",
+        "KYC 等级要求",
+        "费用透明度"
+      ]
+    },
+    "geofence": {
+      "title": "地理限制",
+      "description": "由于监管要求，某些司法管辖区限制 RWA 交易。",
+      "blockedCountries": {
+        "title": "受限地区",
+        "description": "RWA 交易目前在以下地区不可用：",
+        "reasons": {
+          "US": "监管不确定性",
+          "CU": "OFAC 制裁",
+          "IR": "OFAC 制裁",
+          "KP": "OFAC 制裁",
+          "SY": "OFAC 制裁",
+          "RU": "国际制裁"
+        }
+      },
+      "vpnWarning": {
+        "title": "VPN 检测",
+        "message": "检测到 VPN 使用。RWA 交易需要验证您的实际位置。",
+        "action": "请关闭 VPN 并刷新页面以访问 RWA 功能。"
+      },
+      "accessDenied": {
+        "title": "访问受限",
+        "message": "RWA 交易在您所在的地区不可用。",
+        "contact": "如有地区可用性方面的问题，请联系客服。"
+      }
+    },
+    "tokenCompliance": {
+      "title": "代币合规",
+      "description": "RWA 代币必须在交易前满足特定的合规标准。",
+      "standards": {
+        "erc3643": {
+          "name": "ERC-3643 (T-REX)",
+          "description": "内置合规和身份验证的证券代币标准"
+        },
+        "erc1400": {
+          "name": "ERC-1400",
+          "description": "具有分区余额和转账限制的证券代币标准"
+        }
+      },
+      "status": {
+        "compliant": "合规",
+        "nonCompliant": "不合规",
+        "pending": "验证待处理",
+        "unknown": "状态未知"
+      },
+      "checks": {
+        "tokenImported": "代币已导入系统",
+        "kycVerified": "KYC 验证已完成",
+        "transferAllowed": "转账限制已解除",
+        "accreditedStatus": "合格投资者身份已验证"
+      }
+    },
+    "kycRequirements": {
+      "title": "KYC 要求",
+      "description": "不同的 RWA 代币需要不同级别的身份验证。",
+      "tiers": {
+        "tier1": {
+          "name": "基础验证",
+          "description": "需要电子邮箱和手机验证",
+          "limit": "每笔交易上限 $10,000"
+        },
+        "tier2": {
+          "name": "身份验证",
+          "description": "需要政府身份证件和地址证明",
+          "limit": "每笔交易上限 $100,000"
+        },
+        "tier3": {
+          "name": "增强验证",
+          "description": "需要完整 KYC 及资金来源文件",
+          "limit": "每笔交易上限 $1,000,000"
+        },
+        "tier4": {
+          "name": "合格投资者",
+          "description": "需要合格投资者资质认证",
+          "limit": "无交易限额"
+        }
+      },
+      "upgrade": "升级您的 KYC 等级以获取更高的交易限额"
+    },
+    "fees": {
+      "title": "费用结构",
+      "description": "RWA 兑换具有透明的费用结构，由多个部分组成。",
+      "breakdown": {
+        "title": "费用明细",
+        "protocol": {
+          "name": "协议费",
+          "rate": "0.30%",
+          "description": "网络安全和运营的基础费用",
+          "distribution": {
+            "lp": "70% 分配给流动性提供者",
+            "staking": "20% 分配给质押池",
+            "liquidity": "10% 分配给流动性池"
+          }
+        },
+        "frontend": {
+          "name": "前端费",
+          "rate": "1.00%",
+          "description": "使用 OmniBazaar 界面的费用",
+          "distribution": {
+            "transaction": "0.25% 交易费",
+            "referral": "0.50% 推荐奖励",
+            "listing": "0.25% 挂单费"
+          },
+          "bypassable": "可通过直接访问合约绕过"
+        },
+        "priority": {
+          "name": "优先费",
+          "rate": "0-3%",
+          "description": "可选的优先处理费用",
+          "distribution": {
+            "listing": "70% 分配给挂单节点",
+            "selling": "20% 分配给销售节点",
+            "oddao": "10% 分配给 ODDAO"
+          }
+        }
+      },
+      "calculator": {
+        "title": "费用计算器",
+        "inputAmount": "输入金额",
+        "protocolFee": "协议费",
+        "frontendFee": "前端费",
+        "priorityFee": "优先费",
+        "totalFees": "总费用",
+        "netOutput": "净输出金额"
+      }
+    },
+    "swap": {
+      "title": "RWA 兑换",
+      "complianceCheck": "正在检查合规性...",
+      "eligible": "您有资格执行此兑换",
+      "notEligible": "您不具备此兑换的资格",
+      "reason": "原因：{{reason}}",
+      "multiHop": {
+        "title": "多跳路由",
+        "description": "此兑换使用多个流动性池以获得最优价格",
+        "complianceWarning": "每一跳都必须通过合规检查"
+      }
+    },
+    "errors": {
+      "GEO_BLOCKED": "您所在的国家/地区被禁止进行 RWA 交易",
+      "VPN_DETECTED": "检测到 VPN 使用 — 请关闭 VPN",
+      "KYC_INSUFFICIENT": "您的 KYC 等级低于所需级别",
+      "TOKEN_NOT_IMPORTED": "此 RWA 代币尚未导入系统",
+      "COMPLIANCE_CHECK_FAILED": "代币合规验证失败",
+      "TRANSFER_LIMIT_EXCEEDED": "金额超出您的转账限额",
+      "ACCREDITED_REQUIRED": "此代币要求具备合格投资者身份",
+      "UNKNOWN_ERROR": "合规检查期间发生未知错误"
+    },
+    "actions": {
+      "checkEligibility": "检查资格",
+      "viewDetails": "查看详情",
+      "upgradeKyc": "升级 KYC",
+      "contactSupport": "联系客服",
+      "tryAgain": "重试"
+    },
+    "tooltips": {
+      "complianceStatus": "查看此 RWA 代币的合规状态",
+      "feeBreakdown": "查看所有费用的详细明细",
+      "kycRequirement": "交易此代币所需的 KYC 等级",
+      "geoRestriction": "此代币的地理限制",
+      "priorityFee": "添加优先费用以获得更快的处理速度",
+      "multiHopRoute": "查看此兑换将通过的流动性池路由"
+    }
+  },
+  "support": {
+    "title": "帮助中心",
+    "subtitle": "获取来自社区志愿者的帮助",
+    "loading": "加载中...",
+    "stats": {
+      "activeVolunteers": "活跃志愿者",
+      "avgWaitTime": "平均等待时间",
+      "sessionsToday": "今日会话数",
+      "satisfactionRate": "满意度",
+      "minutes": "{{time}}分钟"
+    },
+    "tabs": {
+      "getSupport": "获取帮助",
+      "mySessions": "我的会话",
+      "volunteer": "志愿者"
+    },
+    "quickLinks": {
+      "documentation": {
+        "title": "文档",
+        "description": "浏览指南和教程"
+      },
+      "forum": {
+        "title": "社区论坛",
+        "description": "提问和讨论"
+      },
+      "volunteerSupport": {
+        "title": "志愿者支持",
+        "description": "联系社区志愿者获取个性化帮助"
+      }
+    },
+    "session": {
+      "title": "帮助会话",
+      "waitingForVolunteer": "正在等待志愿者...",
+      "chattingWith": "正在与 {{name}} 交流",
+      "endSession": "结束会话",
+      "sessionStarted": "会话开始于 {{date}}",
+      "category": "类别：{{category}} · 优先级：{{priority}}",
+      "findingVolunteer": "正在寻找可用的志愿者...",
+      "usuallyTakesLess": "通常不到一分钟",
+      "typeMessage": "输入您的消息...",
+      "assistedBy": "由 {{name}} 协助"
+    },
+    "noSessions": "暂无帮助会话",
+    "requestSupport": {
+      "title": "请求帮助",
+      "description": "告诉我们您需要什么帮助",
+      "category": "类别",
+      "priority": "优先级",
+      "language": "语言",
+      "describeIssue": "描述您的问题",
+      "placeholder": "请描述您需要帮助的内容...",
+      "cancel": "取消",
+      "request": "请求帮助",
+      "requesting": "请求中..."
+    },
+    "categories": {
+      "general": "常见问题",
+      "wallet_setup": "钱包设置",
+      "technical_issue": "技术问题",
+      "trading": "交易与 DEX",
+      "marketplace": "市场",
+      "validator": "Validator 设置"
+    },
+    "priorities": {
+      "low": "低",
+      "medium": "中",
+      "high": "高",
+      "urgent": "紧急"
+    },
+    "volunteer": {
+      "become": "成为帮助志愿者",
+      "description": "帮助社区中的其他人并赚取参与奖励",
+      "requirements": {
+        "title": "要求",
+        "items": [
+          "参与度评分达到 50 分或以上",
+          "在社区中信誉良好",
+          "承诺以专业态度帮助他人"
+        ]
+      },
+      "benefits": {
+        "earnRewards": {
+          "title": "赚取奖励",
+          "description": "获得参与积分和 XOM 奖励"
+        },
+        "buildReputation": {
+          "title": "建立信誉",
+          "description": "提升您的社区地位"
+        },
+        "helpGlobally": {
+          "title": "全球帮助",
+          "description": "支持全球用户"
+        }
+      },
+      "apply": "申请成为志愿者",
+      "application": {
+        "title": "志愿者申请",
+        "description": "加入我们的帮助团队，服务社区",
+        "displayName": "显示名称",
+        "displayNamePlaceholder": "用户看到的您的名称",
+        "languages": "语言",
+        "expertise": "专业领域",
+        "maxSessions": "最大同时会话数",
+        "sessions": "{{count}} 个会话",
+        "sessions_plural": "{{count}} 个会话",
+        "cancel": "取消",
+        "submit": "提交申请",
+        "applying": "申请中..."
+      }
+    },
+    "messages": {
+      "authRequired": "请先登录以{{action}}",
+      "requestSupport": "请求帮助",
+      "becomeVolunteer": "成为志愿者",
+      "supportRequested": "帮助请求已提交",
+      "volunteerWillHelp": "志愿者将很快与您联系",
+      "errorCreating": "创建帮助请求失败",
+      "errorSending": "发送消息失败",
+      "sessionClosed": "会话已关闭",
+      "thanksFeedback": "感谢您的反馈！",
+      "sessionClosedSimple": "帮助会话已关闭",
+      "errorClosing": "关闭会话失败",
+      "displayNameRequired": "请提供显示名称",
+      "registrationSuccess": "您已成功注册为帮助志愿者！",
+      "errorRegistering": "注册志愿者失败",
+      "messageRequired": "请描述您需要帮助的内容"
+    },
+    "tooltips": {
+      "requestSupport": "开始与志愿者进行新的帮助会话",
+      "endSession": "关闭当前的帮助会话",
+      "becomeVolunteer": "注册帮助其他用户并赚取奖励",
+      "sendMessage": "在帮助聊天中发送您的消息",
+      "rateVolunteer": "评价您收到的帮助质量"
+    }
+  },
+  "rwaCompliance": {
+    "contact": {
+      "supportGuidance": "如有RWA合规相关问题，请访问应用内支持页面。我们将在24小时内回复。"
+    }
+  }
+}

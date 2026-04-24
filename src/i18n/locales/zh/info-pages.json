@@ -1,0 +1,705 @@
+{
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "与 OmniBazaar 团队取得联系",
+    "email": {
+      "title": "电子邮件支持",
+      "description": "获取有关账户、交易或技术问题的帮助",
+      "address": "请使用应用内支持页面"
+    },
+    "chat": {
+      "title": "在线聊天",
+      "description": "与客服团队即时沟通获得帮助",
+      "action": "开始聊天",
+      "comingSoon": "在线聊天功能即将推出"
+    },
+    "community": {
+      "title": "社区",
+      "description": "与其他用户交流并获取同伴支持",
+      "action": "加入社区"
+    },
+    "form": {
+      "title": "发送消息",
+      "description": "有问题或需要帮助？填写以下表单，我们会尽快回复您。",
+      "name": "姓名",
+      "email": "电子邮箱",
+      "subject": "主题",
+      "message": "消息",
+      "messagePlaceholder": "请详细描述您的问题或疑问...",
+      "send": "发送消息",
+      "sending": "发送中...",
+      "successMessage": "您的消息已成功发送！",
+      "errorMessage": "消息发送失败。请重试。",
+      "subjects": {
+        "general": "一般咨询",
+        "account": "账户问题",
+        "transaction": "交易问题",
+        "technical": "技术支持",
+        "feature": "功能建议",
+        "bug": "错误报告"
+      }
+    },
+    "other": {
+      "title": "其他联系方式",
+      "business": {
+        "title": "商务合作",
+        "email": "请访问我们的社区论坛"
+      },
+      "media": {
+        "title": "媒体与新闻",
+        "email": "请访问我们的社区论坛"
+      },
+      "security": {
+        "title": "安全问题",
+        "email": "请使用应用内支持页面"
+      }
+    },
+    "tooltips": {
+      "sendEmail": "打开邮件客户端向我们发送消息",
+      "startChat": "与客服团队开始在线聊天",
+      "joinCommunity": "访问社区论坛获取同伴帮助",
+      "submitForm": "向客服团队发送您的消息"
+    }
+  },
+  "faq": {
+    "title": "常见问题",
+    "subtitle": "查找有关 OmniBazaar 常见问题的解答",
+    "categoryDescription": "关于{{category}}的常见问题",
+    "categories": {
+      "general": "综合",
+      "buying": "购买",
+      "selling": "销售",
+      "payments": "支付",
+      "security": "安全",
+      "xom": "XOM 代币",
+      "dex": "去中心化交易所",
+      "rwa": "现实世界资产",
+      "yield": "收益",
+      "predictions": "预测",
+      "incentives": "激励",
+      "wallet": "钱包"
+    },
+    "general": {
+      "whatIsOmniBazaar": {
+        "question": "什么是 OmniBazaar？",
+        "answer": "OmniBazaar 是一个基于 Blockchain 技术构建的去中心化 P2P 市场。它允许用户直接买卖实物商品、数字资产、NFT 和服务，无需中间商，并使用智能合约托管确保交易安全。"
+      },
+      "howToStart": {
+        "question": "如何在 OmniBazaar 上开始销售？",
+        "answer": "开始销售的步骤：1）创建账户或连接钱包，2）完成可选的 KYC 验证以获得更高限额，3）点击「创建商品」并填写商品详情，4）以 XOM 或其他支持的加密货币设置价格，5）将商品发布到 Blockchain 上。"
+      },
+      "fees": {
+        "question": "OmniBazaar 收取哪些费用？",
+        "answer": "OmniBazaar 对成功交易收取总计 1% 的费用，由卖家支付：0.50% 推荐费、0.25% 交易费和 0.25% 上架费。创建商品无需费用，买家无需支付平台费。可选优先费（0-3%）可提升商品曝光度。"
+      }
+    },
+    "buying": {
+      "howToBuy": {
+        "question": "如何在 OmniBazaar 上购买商品？",
+        "answer": "浏览商品列表，点击您想要的商品，查看卖家评分和详情，然后点击「立即购买」或「出价」。付款将被托管，直到您确认收货。"
+      },
+      "paymentMethods": {
+        "question": "可以使用传统支付方式吗？",
+        "answer": "虽然 OmniBazaar 主要使用加密货币，但我们正在支持地区集成法币支付通道。用户可以通过我们的合作伙伴直接使用信用卡或银行转账购买 XOM。"
+      },
+      "buyerProtection": {
+        "question": "买家保护如何运作？",
+        "answer": "智能合约托管通过在确认收货前持有付款来保护买家。如果出现问题，我们的去中心化仲裁系统会公平地解决争议。"
+      }
+    },
+    "selling": {
+      "howToSell": {
+        "question": "可以在 OmniBazaar 上销售什么？",
+        "answer": "您可以销售实物商品、数字产品、NFT 和服务。所有商品列表必须符合当地法律和平台指南。"
+      },
+      "listingRequirements": {
+        "question": "商品列表有什么要求？",
+        "answer": "商品列表需要清晰的描述、准确的照片、真实的状况报告和合理的价格。禁止物品包括违法物品、赃物以及侵犯知识产权的物品。"
+      },
+      "sellerFees": {
+        "question": "卖家费用是多少？",
+        "answer": "卖家在交易完成后支付 1% 的费用（0.50% 推荐费 + 0.25% 交易费 + 0.25% 上架费）。无需预付挂单费。"
+      }
+    },
+    "payments": {
+      "acceptedCrypto": {
+        "question": "接受哪些加密货币？",
+        "answer": "OmniBazaar 接受 XOM（原生代币）、AVAX、USDC、USDT 以及 Avalanche 网络上的其他主要加密货币。"
+      },
+      "escrowSystem": {
+        "question": "托管系统如何保护买卖双方？",
+        "answer": "我们的智能合约托管在买家下单时自动持有付款。只有在以下情况下才会将资金释放给卖家：1）买家确认收货并满意，2）物流确认送达，或 3）托管期结束且无争议。这保护了双方免受欺诈。"
+      },
+      "withdrawals": {
+        "question": "如何提取收益？",
+        "answer": "在托管释放后，收益可立即使用。只需前往钱包页面提取到任何兼容的地址。OmniCoin（XOM）交易零 Gas 费 — 验证节点承担费用。Gas 费仅在提取至其他区块链时适用。"
+      }
+    },
+    "security": {
+      "accountSecurity": {
+        "question": "如何保护账户安全？",
+        "answer": "使用硬件钱包以获得最高安全性，启用双重验证（如可用），切勿分享您的私钥或助记词，并在确认前验证交易详情。"
+      },
+      "disputeResolution": {
+        "question": "争议如何解决？",
+        "answer": "争议通过我们的去中心化仲裁系统解决。社区仲裁员审查双方的证据并投票决定结果。智能合约自动执行裁决。仲裁员因公正的裁判获得 XOM 奖励。"
+      },
+      "kycRequirement": {
+        "question": "KYC 验证是必需的吗？",
+        "answer": "基本的买卖不需要 KYC。然而，经过验证的用户可以享受更高的交易限额、高级功能访问权限和增强的信任评分。KYC 由我们的去中心化预言机网络处理以保护隐私。"
+      }
+    },
+    "xom": {
+      "whatIsXOM": {
+        "question": "什么是 XOM 代币？",
+        "answer": "XOM (OmniCoin) 是 OmniBazaar 平台的原生加密货币。它用于交易、质押、治理投票和赚取奖励。XOM 持有者可享受费用折扣并参与平台决策。"
+      },
+      "howToEarnXOM": {
+        "question": "如何赚取 XOM 代币？",
+        "answer": "赚取 XOM 的方式：销售商品（以 XOM 收款）、质押现有 XOM 获取奖励、参与治理、推荐新用户、托管商品列表节点或验证交易。"
+      },
+      "stakingBenefits": {
+        "question": "质押 XOM 有什么好处？",
+        "answer": "质押 XOM 可获得：质押奖励（根据金额和期限可获 5-12% APR）、治理投票权、更高的参与分数以及独家功能访问权限。"
+      }
+    },
+    "dex": {
+      "whatIsDex": {
+        "question": "什么是 OmniBazaar DEX？",
+        "answer": "OmniBazaar DEX（去中心化交易所）是一个内置的交易平台，让您可以直接从 OmniBazaar 账户进行代币兑换、现货交易和永续合约交易。它采用混合订单簿和 AMM（自动做市商）模型，在不依赖中心化交易所的情况下提供深度流动性和紧密的价差。"
+      },
+      "orderTypes": {
+        "question": "DEX 上有哪些订单类型？",
+        "answer": "DEX 支持市价单、限价单、止损单、止损限价单、OCO（二选一）、冰山单、TWAP（时间加权平均价格）和 VWAP（成交量加权平均价格）订单。无论您是进行简单的兑换还是执行复杂的交易策略，都能获得专业级的交易工具。"
+      },
+      "perpetualFutures": {
+        "question": "OmniBazaar 上的永续合约如何运作？",
+        "answer": "永续合约让您可以使用 1 倍到 100 倍的杠杆交易，没有到期日。资金费率每 8 小时计算一次，以保持合约价格与现货价格一致。系统包含自动清算保护，MEV（矿工可提取价值）保护确保您的交易公平执行，不会被抢先交易。"
+      },
+      "dexFees": {
+        "question": "DEX 的交易费用是多少？",
+        "answer": "DEX 交易费用为 taker 20 个基点（0.20%），maker 享受 -5 个基点（0.05%）返利。费用分配：70% 进入 LP Pool（流动性提供者），20% 进入 ODDAO Treasury，10% 进入 Protocol Treasury。被推荐的 taker 需额外支付 5bp 附加费（70% 推荐人，20% 二级推荐人，10% ODDAO）。"
+      },
+      "privacySwaps": {
+        "question": "什么是隐私兑换？",
+        "answer": "隐私兑换让您可以使用 COTI V2 混淆电路（多方计算）在 XOM 和 pXOM（隐私 OmniCoin）之间转换。交易金额经过加密，只有您本人可以查看。您的钱包地址在链上仍然可见。转换费用为 0.3%，由 COTI 网络处理。"
+      }
+    },
+    "rwa": {
+      "whatAreRwas": {
+        "question": "OmniBazaar 上的现实世界资产（RWA）是什么？",
+        "answer": "现实世界资产是实物资产的代币化表示，如房地产、大宗商品、艺术品或收藏品。在 OmniBazaar 上，您可以买卖这些资产的部分所有权，让以前只有富裕投资者才能获得的投资机会向所有人开放。"
+      },
+      "rwaCompliance": {
+        "question": "OmniBazaar 上的 RWA 如何监管？",
+        "answer": "RWA 上架必须遵守当地证券法规。OmniBazaar 提供合规工具，包括 RWA 交易者的 KYC 验证、地理限制执行、需要时的合格投资者验证以及透明的审计追踪。每个 RWA 上架都包含特定司法管辖区的合规信息。"
+      },
+      "rwaTrading": {
+        "question": "如何在 OmniBazaar 上交易 RWA？",
+        "answer": "从加密交易所部分导航到 RWA 市场。您可以搜索特定的资产类型，查看详细信息（包括估值和法律文件），并下买入或卖出订单。RWA 交易使用与市场购买相同的托管系统进行安全结算。"
+      },
+      "rwaValuation": {
+        "question": "RWA 价格如何确定？",
+        "answer": "RWA 价格由预言机聚合器服务确定，该服务从多个独立的价格和估值来源获取数据。对于房地产，这包括可比销售数据和专业评估。对于大宗商品，使用现货市场价格。系统会标记价格异常以供人工审查。"
+      },
+      "rwaFractional": {
+        "question": "我可以购买 RWA 的一部分吗？",
+        "answer": "可以。OmniBazaar 上的大多数 RWA 都被分割成更小的单位，让您可以用少至几美元的 XOM 进行投资。部分所有者按比例获得资产产生的任何收入回报，如房地产的租金收入或企业所有权的股息。"
+      }
+    },
+    "yield": {
+      "whatIsYield": {
+        "question": "OmniBazaar 上的收益计划是什么？",
+        "answer": "收益计划让您可以通过加密持仓获得被动收入。OmniBazaar 聚合了来自 DEX 流动性池、质押计划和借贷协议的机会。您可以在一个仪表板上比较所有可用计划的年化收益率（APY）、风险等级和锁定期。"
+      },
+      "yieldVsStaking": {
+        "question": "收益挖矿和质押有什么区别？",
+        "answer": "质押是锁定您的 XOM 来保护网络并根据金额和期限赚取 5-12% APR。收益挖矿涉及为 DEX 交易对或借贷协议提供流动性，可能提供更高的回报，但存在无常损失风险。两者在 OmniBazaar 上都可用，您可以同时用不同比例的持仓使用两者。"
+      },
+      "yieldRisks": {
+        "question": "收益计划有哪些风险？",
+        "answer": "主要风险包括无常损失（流动性池中代币价格偏离时）、智能合约风险（尽管我们的合约已经审计）以及影响奖励价值的市场波动。OmniBazaar 为每个收益机会显示风险评级，并允许您按风险承受能力过滤。更高收益的计划通常伴随更高的风险。"
+      },
+      "yieldRewards": {
+        "question": "收益奖励如何以及何时分配？",
+        "answer": "质押奖励从区块奖励池中按比例分配（每个区块 15.6 XOM 奖励的最多 50%）。DEX 流动性奖励随着交易的发生持续分配。您可以随时从收益仪表板领取累积的奖励，或启用自动复投以自动再投资奖励。"
+      },
+      "yieldWithdrawal": {
+        "question": "我可以随时从收益计划中提款吗？",
+        "answer": "灵活质押和大多数流动性池允许随时提款。定期质押（1 个月、6 个月或 2 年）提供额外 APR 奖励，但如果在承诺期结束前退出，会收取提前退出罚金。存入前请务必查看锁定条款。"
+      }
+    },
+    "predictions": {
+      "whatArePredictions": {
+        "question": "OmniBazaar 上的预测市场是什么？",
+        "answer": "预测市场让您可以买卖关于未来事件结果的仓位，如加密货币价格变动、协议治理投票或现实世界事件。每个市场有二元或多结果的份额，根据实际结果进行支付。这是一种表达您对可能结果看法的方式，并有可能从准确的预测中获利。"
+      },
+      "howPredictionsWork": {
+        "question": "预测市场如何运作？",
+        "answer": "每个市场有代表可能结果的份额（例如「是」和「否」）。份额价格在 0 美元到 1 美元之间，反映市场的共识概率。如果您以 0.30 美元买入「是」份额且事件发生，每个份额支付 1.00 美元，给您每份 0.70 美元的利润。如果事件没有发生，您的份额将变得毫无价值。"
+      },
+      "predictionSettlement": {
+        "question": "预测市场如何结算？",
+        "answer": "市场使用预言机聚合器结算，该聚合器从多个可信数据源验证结果。对于链上事件，结算是自动的。对于现实世界事件，指定的预言机提交结果，由验证节点间的共识进行验证。争议可以升级到社区仲裁系统。"
+      },
+      "predictionLimits": {
+        "question": "参与预测市场有限制吗？",
+        "answer": "仓位限制取决于您的 KYC 验证等级。0 级用户可以用较小的仓位参与，而完全验证的用户（3 级以上）没有限制。预测市场参与遵循与其他市场活动相同的交易限制。涉及受监管事件的市场可能有地理限制。"
+      },
+      "predictionFees": {
+        "question": "预测市场收取哪些费用？",
+        "answer": "预测市场使用基于结果概率的动态费率。费率范围为0.50%至2.00%，计算公式：费率 = 7% x P x (1-P)。在50/50的赔率下，费用约为1.75%；接近确定的结果（P > 0.90）仅需支付0.63%。没有结算费用。所有费用按70% ODDAO金库 / 20% 质押池 / 10% 协议分配。确认任何交易前都会显示确切费用。"
+      }
+    },
+    "incentives": {
+      "welcomeBonus": {
+        "question": "什么是欢迎奖励？",
+        "answer": "完成基本验证（电子邮件、电话和社交媒体关注）的新用户可获得高达 10,000 XOM 的欢迎奖励（面向早期采用者）。奖励金额随着更多用户加入而递减：前 1,000 名用户每人获得 10,000 XOM，接下来的 9,000 名获得 5,000 XOM，以此类推。每人限领一次。"
+      },
+      "referralProgram": {
+        "question": "推荐计划如何运作？",
+        "answer": "每位用户都有一个唯一的推荐链接。当有人通过您的链接注册并完成首次购买时，您将获得推荐注册奖励（早期推荐最高 2,500 XOM）。此外，您还可以从被推荐人的每笔销售中赚取 0.50% 推荐费的 70%，如果您的被推荐人又推荐了其他人，您还能获得其推荐费的 20% 作为二级奖励。"
+      },
+      "firstSaleBonus": {
+        "question": "什么是首次销售奖励？",
+        "answer": "当您创建第一个商品列表并完成首次销售时，您将获得高达 500 XOM 的首次销售奖励（金额随更多卖家加入平台而递减）。这个一次性奖励鼓励卖家上架真实商品并完成真实交易。系统能够区分实际销售和简单的资金转账。"
+      },
+      "stakingIncentives": {
+        "question": "有哪些质押激励？",
+        "answer": "XOM 质押提供 5% 到 12% 的分级 APR。基础利率从 5%（少于 100 万 XOM）到 9%（超过 10 亿 XOM）。期限奖励为 2 年承诺增加最高 +3% APR。质押者还可获得市场交易费折扣、治理投票权和优先支持。质押的 XOM 被有效用于 DEX 流动性提供。"
+      },
+      "participationScore": {
+        "question": "什么是参与度评分，为什么重要？",
+        "answer": "您的参与度评分（0-100 分）衡量您对 OmniBazaar 生态系统的整体贡献。它由以下因素计算：KYC 等级（最高 20 分）、市场声誉（最高 10 分）、质押金额和期限（最高 24 分）、推荐（最高 10 分）、上架活动（最高 4 分）、论坛参与（最高 5 分）等。50 分以上可以运行验证节点，更高的分数增加您的收益潜力。"
+      }
+    },
+    "wallet": {
+      "whatIsWallet": {
+        "question": "什么是 OmniBazaar 钱包？",
+        "answer": "OmniBazaar 钱包是一个内置的多链加密货币钱包，支持 128 个区块链，包括以太坊、比特币、Solana、Polkadot 和所有主要的 EVM 链。它使用 BIP39 HD 钱包技术进行安全的密钥生成，并支持硬件钱包（Ledger、Trezor）以获得最高安全性。"
+      },
+      "walletSecurity": {
+        "question": "OmniBazaar 钱包有多安全？",
+        "answer": "钱包使用行业标准的 AES-256-GCM 加密存储数据，采用时序攻击保护进行密钥操作，使用后对敏感数据进行安全内存擦除，具有反钓鱼保护和全面的交易验证。私钥永远不会离开您的设备。为了额外安全，请连接 Ledger 或 Trezor 等硬件钱包。"
+      },
+      "walletRecovery": {
+        "question": "如果我失去访问权限，如何恢复钱包？",
+        "answer": "创建钱包时，您会收到一个 12 或 24 个词的恢复短语（助记词）。请将此短语安全地离线存储。它可以在任何兼容设备上恢复您的钱包和所有账户。切勿与任何人分享您的助记词，也切勿在网站上输入。OmniBazaar 工作人员永远不会要求您提供助记词。"
+      },
+      "walletMultiChain": {
+        "question": "多链支持如何工作？",
+        "answer": "您的单一钱包从一个助记词为所有支持的链派生地址。您可以同时持有 ETH、BTC、SOL、DOT、XOM 和 128 个网络上的代币。钱包会自动检测每笔交易的正确网络，并可以使用内置的跨链桥在链之间转移资产。"
+      },
+      "walletConnect": {
+        "question": "我可以使用现有的钱包连接 OmniBazaar 吗？",
+        "answer": "可以。OmniBazaar 支持连接外部钱包，如 MetaMask、兼容 WalletConnect 的钱包和硬件钱包。您可以使用现有钱包进行交易，同时访问所有市场、DEX 和平台功能。导航栏中的「连接钱包」按钮支持所有主要的钱包提供商。"
+      }
+    },
+    "stillHaveQuestions": {
+      "title": "还有问题？",
+      "description": "找不到您需要的答案？我们的客服团队随时为您服务。",
+      "contactUs": "联系我们",
+      "joinCommunity": "加入社区"
+    },
+    "tooltips": {
+      "expandAnswer": "点击查看此问题的完整答案",
+      "contactSupport": "向客服团队发送消息",
+      "joinCommunity": "与其他 OmniBazaar 用户交流获取同伴帮助"
+    }
+  },
+  "privacy": {
+    "title": "隐私政策",
+    "subtitle": "我们如何在去中心化世界中处理您的数据",
+    "lastUpdated": "最后更新：2025 年 1 月 15 日",
+    "toc": {
+      "title": "目录"
+    },
+    "notice": {
+      "title": "隐私优先的去中心化架构",
+      "description": "OmniBazaar 基于优先保护用户隐私的去中心化技术构建。您的大部分数据存储在本地设备或由您控制的分布式网络上，而非集中式服务器上。本政策说明了我们如何处理有限的数据以及您对信息的权利。"
+    },
+    "sections": {
+      "overview": {
+        "title": "隐私概述",
+        "intro": "OmniBazaar 作为去中心化市场协议运营，最大程度减少数据收集，最大程度保障用户对个人信息的控制：",
+        "principles": {
+          "decentralized": {
+            "title": "去中心化设计",
+            "description": "大部分数据存储在您的设备或分布式网络上"
+          },
+          "minimal": {
+            "title": "最小数据收集",
+            "description": "我们只收集核心功能所必需的数据"
+          },
+          "control": {
+            "title": "用户控制",
+            "description": "您决定与谁共享哪些信息"
+          },
+          "transparent": {
+            "title": "透明处理",
+            "description": "所有数据处理由智能合约和开放协议管理"
+          }
+        },
+        "keyPrinciple": {
+          "title": "核心原则",
+          "description": "您的数据属于您。我们提供工具和基础设施，但您始终掌控自己的信息。"
+        }
+      },
+      "collection": {
+        "title": "我们收集的信息",
+        "tabs": {
+          "provided": "您提供的信息",
+          "automatic": "自动收集的信息",
+          "notCollected": "我们不收集的信息"
+        },
+        "table": {
+          "dataType": "数据类型",
+          "storage": "存储位置",
+          "purpose": "用途"
+        },
+        "data": {
+          "profile": {
+            "type": "个人资料信息",
+            "storage": "IPFS/本地",
+            "purpose": "显示名称、简介、头像用于市场身份"
+          },
+          "listings": {
+            "type": "商品列表数据",
+            "storage": "IPFS/Blockchain",
+            "purpose": "商品描述、图片、定价"
+          },
+          "messages": {
+            "type": "消息",
+            "storage": "加密 P2P",
+            "purpose": "买卖双方之间的沟通"
+          },
+          "wallet": {
+            "type": "钱包地址",
+            "storage": "Blockchain",
+            "purpose": "交易处理和付款"
+          }
+        },
+        "automatic": {
+          "transaction": "交易数据",
+          "transactionDesc": "记录在公共 Blockchain 上",
+          "analytics": "使用分析",
+          "analyticsDesc": "匿名化的交互数据（需选择加入）",
+          "technical": "技术数据",
+          "technicalDesc": "IP 地址、浏览器类型、设备信息（临时保存）",
+          "performance": "性能数据",
+          "performanceDesc": "错误日志和性能指标"
+        },
+        "notCollected": {
+          "documents": "个人身份证件（如需要，由第三方 KYC 提供商处理）",
+          "creditCard": "信用卡或银行账户信息",
+          "governmentId": "社会安全号码或政府身份证件",
+          "browsingHistory": "详细的浏览历史记录或跨网站追踪",
+          "privateKeys": "私钥或助记词（始终由您保管）"
+        }
+      },
+      "usage": {
+        "title": "我们如何使用信息",
+        "intro": "我们使用收集的有限信息来提供和改善 OmniBazaar 服务：",
+        "purposes": {
+          "marketplace": "促进买卖双方之间的市场交易",
+          "identity": "在 KYC 合规要求时验证用户身份",
+          "reputation": "计算参与度评分和声誉评级",
+          "communication": "实现 P2P 加密通讯",
+          "security": "检测和防范欺诈、滥用和安全威胁",
+          "improvement": "通过匿名分析改善平台性能和用户体验"
+        },
+        "noSale": "我们绝不会为了营销或广告目的而向第三方出售、出租或交易您的个人信息。",
+        "automated": "任何自动化决策仅限于欺诈检测和垃圾信息防范。您可以要求对任何自动化决策进行人工审查。"
+      },
+      "storage": {
+        "title": "数据存储与 IPFS",
+        "subtitle": "分布式存储架构",
+        "ipfs": {
+          "title": "IPFS（星际文件系统）",
+          "description": "您的商品列表、图片和个人资料数据存储在您通过私钥控制的分布式 IPFS 网络上。"
+        },
+        "table": {
+          "type": "存储类型",
+          "data": "存储数据",
+          "control": "控制方式",
+          "privacy": "隐私级别"
+        },
+        "types": {
+          "local": {
+            "name": "本地设备",
+            "data": "设置、偏好、草稿内容",
+            "control": "完全用户控制",
+            "privacy": "完全隐私"
+          },
+          "ipfs": {
+            "name": "IPFS 网络",
+            "data": "商品列表、图片、公开资料数据",
+            "control": "用户控制密钥",
+            "privacy": "匿名化"
+          },
+          "blockchain": {
+            "name": "Blockchain",
+            "data": "交易、智能合约交互",
+            "control": "不可变且透明",
+            "privacy": "匿名化"
+          },
+          "p2p": {
+            "name": "加密 P2P",
+            "data": "私人消息、通讯",
+            "control": "端到端加密",
+            "controlE2E": "端到端加密（X25519 + AES-256-GCM）",
+            "controlTransport": "传输加密",
+            "privacy": "私密"
+          }
+        }
+      },
+      "sharing": {
+        "title": "信息共享",
+        "intro": "作为去中心化平台，信息共享在设计上被最小化。以下是您的数据可能被共享的方式：",
+        "categories": {
+          "public": {
+            "title": "公开信息",
+            "content": "您的商品列表、公开个人资料名称和声誉评分对所有平台用户可见。交易哈希记录在公共 blockchain 上。"
+          },
+          "p2p": {
+            "title": "P2P 共享",
+            "content": "消息和交易详情通过端到端加密通道在买卖双方之间直接共享。包括 OmniBazaar 在内的任何第三方都无法读取这些通讯内容。"
+          },
+          "validators": {
+            "title": "验证节点网络",
+            "content": "验证节点处理交易并维护网络共识。它们可以访问验证所需的交易数据，但受验证节点行为准则约束，必须保护用户隐私。"
+          },
+          "legal": {
+            "title": "法律要求",
+            "content": "如果法律、法院命令或政府法规要求，我们可能会披露相关信息。在法律允许的情况下，我们会通知受影响的用户。"
+          }
+        },
+        "noSale": "我们绝不会出售、交易或将您的个人数据货币化。您的信息不是商品。"
+      },
+      "cookies": {
+        "title": "Cookie 和跟踪",
+        "intro": "OmniBazaar 采用隐私优先的 Cookie 和跟踪策略：",
+        "items": {
+          "localStorage": "本地存储：我们使用浏览器本地存储来保存您的偏好设置、主题设置和会话数据。这些数据永远不会离开您的设备。",
+          "noCookies": "无第三方 Cookie：我们不使用任何第三方跟踪 Cookie 或广告 Cookie。",
+          "noTracking": "无跨站跟踪：我们不会跟踪您在其他网站或服务上的活动。",
+          "essential": "仅限必要功能：我们使用的浏览器存储仅限于平台正常运行所必需的内容。"
+        },
+        "dnt": "我们尊重浏览器的 DNT（请勿追踪）信号。当 DNT 启用时，我们会禁用所有可选的分析和遥测功能。"
+      },
+      "thirdParty": {
+        "title": "第三方服务",
+        "intro": "OmniBazaar 与以下第三方服务集成以提供核心功能：",
+        "services": {
+          "blockchain": {
+            "title": "Avalanche 网络",
+            "content": "交易结算和智能合约执行在 Avalanche blockchain 上进行。所有 blockchain 数据是公开且不可变的。OmniBazaar 不控制 Avalanche 网络。"
+          },
+          "ipfs": {
+            "title": "IPFS 网络",
+            "content": "商品列表图片和元数据存储在 IPFS（星际文件系统）上，这是一个去中心化存储网络。固定到 IPFS 的数据对任何拥有内容哈希的人都是可访问的。"
+          },
+          "kyc": {
+            "title": "KYC 验证提供商",
+            "content": "对于选择进行身份验证的用户，我们与第三方 KYC 提供商合作。您的身份证件由这些提供商根据其自身的隐私政策进行处理。OmniBazaar 不存储身份证件。"
+          },
+          "rpc": {
+            "title": "RPC 提供商",
+            "content": "当无法直接连接验证节点时，blockchain 查询可能通过第三方 RPC 提供商路由。这些提供商可能会记录 IP 地址和请求元数据。"
+          }
+        },
+        "disclaimer": "我们谨慎选择与我们共享隐私承诺的第三方合作伙伴。但是，他们的服务受其各自隐私政策的约束，我们建议您查阅这些政策。"
+      },
+      "rights": {
+        "title": "您的隐私权利",
+        "dataControl": {
+          "title": "数据控制权利",
+          "access": "访问权",
+          "accessDesc": "请求获取您个人数据的副本",
+          "portability": "可移植性",
+          "portabilityDesc": "以机器可读格式导出您的数据",
+          "correction": "更正权",
+          "correctionDesc": "更新或更正不准确的信息",
+          "deletion": "删除权",
+          "deletionDesc": "请求删除您的个人数据（在技术可行的情况下）",
+          "restriction": "限制权",
+          "restrictionDesc": "限制我们处理您数据的方式"
+        }
+      },
+      "security": {
+        "title": "数据安全",
+        "intro": "我们实施多层安全措施来保护您的数据：",
+        "measures": {
+          "encryption": {
+            "title": "端到端加密",
+            "content": "所有 P2P 消息使用 X25519 密钥交换和 AES-256-GCM 对称加密进行加密。只有发送方和接收方可以读取消息内容。"
+          },
+          "keys": {
+            "title": "私钥安全",
+            "content": "您的私钥和助记词使用 AES-256-GCM 加密，仅存储在您的设备上。它们永远不会被传输到服务器或其他用户。使用后会采用安全内存擦除来清除敏感数据。"
+          },
+          "decentralized": {
+            "title": "去中心化架构",
+            "content": "没有可被攻破的中央数据库。您的数据分布在本地设备、IPFS 和 blockchain 上，与中心化平台相比显著减少了攻击面。"
+          },
+          "smartContracts": {
+            "title": "经审计的智能合约",
+            "content": "所有处理资金的智能合约都经过安全漏洞审计。托管合约使用时间锁定释放机制和多重签名保护。"
+          }
+        },
+        "disclaimer": "虽然我们实施了行业领先的安全实践，但没有系统能完全免受风险。我们鼓励所有用户启用硬件钱包保护并保持良好的安全习惯。"
+      },
+      "children": {
+        "title": "儿童隐私",
+        "content": "OmniBazaar 不面向 18 岁以下的个人使用。我们不会故意收集未成年人的个人信息。",
+        "action": "如果我们发现 18 岁以下的用户提供了个人信息，我们将采取措施删除该信息并终止相关账户。",
+        "verification": "如果家长或监护人认为其孩子可能向OmniBazaar提供了个人信息，请通过应用内支持页面联系我们以便及时删除。"
+      },
+      "changes": {
+        "title": "政策变更",
+        "content": "我们可能会不定期更新本隐私政策，以反映我们在实践、技术或法律要求方面的变化。",
+        "notification": "重大变更将通过平台通知系统公告并在此页面上发布。我们建议您定期查阅本政策。",
+        "history": "本政策所有先前版本的变更日志可通过应用内支持页面申请获取。"
+      },
+      "contact": {
+        "title": "联系信息",
+        "description": "如果您对本隐私政策或您的个人数据有任何疑问，请通过以下方式联系我们：",
+        "email": "电子邮箱",
+        "address": "地址",
+        "addressDetails": "去中心化 — 无实体总部",
+        "supportGuidance": "如有隐私相关问题，请访问应用内支持页面"
+      }
+    }
+  },
+  "terms": {
+    "title": "服务条款",
+    "subtitle": "去中心化市场协议",
+    "lastUpdated": "最后更新：2025 年 1 月 15 日",
+    "toc": {
+      "title": "目录"
+    },
+    "notice": {
+      "title": "重要通知 — 去中心化市场",
+      "description": "Omni Development DAO 及其成员、员工、顾问或供应商均不是 OmniBazaar 上任何交易的当事方。由于 OmniBazaar 完全去中心化，每笔交易的当事方始终是买方和卖方。OmniBazaar 提供托管、仲裁、信誉评分、社区监管、社区支持以及其他自动化和社区运营功能。但是，您最终对自己的交易、销售和购买负责。"
+    },
+    "sections": {
+      "acceptance": {
+        "title": "接受条款",
+        "content": "通过访问或使用 OmniBazaar，您同意受这些服务条款以及所有适用法律法规的约束。如果您不同意这些条款的任何部分，则禁止使用或访问此服务。",
+        "keyPoint": {
+          "title": "关键要点",
+          "description": "OmniBazaar 作为去中心化协议运营。使用此服务即表示您确认您是直接与其他用户和智能合约交互，而非与集中式公司。"
+        }
+      },
+      "description": {
+        "title": "服务描述",
+        "intro": "OmniBazaar 是一个去中心化的 P2P 市场协议，允许用户：",
+        "features": {
+          "listing": "发布和销售实物商品、数字资产、NFT 和服务",
+          "purchase": "直接从其他用户购买商品",
+          "reputation": "参与基于信誉的信任系统",
+          "escrow": "使用基于 Blockchain 的托管服务",
+          "disputes": "使用社区治理的争议解决机制",
+          "storage": "在包括 IPFS 在内的分布式网络上存储数据"
+        },
+        "decentralized": {
+          "title": "去中心化特性",
+          "content": "OmniBazaar 作为协议运行，而非传统的集中式市场。Omni Development DAO 提供工具和基础设施，但所有交易均通过智能合约直接在用户之间进行。"
+        }
+      },
+      "userAgreement": {
+        "title": "用户协议",
+        "intro": "作为 OmniBazaar 的用户，您同意：",
+        "responsibilities": {
+          "accurate": "在所有商品列表和互动中提供准确和真实的信息",
+          "comply": "遵守所有适用的地方、州、国家和国际法律",
+          "respect": "尊重其他用户的权利和财产",
+          "goodFaith": "善意地使用平台，且仅用于合法目的",
+          "security": "维护钱包和私钥的安全",
+          "responsibility": "为自己的交易和互动承担责任"
+        },
+        "account": {
+          "title": "账户责任",
+          "content": "您对维护账户凭据、私钥和所有已连接钱包的安全负全部责任。OmniBazaar 无法恢复丢失的私钥或撤销交易。"
+        }
+      },
+      "prohibitedUses": {
+        "title": "禁止用途",
+        "intro": "您不得使用 OmniBazaar 进行以下活动：",
+        "activities": {
+          "illegal": "在任何司法管辖区销售违法商品或服务",
+          "fraud": "从事欺诈、洗钱或其他金融犯罪",
+          "ip": "侵犯知识产权",
+          "harassment": "骚扰、威胁或侮辱其他用户",
+          "malware": "传播恶意软件、病毒或有害代码",
+          "manipulation": "操纵信誉系统或创建虚假账户",
+          "hack": "试图入侵或破坏平台安全",
+          "standards": "销售违反平台社区标准的商品"
+        },
+        "enforcement": {
+          "title": "社区执行",
+          "description": "禁止活动通过社区治理和自动化系统执行，因为没有中心化机构来监控所有交易。"
+        }
+      },
+      "intellectualProperty": {
+        "title": "知识产权"
+      },
+      "transactions": {
+        "title": "交易和付款",
+        "intro": "OmniBazaar 上的所有交易均使用加密货币进行，并受智能合约管理：",
+        "features": {
+          "blockchain": "付款通过 Blockchain 网络处理",
+          "escrow": "托管服务由智能合约提供",
+          "fees": "交易费用透明显示",
+          "final": "所有交易在 Blockchain 上确认后即为最终交易",
+          "disputes": "争议解决遵循社区制定的程序"
+        },
+        "escrow": {
+          "title": "托管系统",
+          "content": "托管系统持有资金，直到双方确认交易成功完成。如发生争议，社区仲裁系统将决定结果。"
+        }
+      },
+      "disclaimers": {
+        "title": "免责声明",
+        "intro": "OmniBazaar 按「现状」提供，不做任何形式的保证：",
+        "items": {
+          "availability": "我们不保证服务的可用性或可靠性",
+          "quality": "我们不对所列商品的质量或合法性负责",
+          "identity": "我们不验证用户的身份或信誉",
+          "irreversible": "Blockchain 交易不可逆",
+          "bugs": "智能合约可能存在漏洞或安全隐患"
+        },
+        "warning": {
+          "title": "警告",
+          "description": "用户与智能合约和其他用户的互动均由自己承担风险。在进行交易前，请始终验证交易详情和对方信誉。"
+        }
+      },
+      "limitation": {
+        "title": "责任限制",
+        "content": "在法律允许的最大范围内，OmniBazaar 及其贡献者不对因您使用平台而导致的任何间接、附带、特殊、后果性或惩罚性损害承担责任。"
+      },
+      "indemnification": {
+        "title": "赔偿"
+      },
+      "disputes": {
+        "title": "争议解决",
+        "platform": {
+          "title": "平台争议",
+          "content": "交易争议通过去中心化仲裁系统解决。用户同意遵守通过智能合约执行的仲裁员裁决。"
+        },
+        "legal": {
+          "title": "法律争议",
+          "content": "与这些条款相关的任何法律争议应根据管辖法律部分规定的司法管辖区规则通过有约束力的仲裁解决。"
+        }
+      },
+      "governingLaw": {
+        "title": "适用法律"
+      },
+      "changes": {
+        "title": "条款变更",
+        "content": "我们保留随时修改这些条款的权利。变更在发布后立即生效。继续使用平台即表示接受修改后的条款。",
+        "notice": "请定期查看此页面以了解更新。重大变更将通过平台公告。"
+      }
+    }
+  }
+}

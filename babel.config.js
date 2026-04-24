@@ -20,6 +20,11 @@ module.exports = function (api) {
             '@utils': './src/utils',
             '@assets': './assets',
             '@shared': '../shared',
+            // Direct imports from sibling sources — see Validator/ADD_MOBILE_APP.md
+            // Phase 0 "path-alias" approach. Keeps Mobile in lock-step with
+            // the shipped Wallet extension and WebApp without extracting code.
+            '@wallet': '../Wallet/src',
+            '@webapp': '../WebApp/src',
           },
         },
       ],

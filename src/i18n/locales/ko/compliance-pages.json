@@ -1,0 +1,1101 @@
+{
+  "kyc": {
+    "loading": "KYC 상태 로딩 중...",
+    "title": "KYC 인증",
+    "subtitle": "인증을 완료하여 더 높은 거래 한도를 잠금 해제하고 수수료를 절약하세요",
+    "tier": "등급",
+    "currentTier": "현재 등급",
+    "yourStatus": {
+      "title": "인증 상태",
+      "currentTier": "현재 등급: {{tier}} / 4",
+      "verificationStatus": "인증 상태"
+    },
+    "transactionLimits": {
+      "title": "거래 한도",
+      "daily": "일일 한도",
+      "monthly": "월간 한도",
+      "format": "${{used}} / ${{limit}}",
+      "unlimited": "무제한"
+    },
+    "tiers": {
+      "anonymous": {
+        "name": "미인증",
+        "description": "제한된 거래 금액으로 기본 마켓플레이스에 접근할 수 있습니다.",
+        "requirements": {
+          "items": [
+            "인증 불필요"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "마켓플레이스 탐색",
+            "제한된 매매",
+            "기본 채팅"
+          ]
+        }
+      },
+      "basic": {
+        "name": "기본 인증",
+        "description": "이메일, 전화번호, 소셜 미디어를 인증하여 환영 보너스와 더 높은 한도를 잠금 해제하세요.",
+        "requirements": {
+          "items": [
+            "이메일 인증",
+            "전화번호 인증",
+            "소셜 미디어 계정"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "환영 보너스 대상",
+            "추천 보너스 대상",
+            "마켓플레이스 전체 액세스",
+            "채팅 기능"
+          ]
+        }
+      },
+      "identity": {
+        "name": "인증됨",
+        "description": "주소 증명 서류를 업로드하고 AML 심사를 통과하여 리스팅 노드 자격을 잠금 해제하세요.",
+        "requirements": {
+          "items": [
+            "1등급의 모든 요구 사항",
+            "주소 증명 서류",
+            "위변조 탐지 및 OCR 인증",
+            "AML/PEP 제재 심사"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "1등급의 모든 기능",
+            "리스팅 노드 자격",
+            "우선 리스팅",
+            "우선 지원"
+          ]
+        }
+      },
+      "enhanced": {
+        "name": "신원",
+        "description": "Persona 정부 발급 신분증 인증과 안면 매칭을 완료하여 검증자 또는 중재자 자격을 취득하세요.",
+        "requirements": {
+          "items": [
+            "2등급의 모든 요구 사항",
+            "Persona 신분증/여권 인증",
+            "실시간 셀피 안면 매칭"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "2등급의 모든 기능",
+            "검증자 노드 자격",
+            "중재자 자격",
+            "OTC 액세스"
+          ]
+        }
+      },
+      "institutional": {
+        "name": "기관",
+        "description": "무제한 거래 한도를 가진 비즈니스 계정을 위한 완전한 기관 인증.",
+        "requirements": {
+          "items": [
+            "3등급의 모든 요구 사항",
+            "Persona 사업체 인증",
+            "사업자 등록 서류",
+            "이사 인증"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "모든 기능",
+            "무제한 거래",
+            "API 액세스",
+            "맞춤 통합",
+            "전담 지원"
+          ]
+        }
+      }
+    },
+    "requirements": "요구 사항",
+    "privileges": "혜택",
+    "completeVerification": "인증 완료",
+    "verified": "인증됨",
+    "verify": "인증",
+    "verification": {
+      "email": {
+        "label": "이메일",
+        "title": "이메일 인증"
+      },
+      "phone": {
+        "label": "전화번호",
+        "title": "전화번호 인증",
+        "placeholder": "+821012345678"
+      },
+      "social": {
+        "label": "소셜 미디어",
+        "title": "소셜 미디어 인증",
+        "instructions": "X (Twitter)에서 @OmniBazaar를 팔로우하고 OmniBazaar Telegram 그룹에 가입하여 인증을 완료하세요.",
+        "twitter": "X (Twitter)",
+        "telegram": "Telegram",
+        "twitterPlaceholder": "@your_twitter_handle",
+        "telegramPlaceholder": "@your_telegram_username",
+        "verifyTwitter": "X (Twitter) 팔로우 확인",
+        "verifyTelegram": "Telegram 그룹 가입 확인"
+      },
+      "id": {
+        "label": "신분증"
+      },
+      "sendCode": "코드 전송",
+      "enterCode": "인증 코드 입력",
+      "basic": {
+        "title": "기본 인증 완료"
+      },
+      "identity": {
+        "title": "신원 인증",
+        "description": "인증을 위해 정부 발급 신분증을 업로드하세요",
+        "uploadButton": "문서 업로드"
+      },
+      "success": {
+        "emailSent": "인증 이메일이 발송되었습니다! 받은 편지함을 확인해 주세요.",
+        "codeSent": "전화번호로 인증 코드가 발송되었습니다!",
+        "phoneVerified": "전화번호가 성공적으로 인증되었습니다!",
+        "socialVerified": "{{platform}} 계정이 성공적으로 인증되었습니다!",
+        "documentUploaded": "문서가 성공적으로 업로드되었습니다! 인증이 진행 중입니다."
+      },
+      "errors": {
+        "loadFailed": "KYC 상태 로딩에 실패했습니다. 페이지를 새로고침해 보세요.",
+        "emailFailed": "인증 이메일 발송에 실패했습니다. 이메일 주소를 확인 후 다시 시도해 주세요.",
+        "codeFailed": "인증 코드 발송에 실패했습니다. 전화번호를 확인 후 다시 시도해 주세요.",
+        "enterPhone": "인증 코드를 받으려면 전화번호를 입력해 주세요.",
+        "enterCode": "전화번호로 발송된 인증 코드를 입력해 주세요.",
+        "invalidCode": "유효하지 않은 인증 코드입니다. 코드를 확인하고 다시 시도해 주세요.",
+        "enterTwitterHandle": "팔로우를 확인하려면 X (Twitter) 핸들을 입력해 주세요.",
+        "enterTelegramUsername": "그룹 가입을 확인하려면 Telegram 사용자 이름을 입력해 주세요.",
+        "socialFailed": "소셜 인증에 실패했습니다. @OmniBazaar를 팔로우했는지 확인하고 다시 시도해 주세요.",
+        "selectFile": "업로드할 문서를 선택해 주세요.",
+        "uploadFailed": "문서 업로드에 실패했습니다. 파일 형식과 크기를 확인 후 다시 시도해 주세요.",
+        "fileTooLarge": "파일 크기는 10MB 미만이어야 합니다. 더 작은 파일을 선택해 주세요.",
+        "invalidFileType": "JPG, PNG 및 PDF 파일만 허용됩니다. 지원되는 파일 형식을 선택해 주세요."
+      }
+    },
+    "uploadDocument": {
+      "title": "인증 문서 업로드",
+      "description": "정부 발급 신분증의 선명한 사진 또는 스캔을 업로드하세요",
+      "documentType": "문서 유형",
+      "types": {
+        "passport": "여권",
+        "driversLicense": "운전면허증",
+        "nationalId": "주민등록증"
+      },
+      "selectFile": "파일 선택"
+    },
+    "uploading": "업로드 중...",
+    "upload": "업로드",
+    "tooltips": {
+      "uploadDocument": "인증을 위해 정부 발급 신분증 또는 주소 증명서를 제출하세요",
+      "verifyEmail": "이메일 주소로 인증 코드를 발송합니다",
+      "verifyPhone": "전화번호로 인증 코드를 발송합니다",
+      "linkSocial": "소셜 미디어 계정을 연결하여 인증 등급을 올리세요",
+      "viewLimits": "인증 수준에 따른 현재 거래 한도를 확인하세요",
+      "tierInfo": "더 높은 KYC 등급은 더 큰 거래 한도와 추가 기능을 잠금 해제합니다"
+    },
+    "tier2": {
+      "title": "서류 및 AML 인증",
+      "description": "주소 증명 서류를 업로드하세요. AML 심사는 서류 인증 통과 후 자동으로 실행됩니다.",
+      "steps": {
+        "documentUpload": "서류 업로드 및 인증 (OCR + 위변조 탐지)",
+        "amlScreening": "AML/PEP 심사 (서류 승인 후 자동 실행)"
+      },
+      "aml": {
+        "title": "AML/PEP 심사 상태",
+        "cleared": "AML 승인됨",
+        "pending": "AML 대기 중",
+        "flagged": "AML 플래그됨",
+        "clearedMessage": "AML/PEP 심사를 통과했습니다. 제재 또는 PEP 일치 항목이 발견되지 않았습니다.",
+        "pendingMessage": "AML/PEP 심사는 서류 인증 통과 후 자동으로 실행됩니다.",
+        "flaggedMessage": "AML/PEP 심사에서 잠재적 일치 항목이 발견되었습니다. 지원팀에 문의해 주세요."
+      }
+    },
+    "persona": {
+      "tier3": {
+        "successMessage": "신원 인증이 승인되었습니다! 등급이 업그레이드되었습니다."
+      },
+      "tier4": {
+        "successMessage": "기관 인증이 승인되었습니다! 등급이 업그레이드되었습니다."
+      }
+    }
+  },
+  "aml": {
+    "title": "AML 규정 준수",
+    "subtitle": "자금세탁방지 정책 및 절차",
+    "lastUpdated": "최종 업데이트: 2025년 1월",
+    "toc": {
+      "title": "목차"
+    },
+    "sections": {
+      "overview": {
+        "title": "개요",
+        "intro": "OmniBazaar는 강력한 규정 준수 조치를 통해 자금세탁 및 테러자금 조달을 방지하기 위해 노력하고 있습니다.",
+        "keyPoints": [
+          "위험 기반 고객 실사 접근",
+          "지속적인 거래 모니터링",
+          "의심 활동 보고",
+          "정기적인 규정 준수 감사"
+        ]
+      },
+      "customerDueDiligence": {
+        "title": "고객 실사 (CDD)",
+        "content": "위험 수준에 따라 철저한 고객 확인을 수행합니다:",
+        "levels": {
+          "basic": {
+            "title": "기본 CDD",
+            "requirements": [
+              "이름 확인",
+              "이메일 확인",
+              "IP 위치 확인"
+            ]
+          },
+          "enhanced": {
+            "title": "강화 CDD",
+            "requirements": [
+              "정부 발급 신분증 확인",
+              "주소 증명",
+              "자금 출처 서류",
+              "강화된 배경 조사"
+            ]
+          }
+        }
+      },
+      "transactionMonitoring": {
+        "title": "거래 모니터링",
+        "content": "모든 거래는 다음을 감지하기 위해 고급 알고리즘을 사용하여 실시간으로 모니터링됩니다:",
+        "flags": [
+          "비정상적인 거래 패턴",
+          "고액 이체",
+          "빠른 자금 이동",
+          "고위험 관할권과의 거래"
+        ]
+      },
+      "reporting": {
+        "title": "보고 의무",
+        "content": "엄격한 보고 절차를 유지합니다:",
+        "procedures": [
+          "의심 활동 보고서(SAR) 24시간 이내 제출",
+          "대규모 거래에 대한 통화 거래 보고서(CTR)",
+          "정기적인 규제 보고",
+          "법 집행 기관 협력"
+        ]
+      },
+      "riskAssessment": {
+        "title": "위험 평가",
+        "content": "고려되는 위험 요소:",
+        "factors": [
+          "고객 유형 및 위치",
+          "거래량 및 빈도",
+          "상품 및 서비스 사용",
+          "실소유 구조"
+        ]
+      },
+      "recordKeeping": {
+        "title": "기록 보관",
+        "content": "다음에 대한 종합적인 기록을 유지합니다:",
+        "duration": "계정 폐쇄 후 최소 5년",
+        "records": [
+          "고객 신분 증명 서류",
+          "거래 이력",
+          "위험 평가",
+          "통신 및 결정"
+        ]
+      },
+      "training": {
+        "title": "직원 교육",
+        "content": "모든 직원은 다음을 포함하는 정기적인 AML 교육을 받습니다:",
+        "topics": [
+          "AML 규정 및 요구 사항",
+          "위험 신호 지표",
+          "보고 절차",
+          "제재 심사"
+        ]
+      },
+      "sanctions": {
+        "title": "제재 심사",
+        "content": "모든 고객을 다음에 대해 심사합니다:",
+        "lists": [
+          "OFAC 제재 목록",
+          "UN 제재 목록",
+          "EU 통합 목록",
+          "기타 관련 감시 목록"
+        ]
+      },
+      "compliance": {
+        "title": "규정 준수 프로그램",
+        "content": "우리의 AML 규정 준수 프로그램은 다음을 포함합니다:",
+        "elements": [
+          "전담 규정 준수 담당자",
+          "문서화된 정책 및 절차",
+          "독립적인 테스트 및 감사",
+          "이사회 감독 및 거버넌스"
+        ]
+      },
+      "contact": {
+        "title": "연락처 정보",
+        "content": "AML 관련 문의:",
+        "email": "앱 내 지원 페이지를 이용해 주세요",
+        "response": "영업일 2일 이내 응답을 목표로 합니다"
+      },
+      "monitoring": {
+        "title": "위험 신호",
+        "description": "당사 시스템은 의심스러운 활동 지표를 모니터링합니다",
+        "automated": {
+          "title": "자동화된 모니터링",
+          "items": [
+            "실시간 거래 분석",
+            "패턴 인식 알고리즘",
+            "위험 점수 시스템",
+            "이상 탐지",
+            "속도 검사"
+          ]
+        },
+        "privacy": {
+          "title": "개인정보 보호",
+          "items": [
+            "영지식 증명",
+            "암호화된 데이터 저장",
+            "최소한의 데이터 수집",
+            "탈중앙화 인증",
+            "사용자 제어 데이터"
+          ]
+        }
+      },
+      "reportingDetails": {
+        "triggers": [
+          "규제 기준을 초과하는 거래",
+          "자금세탁을 나타내는 패턴",
+          "KYC 절차를 우회하려는 시도",
+          "제재 대상 기관과의 거래"
+        ],
+        "userRights": [
+          "오탐에 대한 이의 제기 권리",
+          "규정 준수 상태 접근",
+          "데이터 이동성",
+          "삭제 요청 (법적으로 허용되는 경우)"
+        ]
+      },
+      "internationalFrameworks": {
+        "title": "국제 프레임워크",
+        "items": [
+          "FATF 권고사항",
+          "EU 자금세탁방지 지침",
+          "미국 은행비밀법",
+          "트래블 룰 준수",
+          "GDPR 데이터 보호"
+        ]
+      },
+      "sanctionedCountries": {
+        "northKorea": "북한",
+        "iran": "이란",
+        "syria": "시리아",
+        "cuba": "쿠바",
+        "others": "+ 기타"
+      },
+      "userResponsibilities": {
+        "title": "사용자 책임",
+        "intro": "OmniBazaar 사용자로서 AML 정책을 준수할 것이 기대됩니다:",
+        "items": [
+          "KYC 인증 시 정확하고 진실된 정보 제공",
+          "불법 활동이나 자금세탁에 플랫폼을 사용하지 않음",
+          "의심스러운 활동을 규정 준수 팀에 신고",
+          "계정 보안을 유지하고 무단 접근을 즉시 신고",
+          "규정 준수 요청 및 조사에 협조"
+        ]
+      },
+      "kycTiers": {
+        "tier0": {
+          "name": "미인증",
+          "requirements": [
+            "이메일 인증",
+            "지갑 연결",
+            "약관 동의"
+          ],
+          "limits": [
+            "제한된 마켓플레이스 탐색",
+            "기본 채팅 기능",
+            "낮은 거래 한도"
+          ]
+        },
+        "tier1": {
+          "name": "기본",
+          "requirements": [
+            "이메일 인증",
+            "전화번호 인증",
+            "소셜 미디어 팔로우"
+          ],
+          "limits": [
+            "환영 보너스 대상",
+            "마켓플레이스 전체 액세스",
+            "표준 거래 한도"
+          ]
+        },
+        "tier2": {
+          "name": "인증됨",
+          "requirements": [
+            "주소 증명 (은행 거래 내역서, 공과금 청구서)",
+            "서류 위변조 탐지 및 OCR",
+            "AML/PEP 제재 심사"
+          ],
+          "limits": [
+            "높은 거래 한도",
+            "리스팅 노드 자격",
+            "우선 리스팅"
+          ]
+        },
+        "tier3": {
+          "name": "신원",
+          "requirements": [
+            "Persona 신분증/여권 인증",
+            "실시간 셀피 안면 매칭",
+            "적격 투자자 (선택)"
+          ],
+          "limits": [
+            "검증자 노드 자격",
+            "중재자 자격",
+            "OTC 거래 액세스"
+          ]
+        },
+        "tier4": {
+          "name": "기관",
+          "requirements": [
+            "Persona 사업체 인증",
+            "사업자 등록 서류",
+            "이사 인증"
+          ],
+          "limits": [
+            "거래 한도 없음",
+            "모든 플랫폼 기능",
+            "전담 지원"
+          ]
+        }
+      },
+      "walletScreening": {
+        "title": "지갑 수준 심사",
+        "content": "외부 지갑을 연결하면, OmniBazaar는 제재 규정을 준수하기 위해 지갑 주소를 OFAC SDN (Specially Designated Nationals) 목록과 자동으로 대조합니다.",
+        "features": [
+          "연결 시 지갑 주소가 OFAC SDN 목록과 대조됩니다",
+          "제재 대상 지갑은 플랫폼 기능 접근이 차단됩니다",
+          "심사는 자동으로 수행되며 사용자의 별도 조치가 필요하지 않습니다",
+          "서비스 오류 시 정당한 사용자를 차단하지 않도록 접근이 허용됩니다"
+        ]
+      },
+      "startKycButton": "KYC 인증 완료하기"
+    }
+  },
+  "cookies": {
+    "title": "쿠키 정책",
+    "subtitle": "쿠키 및 유사 기술의 사용 방법",
+    "lastUpdated": "최종 업데이트: 2025년 1월",
+    "banner": {
+      "message": "저희는 사용자 경험 개선을 위해 쿠키를 사용합니다. OmniBazaar를 계속 사용하시면 쿠키 정책에 동의하시는 것입니다.",
+      "accept": "모두 수락",
+      "customize": "설정",
+      "reject": "비필수 쿠키 거부"
+    },
+    "categories": {
+      "essential": {
+        "name": "필수 쿠키",
+        "description": "웹사이트가 정상적으로 작동하는 데 필요합니다.",
+        "required": "필수"
+      },
+      "functional": {
+        "name": "기능 쿠키",
+        "description": "향상된 기능과 개인화를 가능하게 합니다.",
+        "required": ""
+      },
+      "analytics": {
+        "name": "분석 쿠키",
+        "description": "방문자가 웹사이트와 어떻게 상호작용하는지 이해하는 데 도움을 줍니다.",
+        "required": ""
+      },
+      "marketing": {
+        "name": "마케팅 쿠키",
+        "description": "관련 광고를 전달하는 데 사용됩니다.",
+        "required": ""
+      }
+    },
+    "table": {
+      "name": "쿠키 이름",
+      "provider": "제공자",
+      "purpose": "목적",
+      "expiry": "만료",
+      "type": "유형"
+    },
+    "preferences": {
+      "title": "쿠키 환경 설정",
+      "subtitle": "쿠키 설정을 관리하세요",
+      "save": "환경 설정 저장",
+      "saved": "환경 설정이 저장되었습니다",
+      "acceptAll": "모두 수락",
+      "rejectNonEssential": "비필수 거부"
+    },
+    "tooltips": {
+      "acceptAll": "최적의 경험을 위해 모든 쿠키를 허용합니다",
+      "rejectNonEssential": "기본 기능에 필요한 쿠키만 사용합니다",
+      "customize": "허용할 쿠키 유형을 선택합니다",
+      "savePreferences": "쿠키 환경 설정을 저장합니다"
+    },
+    "details": {
+      "whatAreCookies": {
+        "title": "쿠키란 무엇인가요?",
+        "content": "쿠키는 웹사이트를 방문할 때 기기에 저장되는 작은 텍스트 파일입니다. 웹사이트가 사용자의 환경 설정을 기억하고 경험을 개선하는 데 도움을 줍니다."
+      },
+      "howWeUse": {
+        "title": "쿠키 사용 방법",
+        "content": "세션 유지, 환경 설정 기억, 사이트 사용 분석 및 개인화된 콘텐츠 제공을 위해 쿠키를 사용합니다."
+      },
+      "yourChoices": {
+        "title": "사용자 선택",
+        "content": "브라우저 설정 또는 저희 환경 설정 센터를 통해 쿠키를 제어할 수 있습니다. 특정 쿠키를 비활성화하면 사이트 기능에 영향을 줄 수 있습니다."
+      },
+      "thirdParty": {
+        "title": "제3자 쿠키",
+        "content": "일부 쿠키는 저희 페이지에 표시되는 제3자 서비스에 의해 배치됩니다. 이러한 쿠키는 저희가 통제하지 않습니다."
+      }
+    }
+  },
+  "dispute": {
+    "title": "분쟁 해결",
+    "subtitle": "공정하고 투명한 분쟁 해결 절차",
+    "lastUpdated": "최종 업데이트: 2025년 1월",
+    "toc": {
+      "title": "목차"
+    },
+    "sections": {
+      "overview": {
+        "title": "개요",
+        "content": "OmniBazaar는 모든 당사자에게 공정한 결과를 보장하기 위해 다양한 분쟁 해결 메커니즘을 제공합니다.",
+        "principles": {
+          "title": "기본 원칙",
+          "items": [
+            "공정하고 투명한 절차",
+            "증거 기반 결정",
+            "시의적절한 해결",
+            "커뮤니티 참여"
+          ]
+        }
+      },
+      "types": {
+        "title": "분쟁 유형",
+        "transaction": {
+          "title": "거래 분쟁",
+          "description": "마켓플레이스 거래 관련 문제",
+          "examples": [
+            "상품 설명 불일치",
+            "미배달",
+            "품질 문제",
+            "위조 상품"
+          ]
+        },
+        "account": {
+          "title": "계정 분쟁",
+          "description": "계정 관련 갈등",
+          "examples": [
+            "무단 접근",
+            "계정 제한",
+            "신원 확인",
+            "수수료 분쟁"
+          ]
+        },
+        "community": {
+          "title": "커뮤니티 분쟁",
+          "description": "사용자 간 갈등",
+          "examples": [
+            "괴롭힘",
+            "허위 리뷰",
+            "지적재산권 침해",
+            "서비스 약관 위반"
+          ]
+        }
+      },
+      "process": {
+        "title": "분쟁 해결 절차",
+        "steps": {
+          "1": {
+            "title": "직접 해결",
+            "description": "당사자들이 직접 문제를 해결하려고 시도합니다",
+            "timeframe": "48시간"
+          },
+          "2": {
+            "title": "중재",
+            "description": "플랫폼 지원 협상",
+            "timeframe": "3-5일"
+          },
+          "3": {
+            "title": "중재 판정",
+            "description": "자격 있는 중재자에 의한 구속력 있는 결정",
+            "timeframe": "7-14일"
+          },
+          "4": {
+            "title": "항소",
+            "description": "제한된 항소 사유",
+            "timeframe": "30일"
+          }
+        }
+      },
+      "filing": {
+        "title": "분쟁 접수",
+        "requirements": {
+          "title": "요구 사항",
+          "items": [
+            "문제에 대한 명확한 설명",
+            "증빙 자료",
+            "해결 시도 단계",
+            "원하는 결과"
+          ]
+        },
+        "evidence": {
+          "title": "허용되는 증거",
+          "items": [
+            "거래 기록",
+            "커뮤니케이션",
+            "사진/동영상",
+            "배송 문서",
+            "전문가 의견"
+          ]
+        }
+      },
+      "mediation": {
+        "title": "중재 절차",
+        "description": "훈련된 중재자가 당사자들이 상호 수용 가능한 해결책에 도달하도록 도움을 줍니다.",
+        "benefits": [
+          "중재 판정보다 빠름",
+          "비용 절감",
+          "유연한 해결책",
+          "관계 유지"
+        ]
+      },
+      "arbitration": {
+        "title": "중재 판정",
+        "description": "커뮤니티에서 선발된 자격 있는 중재자에 의한 구속력 있는 결정.",
+        "qualifications": {
+          "title": "중재자 자격",
+          "items": [
+            "높은 참여 점수 (80+)",
+            "깨끗한 거래 이력",
+            "중재 교육 수료",
+            "이해 충돌 없음"
+          ]
+        },
+        "process": {
+          "title": "중재 판정 절차",
+          "items": [
+            "3명의 중재자에게 사건 배정",
+            "증거 검토 기간",
+            "선택적 심리",
+            "다수결 결정",
+            "사유가 기재된 서면 결정"
+          ]
+        },
+        "incentives": [
+          "해결된 각 사례마다 XOM 토큰 획득",
+          "만장일치 결정에 대한 XOM 보너스",
+          "참여 점수 향상",
+          "커뮤니티 인정 배지",
+          "거버넌스 투표 접근",
+          "플랫폼 우선 기능"
+        ]
+      },
+      "enforcement": {
+        "title": "집행",
+        "mechanisms": {
+          "title": "집행 메커니즘",
+          "items": [
+            "스마트 컨트랙트 실행",
+            "계정 제한",
+            "수수료 조정",
+            "평판 영향"
+          ]
+        },
+        "compliance": {
+          "title": "준수",
+          "content": "분쟁 해결을 준수하지 않으면 계정 정지 또는 해지가 될 수 있습니다."
+        }
+      },
+      "costs": {
+        "title": "비용 및 수수료",
+        "structure": {
+          "mediation": "1,000 XOM 미만 금액은 무료",
+          "arbitration": "분쟁 금액의 5% (구매자와 판매자 50/50 분담)",
+          "appeal": "중재 수수료의 50% (이의 제기 성공 시 환불)"
+        },
+        "payment": "수수료는 별도 결정이 없는 한 일반적으로 당사자 간에 분담됩니다."
+      },
+      "prevention": {
+        "title": "분쟁 예방",
+        "tips": {
+          "title": "모범 사례",
+          "items": [
+            "명확한 의사소통",
+            "상세한 리스팅",
+            "신속한 배송",
+            "정확한 설명",
+            "전문적인 행동"
+          ]
+        },
+        "buyerTips": [
+          "상품 설명 주의깊게 읽기",
+          "구매 전 질문하기",
+          "판매자 평판 및 리뷰 확인",
+          "수령 시 상품 상태 기록",
+          "문제 발생 시 신속하게 소통"
+        ],
+        "sellerTips": [
+          "정확한 설명 제공",
+          "모든 각도에서 선명한 사진 포함",
+          "상품 안전하게 포장",
+          "추적 번호와 함께 신속하게 배송",
+          "구매자 메시지에 빠르게 응답"
+        ]
+      },
+      "contact": {
+        "title": "연락처",
+        "content": "분쟁 해결 도움이 필요하시면:",
+        "email": "앱 내 분쟁 페이지를 이용해 주세요",
+        "response": "24시간 이내 초기 응답"
+      },
+      "appeals": {
+        "intro": "드문 경우 당사자들이 중재 결정이 불공평하다고 판단하면 결정 후 7일 이내에 항소할 수 있습니다. 항소에는 다음이 필요합니다:"
+      }
+    },
+    "tooltips": {
+      "fileDispute": "이 거래에 대한 공식 분쟁을 제출합니다",
+      "uploadEvidence": "사건을 뒷받침하는 문서 또는 사진을 추가합니다",
+      "viewStatus": "분쟁의 현재 상태를 확인합니다",
+      "contactArbitrator": "배정된 중재자에게 메시지를 보냅니다",
+      "acceptDecision": "중재자의 결정을 수락하고 분쟁을 종료합니다"
+    },
+    "protectionFeatures": [
+      "배송 완료까지 에스크로에 자금 안전 보관",
+      "구매자 확인 즉시 즉시 해제",
+      "분쟁 트리거 보류로 조기 해제 방지",
+      "스마트 컨트랙트 실행 — 중개자 불필요"
+    ]
+  },
+  "rwa": {
+    "title": "RWA 규정 준수",
+    "subtitle": "실물 자산 거래 규정 준수 및 요구 사항",
+    "lastUpdated": "최종 업데이트: 2025년 12월",
+    "toc": {
+      "title": "목차"
+    },
+    "overview": {
+      "title": "개요",
+      "description": "실물 자산(RWA)은 부동산, 상품 또는 증권과 같은 물리적 자산의 토큰화된 표현입니다. RWA 거래에는 규제 준수를 보장하기 위한 추가 규정 준수 검사가 필요합니다.",
+      "keyPoints": [
+        "지리적 제한 확인",
+        "토큰 규정 준수 표준 (ERC-3643, ERC-1400)",
+        "KYC 등급 요구 사항",
+        "수수료 투명성"
+      ]
+    },
+    "geofence": {
+      "title": "지리적 제한",
+      "description": "RWA 거래는 규제 요구 사항으로 인해 특정 관할권에서 제한됩니다.",
+      "blockedCountries": {
+        "title": "차단된 지역",
+        "description": "RWA 거래는 현재 다음 지역에서 이용할 수 없습니다:",
+        "reasons": {
+          "US": "규제 불확실성",
+          "CU": "OFAC 제재",
+          "IR": "OFAC 제재",
+          "KP": "OFAC 제재",
+          "SY": "OFAC 제재",
+          "RU": "국제 제재"
+        }
+      },
+      "vpnWarning": {
+        "title": "VPN 감지",
+        "message": "VPN 사용이 감지되었습니다. RWA 거래에는 실제 위치 확인이 필요합니다.",
+        "action": "RWA 기능에 액세스하려면 VPN을 비활성화하고 페이지를 새로고침해 주세요."
+      },
+      "accessDenied": {
+        "title": "액세스 제한",
+        "message": "RWA 거래는 귀하의 지역에서 이용할 수 없습니다.",
+        "contact": "지역 가용성에 대한 질문은 고객 지원에 문의해 주세요."
+      }
+    },
+    "tokenCompliance": {
+      "title": "토큰 규정 준수",
+      "description": "RWA 토큰은 거래 전에 특정 규정 준수 표준을 충족해야 합니다.",
+      "standards": {
+        "erc3643": {
+          "name": "ERC-3643 (T-REX)",
+          "description": "규정 준수 및 신원 확인이 내장된 보안 토큰 표준"
+        },
+        "erc1400": {
+          "name": "ERC-1400",
+          "description": "분할 잔액 및 이전 제한이 있는 보안 토큰 표준"
+        }
+      },
+      "status": {
+        "compliant": "규정 준수",
+        "nonCompliant": "규정 미준수",
+        "pending": "인증 대기 중",
+        "unknown": "상태 불명"
+      },
+      "checks": {
+        "tokenImported": "시스템에 토큰 가져오기 완료",
+        "kycVerified": "KYC 인증 완료",
+        "transferAllowed": "이전 제한 해제됨",
+        "accreditedStatus": "적격 투자자 상태 확인됨"
+      }
+    },
+    "kycRequirements": {
+      "title": "KYC 요구 사항",
+      "description": "RWA 토큰마다 다른 수준의 신원 확인이 필요합니다.",
+      "tiers": {
+        "tier1": {
+          "name": "기본 인증",
+          "description": "이메일 및 전화번호 인증 필요",
+          "limit": "거래당 최대 $10,000"
+        },
+        "tier2": {
+          "name": "신원 인증",
+          "description": "정부 발급 신분증 및 주소 증명 필요",
+          "limit": "거래당 최대 $100,000"
+        },
+        "tier3": {
+          "name": "강화 인증",
+          "description": "자금 출처 문서를 포함한 전체 KYC",
+          "limit": "거래당 최대 $1,000,000"
+        },
+        "tier4": {
+          "name": "적격 투자자",
+          "description": "적격 투자자 인증 필요",
+          "limit": "거래 한도 없음"
+        }
+      },
+      "upgrade": "더 높은 거래 한도에 액세스하려면 KYC 등급을 업그레이드하세요"
+    },
+    "fees": {
+      "title": "수수료 구조",
+      "description": "RWA 스왑은 여러 구성 요소가 포함된 투명한 수수료 구조를 가지고 있습니다.",
+      "breakdown": {
+        "title": "수수료 세부 내역",
+        "protocol": {
+          "name": "프로토콜 수수료",
+          "rate": "0.30%",
+          "description": "네트워크 보안 및 운영을 위한 기본 수수료",
+          "distribution": {
+            "lp": "70% 유동성 공급자에게",
+            "staking": "20% 스테이킹 풀에",
+            "liquidity": "10% 유동성 풀에"
+          }
+        },
+        "frontend": {
+          "name": "프론트엔드 수수료",
+          "rate": "1.00%",
+          "description": "OmniBazaar 인터페이스 사용 수수료",
+          "distribution": {
+            "transaction": "0.25% 거래 수수료",
+            "referral": "0.50% 추천 보상",
+            "listing": "0.25% 리스팅 수수료"
+          },
+          "bypassable": "직접 컨트랙트 액세스를 통해 우회할 수 있습니다"
+        },
+        "priority": {
+          "name": "우선 수수료",
+          "rate": "0-3%",
+          "description": "우선 처리를 위한 선택적 수수료",
+          "distribution": {
+            "listing": "70% 리스팅 노드에",
+            "selling": "20% 판매 노드에",
+            "oddao": "10% ODDAO에"
+          }
+        }
+      },
+      "calculator": {
+        "title": "수수료 계산기",
+        "inputAmount": "입력 금액",
+        "protocolFee": "프로토콜 수수료",
+        "frontendFee": "프론트엔드 수수료",
+        "priorityFee": "우선 수수료",
+        "totalFees": "총 수수료",
+        "netOutput": "순 출력 금액"
+      }
+    },
+    "swap": {
+      "title": "RWA 스왑",
+      "complianceCheck": "규정 준수 확인 중...",
+      "eligible": "이 스왑을 수행할 자격이 있습니다",
+      "notEligible": "이 스왑의 자격이 없습니다",
+      "reason": "사유: {{reason}}",
+      "multiHop": {
+        "title": "멀티홉 경로",
+        "description": "이 스왑은 최적 가격을 위해 여러 풀을 사용합니다",
+        "complianceWarning": "각 홉은 규정 준수 검사를 통과해야 합니다"
+      }
+    },
+    "errors": {
+      "GEO_BLOCKED": "귀하의 국가에서는 RWA 거래가 차단되어 있습니다",
+      "VPN_DETECTED": "VPN 사용이 감지되었습니다 - VPN을 비활성화해 주세요",
+      "KYC_INSUFFICIENT": "귀하의 KYC 등급이 필요한 수준 미만입니다",
+      "TOKEN_NOT_IMPORTED": "이 RWA 토큰은 시스템에 가져오기되지 않았습니다",
+      "COMPLIANCE_CHECK_FAILED": "토큰 규정 준수 확인에 실패했습니다",
+      "TRANSFER_LIMIT_EXCEEDED": "금액이 이전 한도를 초과합니다",
+      "ACCREDITED_REQUIRED": "이 토큰에는 적격 투자자 상태가 필요합니다",
+      "UNKNOWN_ERROR": "규정 준수 검사 중 알 수 없는 오류가 발생했습니다"
+    },
+    "actions": {
+      "checkEligibility": "자격 확인",
+      "viewDetails": "상세 보기",
+      "upgradeKyc": "KYC 업그레이드",
+      "contactSupport": "고객 지원 문의",
+      "tryAgain": "다시 시도"
+    },
+    "tooltips": {
+      "complianceStatus": "이 RWA 토큰의 규정 준수 상태를 봅니다",
+      "feeBreakdown": "모든 수수료의 상세 내역을 봅니다",
+      "kycRequirement": "이 토큰을 거래하는 데 필요한 KYC 수준",
+      "geoRestriction": "이 토큰의 지리적 제한",
+      "priorityFee": "빠른 처리를 위한 우선 수수료 추가",
+      "multiHopRoute": "이 스왑이 유동성 풀을 통해 이동하는 경로 보기"
+    }
+  },
+  "support": {
+    "title": "고객 지원 센터",
+    "subtitle": "커뮤니티 자원봉사자로부터 도움을 받으세요",
+    "loading": "로딩 중...",
+    "stats": {
+      "activeVolunteers": "활성 자원봉사자",
+      "avgWaitTime": "평균 대기 시간",
+      "sessionsToday": "오늘의 세션",
+      "satisfactionRate": "만족도",
+      "minutes": "{{time}}분"
+    },
+    "tabs": {
+      "getSupport": "지원 받기",
+      "mySessions": "내 세션",
+      "volunteer": "자원봉사"
+    },
+    "quickLinks": {
+      "documentation": {
+        "title": "문서",
+        "description": "가이드 및 튜토리얼 탐색"
+      },
+      "forum": {
+        "title": "커뮤니티 포럼",
+        "description": "질문하고 토론하세요"
+      },
+      "volunteerSupport": {
+        "title": "자원봉사자 지원",
+        "description": "개인 맞춤형 지원을 위해 커뮤니티 자원봉사자와 연결하세요"
+      }
+    },
+    "session": {
+      "title": "지원 세션",
+      "waitingForVolunteer": "자원봉사자를 기다리는 중...",
+      "chattingWith": "{{name}}님과 채팅 중",
+      "endSession": "세션 종료",
+      "sessionStarted": "{{date}} 세션 시작",
+      "category": "카테고리: {{category}} | 우선순위: {{priority}}",
+      "findingVolunteer": "이용 가능한 자원봉사자를 찾는 중...",
+      "usuallyTakesLess": "보통 1분 이내에 연결됩니다",
+      "typeMessage": "메시지를 입력하세요...",
+      "assistedBy": "{{name}}님이 지원"
+    },
+    "noSessions": "아직 지원 세션이 없습니다",
+    "requestSupport": {
+      "title": "지원 요청",
+      "description": "어떤 도움이 필요하신지 알려주세요",
+      "category": "카테고리",
+      "priority": "우선순위",
+      "language": "언어",
+      "describeIssue": "문제를 설명해 주세요",
+      "placeholder": "도움이 필요한 내용을 설명해 주세요...",
+      "cancel": "취소",
+      "request": "지원 요청",
+      "requesting": "요청 중..."
+    },
+    "categories": {
+      "general": "일반 질문",
+      "wallet_setup": "지갑 설정",
+      "technical_issue": "기술 문제",
+      "trading": "거래 및 DEX",
+      "marketplace": "마켓플레이스",
+      "validator": "Validator 설정"
+    },
+    "priorities": {
+      "low": "낮음",
+      "medium": "보통",
+      "high": "높음",
+      "urgent": "긴급"
+    },
+    "volunteer": {
+      "become": "지원 자원봉사자 되기",
+      "description": "커뮤니티에서 다른 사람을 돕고 참여 보상을 받으세요",
+      "requirements": {
+        "title": "요구 사항",
+        "items": [
+          "참여 점수 50 이상",
+          "커뮤니티에서 양호한 상태",
+          "전문적으로 다른 사람을 돕겠다는 의지"
+        ]
+      },
+      "benefits": {
+        "earnRewards": {
+          "title": "보상 획득",
+          "description": "참여 포인트 및 XOM 보상을 받으세요"
+        },
+        "buildReputation": {
+          "title": "평판 구축",
+          "description": "커뮤니티에서의 위상을 높이세요"
+        },
+        "helpGlobally": {
+          "title": "글로벌 지원",
+          "description": "전 세계 사용자를 지원하세요"
+        }
+      },
+      "apply": "자원봉사 지원",
+      "application": {
+        "title": "자원봉사 지원서",
+        "description": "지원팀에 참여하여 커뮤니티를 도우세요",
+        "displayName": "표시 이름",
+        "displayNamePlaceholder": "사용자에게 보이는 이름",
+        "languages": "언어",
+        "expertise": "전문 분야",
+        "maxSessions": "최대 동시 세션",
+        "sessions": "{{count}}개 세션",
+        "sessions_plural": "{{count}}개 세션",
+        "cancel": "취소",
+        "submit": "지원서 제출",
+        "applying": "지원 중..."
+      }
+    },
+    "messages": {
+      "authRequired": "{{action}}하려면 로그인해 주세요",
+      "requestSupport": "지원 요청",
+      "becomeVolunteer": "자원봉사자 등록",
+      "supportRequested": "지원이 요청되었습니다",
+      "volunteerWillHelp": "자원봉사자가 곧 연결됩니다",
+      "errorCreating": "지원 요청 생성에 실패했습니다",
+      "errorSending": "메시지 전송에 실패했습니다",
+      "sessionClosed": "세션이 종료되었습니다",
+      "thanksFeedback": "피드백 감사합니다!",
+      "sessionClosedSimple": "지원 세션이 종료되었습니다",
+      "errorClosing": "세션 종료에 실패했습니다",
+      "displayNameRequired": "표시 이름을 입력해 주세요",
+      "registrationSuccess": "지원 자원봉사자로 등록되었습니다!",
+      "errorRegistering": "자원봉사자 등록에 실패했습니다",
+      "messageRequired": "도움이 필요한 내용을 설명해 주세요"
+    },
+    "tooltips": {
+      "requestSupport": "자원봉사자와 새로운 지원 세션을 시작합니다",
+      "endSession": "현재 지원 세션을 종료합니다",
+      "becomeVolunteer": "다른 사용자를 돕고 보상을 받기 위해 등록합니다",
+      "sendMessage": "지원 채팅에서 메시지를 보냅니다",
+      "rateVolunteer": "받은 지원의 품질을 평가합니다"
+    }
+  },
+  "rwaCompliance": {
+    "contact": {
+      "supportGuidance": "RWA 규정 준수 관련 질문은 앱 내 지원 페이지를 방문해 주세요. 24시간 이내에 답변드립니다."
+    }
+  }
+}

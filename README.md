@@ -80,9 +80,11 @@ Mobile/
 
 2. Install dependencies:
    ```bash
+   # From OmniBazaar root directory
+   cd ..
    npm install
-   # or
-   yarn install
+   
+   # Note: Dependencies are now managed at the root level in ~/OmniBazaar/node_modules
    ```
 
 3. Install iOS dependencies (Mac only):
@@ -167,6 +169,35 @@ npm run test:watch
 npm run e2e:ios
 npm run e2e:android
 ```
+
+### Integration Testing
+
+The Mobile module is integrated with the OmniBazaar test suite:
+
+#### Cross-Module Integration Testing
+
+```bash
+# Run all integration tests from OmniBazaar root
+cd ~/OmniBazaar
+npm run test:integration
+
+# Run mobile-specific integration tests
+npm run test:integration -- mobile
+
+# Run cross-module tests with mobile interactions
+npm run test:integration -- cross-module
+```
+
+#### Integration Test Coverage
+
+- **Wallet Integration**: Tests mobile wallet with browser extension sync
+- **Marketplace Mobile**: Tests mobile-optimized marketplace features
+- **DEX Mobile UI**: Tests touch-optimized trading interface
+- **Push Notifications**: Tests real-time notifications across modules
+
+For detailed integration testing documentation, see:
+- [Integration Test Suite](~/OmniBazaar/tests/integration/README.md)
+- [Mobile Integration Guide](~/OmniBazaar/tests/integration/features/mobile)
 
 ### Debugging
 

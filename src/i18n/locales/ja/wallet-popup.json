@@ -1,0 +1,1266 @@
+{
+  "splash": {
+    "title": "OmniWallet",
+    "loading": "読み込み中..."
+  },
+  "header": {
+    "brand": "OmniWallet",
+    "settingsTitle": "設定"
+  },
+  "nav": {
+    "wallet": "ウォレット",
+    "dex": "DEX",
+    "marketplace": "マーケット",
+    "more": "その他"
+  },
+  "quickActions": {
+    "send": "送信",
+    "receive": "受取",
+    "swap": "スワップ",
+    "bridge": "ブリッジ"
+  },
+  "accountBar": {
+    "defaultAccountName": "アカウント 1"
+  },
+  "common": {
+    "back": "戻る",
+    "cancel": "キャンセル",
+    "close": "閉じる",
+    "continue": "続行",
+    "confirm": "確認",
+    "copy": "コピー",
+    "copied": "コピー済み",
+    "loading": "読み込み中..."
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "OmniWallet",
+      "subtitle": "128 のブロックチェーン、OmniBazaar マーケットプレイス、OmniCoin DEX へのゲートウェイ。トラストレス、ガスレス、デザインによるプライバシー。",
+      "createNew": "新しいウォレットを作成",
+      "importExisting": "既存のウォレットをインポート",
+      "signIn": "アカウントをお持ちですか? サインイン",
+      "termsPrefix": "続行すると、以下に同意したものとみなされます:",
+      "termsLink": "利用規約"
+    },
+    "createWallet": {
+      "heading": "ウォレットを作成",
+      "passwordHint": "このデバイスでウォレットを保護するためのパスワードを設定してください。シードフレーズこそが本当のバックアップです — 安全に保管してください。",
+      "passwordLabel": "パスワード",
+      "passwordPlaceholder": "8 文字以上",
+      "confirmPasswordLabel": "パスワードの確認",
+      "confirmPasswordPlaceholder": "パスワードを再入力",
+      "continue": "続行",
+      "creating": "作成中…",
+      "seedHeading": "リカバリーフレーズ",
+      "seedWarning": "⚠️ この 12 個の単語を書き留めて安全な場所に保管してください。この単語を持つ人は誰でもウォレットにアクセスできます。",
+      "writtenDown": "書き留めました →",
+      "confirmHeading": "バックアップの確認",
+      "confirmHint": "バックアップを確認するため、位置 {{positions}} の単語を入力してください。",
+      "wordLabel": "単語 #{{position}}",
+      "wordPlaceholder": "単語 {{position}}",
+      "wordIncorrect": "単語 #{{position}} が正しくありません",
+      "createWalletBtn": "ウォレットを作成",
+      "registering": "登録中…",
+      "passwordTooShort": "パスワードは 8 文字以上である必要があります",
+      "passwordMismatch": "パスワードが一致しません",
+      "createFailed": "ウォレットの作成に失敗しました",
+      "registerFailed": "登録に失敗しました"
+    },
+    "importWallet": {
+      "heading": "ウォレットをインポート",
+      "importing": "インポート中…",
+      "verifying": "シードを検証し、ウォレットを登録中…",
+      "tabMnemonic": "シードフレーズ",
+      "tabPrivateKey": "秘密鍵",
+      "mnemonicHint": "12 または 24 語のリカバリーフレーズをスペース区切りで入力してください。",
+      "mnemonicPlaceholder": "word1 word2 word3 …",
+      "privateKeyHint": "秘密鍵を入力してください(16 進数、0x プレフィックスは任意)。",
+      "privateKeyPlaceholder": "0x…",
+      "newPasswordLabel": "新しいパスワード",
+      "newPasswordPlaceholder": "8 文字以上",
+      "confirmPasswordLabel": "パスワードの確認",
+      "confirmPasswordPlaceholder": "パスワードを再入力",
+      "submit": "ウォレットをインポート",
+      "submitting": "インポート中…",
+      "errorSeedWordCount": "シードフレーズは 12 または 24 語である必要があります",
+      "errorPrivateKeyRequired": "秘密鍵が必要です",
+      "errorImportFailed": "インポートに失敗しました",
+      "passwordTooShort": "パスワードは 8 文字以上である必要があります",
+      "passwordMismatch": "パスワードが一致しません"
+    },
+    "seedBackup": {
+      "heading": "リカバリーフレーズ",
+      "warning": "⚠️ この {{count}} 個の単語を書き留めて安全な場所に保管してください。この単語を持つ人は誰でもウォレットにアクセスできます。",
+      "writtenDown": "書き留めました →",
+      "confirmHeading": "バックアップの確認",
+      "confirmHint": "バックアップを確認するため、位置 {{positions}} の単語を入力してください。",
+      "wordLabel": "単語 #{{position}}",
+      "wordPlaceholder": "単語 {{position}}",
+      "wordIncorrect": "単語 #{{position}} が正しくありません",
+      "verify": "バックアップを検証"
+    },
+    "login": {
+      "heading": "おかえりなさい",
+      "passwordLabel": "パスワード",
+      "passwordPlaceholder": "パスワードを入力",
+      "unlock": "ロック解除",
+      "unlocking": "ロック解除中…",
+      "useDifferent": "別のウォレットを使用",
+      "errorPasswordRequired": "パスワードが必要です",
+      "errorIncorrectPassword": "パスワードが正しくありません",
+      "unlockAria": "入力したパスワードでウォレットを解除",
+      "useDifferentAria": "他のウォレットをインポートするか新規作成"
+    }
+  },
+  "wallet": {
+    "tabs": {
+      "assets": "アセット",
+      "nfts": "NFT",
+      "activity": "アクティビティ"
+    },
+    "assets": {
+      "empty": "アセットが見つかりません"
+    },
+    "asset": {
+      "invalidDecimals": "トークンのメタデータが欠落または無効です — 安全のため残高を非表示にしました",
+      "invalidDecimalsAria": "残高が利用できません — トークンのメタデータが無効です"
+    },
+    "activity": {
+      "heading": "アクティビティ",
+      "empty": "取引はまだありません",
+      "received": "{{symbol}} を受取",
+      "sent": "{{symbol}} を送信",
+      "timeJustNow": "たった今",
+      "timeMinutesAgo": "{{count}} 分前",
+      "timeHoursAgo": "{{count}} 時間前",
+      "publicTab": "公開",
+      "privateTab": "プライベート (pXOM)",
+      "revealAmount": "金額を表示",
+      "amountHidden": "金額は非表示です — 表示をタップして復号",
+      "status": {
+        "confirmed": "確認済み",
+        "pending": "保留中",
+        "failed": "失敗"
+      }
+    },
+    "nfts": {
+      "heading": "NFT",
+      "empty": "NFT が見つかりません",
+      "placeholder": "NFT"
+    },
+    "send": {
+      "heading": "送信",
+      "networkLabel": "ネットワーク",
+      "recipientLabel": "受取人のアドレス",
+      "recipientPlaceholder": "0x… またはユーザー名",
+      "amountLabel": "金額",
+      "amountPlaceholder": "0.00",
+      "max": "MAX",
+      "gaslessBadge": "⚡ ガス: 無料 — OmniRelay 提供",
+      "gasFree": "ガス：無料（OmniRelay）",
+      "estimatedGas": "推定ガス",
+      "submit": "送信",
+      "submitting": "送信中…",
+      "errorFailed": "取引に失敗しました",
+      "successPrefix": "送信しました! Tx: {{shortHash}}",
+      "errorInvalidAddress": "このチェーンではアドレス形式が無効です。確認して貼り直してください。",
+      "networkTooltip": "送信元チェーンを選択してください。チェーンごとに残高が異なります。",
+      "gaslessTooltip": "ガスレス: このトランザクションは OmniRelay 経由でリレーされます。ネイティブガスはかかりません。",
+      "recipientTooltip": "選択したチェーンに有効なアドレスを入力してください。形式とチェックサムを検証します。",
+      "amountAria": "{{symbol}} の送金額",
+      "maxAria": "利用可能な最大残高を送信",
+      "maxTooltip": "{{symbol}} の最大残高を金額に入力します。",
+      "estimatedGasTooltip": "このトランザクションのネットワーク手数料の概算。"
+    },
+    "receive": {
+      "heading": "受取",
+      "networkLabel": "ネットワーク",
+      "copy": "コピー",
+      "copied": "✓ コピー済み",
+      "hint": "このアドレスには {{chainName}} 上で {{symbol}} と互換トークンのみを送信してください。",
+      "networkTooltip": "受け取りたいチェーンを選んでください。チェーンごとにアドレスが異なります。",
+      "qrAria": "{{chainName}} アドレス {{address}} のQRコード",
+      "qrAriaPending": "生成中",
+      "addressTooltip": "{{chainName}} の受け取りアドレスです。このアドレスを知っている人は {{symbol}} を送れます。",
+      "addressDeriving": "アドレス生成中…",
+      "copyAria": "{{chainName}} アドレスをクリップボードにコピー",
+      "copyTooltip": "アドレスをクリップボードにコピー"
+    }
+  },
+  "settings": {
+    "home": {
+      "heading": "設定",
+      "sectionSecurity": "セキュリティ",
+      "sectionNetwork": "ネットワーク",
+      "sectionAccount": "アカウント",
+      "securityPrivacyTitle": "セキュリティとプライバシー",
+      "securityPrivacySub": "パスワード、生体認証、シードフレーズ",
+      "connectedSitesTitle": "接続済みサイト",
+      "connectedSitesSub": "dApp 接続の管理",
+      "walletConnectTitle": "WalletConnect",
+      "walletConnectSub": "QR コードで dApp とペアリング",
+      "networksTitle": "ネットワーク",
+      "networksSub": "RPC エンドポイントを管理",
+      "languageTitle": "言語",
+      "languageSub": "表示言語を選択",
+      "signOutTitle": "サインアウト",
+      "signOutSub": "ウォレットをロック",
+      "versionRow": "OmniWallet v{{version}}",
+      "sectionFeatures": "機能",
+      "sectionInfo": "情報",
+      "stakingTitle": "ステーキング",
+      "stakingSub": "XOMをステーキングして報酬を獲得",
+      "kycTitle": "KYC・本人確認",
+      "kycSub": "参加スコアを上げる",
+      "bridgeTitle": "ブリッジ",
+      "bridgeSub": "チェーン間で資産を移動",
+      "addressBookTitle": "アドレス帳",
+      "addressBookSub": "保存済みの連絡先",
+      "aboutTitle": "概要",
+      "aboutSub": "バージョン、バリデーター、リンク",
+      "hardwareTitle": "ハードウェアウォレットを接続",
+      "hardwareSub": "Ledger または Trezor アカウントを追加",
+      "portfolioTitle": "ポートフォリオ分析",
+      "portfolioSub": "マルチチェーン ERC-20 残高の内訳",
+      "participationTitle": "参加スコア",
+      "participationSub": "あなたの {{score}}/100 スコアの計算方法を確認",
+      "governanceTitle": "ガバナンス",
+      "governanceSub": "ODDAO 投票（近日公開）",
+      "antiPhishingTitle": "アンチフィッシングバナー",
+      "antiPhishingSub": "色と単語を選んで、このウォレットが本物であることを確認します",
+      "tokenApprovalsTitle": "トークン承認",
+      "tokenApprovalsSub": "ERC-20 + NFT 承認を確認・取り消し"
+    },
+    "security": {
+      "heading": "セキュリティとプライバシー",
+      "sectionWallet": "ウォレット",
+      "showSeedTitle": "リカバリーフレーズを表示",
+      "showSeedSub": "12/24 語のシードを表示",
+      "exportKeyTitle": "秘密鍵をエクスポート",
+      "exportKeySub": "現在のアカウントのみ",
+      "revealLabel": "シードを表示するにはパスワードを入力",
+      "revealPlaceholder": "ウォレットのパスワード",
+      "reveal": "シードフレーズを表示",
+      "verifying": "検証中…",
+      "errorIncorrectPassword": "パスワードが正しくありません",
+      "errorExportFailed": "エクスポートに失敗しました",
+      "exportedAlert": "秘密鍵をクリップボードにコピーしました。安全に保管し、クリップボードをクリアしてください。",
+      "sectionAccess": "アクセス",
+      "passwordChangeTitle": "パスワードを変更",
+      "passwordChangeSub": "ウォレットのロック解除パスワードを更新",
+      "passwordChangeHeading": "パスワードを変更",
+      "currentPasswordLabel": "現在のパスワード",
+      "newPasswordLabel": "新しいパスワード",
+      "confirmNewPasswordLabel": "新しいパスワードを確認",
+      "passwordChangeBtn": "パスワードを更新",
+      "passwordChangeOk": "パスワードを更新しました。",
+      "passwordTooShort": "パスワードは8文字以上必要です",
+      "passwordMismatch": "パスワードが一致しません",
+      "passwordChangeFailed": "パスワードの更新に失敗しました",
+      "biometricTitle": "生体認証ロック解除",
+      "biometricSub": "Touch ID、Face ID、Windows Helloを使用",
+      "biometricUnavailable": "このデバイスでは生体認証を利用できません。",
+      "biometricEnable": "生体認証を有効化",
+      "biometricDisable": "生体認証を無効化",
+      "biometricEnabled": "生体認証を有効化しました。",
+      "biometricDisabled": "生体認証を無効化しました。",
+      "biometricFailed": "生体認証の設定に失敗しました",
+      "autoLockTitle": "自動ロック",
+      "autoLockSub": "一定時間操作がないとウォレットをロック",
+      "autoLockNever": "なし",
+      "autoLock1m": "1分",
+      "autoLock5m": "5分",
+      "autoLock15m": "15分",
+      "autoLock30m": "30分"
+    },
+    "networks": {
+      "heading": "ネットワーク",
+      "chainIdRow": "チェーン {{id}}",
+      "gaslessBadge": "ガス無料",
+      "defaultChainHeading": "デフォルトチェーン",
+      "defaultChainSub": "ポップアップのアカウントバーにデフォルトで表示されます。",
+      "enabledHeading": "有効なネットワーク",
+      "customRpcHeading": "カスタムRPC",
+      "customAddTitle": "カスタムRPCを追加",
+      "customNameLabel": "名前",
+      "customNamePlaceholder": "マイカスタムネットワーク",
+      "customRpcLabel": "RPC URL",
+      "customRpcPlaceholder": "https://rpc.example.com",
+      "customChainIdLabel": "Chain ID",
+      "customChainIdPlaceholder": "0で自動検出",
+      "customSymbolLabel": "通貨シンボル",
+      "customSymbolPlaceholder": "ETH",
+      "customExplorerLabel": "エクスプローラーURL",
+      "customExplorerPlaceholder": "https://explorer.example.com",
+      "customAddBtn": "ネットワークを追加",
+      "customAddOk": "カスタムネットワークを追加しました。",
+      "customAddFailed": "ネットワークの追加に失敗しました",
+      "customRemove": "削除",
+      "customEmpty": "カスタムネットワークはありません",
+      "toggleEnable": "有効化",
+      "toggleDisable": "無効化",
+      "familyHeading": {
+        "evm": "EVM ネットワーク",
+        "bitcoin": "ビットコインファミリー",
+        "solana": "Solana",
+        "polkadot": "ポルカドットファミリー",
+        "cosmos": "Cosmos",
+        "cardano": "Cardano",
+        "xrp": "XRP Ledger",
+        "tron": "TRON",
+        "near": "NEAR",
+        "hedera": "Hedera",
+        "stellar": "Stellar",
+        "tezos": "Tezos"
+      }
+    },
+    "connected": {
+      "heading": "接続済みサイト",
+      "empty": "接続済みサイトはありません",
+      "connectedOn": "接続日: {{date}}",
+      "disconnect": "切断"
+    },
+    "locale": {
+      "heading": "言語",
+      "description": "ウォレットの表示言語を選択します。変更は直ちに適用されます。",
+      "currentLabel": "現在の言語"
+    },
+    "tokenApprovals": {
+      "title": "トークン承認",
+      "comingSoon": "近日公開",
+      "help": "ウォレットが付与したすべての承認を 1 画面で確認・取り消せる画面を準備中です。"
+    }
+  },
+  "placeholders": {
+    "comingSoon": "近日公開",
+    "thisFeature": "この機能",
+    "dexTitle": "DEX とスワップ",
+    "marketplaceTitle": "マーケットプレイス"
+  },
+  "dex": {
+    "subnav": {
+      "swap": "スワップ",
+      "limit": "指値",
+      "yield": "イールド",
+      "lp": "LP",
+      "rwa": "RWA",
+      "privacy": "プライバシー"
+    },
+    "comingSoon": "近日公開",
+    "swap": {
+      "youPay": "支払う",
+      "youReceive": "受け取る",
+      "max": "最大",
+      "balance": "残高：{{amount}} {{symbol}}",
+      "route": "ルート",
+      "routeDetails": "詳細",
+      "altRoutes": "代替",
+      "via": {
+        "omnidex": "OmniDEX 経由",
+        "omnibridgeIctt": "OmniBridge (ICTT) 経由",
+        "omnibridgeCctp": "OmniBridge (CCTP) 経由",
+        "omnibridgeLifi": "OmniDEX → Li.Fi 経由",
+        "lifi": "Li.Fi 経由",
+        "zerox": "0x 経由",
+        "unknown": "{{protocol}} 経由"
+      },
+      "feePct": "{{pct}}% DEX",
+      "relayFee": "0% リレー",
+      "estTime": "約 {{seconds}} 秒",
+      "swap": "スワップ",
+      "swapConfirm": "{{fromSymbol}} → {{toSymbol}} をスワップ",
+      "signing": "署名を待機中…",
+      "broadcasting": "ブロードキャスト中…",
+      "inTransit": "ブリッジ中 — {{status}}",
+      "complete": "スワップ完了",
+      "failed": "スワップ失敗：{{error}}",
+      "noRoutes": "このペアのルートはありません",
+      "xomRoutingNotice": "XOM はブリッジ前に OmniDEX → USDC を経由します",
+      "priceImpactWarning": "価格影響: {{pct}}% — 市場の深さにより約 {{loss}} {{symbol}} を失います",
+      "priceImpactHigh": "価格影響が高い ({{pct}}%)。スリッページで {{loss}} {{symbol}} を失う可能性があります。続行するには確認してください。",
+      "priceImpactDangerous": "価格影響が危険 ({{pct}}%)。ロック解除するには確認フレーズを入力してください。",
+      "priceImpactConfirmPhrase": "HIGH IMPACT",
+      "priceImpactAck": "理解しました — それでもスワップ",
+      "priceImpactConfirmLabel": "「{{phrase}}」と入力して確認",
+      "priceImpactDisabledTooltip": "無効: 価格影響が高すぎます。続行するには確認してください。",
+      "slippageTooHigh": "5% を超えるスリッページは異常に高く、MEV ボットに悪用される可能性があります。"
+    },
+    "limit": {
+      "title": "指値注文",
+      "buy": "買い",
+      "sell": "売り",
+      "price": "価格",
+      "amount": "数量",
+      "expiry": "有効期限",
+      "expiryPreset": {
+        "1h": "1時間",
+        "1d": "1日",
+        "1w": "1週",
+        "custom": "カスタム"
+      },
+      "fee": "手数料",
+      "makerRebate": "メイカー報酬",
+      "place": "注文を出す",
+      "submitOk": "注文を出しました",
+      "activeOrders": "アクティブな注文",
+      "noOrders": "未約定の注文はありません",
+      "loginHint": "指値注文を出すにはサインインしてください",
+      "cancel": "キャンセル",
+      "status": {
+        "open": "未約定",
+        "partial": "一部約定",
+        "filled": "約定済み",
+        "cancelled": "キャンセル"
+      },
+      "orderBook": {
+        "bids": "買い",
+        "asks": "売り",
+        "depth": "厚み"
+      }
+    },
+    "yield": {
+      "title": "イールド",
+      "empty": "イールドの機会はまだありません",
+      "apy": "APY",
+      "tvl": "TVL",
+      "position": "あなたのポジション",
+      "deposit": "預入",
+      "withdraw": "引出",
+      "preview": "数量",
+      "risk": {
+        "low": "低リスク",
+        "medium": "中リスク",
+        "high": "高リスク"
+      }
+    },
+    "lp": {
+      "title": "流動性プール",
+      "earlyBonusBadge": "⭐ 早期 LP ボーナス",
+      "earlyBonusTooltip": "2026-04-30 のハードローンチまで +15% APR",
+      "countdown": "早期 LP ボーナスは {{days}}日 {{hours}}時間で終了",
+      "countdownEnded": "早期 LP ボーナスは終了しました",
+      "add": "流動性を追加",
+      "remove": "流動性を削除",
+      "removePct": "削除する割合",
+      "slippage": "スリッページ",
+      "gasInfoLabel": "ガス上限",
+      "gasInfoTooltip": "新規プールへの流動性追加には 5,000,000 のガス上限が必要です。",
+      "tvlTooltip": "TVL — プール内の全流動性のUSD換算値。",
+      "tvlAria": "TVL: {{value}} USD",
+      "apyTooltip": "直近の取引手数料から試算した年利。出来高で変動します。",
+      "apyAria": "推定年利: {{pct}}%",
+      "positionTooltip": "LP トークンで表した現在のプール持分。",
+      "addAria": "{{pair}} プールに流動性を追加",
+      "addTooltip": "両トークンを預けて取引手数料の一部を獲得。",
+      "removeAria": "{{pair}} プールから流動性を引き出す",
+      "removeTooltip": "持分を引き出し、このプールからの手数料収入を終了。"
+    },
+    "rwa": {
+      "title": "現実資産",
+      "empty": "まだ利用可能な RWA はありません",
+      "price": "価格",
+      "buy": "購入",
+      "sell": "売却",
+      "compliance": {
+        "compliant": "適合",
+        "kycRequired": "KYC ティア {{tier}} が必要",
+        "restricted": "お住まいの地域では利用できません"
+      }
+    },
+    "privacy": {
+      "title": "プライバシー",
+      "shield": "シールド",
+      "unshield": "アンシールド",
+      "feePct": "プライバシー手数料: {{pct}}%",
+      "privateBalance": "プライベート残高",
+      "reveal": "表示",
+      "safeOnboard": {
+        "title": "プライベート残高をセットアップ",
+        "explain": "プライベート残高 (pXOM) は COTI V2 によりオンチェーンで暗号化されます。一度だけセットアップが必要です。",
+        "cta": "セットアップ"
+      }
+    }
+  },
+  "marketplace": {
+    "subnav": {
+      "p2p": "P2P",
+      "nft": "NFT",
+      "rwa": "RWA",
+      "yield": "イールド",
+      "predictions": "予測"
+    },
+    "home": {
+      "searchPlaceholder": "出品を検索…",
+      "searchAria": "マーケットプレイスを検索"
+    },
+    "p2p": {
+      "empty": "条件に一致する出品はありません",
+      "createListing": "➕ 出品を作成",
+      "myListingsLink": "マイ出品",
+      "loadMore": "さらに読み込む",
+      "unratedSeller": "新規セラー",
+      "categories": {
+        "all": "すべて",
+        "products": "商品",
+        "services": "サービス",
+        "jobs": "仕事",
+        "realEstate": "不動産",
+        "vehicles": "乗り物",
+        "personal": "個人",
+        "other": "その他"
+      },
+      "sort": {
+        "label": "並び替え",
+        "newest": "新着順",
+        "priceAsc": "価格:安い順",
+        "priceDesc": "価格:高い順",
+        "popular": "人気順"
+      },
+      "status": {
+        "active": "出品中",
+        "sold": "売却済み",
+        "draft": "下書き",
+        "cancelled": "キャンセル済み",
+        "expired": "期限切れ"
+      }
+    },
+    "nft": {
+      "chainLabel": "チェーン",
+      "empty": "このチェーンにコレクションはありません",
+      "stats": {
+        "floor": "フロア",
+        "volume24h": "24h ボリューム",
+        "listed": "出品中"
+      },
+      "list": {
+        "openButton": "出品する",
+        "heading": "{{name}} を出品",
+        "priceLabel": "価格",
+        "currencyLabel": "通貨",
+        "durationLabel": "期間",
+        "duration1d": "1日",
+        "duration7d": "7日",
+        "duration30d": "30日",
+        "royaltyNote": "ロイヤリティ:{{pct}}%(原作者へ支払い)",
+        "confirm": "NFTを出品",
+        "submitting": "署名中…",
+        "errorFailed": "出品に失敗しました",
+        "step": "ステップ 2/2:出品に署名"
+      },
+      "buyConfirm": "購入を確認しますか？XOMが送信され、NFTはオンチェーンで原子的に転送されます。",
+      "buyToast": {
+        "success": "NFTを購入しました — トランザクション {{tx}}",
+        "failed": "NFTの購入に失敗しました"
+      },
+      "buyUnavailable": "NFTの購入はまだご利用いただけません — 後ほど再度ご確認ください。",
+      "approveCollection": {
+        "step": "ステップ 1/2:この NFT コレクションにマーケットプレイスを承認",
+        "button": "承認(ガスレス)",
+        "submitting": "承認中…",
+        "tooltip": "NFT コレクションごとに 1 回のみの承認。ガスは OmniBazaar が負担します。",
+        "success": "コレクションが承認されました。このコレクションの NFT を出品できます。",
+        "failed": "コレクションを承認できませんでした。",
+        "notERC2771": "この NFT コレクションはガスレス承認に対応していません — ガス代として少量の XOM が必要です。",
+        "mustApprove": "出品の前にマーケットプレイスにこのコレクションを承認してください。"
+      },
+      "approveXom": {
+        "step": "ステップ 1/2:この購入のために {{amount}} XOM を承認",
+        "button": "XOM を承認(ガスレス)",
+        "rememberLabel": "OmniBazaar での今後の XOM 購入にも承認を記憶する",
+        "rememberTooltip": "マーケットプレイスに無制限の XOM 支出を許可します。「設定 > トークン承認」でいつでも取り消せます。",
+        "success": "XOM を承認しました。購入を完了しています…"
+      },
+      "buy": {
+        "step1": "ステップ 1/2:XOM を承認",
+        "step2": "ステップ 2/2:購入を確認",
+        "confirmButton": "購入を確定",
+        "buyFloor": "最安値で購入",
+        "fetchingFloor": "読み込み中…",
+        "error": {
+          "selfReferral": "紹介者は自分自身または売り手にはできません。",
+          "sellerReferral": "紹介者は売り手にはできません。",
+          "buyerIsSeller": "自分自身の出品を購入することはできません。",
+          "duplicateReferrer": "第 2 段階の紹介者は第 1 段階と同じにはできません。",
+          "invalidAddress": "紹介者アドレスが無効です。",
+          "missingBuyer": "アクティブなウォレットがありません — ロックを解除してください。",
+          "missingSeller": "出品に売り手がいません — 再読み込みしてください。",
+          "prereqsNotMet": "購入の前提条件を満たしていません。再試行してください。",
+          "insufficientBalance": "この購入に必要な XOM が不足しています。",
+          "settlementNotDeployed": "NFT マーケットプレイスはアップグレード中です — しばらくしてから再試行してください。",
+          "noFloorListing": "このコレクションには現在出品がありません。"
+        },
+        "success": {
+          "toast": "NFT を購入しました — トランザクション {{tx}}…"
+        }
+      }
+    },
+    "listing": {
+      "notFound": "出品が見つかりません",
+      "imagesAria": "出品画像",
+      "sellerHeading": "セラー",
+      "feesHeading": "手数料",
+      "kycTier": "KYC ティア {{tier}}",
+      "ratingLine": "⭐ {{rating}} · {{sales}} 件販売",
+      "unratedSeller": "評価なし",
+      "ownListing": "これはあなたの出品です",
+      "buyNow": "今すぐ購入",
+      "openChat": "チャットを開く",
+      "report": "報告",
+      "reportSubmitted": "報告を送信しました。仲裁パネルが確認します。",
+      "fees": {
+        "escrowBuyer": "エスクロー手数料(バイヤー)",
+        "marketplaceSeller": "マーケットプレイス手数料(セラー)",
+        "marketplaceTooltip": "合計1%:0.50% リファラル + 0.25% 取引 + 0.25% 出品"
+      }
+    },
+    "create": {
+      "heading": "出品を作成",
+      "titleLabel": "タイトル",
+      "titlePlaceholder": "何を販売しますか?",
+      "categoryLabel": "カテゴリ",
+      "descriptionLabel": "説明",
+      "descriptionPlaceholder": "商品、状態、配送の詳細を記載してください",
+      "priceLabel": "価格",
+      "currencyLabel": "通貨",
+      "imagesLabel": "画像 ({{count}}/{{max}})",
+      "imagesHint": "ドラッグまたはクリック — 最大10枚、各 ≤ 5 MB",
+      "imagesNone": "画像が添付されていません",
+      "imagesReady": "{{count}} 枚をIPFSにアップロード済み",
+      "submit": "出品を公開",
+      "submitting": "公開中…",
+      "errorFailed": "出品の作成に失敗しました"
+    },
+    "purchase": {
+      "heading": "購入を確認",
+      "priceLabel": "出品価格",
+      "escrowFeeLabel": "エスクロー手数料 (0.25%)",
+      "recipientLabel": "セラー",
+      "totalLabel": "支払合計",
+      "confirm": "確認",
+      "submitting": "エスクローに署名中…",
+      "errorFailed": "購入に失敗しました"
+    },
+    "chat": {
+      "heading": "チャット · {{thread}}",
+      "empty": "まだメッセージはありません — 挨拶しましょう!",
+      "composerPlaceholder": "メッセージを入力…",
+      "send": "送信",
+      "errorFailed": "メッセージの送信に失敗しました",
+      "unreadAria": "{{count}} 件の未読メッセージ",
+      "actions": {
+        "ship": "発送済みにする",
+        "shippedBody": "発送しました",
+        "receive": "受領済みにする",
+        "receivedBody": "受領しました — エスクローを解放",
+        "dispute": "ディスピュートを開く",
+        "disputeBody": "ディスピュートを開きます"
+      }
+    },
+    "myListings": {
+      "heading": "マイ出品",
+      "empty": "まだ何もありません",
+      "tabs": {
+        "active": "出品中",
+        "sold": "売却済み",
+        "draft": "下書き"
+      },
+      "actions": {
+        "view": "表示",
+        "viewStats": "統計を表示"
+      }
+    },
+    "referral": {
+      "openButton": "リファラルリンクを共有",
+      "heading": "招待して稼ぐ",
+      "description": "あなたのリンク経由の購入とDEXスワップごとに、0.50% リファラル料の70%を獲得できます。",
+      "codeLabel": "コード:{{code}}",
+      "share": "共有",
+      "shareTitle": "OmniBazaar に参加",
+      "shareText": "OmniBazaar に登録してウェルカムボーナスを受け取ろう。",
+      "qrAlt": "リファラル QRコード"
+    },
+    "errors": {
+      "imageTooLarge": "画像が5 MBの上限を超えています",
+      "imageTypeNotAllowed": "サポートされていない画像形式です",
+      "uploadFailed": "アップロードに失敗しました"
+    },
+    "rwa": {
+      "filter": {
+        "assetClass": {
+          "all": "すべて",
+          "realEstate": "不動産",
+          "equity": "株式",
+          "bond": "債券",
+          "commodity": "コモディティ",
+          "other": "その他"
+        },
+        "jurisdiction": "管轄"
+      },
+      "compliance": {
+        "compliant": "準拠",
+        "tierRequired": "KYC ティア {{tier}} が必要",
+        "restricted": "お住まいの地域では利用できません"
+      },
+      "kycComingSoon": "KYC アップグレードフローはフェーズ 5 で提供されます",
+      "trade": "DEX で取引",
+      "empty": "条件に一致する資産はありません",
+      "connectHint": "資産を取引するにはウォレットを接続してください",
+      "documents": "ドキュメントを見る",
+      "stats": {
+        "price": "価格",
+        "marketCap": "時価総額",
+        "volume24h": "24時間出来高"
+      },
+      "priceTooltip": "直近の 1 トークンあたりの USD 価格。",
+      "mcapTooltip": "完全希薄化時価総額 — 流通量 × 価格。",
+      "apyTooltip": "過去 30 日に保有者へ支払われたオンチェーン利回り(年換算)。",
+      "complianceTooltip": "資産が発行される規制枠組み。保有可能者を制限します。",
+      "tradeAria": "DEX で {{symbol}} をトレード",
+      "tradeTooltip": "{{symbol}} が事前入力された DEX を開きます。",
+      "tradeDisabledTooltip": "このアセットの取引は KYC と管轄規則により制限されています。"
+    },
+    "yield": {
+      "filter": {
+        "all": "すべて",
+        "stable": "ステーブル",
+        "lp": "LP",
+        "lending": "レンディング",
+        "vault": "ボールト",
+        "other": "その他"
+      },
+      "sort": {
+        "apy": "APY",
+        "tvl": "TVL",
+        "risk": "リスク",
+        "label": "並び替え"
+      },
+      "risk": {
+        "low": "低",
+        "medium": "中",
+        "high": "高"
+      },
+      "maturity": {
+        "open": "制限なし",
+        "days": "{{count}}日"
+      },
+      "apy": "APY",
+      "tvl": "TVL",
+      "deposit": "入金",
+      "strategy": "戦略",
+      "empty": "条件に一致する利回り機会はありません"
+    },
+    "predictions": {
+      "filter": {
+        "category": {
+          "all": "すべて",
+          "sports": "スポーツ",
+          "politics": "政治",
+          "crypto": "仮想通貨",
+          "entertainment": "エンタメ",
+          "other": "その他"
+        },
+        "status": {
+          "open": "オープン",
+          "resolving": "解決中",
+          "resolved": "解決済み"
+        }
+      },
+      "outcomes": "結果",
+      "volume": "出来高",
+      "traders": "トレーダー",
+      "resolvesIn": "{{time}}後に解決",
+      "buy": "買う",
+      "sell": "売る",
+      "claim": "賞金を受け取る",
+      "myPositions": "マイポジション",
+      "noMarkets": "条件に一致するマーケットはありません",
+      "noPositions": "このマーケットにはまだポジションがありません",
+      "amountUsd": "金額(USD)",
+      "amountShares": "売却シェア数",
+      "slippageBps": "最大スリッページ (bps)",
+      "priceMid": "中値価格",
+      "notFound": "マーケットが見つかりません",
+      "yesPriceTooltip": "YES 株の現在価格。YES が勝てば 1 株 1 ドル、負ければ 0 ドル。",
+      "noPriceTooltip": "NO 株の現在価格。NO が勝てば 1 株 1 ドル、負ければ 0 ドル。",
+      "volumeTooltip": "過去 24 時間の総取引額(USD)。",
+      "liquidityTooltip": "ユニークトレーダー数。多いほど流動性が高い傾向。",
+      "resolutionTooltip": "市場終了日。設定されたオラクルが直後に YES/NO を決定します。",
+      "outcomeAria": "{{label}} {{pct}} パーセント",
+      "statsAria": "マーケットの健全性指標",
+      "volumeLabel": "出来高",
+      "tradersLabel": "トレーダー数"
+    }
+  },
+  "errors": {
+    "unknown": {
+      "title": "問題が発生しました",
+      "body": "操作を完了できませんでした。",
+      "action": "少し待ってから再試行してください。続く場合はウォレットを再起動してください。"
+    },
+    "invalidInput": "入力が無効です",
+    "network": {
+      "title": "接続エラー",
+      "body": "ウォレットがインターネットまたはバリデーターに到達できませんでした。",
+      "action": "接続を確認して再試行してください。"
+    },
+    "session": {
+      "title": "セッションの有効期限切れ",
+      "body": "安全なセッションは無効になりました。",
+      "action": "再度サインインしてください。"
+    },
+    "notFound": {
+      "title": "見つかりません",
+      "body": "リクエストした項目はもう利用できません。",
+      "action": "画面を更新してもう一度お試しください。"
+    },
+    "rateLimit": {
+      "title": "リクエスト過多",
+      "body": "上限を超えた速度で操作しています。",
+      "action": "1分ほど待ってから再試行してください。"
+    },
+    "serverDown": {
+      "title": "一時的に利用できません",
+      "body": "サーバーに到達できません。",
+      "action": "自動で再試行します。この画面を開いたままにしてください。"
+    },
+    "locked": {
+      "title": "ウォレットはロック中",
+      "body": "この操作にはロック解除が必要です。",
+      "action": "ウォレットをロック解除してから再試行してください。"
+    },
+    "insufficient": {
+      "title": "残高不足",
+      "body": "このチェーンの残高が不足しています。",
+      "action": "受け取りまたはスワップしてから再試行してください。"
+    },
+    "validation": {
+      "title": "入力を確認してください",
+      "body": "いずれかの項目が正しくないため、リクエストは拒否されました。",
+      "action": "フォームを確認してもう一度お試しください。"
+    },
+    "cancelled": {
+      "title": "キャンセル",
+      "body": "この操作をキャンセルしました。",
+      "action": ""
+    },
+    "retry": "再試行",
+    "retryAria": "失敗したアクションを再試行",
+    "dismissAria": "エラーメッセージを閉じる",
+    "context": {
+      "approveNftCollection": "NFT コレクションを承認",
+      "approveXomForNftBuy": "NFT 購入のために XOM を承認",
+      "buyNft": "NFT を購入"
+    }
+  },
+  "features": {
+    "staking": {
+      "heading": "ステーキング",
+      "tabStake": "ステーク",
+      "tabUnstake": "引き出し",
+      "currentStake": "現在のステーク",
+      "currentApr": "APR",
+      "accruedRewards": "蓄積報酬",
+      "lockUntil": "ロック解除",
+      "noActiveStake": "アクティブなステークなし",
+      "amountLabel": "金額",
+      "amountPlaceholder": "0.00",
+      "lockLabel": "ロック期間",
+      "lockNone": "なし",
+      "lock1m": "1か月",
+      "lock6m": "6か月",
+      "lock2y": "2年",
+      "previewApr": "推定APR",
+      "stakeBtn": "ステーク",
+      "unstakeBtn": "引き出し",
+      "claimBtn": "報酬を受け取る",
+      "submitting": "送信中…",
+      "earlyWarning": "ロック期間前の引き出しにはペナルティがあります。",
+      "stakeOk": "ステーク送信 — Tx: {{shortHash}}",
+      "unstakeOk": "引き出し送信 — Tx: {{shortHash}}",
+      "claimOk": "報酬を受領 — Tx: {{shortHash}}",
+      "errorAmountRequired": "金額は必須です",
+      "errorFailed": "操作に失敗しました",
+      "tierTableHeading": "APRティア",
+      "tierAmount": "金額(XOM)",
+      "tierBaseApr": "ベースAPR",
+      "durationBonusHeading": "期間ボーナス",
+      "tier1": "1 – 999,999",
+      "tier2": "100万 – 999.9万",
+      "tier3": "1,000万 – 9,999万",
+      "tier4": "1億 – 9.999億",
+      "tier5": "10億+",
+      "loginHint": "ステーキングを表示するにはサインインしてください",
+      "calculator": {
+        "tab": "計算機",
+        "heading": "収益シミュレーター",
+        "intro": "ステーキング、紹介、マーケットプレイス活動からのおおまかな年間収益。複利や報酬上限は含みません。",
+        "stakedAmountLabel": "ステーク量 (XOM)",
+        "stakedAmountPlaceholder": "0",
+        "lockDurationLabel": "ロック期間",
+        "referralsPerDayLabel": "1 日あたりの新規紹介",
+        "monthlyTxLabel": "月間マーケット取引 (平均 XOM)",
+        "baseAprLine": "基本 APR: {{apr}}%",
+        "totalAprLine": "合計 APR: {{apr}}%",
+        "stakingEarnings": "ステーキング報酬",
+        "referralEarnings": "紹介報酬",
+        "marketplaceEarnings": "マーケット報酬",
+        "welcomeBonus": "ウェルカムボーナス (一度のみ)",
+        "totalAnnual": "推定年間収益",
+        "disclaimer": "数値はユーザー基盤の成長に伴い減少するステーキング、紹介、初回販売カーブに従います。金融アドバイスではありません。"
+      }
+    },
+    "kyc": {
+      "heading": "KYC・本人確認",
+      "currentTier": "現在のティア",
+      "participationScore": "参加スコア",
+      "scoreOutOf": "{{score}} / 100",
+      "tier0": "匿名",
+      "tier1": "基本",
+      "tier2": "確認済み",
+      "tier3": "本人確認",
+      "tier4": "機関",
+      "tier0Desc": "メールのみ",
+      "tier1Desc": "メール+電話+SNSフォロー",
+      "tier2Desc": "住所+書類OCR+AML/PEPスクリーニング",
+      "tier3Desc": "公的IDと顔認証(Persona)",
+      "tier4Desc": "法人エンティティ確認(バリデーター専用)",
+      "scoreBonus": "+{{points}}スコアボーナス",
+      "nextTierHeading": "次のティア",
+      "nextTierUpgrade": "アップグレード",
+      "alreadyAtMax": "最高ティアに到達しました。",
+      "tier4ComingSoon": "ティア4(機関)はハードローンチで開放されます。",
+      "uploadHeading": "ティア2 — 住所証明",
+      "uploadHint": "最近の公共料金請求書、銀行明細、または公的書簡をアップロードしてください(PDF、JPEG、PNG、10MB以下)。",
+      "uploadFileLabel": "書類",
+      "uploadNameLabel": "書類上の氏名",
+      "uploadAddressLabel": "書類上の住所",
+      "uploadDocTypeLabel": "書類種別",
+      "docTypeBank": "銀行明細",
+      "docTypeUtility": "公共料金請求書",
+      "docTypeTax": "税務書類",
+      "docTypeOfficial": "公的書簡",
+      "uploadBtn": "書類を送信",
+      "uploading": "アップロード中…",
+      "uploadOk": "書類を送信しました — 審査待ち。",
+      "uploadFailed": "アップロードに失敗しました",
+      "uploadFileTooLarge": "ファイルが10MB制限を超えています。",
+      "uploadFileTypeInvalid": "PDF、JPEG、PNGファイルのみ受付可能です。",
+      "personaHeading": "ティア3 — 本人確認",
+      "personaHint": "Personaを使って公的IDと顔を確認します。新しいタブで開きます。",
+      "personaCta": "Personaで本人確認",
+      "personaWaiting": "Personaの確認待ち…",
+      "personaConfirmed": "Persona確認が完了しました。",
+      "personaFailed": "Persona確認が完了しませんでした。",
+      "loginHint": "KYCステータスを表示するにはサインインしてください"
+    },
+    "bridge": {
+      "heading": "ブリッジ",
+      "fromHeading": "送信元",
+      "toHeading": "送信先",
+      "amountLabel": "金額",
+      "amountPlaceholder": "0.00",
+      "loginHint": "ブリッジを使うにはサインインしてください",
+      "noRoutes": "このペアに利用可能なブリッジ経路はありません",
+      "routeLabel": "経路",
+      "feeLabel": "ブリッジ手数料",
+      "estTime": "約{{seconds}}秒",
+      "submit": "ブリッジ",
+      "signing": "署名待ち…",
+      "depositing": "送信元チェーンに預入中…",
+      "bridging": "ブリッジ中 — {{status}}",
+      "claiming": "送信先チェーンで請求中…",
+      "complete": "ブリッジ完了",
+      "failed": "ブリッジ失敗: {{error}}",
+      "txHash": "Tx: {{shortHash}}",
+      "selectFromChain": "送信元チェーン",
+      "selectToChain": "送信先チェーン",
+      "selectFromToken": "送信元トークン",
+      "selectToToken": "送信先トークン",
+      "stepDeposit": "預入",
+      "stepBridge": "ブリッジ",
+      "stepClaim": "請求",
+      "stepComplete": "完了",
+      "explorer": "エクスプローラーで見る"
+    },
+    "addressBook": {
+      "heading": "アドレス帳",
+      "empty": "保存済みの連絡先はありません",
+      "add": "連絡先を追加",
+      "edit": "編集",
+      "delete": "削除",
+      "save": "保存",
+      "cancel": "キャンセル",
+      "nameLabel": "名前",
+      "namePlaceholder": "Alice",
+      "addressLabel": "アドレス",
+      "addressPlaceholder": "0x… またはユーザー名",
+      "chainLabel": "ネットワーク",
+      "notesLabel": "メモ",
+      "notesPlaceholder": "任意",
+      "errorRequired": "名前とアドレスは必須です",
+      "errorSaveFailed": "連絡先の保存に失敗しました",
+      "deleteConfirm": "この連絡先を削除しますか?"
+    },
+    "about": {
+      "heading": "概要",
+      "version": "バージョン",
+      "validatorNetwork": "バリデーターネットワーク",
+      "validatorsConnected": "{{count}} 件オンライン",
+      "validatorRow": "{{url}} — {{latency}} ms",
+      "validatorRowOffline": "{{url}} — オフライン",
+      "noValidators": "接続中のバリデーターはありません",
+      "links": "リンク",
+      "changelog": "変更履歴",
+      "support": "サポート",
+      "privacyPolicy": "プライバシーポリシー",
+      "terms": "利用規約",
+      "footer": "OmniCoin L1で構築 — チェーン88008"
+    },
+    "participation": {
+      "heading": "参加スコア",
+      "intro": "参加スコアは 9 つの要素を合算し最大 100 点です。スコアが高いほどバリデーターやリスティングノードの資格がアンロックされます。",
+      "loginHint": "参加スコアを表示するにはサインインしてください",
+      "totalLabel": "合計スコア",
+      "outOf": "{{score}} / {{max}}",
+      "viewBreakdown": "内訳を表示",
+      "components": {
+        "kycTrust": "KYC 信頼度",
+        "kycTrustHint": "Tier 0 = 0、1 = 5、2 = 10、3 = 15、4 = 20。",
+        "marketplaceReputation": "マーケット評判",
+        "marketplaceReputationHint": "平均評価を −10 〜 +10 にマッピング。",
+        "stakingAmountDuration": "ステーク量 + 期間",
+        "stakingAmountDurationHint": "金額ティア × 3 + 期間ティア × 3。",
+        "disseminator": "ディセミネーター (紹介)",
+        "disseminatorHint": "紹介 1 件につき 1 点、最大 10。",
+        "publisher": "パブリッシャー (出品)",
+        "publisherHint": "100 件 = 1、1K = 2、10K = 3、100K = 4。",
+        "forumParticipation": "フォーラム参加",
+        "forumParticipationHint": "時間とともに減衰。投稿、返信、いいね。",
+        "marketplaceActivity": "マーケット活動",
+        "marketplaceActivityHint": "時間とともに減衰。完了した取引。",
+        "communityPolicing": "コミュニティ監視",
+        "communityPolicingHint": "報告の正確性。時間とともに減衰。",
+        "reliability": "信頼性",
+        "reliabilityHint": "稼働時間とパフォーマンス指標 (−5 〜 +5)。",
+        "vouchScore": "推薦スコア",
+        "vouchScoreHint": "コミュニティから受けた信頼推薦 (0 〜 5)。"
+      }
+    },
+    "governance": {
+      "heading": "ガバナンス",
+      "badge": "近日公開",
+      "intro": "ODDAO オンチェーンガバナンスはハードローンチ後に開始されます。バリデーターと XOM ステーカーは発行、手数料、トレジャリーの提案と投票を行います。",
+      "learnMore": "ガバナンス計画を読む",
+      "notes": "公開後はこの画面から投票できます。それまではフォーラムでフィードバックを共有してください。",
+      "ctaForum": "フォーラムを開く"
+    },
+    "portfolio": {
+      "heading": "ポートフォリオ分析",
+      "intro": "各 EVM チェーンの ERC-20 残高をチェーンごとに 1 回の Multicall3 リクエストでまとめて取得します。",
+      "loading": "残高を読み込み中…",
+      "empty": "トークン残高が見つかりません。",
+      "loginHint": "ポートフォリオを表示するにはサインインしてください。",
+      "partialError": "{{count}} 件のチェーンを読み取れませんでした — 部分的な結果を表示しています。",
+      "partialError_other": "{{count}} 件のチェーンを読み取れませんでした — 部分的な結果を表示しています。"
+    }
+  },
+  "dapp": {
+    "connect": {
+      "heading": "dApp に接続",
+      "intro": "{{origin}} がウォレットへの接続を求めています。",
+      "permissionsLabel": "このサイトは次のことができます:",
+      "permissionAccount": "ウォレットのアドレスを確認する",
+      "permissionSign": "署名やトランザクションを要求する（それぞれ承認が必要です）",
+      "approve": "接続",
+      "reject": "キャンセル"
+    },
+    "sign": {
+      "heading": "署名リクエスト",
+      "messageLabel": "メッセージ",
+      "legacyWarning": "⚠️ このサイトは旧式の eth_sign メソッドを使用しています。トランザクションへの不正な署名に悪用される可能性があります。不安な場合は拒否してください。",
+      "approve": "署名",
+      "reject": "キャンセル"
+    },
+    "typed": {
+      "heading": "型付きデータの署名",
+      "domainLabel": "ドメイン",
+      "messageLabel": "{{primaryType}}",
+      "approve": "署名",
+      "reject": "キャンセル"
+    },
+    "tx": {
+      "heading": "トランザクションを確認",
+      "toLabel": "受取人",
+      "valueLabel": "ネイティブ値",
+      "functionLabel": "関数",
+      "unknownFunction": "(不明な関数 — calldata はデコードされていません)",
+      "gasLabel": "ネットワーク手数料",
+      "gasFreeOmniRelay": "無料 (OmniRelay が支払い)",
+      "gasOnChain": "ネットワークのガス価格で見積もり",
+      "riskLabel": "リスク",
+      "simulationFailed": "シミュレーションがリバートしました: {{reason}}",
+      "ackHighRisk": "このトランザクションがリスクが高いことを理解した上で続行します。",
+      "approve": "確認",
+      "reject": "キャンセル",
+      "reason": {
+        "scamAddress": "受取人は既知の詐欺ブロックリストに含まれています。",
+        "unlimitedApprove": "無制限の利用承認を行います。",
+        "approvalForAll": "このコレクションの全 NFT に対する承認を付与します。",
+        "transferFrom": "既存のアローワンスを使ってトークンを引き出します。",
+        "zeroAddressTransfer": "ゼロアドレスへの送金 (バーン) です。"
+      }
+    },
+    "switch": {
+      "heading": "ネットワークを切り替え",
+      "fromLabel": "現在のチェーン",
+      "toLabel": "切替先チェーン",
+      "approve": "切り替え",
+      "reject": "キャンセル"
+    },
+    "addchain": {
+      "heading": "ネットワークを追加",
+      "nameLabel": "ネットワーク名",
+      "chainIdLabel": "チェーン ID",
+      "rpcLabel": "RPC URL",
+      "symbolLabel": "通貨シンボル",
+      "explorerLabel": "ブロックエクスプローラー",
+      "approve": "ネットワークを追加",
+      "reject": "キャンセル",
+      "collisionWarning": "⚠️ この dApp は {{knownName}} と同じ ID ({{chainId}}) のチェーンを、異なる{{fields}}で追加しようとしています。フィッシングの可能性があります。代わりに元の {{knownName}} 構成を使用してください。",
+      "collisionDiffRpc": "RPC URL",
+      "collisionDiffName": "チェーン名",
+      "collisionDiffSymbol": "ネイティブ通貨シンボル",
+      "iUnderstandRisk": "リスクを理解し、それでもこのチェーンを追加する",
+      "forceApproveDisabledTooltip": "無効: 続行するには、リスクを理解したことを確認してください。"
+    },
+    "addtoken": {
+      "heading": "トークンを追加",
+      "symbolLabel": "シンボル",
+      "decimalsLabel": "桁数",
+      "addressLabel": "コントラクトアドレス",
+      "imageLabel": "画像 URL",
+      "approve": "トークンを追加",
+      "reject": "キャンセル"
+    },
+    "walletconnect": {
+      "heading": "WalletConnect",
+      "intro": "WalletConnect の QR コードをスマートフォンで読み取り、wc: URI をコピーしてここに貼り付けてペアリングします。",
+      "pasteUriPlaceholder": "wc:…",
+      "connect": "ペアリング",
+      "pairOk": "ペアリング済み。dApp からのセッション提案を待っています。",
+      "activeSessions": "アクティブなセッション",
+      "empty": "アクティブな WalletConnect セッションはありません"
+    },
+    "education": {
+      "body": "OmniWallet は EIP-6963 をサポートしています — モダンな dApp のウォレット選択画面に表示されます。「Connect MetaMask」のみを表示する旧型 dApp では、リストから OmniWallet を探すか、WalletConnect をご利用ください。"
+    },
+    "risk": {
+      "green": "低",
+      "amber": "注意",
+      "red": "高",
+      "explanation": "リスクのあるパターンは検出されませんでした。受取人と金額を必ずご確認ください。"
+    },
+    "originTooltip": "この承認をリクエストしているサイトです。",
+    "chainTooltip": "このリクエストの対象チェーンです。",
+    "chainAria": "対象チェーン: {{chain}}",
+    "requestFrom": "{{origin}} からのリクエスト",
+    "rejectAria": "このリクエストを拒否してポップアップを閉じる",
+    "approveAria": "このリクエストを承認",
+    "embeddedFrameTooltip": "このリクエストは別サイトに埋め込まれた iframe から来ています。dApp と親サイトの両方を信頼できる場合のみ承認してください。",
+    "embeddedFrame": "このリクエストは埋め込み iframe からのものです(トップページではありません)。",
+    "embeddedFrameFull": "埋め込み iframe: {{origin}}({{topOrigin}} 内)"
+  },
+  "hardware": {
+    "selector": {
+      "title": "ハードウェアウォレットを接続",
+      "ledgerUsb": "Ledger (USB)",
+      "ledgerBle": "Ledger (Bluetooth)",
+      "trezorUsb": "Trezor (USB)"
+    },
+    "connect": {
+      "step1": "デバイスを接続",
+      "step2": "デバイスのロックを解除",
+      "step3": "Ethereum アプリを開く",
+      "step4": "アカウントを導出中...",
+      "noDevice": "デバイスが検出されません。差し込んで再試行してください。",
+      "denied": "デバイスへのアクセスが拒否されました。ブラウザでアクセスを許可してください。"
+    },
+    "sign": {
+      "title": "{{device}} で確認",
+      "subtitle": "デバイスで取引を確認し、承認してください",
+      "cancel": "キャンセル"
+    },
+    "accounts": {
+      "title": "アカウントを選択",
+      "showMore": "さらに 5 件表示",
+      "balance": "残高",
+      "addSelected": "{{count}} 件のアカウントを追加",
+      "addedToast": "{{count}} 件のハードウェアアカウントを追加しました"
+    },
+    "badge": {
+      "ledger": "Ledger",
+      "trezor": "Trezor"
+    },
+    "advanced": {
+      "title": "詳細設定",
+      "hdPath": "派生パス"
+    }
+  },
+  "antiPhishing": {
+    "stepTitle": "アンチフィッシングバナーを選択",
+    "stepHelp": "色と短い単語を選択してください。ポップアップを開くたびに、OmniWallet がヘッダーの下に表示します。偽のウォレットはあなたの選択を知ることができないため、色と単語が表示されない場合、そのポップアップは本物の OmniWallet ではありません。",
+    "colorLabel": "色",
+    "wordLabel": "単語または短いフレーズ",
+    "wordPlaceholder": "例: sun42",
+    "wordRules": "英数字とスペースのみ。{{min}}〜{{max}} 文字。",
+    "preview": "プレビュー",
+    "previewEmpty": "バナーはここに表示されます",
+    "previewAria": "アンチフィッシングバナーのライブプレビュー",
+    "confirm": "バナーを保存",
+    "saving": "保存中…",
+    "skip": "今はスキップ",
+    "changeTitle": "アンチフィッシングバナーを変更",
+    "changeRequiresPassword": "変更を保存するにはパスワードを入力してください",
+    "passwordPlaceholder": "ウォレットのパスワード",
+    "lockScreenFallback": "アンチフィッシング: 確認するにはロック解除してください",
+    "bannerAriaLabel": "アンチフィッシングバナー",
+    "bannerTooltip": "これはアンチフィッシングマーカーです。ここにあなたの色と単語が表示されない場合、本物の OmniWallet ではありません。",
+    "addPrompt": "アンチフィッシングバナーを追加（推奨）",
+    "addPromptAria": "アンチフィッシングバナーを追加 — 設定ページを開きます",
+    "colorSwatchAria": "色 {{color}} を選択",
+    "savedOk": "バナーを更新しました。",
+    "errColorInvalid": "色を選択してください。",
+    "errWordTooShort": "3 文字以上にしてください。",
+    "errWordTooLong": "24 文字以下にしてください。",
+    "errWordChars": "英数字とスペースのみ使用できます。",
+    "errSanitized": "保存前にバナー項目を修正してください。",
+    "errPasswordRequired": "変更を保存するにはウォレットのパスワードを入力してください。",
+    "errGeneric": "アンチフィッシングバナーを保存できませんでした。再試行してください。"
+  },
+  "chains": {
+    "cardano": {
+      "send": {
+        "minAmountError": "Cardano の最低送金額は 1 ADA です。金額を増やして再試行してください。",
+        "insufficientUtxo": "利用可能な UTXO では金額と手数料を賄えません。送信元ウォレットに ADA を追加してください。",
+        "feeEstimate": "推定ネットワーク手数料：{{ada}} ADA",
+        "ttlExpired": "送信前にトランザクションが期限切れになりました。更新して再試行してください。",
+        "broadcastPending": "Cardano ネットワークに送信中…",
+        "broadcastSuccess": "Cardano トランザクションを送信しました。Tx：{{shortHash}}",
+        "broadcastFailed": "Cardano トランザクションを送信できませんでした。再試行してください。"
+      }
+    }
+  },
+  "predictions": {
+    "claim": {
+      "button": "マーケット「{{title}}」の賞金を請求",
+      "confirming": "Polygon で確認中…",
+      "successToast": "請求を送信しました — Tx: {{shortHash}}",
+      "explorerLink": "ブロックエクスプローラーで取引を表示",
+      "insufficientGasTitle": "{{chain}} で請求するには {{symbol}} が必要です",
+      "insufficientGasBody": "{{chain}} で賞金を請求するには、ガス用の {{symbol}} が必要です。ここから XOM をブリッジして手数料をカバーし、再度お試しください。",
+      "bridgeForGas": "ガス用に XOM をブリッジ",
+      "failed": "賞金を請求できませんでした。再試行してください。",
+      "disabledTooltip": "このマーケットはまだ解決されていません。結果が確定すると請求できるようになります。"
+    }
+  }
+}

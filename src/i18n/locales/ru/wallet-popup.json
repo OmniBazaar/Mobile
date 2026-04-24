@@ -1,0 +1,1266 @@
+{
+  "splash": {
+    "title": "OmniWallet",
+    "loading": "Загрузка..."
+  },
+  "header": {
+    "brand": "OmniWallet",
+    "settingsTitle": "Настройки"
+  },
+  "nav": {
+    "wallet": "Кошелёк",
+    "dex": "DEX",
+    "marketplace": "Маркет",
+    "more": "Ещё"
+  },
+  "quickActions": {
+    "send": "Отправить",
+    "receive": "Получить",
+    "swap": "Обменять",
+    "bridge": "Мост"
+  },
+  "accountBar": {
+    "defaultAccountName": "Аккаунт 1"
+  },
+  "common": {
+    "back": "Назад",
+    "cancel": "Отмена",
+    "close": "Закрыть",
+    "continue": "Продолжить",
+    "confirm": "Подтвердить",
+    "copy": "Копировать",
+    "copied": "Скопировано",
+    "loading": "Загрузка..."
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "OmniWallet",
+      "subtitle": "Ваш шлюз к 128 блокчейнам, маркетплейсу OmniBazaar и DEX OmniCoin. Без доверия, без газа и приватно по задумке.",
+      "createNew": "Создать новый кошелёк",
+      "importExisting": "Импортировать существующий кошелёк",
+      "signIn": "Уже есть аккаунт? Войти",
+      "termsPrefix": "Продолжая, вы соглашаетесь с",
+      "termsLink": "Условиями использования"
+    },
+    "createWallet": {
+      "heading": "Создать кошелёк",
+      "passwordHint": "Установите пароль для защиты кошелька на этом устройстве. Настоящей резервной копией является ваша seed-фраза — храните её в безопасном месте.",
+      "passwordLabel": "Пароль",
+      "passwordPlaceholder": "Минимум 8 символов",
+      "confirmPasswordLabel": "Подтвердите пароль",
+      "confirmPasswordPlaceholder": "Повторите пароль",
+      "continue": "Продолжить",
+      "creating": "Создание…",
+      "seedHeading": "Ваша фраза восстановления",
+      "seedWarning": "⚠️ Запишите эти 12 слов и храните их в безопасном месте. Любой, у кого есть эти слова, сможет получить доступ к вашему кошельку.",
+      "writtenDown": "Я записал(а) →",
+      "confirmHeading": "Подтвердите резервную копию",
+      "confirmHint": "Введите слова на позициях {{positions}}, чтобы подтвердить резервную копию.",
+      "wordLabel": "Слово №{{position}}",
+      "wordPlaceholder": "Слово {{position}}",
+      "wordIncorrect": "Слово №{{position}} неверно",
+      "createWalletBtn": "Создать кошелёк",
+      "registering": "Регистрация…",
+      "passwordTooShort": "Пароль должен содержать не менее 8 символов",
+      "passwordMismatch": "Пароли не совпадают",
+      "createFailed": "Не удалось создать кошелёк",
+      "registerFailed": "Не удалось зарегистрировать"
+    },
+    "importWallet": {
+      "heading": "Импорт кошелька",
+      "importing": "Импорт…",
+      "verifying": "Проверка seed и регистрация кошелька…",
+      "tabMnemonic": "Seed-фраза",
+      "tabPrivateKey": "Приватный ключ",
+      "mnemonicHint": "Введите фразу восстановления из 12 или 24 слов, разделённых пробелами.",
+      "mnemonicPlaceholder": "слово1 слово2 слово3 …",
+      "privateKeyHint": "Введите приватный ключ (hex, с префиксом 0x или без).",
+      "privateKeyPlaceholder": "0x…",
+      "newPasswordLabel": "Новый пароль",
+      "newPasswordPlaceholder": "Минимум 8 символов",
+      "confirmPasswordLabel": "Подтвердите пароль",
+      "confirmPasswordPlaceholder": "Повторите пароль",
+      "submit": "Импортировать кошелёк",
+      "submitting": "Импорт…",
+      "errorSeedWordCount": "Seed-фраза должна содержать 12 или 24 слова",
+      "errorPrivateKeyRequired": "Требуется приватный ключ",
+      "errorImportFailed": "Ошибка импорта",
+      "passwordTooShort": "Пароль должен содержать не менее 8 символов",
+      "passwordMismatch": "Пароли не совпадают"
+    },
+    "seedBackup": {
+      "heading": "Фраза восстановления",
+      "warning": "⚠️ Запишите эти {{count}} слов и храните их в безопасном месте. Любой, у кого есть эти слова, сможет получить доступ к вашему кошельку.",
+      "writtenDown": "Я записал(а) →",
+      "confirmHeading": "Подтвердите резервную копию",
+      "confirmHint": "Введите слова на позициях {{positions}}, чтобы подтвердить резервную копию.",
+      "wordLabel": "Слово №{{position}}",
+      "wordPlaceholder": "Слово {{position}}",
+      "wordIncorrect": "Слово №{{position}} неверно",
+      "verify": "Проверить резервную копию"
+    },
+    "login": {
+      "heading": "С возвращением",
+      "passwordLabel": "Пароль",
+      "passwordPlaceholder": "Введите ваш пароль",
+      "unlock": "Разблокировать",
+      "unlocking": "Разблокировка…",
+      "useDifferent": "Использовать другой кошелёк",
+      "errorPasswordRequired": "Требуется пароль",
+      "errorIncorrectPassword": "Неверный пароль",
+      "unlockAria": "Разблокируй кошелёк введённым паролем",
+      "useDifferentAria": "Импортировать другой кошелёк или создать новый"
+    }
+  },
+  "wallet": {
+    "tabs": {
+      "assets": "Активы",
+      "nfts": "NFT",
+      "activity": "Активность"
+    },
+    "assets": {
+      "empty": "Активы не найдены"
+    },
+    "asset": {
+      "invalidDecimals": "Метаданные токена отсутствуют или недействительны — баланс скрыт в целях безопасности",
+      "invalidDecimalsAria": "Баланс недоступен — метаданные токена недействительны"
+    },
+    "activity": {
+      "heading": "Активность",
+      "empty": "Пока нет транзакций",
+      "received": "Получено {{symbol}}",
+      "sent": "Отправлено {{symbol}}",
+      "timeJustNow": "только что",
+      "timeMinutesAgo": "{{count}} мин. назад",
+      "timeHoursAgo": "{{count}} ч. назад",
+      "publicTab": "Публичная",
+      "privateTab": "Приватная (pXOM)",
+      "revealAmount": "Показать сумму",
+      "amountHidden": "Сумма скрыта — нажмите Показать для расшифровки",
+      "status": {
+        "confirmed": "подтверждено",
+        "pending": "в ожидании",
+        "failed": "ошибка"
+      }
+    },
+    "nfts": {
+      "heading": "NFT",
+      "empty": "NFT не найдены",
+      "placeholder": "NFT"
+    },
+    "send": {
+      "heading": "Отправить",
+      "networkLabel": "Сеть",
+      "recipientLabel": "Адрес получателя",
+      "recipientPlaceholder": "0x… или имя пользователя",
+      "amountLabel": "Сумма",
+      "amountPlaceholder": "0,00",
+      "max": "МАКС",
+      "gaslessBadge": "⚡ Газ: бесплатно — работает на OmniRelay",
+      "gasFree": "Газ: Бесплатно (OmniRelay)",
+      "estimatedGas": "Оценка газа",
+      "submit": "Отправить",
+      "submitting": "Отправка…",
+      "errorFailed": "Транзакция не удалась",
+      "successPrefix": "Отправлено! Tx: {{shortHash}}",
+      "errorInvalidAddress": "Неверный формат адреса для этой сети. Проверьте и вставьте снова.",
+      "networkTooltip": "Выберите сеть отправки. У каждой сети свой баланс.",
+      "gaslessTooltip": "Без газа: транзакция проходит через OmniRelay. Вы не платите за газ.",
+      "recipientTooltip": "Введите корректный адрес выбранной сети. Проверяются формат и контрольная сумма.",
+      "amountAria": "Сумма отправки в {{symbol}}",
+      "maxAria": "Отправить максимальный доступный баланс",
+      "maxTooltip": "Заполнить сумму максимальным балансом {{symbol}}.",
+      "estimatedGasTooltip": "Ориентировочная сетевая комиссия за транзакцию."
+    },
+    "receive": {
+      "heading": "Получить",
+      "networkLabel": "Сеть",
+      "copy": "Копировать",
+      "copied": "✓ Скопировано",
+      "hint": "Отправляйте только {{symbol}} и совместимые токены на этот адрес в сети {{chainName}}.",
+      "networkTooltip": "Выберите сеть для получения. У каждой сети свой адрес.",
+      "qrAria": "QR-код адреса {{address}} в сети {{chainName}}",
+      "qrAriaPending": "ожидание",
+      "addressTooltip": "Ваш адрес получения в сети {{chainName}}. Любой, кто его знает, может отправить вам {{symbol}}.",
+      "addressDeriving": "Формирование адреса…",
+      "copyAria": "Скопировать адрес {{chainName}} в буфер обмена",
+      "copyTooltip": "Скопировать адрес в буфер обмена"
+    }
+  },
+  "settings": {
+    "home": {
+      "heading": "Настройки",
+      "sectionSecurity": "Безопасность",
+      "sectionNetwork": "Сеть",
+      "sectionAccount": "Аккаунт",
+      "securityPrivacyTitle": "Безопасность и конфиденциальность",
+      "securityPrivacySub": "Пароль, биометрия, seed-фраза",
+      "connectedSitesTitle": "Подключённые сайты",
+      "connectedSitesSub": "Управление подключениями dApp",
+      "walletConnectTitle": "WalletConnect",
+      "walletConnectSub": "Подключение к dApp через QR-код",
+      "networksTitle": "Сети",
+      "networksSub": "Управление RPC-эндпоинтами",
+      "languageTitle": "Язык",
+      "languageSub": "Выберите язык интерфейса",
+      "signOutTitle": "Выйти",
+      "signOutSub": "Заблокировать кошелёк",
+      "versionRow": "OmniWallet v{{version}}",
+      "sectionFeatures": "Функции",
+      "sectionInfo": "Информация",
+      "stakingTitle": "Стейкинг",
+      "stakingSub": "Стейкайте XOM и получайте награды",
+      "kycTitle": "KYC и верификация",
+      "kycSub": "Повысьте свой балл участия",
+      "bridgeTitle": "Мост",
+      "bridgeSub": "Перемещайте активы между сетями",
+      "addressBookTitle": "Адресная книга",
+      "addressBookSub": "Сохранённые контакты",
+      "aboutTitle": "О приложении",
+      "aboutSub": "Версия, валидаторы, ссылки",
+      "hardwareTitle": "Подключить Аппаратный Кошелёк",
+      "hardwareSub": "Добавить аккаунт Ledger или Trezor",
+      "portfolioTitle": "Аналитика Портфеля",
+      "portfolioSub": "Разбивка балансов ERC-20 по цепочкам",
+      "participationTitle": "Оценка участия",
+      "participationSub": "Посмотрите, как рассчитывается ваша оценка {{score}}/100",
+      "governanceTitle": "Управление",
+      "governanceSub": "Голосование ODDAO (скоро)",
+      "antiPhishingTitle": "Антифишинговый баннер",
+      "antiPhishingSub": "Выберите цвет и слово, чтобы убедиться, что это ваш кошелёк",
+      "tokenApprovalsTitle": "Одобрения токенов",
+      "tokenApprovalsSub": "Проверяйте и отзывайте одобрения ERC-20 и NFT"
+    },
+    "security": {
+      "heading": "Безопасность и конфиденциальность",
+      "sectionWallet": "Кошелёк",
+      "showSeedTitle": "Показать фразу восстановления",
+      "showSeedSub": "Просмотреть вашу seed из 12/24 слов",
+      "exportKeyTitle": "Экспорт приватного ключа",
+      "exportKeySub": "Только текущий аккаунт",
+      "revealLabel": "Введите пароль, чтобы показать seed",
+      "revealPlaceholder": "Пароль вашего кошелька",
+      "reveal": "Показать seed-фразу",
+      "verifying": "Проверка…",
+      "errorIncorrectPassword": "Неверный пароль",
+      "errorExportFailed": "Ошибка экспорта",
+      "exportedAlert": "Приватный ключ скопирован в буфер обмена. Храните его в безопасности и очистите буфер.",
+      "sectionAccess": "Доступ",
+      "passwordChangeTitle": "Сменить пароль",
+      "passwordChangeSub": "Обновите пароль для разблокировки кошелька",
+      "passwordChangeHeading": "Сменить пароль",
+      "currentPasswordLabel": "Текущий пароль",
+      "newPasswordLabel": "Новый пароль",
+      "confirmNewPasswordLabel": "Подтвердите новый пароль",
+      "passwordChangeBtn": "Обновить пароль",
+      "passwordChangeOk": "Пароль обновлён.",
+      "passwordTooShort": "Пароль должен содержать не менее 8 символов",
+      "passwordMismatch": "Пароли не совпадают",
+      "passwordChangeFailed": "Не удалось обновить пароль",
+      "biometricTitle": "Биометрическая разблокировка",
+      "biometricSub": "Используйте Touch ID, Face ID или Windows Hello",
+      "biometricUnavailable": "Биометрическая разблокировка недоступна на этом устройстве.",
+      "biometricEnable": "Включить биометрию",
+      "biometricDisable": "Отключить биометрию",
+      "biometricEnabled": "Биометрическая разблокировка включена.",
+      "biometricDisabled": "Биометрическая разблокировка отключена.",
+      "biometricFailed": "Ошибка настройки биометрии",
+      "autoLockTitle": "Автоблокировка",
+      "autoLockSub": "Заблокировать кошелёк после периода неактивности",
+      "autoLockNever": "Никогда",
+      "autoLock1m": "1 минута",
+      "autoLock5m": "5 минут",
+      "autoLock15m": "15 минут",
+      "autoLock30m": "30 минут"
+    },
+    "networks": {
+      "heading": "Сети",
+      "chainIdRow": "Цепь {{id}}",
+      "gaslessBadge": "Без газа",
+      "defaultChainHeading": "Сеть по умолчанию",
+      "defaultChainSub": "Отображается в строке аккаунта попапа по умолчанию.",
+      "enabledHeading": "Активные сети",
+      "customRpcHeading": "Пользовательский RPC",
+      "customAddTitle": "Добавить пользовательский RPC",
+      "customNameLabel": "Имя",
+      "customNamePlaceholder": "Моя сеть",
+      "customRpcLabel": "RPC URL",
+      "customRpcPlaceholder": "https://rpc.example.com",
+      "customChainIdLabel": "Chain ID",
+      "customChainIdPlaceholder": "0 для автоопределения",
+      "customSymbolLabel": "Символ валюты",
+      "customSymbolPlaceholder": "ETH",
+      "customExplorerLabel": "URL обозревателя",
+      "customExplorerPlaceholder": "https://explorer.example.com",
+      "customAddBtn": "Добавить сеть",
+      "customAddOk": "Пользовательская сеть добавлена.",
+      "customAddFailed": "Не удалось добавить сеть",
+      "customRemove": "Удалить",
+      "customEmpty": "Нет пользовательских сетей",
+      "toggleEnable": "Включить",
+      "toggleDisable": "Отключить",
+      "familyHeading": {
+        "evm": "Сети EVM",
+        "bitcoin": "Семейство Bitcoin",
+        "solana": "Solana",
+        "polkadot": "Семейство Polkadot",
+        "cosmos": "Cosmos",
+        "cardano": "Cardano",
+        "xrp": "XRP Ledger",
+        "tron": "TRON",
+        "near": "NEAR",
+        "hedera": "Hedera",
+        "stellar": "Stellar",
+        "tezos": "Tezos"
+      }
+    },
+    "connected": {
+      "heading": "Подключённые сайты",
+      "empty": "Нет подключённых сайтов",
+      "connectedOn": "Подключён {{date}}",
+      "disconnect": "Отключить"
+    },
+    "locale": {
+      "heading": "Язык",
+      "description": "Выберите язык отображения кошелька. Изменение применяется немедленно.",
+      "currentLabel": "Текущий язык"
+    },
+    "tokenApprovals": {
+      "title": "Одобрения токенов",
+      "comingSoon": "Скоро",
+      "help": "Мы готовим единое окно для всех одобрений, выданных вашим кошельком. Здесь вы сможете отозвать любое из них."
+    }
+  },
+  "placeholders": {
+    "comingSoon": "Скоро",
+    "thisFeature": "Эта функция",
+    "dexTitle": "DEX и обмен",
+    "marketplaceTitle": "Маркетплейс"
+  },
+  "dex": {
+    "subnav": {
+      "swap": "Обмен",
+      "limit": "Лимит",
+      "yield": "Доходность",
+      "lp": "LP",
+      "rwa": "RWA",
+      "privacy": "Приватность"
+    },
+    "comingSoon": "Скоро",
+    "swap": {
+      "youPay": "Вы платите",
+      "youReceive": "Вы получаете",
+      "max": "Макс",
+      "balance": "Баланс: {{amount}} {{symbol}}",
+      "route": "Маршрут",
+      "routeDetails": "детали",
+      "altRoutes": "Альтернативы",
+      "via": {
+        "omnidex": "через OmniDEX",
+        "omnibridgeIctt": "через OmniBridge (ICTT)",
+        "omnibridgeCctp": "через OmniBridge (CCTP)",
+        "omnibridgeLifi": "через OmniDEX → Li.Fi",
+        "lifi": "через Li.Fi",
+        "zerox": "через 0x",
+        "unknown": "через {{protocol}}"
+      },
+      "feePct": "{{pct}}% DEX",
+      "relayFee": "0% реле",
+      "estTime": "~{{seconds}}с",
+      "swap": "Обменять",
+      "swapConfirm": "Обменять {{fromSymbol}} → {{toSymbol}}",
+      "signing": "Ожидание подписи…",
+      "broadcasting": "Передача…",
+      "inTransit": "Мост — {{status}}",
+      "complete": "Обмен завершён",
+      "failed": "Ошибка обмена: {{error}}",
+      "noRoutes": "Нет доступных маршрутов для этой пары",
+      "xomRoutingNotice": "XOM проходит через OmniDEX → USDC перед мостом",
+      "priceImpactWarning": "Влияние на цену: {{pct}}% — вы потеряете примерно {{loss}} {{symbol}} из-за глубины рынка",
+      "priceImpactHigh": "Высокое влияние на цену ({{pct}}%). Вы можете потерять {{loss}} {{symbol}} из-за проскальзывания. Подтвердите для продолжения.",
+      "priceImpactDangerous": "Опасное влияние на цену ({{pct}}%). Введите фразу подтверждения, чтобы разблокировать.",
+      "priceImpactConfirmPhrase": "HIGH IMPACT",
+      "priceImpactAck": "Я понимаю — всё равно обменять",
+      "priceImpactConfirmLabel": "Введите «{{phrase}}» для подтверждения",
+      "priceImpactDisabledTooltip": "Отключено: слишком высокое влияние на цену. Подтвердите для продолжения.",
+      "slippageTooHigh": "Проскальзывание выше 5% необычно высокое и может быть использовано MEV-ботами."
+    },
+    "limit": {
+      "title": "Лимитный ордер",
+      "buy": "Купить",
+      "sell": "Продать",
+      "price": "Цена",
+      "amount": "Количество",
+      "expiry": "Срок действия",
+      "expiryPreset": {
+        "1h": "1ч",
+        "1d": "1д",
+        "1w": "1нед",
+        "custom": "Свой"
+      },
+      "fee": "Комиссия",
+      "makerRebate": "Возврат мейкеру",
+      "place": "Разместить ордер",
+      "submitOk": "Ордер размещён",
+      "activeOrders": "Активные ордера",
+      "noOrders": "Нет открытых ордеров",
+      "loginHint": "Войдите, чтобы размещать лимитные ордера",
+      "cancel": "Отменить",
+      "status": {
+        "open": "Открыт",
+        "partial": "Частично",
+        "filled": "Исполнен",
+        "cancelled": "Отменён"
+      },
+      "orderBook": {
+        "bids": "Покупка",
+        "asks": "Продажа",
+        "depth": "Глубина"
+      }
+    },
+    "yield": {
+      "title": "Доход",
+      "empty": "Пока нет возможностей для дохода",
+      "apy": "APY",
+      "tvl": "TVL",
+      "position": "Ваша позиция",
+      "deposit": "Внести",
+      "withdraw": "Вывести",
+      "preview": "Сумма",
+      "risk": {
+        "low": "Низкий риск",
+        "medium": "Средний риск",
+        "high": "Высокий риск"
+      }
+    },
+    "lp": {
+      "title": "Пулы ликвидности",
+      "earlyBonusBadge": "⭐ Ранний LP-бонус",
+      "earlyBonusTooltip": "+15% APR до запуска 30.04.2026",
+      "countdown": "Ранний LP-бонус заканчивается через {{days}}д {{hours}}ч",
+      "countdownEnded": "Ранний LP-бонус завершён",
+      "add": "Добавить ликвидность",
+      "remove": "Удалить ликвидность",
+      "removePct": "Процент к выводу",
+      "slippage": "Проскальзывание",
+      "gasInfoLabel": "Лимит газа",
+      "gasInfoTooltip": "Добавление ликвидности в новый пул требует лимита газа 5 000 000.",
+      "tvlTooltip": "Общий заблокированный капитал — USD-оценка всей ликвидности пула.",
+      "tvlAria": "Заблокированный капитал: {{value}} USD",
+      "apyTooltip": "Годовая доходность, оценённая по недавним комиссиям. Меняется вместе с объёмом.",
+      "apyAria": "Оценка годовой доходности: {{pct}} процентов",
+      "positionTooltip": "Твоя доля пула, выраженная в LP-токенах.",
+      "addAria": "Добавить ликвидность в пул {{pair}}",
+      "addTooltip": "Внеси оба токена, чтобы получать долю комиссий.",
+      "removeAria": "Вывести ликвидность из пула {{pair}}",
+      "removeTooltip": "Вывести долю и прекратить получать комиссии в этом пуле."
+    },
+    "rwa": {
+      "title": "Реальные активы",
+      "empty": "RWA пока недоступны",
+      "price": "Цена",
+      "buy": "Купить",
+      "sell": "Продать",
+      "compliance": {
+        "compliant": "Соответствует",
+        "kycRequired": "Требуется KYC уровня {{tier}}",
+        "restricted": "Недоступно в вашем регионе"
+      }
+    },
+    "privacy": {
+      "title": "Приватность",
+      "shield": "Защитить",
+      "unshield": "Раскрыть",
+      "feePct": "Комиссия за приватность: {{pct}}%",
+      "privateBalance": "Приватный баланс",
+      "reveal": "Показать",
+      "safeOnboard": {
+        "title": "Настроить приватный баланс",
+        "explain": "Ваш приватный баланс (pXOM) шифруется ончейн через COTI V2. Требуется одноразовая настройка.",
+        "cta": "Настроить"
+      }
+    }
+  },
+  "marketplace": {
+    "subnav": {
+      "p2p": "P2P",
+      "nft": "NFT",
+      "rwa": "RWA",
+      "yield": "Доход",
+      "predictions": "Прогнозы"
+    },
+    "home": {
+      "searchPlaceholder": "Поиск объявлений…",
+      "searchAria": "Поиск по маркетплейсу"
+    },
+    "p2p": {
+      "empty": "Нет объявлений по выбранным фильтрам",
+      "createListing": "➕ Создать объявление",
+      "myListingsLink": "Мои объявления",
+      "loadMore": "Загрузить ещё",
+      "unratedSeller": "Новый продавец",
+      "categories": {
+        "all": "Все",
+        "products": "Товары",
+        "services": "Услуги",
+        "jobs": "Работа",
+        "realEstate": "Недвижимость",
+        "vehicles": "Транспорт",
+        "personal": "Личное",
+        "other": "Другое"
+      },
+      "sort": {
+        "label": "Сортировка",
+        "newest": "Сначала новые",
+        "priceAsc": "Цена: по возрастанию",
+        "priceDesc": "Цена: по убыванию",
+        "popular": "Популярные"
+      },
+      "status": {
+        "active": "Активно",
+        "sold": "Продано",
+        "draft": "Черновик",
+        "cancelled": "Отменено",
+        "expired": "Истекло"
+      }
+    },
+    "nft": {
+      "chainLabel": "Сеть",
+      "empty": "В этой сети нет коллекций",
+      "stats": {
+        "floor": "Минимум",
+        "volume24h": "Объём 24 ч",
+        "listed": "В продаже"
+      },
+      "list": {
+        "openButton": "Выставить на продажу",
+        "heading": "Продать {{name}}",
+        "priceLabel": "Цена",
+        "currencyLabel": "Валюта",
+        "durationLabel": "Срок",
+        "duration1d": "1 день",
+        "duration7d": "7 дней",
+        "duration30d": "30 дней",
+        "royaltyNote": "Роялти: {{pct}}% (выплачивается автору)",
+        "confirm": "Опубликовать NFT",
+        "submitting": "Подпись…",
+        "errorFailed": "Не удалось опубликовать",
+        "step": "Шаг 2 из 2: Подпишите ваше объявление"
+      },
+      "buyConfirm": "Подтвердить покупку? XOM будут отправлены, а NFT атомарно передан в блокчейне.",
+      "buyToast": {
+        "success": "NFT куплен — транзакция {{tx}}",
+        "failed": "Не удалось купить NFT"
+      },
+      "buyUnavailable": "Покупки NFT пока недоступны — пожалуйста, загляните позже.",
+      "approveCollection": {
+        "step": "Шаг 1 из 2: Одобрить маркетплейс для этой NFT-коллекции",
+        "button": "Одобрить (без газа)",
+        "submitting": "Одобрение…",
+        "tooltip": "Одноразовое одобрение для каждой NFT-коллекции. Газ оплачивает OmniBazaar.",
+        "success": "Коллекция одобрена. Теперь вы можете выставлять NFT из этой коллекции.",
+        "failed": "Не удалось одобрить коллекцию.",
+        "notERC2771": "Эта NFT-коллекция не поддерживает одобрение без газа — вам потребуется немного XOM для газа.",
+        "mustApprove": "Одобрите маркетплейс для этой коллекции перед выставлением."
+      },
+      "approveXom": {
+        "step": "Шаг 1 из 2: Одобрить {{amount}} XOM для этой покупки",
+        "button": "Одобрить XOM (без газа)",
+        "rememberLabel": "Запомнить одобрение для будущих покупок XOM в OmniBazaar",
+        "rememberTooltip": "Даёт маркетплейсу неограниченное право расходовать XOM. Можно отозвать в разделе Настройки > Одобрения токенов.",
+        "success": "XOM одобрен. Завершаем покупку…"
+      },
+      "buy": {
+        "step1": "Шаг 1 из 2: Одобрить XOM",
+        "step2": "Шаг 2 из 2: Подтвердить покупку",
+        "confirmButton": "Подтвердить покупку",
+        "buyFloor": "Купить по минимальной цене",
+        "fetchingFloor": "Загрузка…",
+        "error": {
+          "selfReferral": "Реферер не может быть вами или продавцом.",
+          "sellerReferral": "Реферер не может быть продавцом.",
+          "buyerIsSeller": "Вы не можете купить собственное объявление.",
+          "duplicateReferrer": "Реферер второго уровня не может совпадать с основным.",
+          "invalidAddress": "Один из адресов рефереров недействителен.",
+          "missingBuyer": "Активный кошелёк не установлен — разблокируйте и попробуйте снова.",
+          "missingSeller": "В объявлении отсутствует продавец — обновите и попробуйте снова.",
+          "prereqsNotMet": "Предварительные условия покупки не выполнены. Попробуйте снова.",
+          "insufficientBalance": "Недостаточно XOM в кошельке для этой покупки.",
+          "settlementNotDeployed": "NFT-маркетплейс обновляется — пожалуйста, попробуйте чуть позже.",
+          "noFloorListing": "В этой коллекции сейчас нет активных объявлений."
+        },
+        "success": {
+          "toast": "NFT куплен — транзакция {{tx}}…"
+        }
+      }
+    },
+    "listing": {
+      "notFound": "Объявление не найдено",
+      "imagesAria": "Изображения объявления",
+      "sellerHeading": "Продавец",
+      "feesHeading": "Комиссии",
+      "kycTier": "Уровень KYC {{tier}}",
+      "ratingLine": "⭐ {{rating}} · {{sales}} продаж",
+      "unratedSeller": "Без оценок",
+      "ownListing": "Это ваше объявление",
+      "buyNow": "Купить сейчас",
+      "openChat": "Открыть чат",
+      "report": "Пожаловаться",
+      "reportSubmitted": "Жалоба отправлена. Арбитры её рассмотрят.",
+      "fees": {
+        "escrowBuyer": "Эскроу-комиссия (покупатель)",
+        "marketplaceSeller": "Комиссия маркетплейса (продавец)",
+        "marketplaceTooltip": "Всего 1%: 0,50% реферальная + 0,25% транзакция + 0,25% размещение"
+      }
+    },
+    "create": {
+      "heading": "Создать объявление",
+      "titleLabel": "Название",
+      "titlePlaceholder": "Что вы продаёте?",
+      "categoryLabel": "Категория",
+      "descriptionLabel": "Описание",
+      "descriptionPlaceholder": "Опишите товар, состояние и условия доставки",
+      "priceLabel": "Цена",
+      "currencyLabel": "Валюта",
+      "imagesLabel": "Изображения ({{count}}/{{max}})",
+      "imagesHint": "Перетащите изображения или нажмите — до 10 шт., каждая ≤ 5 МБ",
+      "imagesNone": "Изображения не прикреплены",
+      "imagesReady": "Загружено в IPFS изображений: {{count}}",
+      "submit": "Опубликовать",
+      "submitting": "Публикация…",
+      "errorFailed": "Не удалось создать объявление"
+    },
+    "purchase": {
+      "heading": "Подтвердить покупку",
+      "priceLabel": "Цена объявления",
+      "escrowFeeLabel": "Эскроу-комиссия (0,25%)",
+      "recipientLabel": "Продавец",
+      "totalLabel": "Итого к оплате",
+      "confirm": "Подтвердить",
+      "submitting": "Подпись эскроу…",
+      "errorFailed": "Покупка не выполнена"
+    },
+    "chat": {
+      "heading": "Чат · {{thread}}",
+      "empty": "Сообщений ещё нет — напишите первым!",
+      "composerPlaceholder": "Введите сообщение…",
+      "send": "Отправить",
+      "errorFailed": "Не удалось отправить сообщение",
+      "unreadAria": "Непрочитанных сообщений: {{count}}",
+      "actions": {
+        "ship": "Отметить отправленным",
+        "shippedBody": "Товар отправлен",
+        "receive": "Отметить полученным",
+        "receivedBody": "Товар получен — освобождение эскроу",
+        "dispute": "Открыть спор",
+        "disputeBody": "Открытие спора"
+      }
+    },
+    "myListings": {
+      "heading": "Мои объявления",
+      "empty": "Здесь пока ничего нет",
+      "tabs": {
+        "active": "Активные",
+        "sold": "Проданные",
+        "draft": "Черновики"
+      },
+      "actions": {
+        "view": "Открыть",
+        "viewStats": "Статистика"
+      }
+    },
+    "referral": {
+      "openButton": "Поделиться реферальной ссылкой",
+      "heading": "Приглашайте и зарабатывайте",
+      "description": "Получайте 70% от 0,50% реферальной комиссии с каждой покупки и DEX-обмена по вашей ссылке.",
+      "codeLabel": "Код: {{code}}",
+      "share": "Поделиться",
+      "shareTitle": "Присоединяйтесь к OmniBazaar",
+      "shareText": "Зарегистрируйтесь в OmniBazaar и получите приветственный бонус.",
+      "qrAlt": "Реферальный QR-код"
+    },
+    "errors": {
+      "imageTooLarge": "Размер изображения превышает 5 МБ",
+      "imageTypeNotAllowed": "Неподдерживаемый формат изображения",
+      "uploadFailed": "Загрузка не удалась"
+    },
+    "rwa": {
+      "filter": {
+        "assetClass": {
+          "all": "Все",
+          "realEstate": "Недвижимость",
+          "equity": "Акции",
+          "bond": "Облигации",
+          "commodity": "Сырьё",
+          "other": "Другое"
+        },
+        "jurisdiction": "Юрисдикция"
+      },
+      "compliance": {
+        "compliant": "Соответствует",
+        "tierRequired": "Требуется KYC уровня {{tier}}",
+        "restricted": "Недоступно в вашем регионе"
+      },
+      "kycComingSoon": "Сценарии повышения KYC появятся на этапе 5",
+      "trade": "Торговать в DEX",
+      "empty": "Нет активов, соответствующих фильтрам",
+      "connectHint": "Подключите кошелёк для торговли этими активами",
+      "documents": "Посмотреть документы",
+      "stats": {
+        "price": "Цена",
+        "marketCap": "Капитализация",
+        "volume24h": "Объём за 24ч"
+      },
+      "priceTooltip": "Последняя зафиксированная цена токена в USD.",
+      "mcapTooltip": "Полностью разводнённая капитализация — обращение × цена.",
+      "apyTooltip": "Ончейн-доходность за 30 дней, приведённая к годовой.",
+      "complianceTooltip": "Регуляторный режим актива; определяет, кто может его держать.",
+      "tradeAria": "Торговать {{symbol}} на DEX",
+      "tradeTooltip": "Открыть DEX с предзаполненным {{symbol}}.",
+      "tradeDisabledTooltip": "Торговля этим активом ограничена правилами KYC и юрисдикции."
+    },
+    "yield": {
+      "filter": {
+        "all": "Все",
+        "stable": "Стейбл",
+        "lp": "LP",
+        "lending": "Кредитование",
+        "vault": "Хранилище",
+        "other": "Другое"
+      },
+      "sort": {
+        "apy": "APY",
+        "tvl": "TVL",
+        "risk": "Риск",
+        "label": "Сортировка"
+      },
+      "risk": {
+        "low": "Низкий",
+        "medium": "Средний",
+        "high": "Высокий"
+      },
+      "maturity": {
+        "open": "Открытый",
+        "days": "{{count}} дн."
+      },
+      "apy": "APY",
+      "tvl": "TVL",
+      "deposit": "Внести",
+      "strategy": "Стратегия",
+      "empty": "Нет подходящих возможностей дохода"
+    },
+    "predictions": {
+      "filter": {
+        "category": {
+          "all": "Все",
+          "sports": "Спорт",
+          "politics": "Политика",
+          "crypto": "Крипта",
+          "entertainment": "Развлечения",
+          "other": "Другое"
+        },
+        "status": {
+          "open": "Открытые",
+          "resolving": "Завершаются",
+          "resolved": "Завершённые"
+        }
+      },
+      "outcomes": "Исходы",
+      "volume": "Объём",
+      "traders": "Трейдеров",
+      "resolvesIn": "Завершится через {{time}}",
+      "buy": "Купить",
+      "sell": "Продать",
+      "claim": "Забрать выигрыш",
+      "myPositions": "Мои позиции",
+      "noMarkets": "Нет подходящих рынков",
+      "noPositions": "Пока нет позиций на этом рынке",
+      "amountUsd": "Сумма (USD)",
+      "amountShares": "Доли к продаже",
+      "slippageBps": "Макс. проскальзывание (bps)",
+      "priceMid": "Средняя цена",
+      "notFound": "Рынок не найден",
+      "yesPriceTooltip": "Текущая цена акций ДА. При победе ДА одна акция платит $1, иначе $0.",
+      "noPriceTooltip": "Текущая цена акций НЕТ. При победе НЕТ одна акция платит $1, иначе $0.",
+      "volumeTooltip": "Совокупный объём торгов в USD за 24 часа.",
+      "liquidityTooltip": "Количество уникальных трейдеров — больше значит выше ликвидность.",
+      "resolutionTooltip": "Дата закрытия рынка. Настроенный оракул вскоре решает ДА/НЕТ.",
+      "outcomeAria": "{{label}} на {{pct}} процентов",
+      "statsAria": "Показатели рынка",
+      "volumeLabel": "Оборот",
+      "tradersLabel": "Трейдеров"
+    }
+  },
+  "errors": {
+    "unknown": {
+      "title": "Что-то пошло не так",
+      "body": "Не удалось выполнить это действие.",
+      "action": "Попробуй чуть позже. Если ошибка повторится — перезапусти кошелёк."
+    },
+    "invalidInput": "Неверный ввод",
+    "network": {
+      "title": "Проблема с подключением",
+      "body": "Кошелёк не смог связаться с интернетом или валидатором.",
+      "action": "Проверь соединение и повтори попытку."
+    },
+    "session": {
+      "title": "Сессия истекла",
+      "body": "Ваша защищённая сессия больше не действительна.",
+      "action": "Войдите снова, чтобы продолжить."
+    },
+    "notFound": {
+      "title": "Не найдено",
+      "body": "Запрошенный элемент больше недоступен.",
+      "action": "Обнови экран и попробуй снова."
+    },
+    "rateLimit": {
+      "title": "Слишком много запросов",
+      "body": "Вы превысили допустимую частоту.",
+      "action": "Подожди примерно минуту и повтори попытку."
+    },
+    "serverDown": {
+      "title": "Сервис временно недоступен",
+      "body": "Наши серверы сейчас недоступны.",
+      "action": "Мы автоматически повторим — оставь этот экран открытым."
+    },
+    "locked": {
+      "title": "Кошелёк заблокирован",
+      "body": "Для этого действия нужен разблокированный кошелёк.",
+      "action": "Разблокируй кошелёк и попробуй снова."
+    },
+    "insufficient": {
+      "title": "Недостаточно средств",
+      "body": "Баланс в этой сети слишком мал.",
+      "action": "Получи или обмени больше средств перед повторной попыткой."
+    },
+    "validation": {
+      "title": "Проверь ввод",
+      "body": "Запрос отклонён из-за некорректного значения.",
+      "action": "Исправь форму и попробуй снова."
+    },
+    "cancelled": {
+      "title": "Отменено",
+      "body": "Вы отменили это действие.",
+      "action": ""
+    },
+    "retry": "Повторить",
+    "retryAria": "Повторить неудачное действие",
+    "dismissAria": "Закрыть сообщение об ошибке",
+    "context": {
+      "approveNftCollection": "одобрить NFT-коллекцию",
+      "approveXomForNftBuy": "одобрить XOM для покупки NFT",
+      "buyNft": "купить NFT"
+    }
+  },
+  "features": {
+    "staking": {
+      "heading": "Стейкинг",
+      "tabStake": "Стейкать",
+      "tabUnstake": "Вывести",
+      "currentStake": "Текущий стейк",
+      "currentApr": "APR",
+      "accruedRewards": "Накопленные награды",
+      "lockUntil": "Блокировка до",
+      "noActiveStake": "Нет активного стейка",
+      "amountLabel": "Сумма",
+      "amountPlaceholder": "0,00",
+      "lockLabel": "Срок блокировки",
+      "lockNone": "Нет",
+      "lock1m": "1 месяц",
+      "lock6m": "6 месяцев",
+      "lock2y": "2 года",
+      "previewApr": "Расчётный APR",
+      "stakeBtn": "Застейкать",
+      "unstakeBtn": "Вывести",
+      "claimBtn": "Получить награды",
+      "submitting": "Отправка…",
+      "earlyWarning": "При досрочном выводе применяется штраф.",
+      "stakeOk": "Стейк отправлен — Tx: {{shortHash}}",
+      "unstakeOk": "Вывод отправлен — Tx: {{shortHash}}",
+      "claimOk": "Награды получены — Tx: {{shortHash}}",
+      "errorAmountRequired": "Сумма обязательна",
+      "errorFailed": "Операция не удалась",
+      "tierTableHeading": "Уровни APR",
+      "tierAmount": "Сумма (XOM)",
+      "tierBaseApr": "Базовый APR",
+      "durationBonusHeading": "Бонус за срок",
+      "tier1": "1 – 999 999",
+      "tier2": "1 млн – 9,99 млн",
+      "tier3": "10 млн – 99,99 млн",
+      "tier4": "100 млн – 999,99 млн",
+      "tier5": "1 млрд+",
+      "loginHint": "Войдите, чтобы увидеть стейкинг",
+      "calculator": {
+        "tab": "Калькулятор",
+        "heading": "Оценщик доходов",
+        "intro": "Приблизительный годовой доход от стейкинга, рефералов и активности на маркетплейсе. Без учёта сложного процента и лимитов вознаграждений.",
+        "stakedAmountLabel": "Сумма стейкинга (XOM)",
+        "stakedAmountPlaceholder": "0",
+        "lockDurationLabel": "Срок блокировки",
+        "referralsPerDayLabel": "Новых рефералов в день",
+        "monthlyTxLabel": "Сделок на маркетплейсе в месяц (средний XOM)",
+        "baseAprLine": "Базовый APR: {{apr}}%",
+        "totalAprLine": "Общий APR: {{apr}}%",
+        "stakingEarnings": "Награды стейкинга",
+        "referralEarnings": "Награды за рефералов",
+        "marketplaceEarnings": "Награды маркетплейса",
+        "welcomeBonus": "Приветственный бонус (один раз)",
+        "totalAnnual": "Оценочный годовой доход",
+        "disclaimer": "Значения следуют кривым стейкинга, рефералов и первой продажи, которые снижаются по мере роста пользовательской базы. Не является финансовой рекомендацией."
+      }
+    },
+    "kyc": {
+      "heading": "KYC и верификация",
+      "currentTier": "Текущий уровень",
+      "participationScore": "Балл участия",
+      "scoreOutOf": "{{score}} / 100",
+      "tier0": "Анонимный",
+      "tier1": "Базовый",
+      "tier2": "Подтверждён",
+      "tier3": "Личность",
+      "tier4": "Институциональный",
+      "tier0Desc": "Только e-mail",
+      "tier1Desc": "E-mail + телефон + подписка в соцсетях",
+      "tier2Desc": "Адрес + OCR документа + проверка AML/PEP",
+      "tier3Desc": "Госдокумент + распознавание лица (Persona)",
+      "tier4Desc": "Верификация юр. лица (только валидаторы)",
+      "scoreBonus": "+{{points}} к баллу",
+      "nextTierHeading": "Следующий уровень",
+      "nextTierUpgrade": "Повысить",
+      "alreadyAtMax": "Вы достигли максимального уровня.",
+      "tier4ComingSoon": "Уровень 4 (Институциональный) откроется при основном запуске.",
+      "uploadHeading": "Уровень 2 — подтверждение адреса",
+      "uploadHint": "Загрузите свежую квитанцию, выписку из банка или официальное письмо (PDF, JPEG или PNG; ≤10 МБ).",
+      "uploadFileLabel": "Документ",
+      "uploadNameLabel": "Юридическое имя в документе",
+      "uploadAddressLabel": "Адрес в документе",
+      "uploadDocTypeLabel": "Тип документа",
+      "docTypeBank": "Банковская выписка",
+      "docTypeUtility": "Коммунальная квитанция",
+      "docTypeTax": "Налоговый документ",
+      "docTypeOfficial": "Официальное письмо",
+      "uploadBtn": "Отправить документ",
+      "uploading": "Загрузка…",
+      "uploadOk": "Документ отправлен — ожидает проверки.",
+      "uploadFailed": "Ошибка загрузки",
+      "uploadFileTooLarge": "Файл превышает 10 МБ.",
+      "uploadFileTypeInvalid": "Принимаются только файлы PDF, JPEG и PNG.",
+      "personaHeading": "Уровень 3 — проверка личности",
+      "personaHint": "Мы используем Persona для проверки удостоверения и лица. Процесс откроется в новой вкладке.",
+      "personaCta": "Подтвердить личность через Persona",
+      "personaWaiting": "Ожидание Persona…",
+      "personaConfirmed": "Проверка Persona подтверждена.",
+      "personaFailed": "Проверка Persona не завершилась.",
+      "loginHint": "Войдите, чтобы увидеть статус KYC"
+    },
+    "bridge": {
+      "heading": "Мост",
+      "fromHeading": "Из",
+      "toHeading": "В",
+      "amountLabel": "Сумма",
+      "amountPlaceholder": "0,00",
+      "loginHint": "Войдите, чтобы использовать мост",
+      "noRoutes": "Нет маршрута моста для этой пары",
+      "routeLabel": "Маршрут",
+      "feeLabel": "Комиссия моста",
+      "estTime": "~{{seconds}} с",
+      "submit": "Перевести через мост",
+      "signing": "Ожидание подписи…",
+      "depositing": "Депозит в исходной сети…",
+      "bridging": "Передача — {{status}}",
+      "claiming": "Получение в целевой сети…",
+      "complete": "Мост завершён",
+      "failed": "Ошибка моста: {{error}}",
+      "txHash": "Tx: {{shortHash}}",
+      "selectFromChain": "Исходная сеть",
+      "selectToChain": "Целевая сеть",
+      "selectFromToken": "Исходный токен",
+      "selectToToken": "Целевой токен",
+      "stepDeposit": "Депозит",
+      "stepBridge": "Мост",
+      "stepClaim": "Получение",
+      "stepComplete": "Завершено",
+      "explorer": "Открыть в обозревателе"
+    },
+    "addressBook": {
+      "heading": "Адресная книга",
+      "empty": "Нет сохранённых контактов",
+      "add": "Добавить контакт",
+      "edit": "Изменить",
+      "delete": "Удалить",
+      "save": "Сохранить",
+      "cancel": "Отмена",
+      "nameLabel": "Имя",
+      "namePlaceholder": "Alice",
+      "addressLabel": "Адрес",
+      "addressPlaceholder": "0x… или имя пользователя",
+      "chainLabel": "Сеть",
+      "notesLabel": "Заметки",
+      "notesPlaceholder": "Необязательно",
+      "errorRequired": "Имя и адрес обязательны",
+      "errorSaveFailed": "Не удалось сохранить контакт",
+      "deleteConfirm": "Удалить этот контакт?"
+    },
+    "about": {
+      "heading": "О приложении",
+      "version": "Версия",
+      "validatorNetwork": "Сеть валидаторов",
+      "validatorsConnected": "{{count}} активны",
+      "validatorRow": "{{url}} — {{latency}} мс",
+      "validatorRowOffline": "{{url}} — оффлайн",
+      "noValidators": "Валидаторы не подключены",
+      "links": "Ссылки",
+      "changelog": "История изменений",
+      "support": "Поддержка",
+      "privacyPolicy": "Политика конфиденциальности",
+      "terms": "Условия использования",
+      "footer": "Создано на OmniCoin L1 — chain 88008"
+    },
+    "participation": {
+      "heading": "Оценка участия",
+      "intro": "Ваша оценка складывается из девяти факторов, максимум 100 баллов. Более высокая оценка открывает право быть валидатором или листинг-нодой.",
+      "loginHint": "Войдите, чтобы увидеть свою оценку участия",
+      "totalLabel": "Общий балл",
+      "outOf": "{{score}} / {{max}}",
+      "viewBreakdown": "Показать разбивку",
+      "components": {
+        "kycTrust": "Доверие KYC",
+        "kycTrustHint": "Уровень 0 = 0, 1 = 5, 2 = 10, 3 = 15, 4 = 20.",
+        "marketplaceReputation": "Репутация маркетплейса",
+        "marketplaceReputationHint": "Средняя оценка от −10 до +10.",
+        "stakingAmountDuration": "Стейкинг: сумма + срок",
+        "stakingAmountDurationHint": "Тир суммы × 3 плюс тир срока × 3.",
+        "disseminator": "Распространитель (рефералы)",
+        "disseminatorHint": "1 балл за реферала, максимум 10.",
+        "publisher": "Публикатор (объявления)",
+        "publisherHint": "100 объявлений = 1, 1K = 2, 10K = 3, 100K = 4.",
+        "forumParticipation": "Участие в форуме",
+        "forumParticipationHint": "Со временем убывает; посты, ответы, лайки.",
+        "marketplaceActivity": "Активность маркетплейса",
+        "marketplaceActivityHint": "Со временем убывает; завершённые сделки.",
+        "communityPolicing": "Модерация сообщества",
+        "communityPolicingHint": "Точность жалоб; со временем убывает.",
+        "reliability": "Надёжность",
+        "reliabilityHint": "Сигналы аптайма и производительности (−5 до +5).",
+        "vouchScore": "Оценка поручительства",
+        "vouchScoreHint": "Поручительства от сообщества (0 до 5)."
+      }
+    },
+    "governance": {
+      "heading": "Управление",
+      "badge": "Скоро",
+      "intro": "Ончейн-управление ODDAO появится после основного запуска. Валидаторы и стейкеры XOM будут предлагать и голосовать за эмиссию, параметры комиссий и распределение казны.",
+      "learnMore": "Прочитать план управления",
+      "notes": "После запуска вы сможете голосовать с этого экрана. А пока присоединяйтесь к форуму и оставляйте отзывы.",
+      "ctaForum": "Открыть форум"
+    },
+    "portfolio": {
+      "heading": "Аналитика Портфеля",
+      "intro": "Балансы ERC-20 на каждой EVM-сети, объединённые в один запрос Multicall3 на сеть.",
+      "loading": "Загрузка балансов…",
+      "empty": "Балансы токенов не найдены.",
+      "loginHint": "Войдите, чтобы увидеть свой портфель.",
+      "partialError": "{{count}} сеть не удалось прочитать — показаны частичные результаты.",
+      "partialError_other": "{{count}} сетей не удалось прочитать — показаны частичные результаты."
+    }
+  },
+  "dapp": {
+    "connect": {
+      "heading": "Подключение к dApp",
+      "intro": "{{origin}} хочет подключиться к вашему кошельку.",
+      "permissionsLabel": "Этот сайт сможет:",
+      "permissionAccount": "Видеть адрес вашего кошелька",
+      "permissionSign": "Запрашивать подписи и транзакции (каждая требует вашего подтверждения)",
+      "approve": "Подключить",
+      "reject": "Отмена"
+    },
+    "sign": {
+      "heading": "Запрос подписи",
+      "messageLabel": "Сообщение",
+      "legacyWarning": "⚠️ Сайт использует устаревший метод eth_sign, которым можно злоупотреблять для подписания транзакций. Если не уверены — отклоните.",
+      "approve": "Подписать",
+      "reject": "Отмена"
+    },
+    "typed": {
+      "heading": "Подпись типизированных данных",
+      "domainLabel": "Домен",
+      "messageLabel": "{{primaryType}}",
+      "approve": "Подписать",
+      "reject": "Отмена"
+    },
+    "tx": {
+      "heading": "Подтверждение транзакции",
+      "toLabel": "Получатель",
+      "valueLabel": "Нативное значение",
+      "functionLabel": "Функция",
+      "unknownFunction": "(неизвестная функция — calldata не декодирована)",
+      "gasLabel": "Сетевая комиссия",
+      "gasFreeOmniRelay": "Бесплатно (оплачивает OmniRelay)",
+      "gasOnChain": "Оценено по сетевой цене газа",
+      "riskLabel": "Риск",
+      "simulationFailed": "Симуляция отклонена: {{reason}}",
+      "ackHighRisk": "Я понимаю, что транзакция выглядит рискованной, и хочу продолжить.",
+      "approve": "Подтвердить",
+      "reject": "Отмена",
+      "reason": {
+        "scamAddress": "Получатель в известном чёрном списке.",
+        "unlimitedApprove": "Разрешает неограниченные расходы.",
+        "approvalForAll": "Даёт разрешение на все NFT в этой коллекции.",
+        "transferFrom": "Извлекает токены через ранее выданное разрешение.",
+        "zeroAddressTransfer": "Перевод на нулевой адрес (сжигание)."
+      }
+    },
+    "switch": {
+      "heading": "Сменить сеть",
+      "fromLabel": "Из сети",
+      "toLabel": "В сеть",
+      "approve": "Сменить",
+      "reject": "Отмена"
+    },
+    "addchain": {
+      "heading": "Добавить сеть",
+      "nameLabel": "Название сети",
+      "chainIdLabel": "ID сети",
+      "rpcLabel": "URL RPC",
+      "symbolLabel": "Символ валюты",
+      "explorerLabel": "Обозреватель блоков",
+      "approve": "Добавить сеть",
+      "reject": "Отмена",
+      "collisionWarning": "⚠️ Это dApp пытается добавить сеть с тем же ID ({{chainId}}), что и {{knownName}}, но с ДРУГИМ {{fields}}. Это может быть попыткой фишинга. Используйте оригинальную конфигурацию {{knownName}}.",
+      "collisionDiffRpc": "URL RPC",
+      "collisionDiffName": "название сети",
+      "collisionDiffSymbol": "символ нативной валюты",
+      "iUnderstandRisk": "Я понимаю риск и всё равно хочу добавить эту сеть",
+      "forceApproveDisabledTooltip": "Отключено: подтвердите, что понимаете риск, чтобы продолжить."
+    },
+    "addtoken": {
+      "heading": "Добавить токен",
+      "symbolLabel": "Символ",
+      "decimalsLabel": "Десятичные знаки",
+      "addressLabel": "Адрес контракта",
+      "imageLabel": "URL изображения",
+      "approve": "Добавить токен",
+      "reject": "Отмена"
+    },
+    "walletconnect": {
+      "heading": "WalletConnect",
+      "intro": "Отсканируйте QR-код WalletConnect телефоном, скопируйте wc:-URI и вставьте сюда для подключения.",
+      "pasteUriPlaceholder": "wc:…",
+      "connect": "Подключить",
+      "pairOk": "Сопряжено. Ожидается предложение сессии от dApp.",
+      "activeSessions": "Активные сессии",
+      "empty": "Нет активных сессий WalletConnect"
+    },
+    "education": {
+      "body": "OmniWallet поддерживает EIP-6963 — он появится в селекторе кошельков любого современного dApp. Для устаревших dApp, где есть только «Connect MetaMask», ищите OmniWallet в списке или используйте WalletConnect."
+    },
+    "risk": {
+      "green": "Низкий",
+      "amber": "Внимание",
+      "red": "Высокий",
+      "explanation": "Рискованных паттернов не обнаружено. Всегда проверяйте получателя и сумму."
+    },
+    "originTooltip": "Сайт, который запрашивает это одобрение.",
+    "chainTooltip": "Сеть, к которой относится запрос.",
+    "chainAria": "Целевая сеть: {{chain}}",
+    "requestFrom": "Запрос от {{origin}}",
+    "rejectAria": "Отклонить запрос и закрыть окно",
+    "approveAria": "Одобрить запрос",
+    "embeddedFrameTooltip": "Этот запрос поступил из iframe, встроенного в другой сайт. Одобряйте, только если доверяете и dApp, и родительскому сайту.",
+    "embeddedFrame": "Этот запрос поступил из встроенного iframe, а не с главной страницы.",
+    "embeddedFrameFull": "Встроенный iframe: {{origin}} внутри {{topOrigin}}"
+  },
+  "hardware": {
+    "selector": {
+      "title": "Подключить Аппаратный Кошелёк",
+      "ledgerUsb": "Ledger (USB)",
+      "ledgerBle": "Ledger (Bluetooth)",
+      "trezorUsb": "Trezor (USB)"
+    },
+    "connect": {
+      "step1": "Подключите устройство",
+      "step2": "Разблокируйте устройство",
+      "step3": "Откройте приложение Ethereum",
+      "step4": "Получение аккаунтов...",
+      "noDevice": "Устройство не обнаружено. Подключите его и попробуйте снова.",
+      "denied": "Доступ к устройству отклонён. Разрешите доступ в браузере."
+    },
+    "sign": {
+      "title": "Подтвердите на {{device}}",
+      "subtitle": "Проверьте и подтвердите транзакцию на устройстве",
+      "cancel": "Отмена"
+    },
+    "accounts": {
+      "title": "Выбрать Аккаунты",
+      "showMore": "Показать ещё 5",
+      "balance": "Баланс",
+      "addSelected": "Добавить {{count}} аккаунтов",
+      "addedToast": "Добавлено {{count}} аппаратных аккаунтов"
+    },
+    "badge": {
+      "ledger": "Ledger",
+      "trezor": "Trezor"
+    },
+    "advanced": {
+      "title": "Расширенные",
+      "hdPath": "Путь деривации"
+    }
+  },
+  "antiPhishing": {
+    "stepTitle": "Выберите антифишинговый баннер",
+    "stepHelp": "Выберите цвет и короткое слово. OmniWallet покажет их под шапкой при каждом открытии всплывающего окна. Поддельный кошелёк не знает вашего выбора — если вы не видите своего цвета и слова, это не настоящий OmniWallet.",
+    "colorLabel": "Цвет",
+    "wordLabel": "Слово или короткая фраза",
+    "wordPlaceholder": "напр. sun42",
+    "wordRules": "Только буквы, цифры и пробелы. {{min}}–{{max}} символов.",
+    "preview": "Предпросмотр",
+    "previewEmpty": "Ваш баннер появится здесь",
+    "previewAria": "Предпросмотр антифишингового баннера в реальном времени",
+    "confirm": "Сохранить баннер",
+    "saving": "Сохранение…",
+    "skip": "Пропустить пока",
+    "changeTitle": "Изменить антифишинговый баннер",
+    "changeRequiresPassword": "Введите пароль, чтобы сохранить изменение",
+    "passwordPlaceholder": "Пароль кошелька",
+    "lockScreenFallback": "Антифишинг: разблокируйте для проверки",
+    "bannerAriaLabel": "Антифишинговый баннер",
+    "bannerTooltip": "Это ваша антифишинговая метка. Если здесь нет ВАШЕГО цвета и слова — это НЕ настоящий OmniWallet.",
+    "addPrompt": "Добавить антифишинговый баннер (рекомендуется)",
+    "addPromptAria": "Добавить антифишинговый баннер — открывает страницу настроек",
+    "colorSwatchAria": "Выбрать цвет {{color}}",
+    "savedOk": "Баннер обновлён.",
+    "errColorInvalid": "Выберите цвет.",
+    "errWordTooShort": "Используйте минимум 3 символа.",
+    "errWordTooLong": "Используйте максимум 24 символа.",
+    "errWordChars": "Допустимы только буквы, цифры и пробелы.",
+    "errSanitized": "Исправьте поля баннера перед сохранением.",
+    "errPasswordRequired": "Введите пароль кошелька, чтобы сохранить изменение.",
+    "errGeneric": "Не удалось сохранить антифишинговый баннер. Попробуйте ещё раз."
+  },
+  "chains": {
+    "cardano": {
+      "send": {
+        "minAmountError": "Минимальный перевод в сети Cardano — 1 ADA. Увеличьте сумму и попробуйте ещё раз.",
+        "insufficientUtxo": "Доступных UTXO недостаточно для суммы и комиссии. Пополните отправляющий кошелёк ADA.",
+        "feeEstimate": "Оценочная комиссия сети: {{ada}} ADA",
+        "ttlExpired": "Транзакция истекла до того, как мы успели её отправить. Обновите данные и повторите.",
+        "broadcastPending": "Отправка в сеть Cardano…",
+        "broadcastSuccess": "Транзакция Cardano отправлена. Tx: {{shortHash}}",
+        "broadcastFailed": "Не удалось отправить транзакцию Cardano. Попробуйте ещё раз."
+      }
+    }
+  },
+  "predictions": {
+    "claim": {
+      "button": "Получить выигрыш рынка «{{title}}»",
+      "confirming": "Подтверждение в Polygon…",
+      "successToast": "Запрос отправлен — Tx: {{shortHash}}",
+      "explorerLink": "Посмотреть транзакцию в обозревателе блоков",
+      "insufficientGasTitle": "Для получения в {{chain}} нужен {{symbol}}",
+      "insufficientGasBody": "Для получения выигрыша в {{chain}} требуется {{symbol}} на оплату газа. Переведите сюда XOM, чтобы покрыть комиссию, и попробуйте снова.",
+      "bridgeForGas": "Мост XOM для газа",
+      "failed": "Не удалось получить выигрыш. Попробуйте ещё раз.",
+      "disabledTooltip": "Этот рынок ещё не разрешён. Получение станет доступным после подведения итогов."
+    }
+  }
+}

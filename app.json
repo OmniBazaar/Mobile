@@ -48,6 +48,7 @@
       "bundler": "metro"
     },
     "plugins": [
+      "expo-updates",
       "expo-localization",
       "expo-font",
       [
@@ -78,7 +79,9 @@
       }
     },
     "updates": {
-      "url": "https://u.expo.dev/omnibazaar-mobile-project-id"
+      "url": "https://u.expo.dev/omnibazaar-mobile-project-id",
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 30000
     },
     "runtimeVersion": "0.1.0"
   }
