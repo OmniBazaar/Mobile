@@ -40,6 +40,8 @@ export interface WalletHomeScreenProps {
   onReceive: () => void;
   /** Navigate to SwapScreen (Phase 3). */
   onSwap: () => void;
+  /** Navigate to MarketplaceHomeScreen (Phase 4). */
+  onShop: () => void;
   /** Sign out and return to welcome. */
   onSignOut: () => void;
 }
@@ -112,6 +114,7 @@ export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Elem
           onPress={props.onReceive}
         />
         <ActionTile label={t('walletHome.swap', { defaultValue: 'Swap' })} onPress={props.onSwap} />
+        <ActionTile label={t('walletHome.shop', { defaultValue: 'Shop' })} onPress={props.onShop} />
       </View>
 
       <Text style={styles.sectionHeader}>
