@@ -26,7 +26,9 @@ import ImportWalletScreen from '../screens/ImportWalletScreen';
 import PinSetupScreen from '../screens/PinSetupScreen';
 import BiometricEnrollScreen from '../screens/BiometricEnrollScreen';
 import SignInScreen from '../screens/SignInScreen';
-import HomeScreen from '../screens/HomeScreen';
+import WalletHomeScreen from '../screens/WalletHomeScreen';
+import SendScreen from '../screens/SendScreen';
+import ReceiveScreen from '../screens/ReceiveScreen';
 
 /** Which onboarding step the user is currently on. */
 type OnboardingStep =
@@ -49,6 +51,9 @@ interface OnboardingState {
   pin?: string;
 }
 
+/** Post-auth navigation state. */
+type AuthedRoute = 'wallet-home' | 'send' | 'receive';
+
 /**
  * Render the right screen based on the auth lifecycle state + the
  * in-flight onboarding step.
@@ -64,6 +69,8 @@ export default function RootNavigator(): JSX.Element | null {
   const markUnlocked = useAuthStore((s) => s.markUnlocked);
 
   const [onboard, setOnboard] = useState<OnboardingState>({ step: 'welcome' });
+  const [authedRoute, setAuthedRoute] = useState<AuthedRoute>('wallet-home');
+  const clearAuth = useAuthStore((s) => s.clear);
 
   // Kick off validator discovery before showing any screen that needs
   // the network. BootstrapService is idempotent.
@@ -145,7 +152,33 @@ export default function RootNavigator(): JSX.Element | null {
   if (authState === 'bootstrapping') return null;
 
   if (authState === 'unlocked') {
-    return <HomeScreen />;
+    switch (authedRoute) {
+      case 'send':
+        return (
+          <SendScreen
+            mnemonic={onboard.keys?.mnemonic ?? ''}
+            onBack={() => setAuthedRoute('wallet-home')}
+            onSent={() => setAuthedRoute('wallet-home')}
+          />
+        );
+      case 'receive':
+        return <ReceiveScreen onBack={() => setAuthedRoute('wallet-home')} />;
+      case 'wallet-home':
+      default:
+        return (
+          <WalletHomeScreen
+            onSend={() => setAuthedRoute('send')}
+            onReceive={() => setAuthedRoute('receive')}
+            onSwap={() => {
+              /* Phase 3 */
+            }}
+            onSignOut={() => {
+              clearAuth();
+              setOnboard({ step: 'welcome' });
+            }}
+          />
+        );
+    }
   }
 
   // signedOut — route through the onboarding FSM

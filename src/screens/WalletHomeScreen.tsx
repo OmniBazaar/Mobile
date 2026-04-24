@@ -1,0 +1,221 @@
+/**
+ * WalletHomeScreen — Mobile's post-auth wallet landing.
+ *
+ * Renders:
+ *   - Portfolio hero card (cumulative value + non-zero chain count)
+ *   - Send / Receive / Swap quick-action row
+ *   - Pull-to-refresh native-balance list across the 8 Phase 2 chains
+ *
+ * Data comes from `PortfolioService.fetchNativeBalances(address)` which
+ * fans out to MulticallService (Multicall3 batch on 7 chains) +
+ * ClientRPCRegistry (OmniCoin L1). Every RPC call is mobile-originated.
+ */
+
+import React, { useCallback, useEffect, useState } from 'react';
+import {
+  FlatList,
+  Pressable,
+  RefreshControl,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import { useTranslation } from 'react-i18next';
+
+import Card from '@components/Card';
+import { colors } from '@theme/colors';
+import {
+  fetchNativeBalances,
+  formatRaw,
+  summarize,
+  type ChainBalance,
+} from '../services/PortfolioService';
+import { useAuthStore } from '../store/authStore';
+
+/** Props accepted by WalletHomeScreen. */
+export interface WalletHomeScreenProps {
+  /** Navigate to SendScreen. */
+  onSend: () => void;
+  /** Navigate to ReceiveScreen. */
+  onReceive: () => void;
+  /** Navigate to SwapScreen (Phase 3). */
+  onSwap: () => void;
+  /** Sign out and return to welcome. */
+  onSignOut: () => void;
+}
+
+/**
+ * Render the wallet home.
+ * @param props - See {@link WalletHomeScreenProps}.
+ * @returns JSX.
+ */
+export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Element {
+  const { t } = useTranslation();
+  const address = useAuthStore((s) => s.address);
+  const username = useAuthStore((s) => s.username);
+
+  const [balances, setBalances] = useState<ChainBalance[]>([]);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const refresh = useCallback(async (): Promise<void> => {
+    if (address === '') return;
+    setRefreshing(true);
+    try {
+      const rows = await fetchNativeBalances(address);
+      setBalances(rows);
+    } catch (err) {
+      console.warn('[wallet-home] balance fetch failed', err);
+    } finally {
+      setRefreshing(false);
+    }
+  }, [address]);
+
+  useEffect(() => {
+    void refresh();
+  }, [refresh]);
+
+  const { nonZeroChains, totalErrorRows } = summarize(balances);
+
+  return (
+    <View style={styles.root}>
+      {/* Hero card */}
+      <Card style={styles.hero}>
+        <Text style={styles.heroLabel}>
+          {t('walletHome.portfolio', { defaultValue: 'Portfolio' })}
+        </Text>
+        <Text style={styles.heroTotal}>
+          {balances.length === 0
+            ? t('walletHome.loading', { defaultValue: 'Loading…' })
+            : t('walletHome.chainSummary', {
+                defaultValue: '{{n}} chain{{s}} active',
+                n: nonZeroChains,
+                s: nonZeroChains === 1 ? '' : 's',
+              })}
+        </Text>
+        <Text style={styles.heroAddress}>{username !== '' ? `@${username} · ${short(address)}` : short(address)}</Text>
+        {totalErrorRows > 0 && (
+          <Text style={styles.heroError}>
+            {t('walletHome.errorRows', {
+              defaultValue: '{{n}} chain{{s}} failed to load — pull to refresh',
+              n: totalErrorRows,
+              s: totalErrorRows === 1 ? '' : 's',
+            })}
+          </Text>
+        )}
+      </Card>
+
+      {/* Quick actions */}
+      <View style={styles.actionsRow}>
+        <ActionTile label={t('walletHome.send', { defaultValue: 'Send' })} onPress={props.onSend} />
+        <ActionTile
+          label={t('walletHome.receive', { defaultValue: 'Receive' })}
+          onPress={props.onReceive}
+        />
+        <ActionTile label={t('walletHome.swap', { defaultValue: 'Swap' })} onPress={props.onSwap} />
+      </View>
+
+      <Text style={styles.sectionHeader}>
+        {t('walletHome.tokens', { defaultValue: 'Tokens' })}
+      </Text>
+
+      <FlatList
+        data={balances}
+        keyExtractor={(item) => `${item.chainId}`}
+        renderItem={({ item }) => <TokenRow balance={item} />}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={() => void refresh()} tintColor={colors.primary} />
+        }
+        ListEmptyComponent={
+          <Text style={styles.empty}>
+            {t('walletHome.noTokens', { defaultValue: 'No token balances yet.' })}
+          </Text>
+        }
+        contentContainerStyle={styles.listContent}
+      />
+
+      <Pressable onPress={props.onSignOut} accessibilityRole="button" style={styles.signOut}>
+        <Text style={styles.signOutText}>
+          {t('walletHome.signOut', { defaultValue: 'Sign Out' })}
+        </Text>
+      </Pressable>
+    </View>
+  );
+}
+
+/** Single token-row render. */
+function TokenRow({ balance }: { balance: ChainBalance }): JSX.Element {
+  return (
+    <View style={styles.tokenRow}>
+      <View style={styles.tokenRowLeft}>
+        <Text style={styles.tokenSymbol}>{balance.symbol}</Text>
+        <Text style={styles.tokenChain}>{balance.chainName}</Text>
+      </View>
+      <View style={styles.tokenRowRight}>
+        {balance.error !== undefined ? (
+          <Text style={styles.tokenError}>error</Text>
+        ) : (
+          <Text style={styles.tokenBalance}>{formatRaw(balance.raw, balance.decimals)}</Text>
+        )}
+      </View>
+    </View>
+  );
+}
+
+/** Quick-action tile (Send / Receive / Swap). */
+function ActionTile({ label, onPress }: { label: string; onPress: () => void }): JSX.Element {
+  return (
+    <Pressable onPress={onPress} accessibilityRole="button" style={styles.actionTile}>
+      <Text style={styles.actionLabel}>{label}</Text>
+    </Pressable>
+  );
+}
+
+/** Shorten a 42-char address for inline display. */
+function short(address: string): string {
+  if (address.length <= 10) return address;
+  return `${address.slice(0, 6)}\u2026${address.slice(-4)}`;
+}
+
+const styles = StyleSheet.create({
+  root: { flex: 1, backgroundColor: colors.background, paddingTop: 56, paddingHorizontal: 16 },
+  hero: { marginBottom: 16, alignItems: 'center' },
+  heroLabel: { color: colors.textMuted, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1.2 },
+  heroTotal: { color: colors.textPrimary, fontSize: 28, fontWeight: '700', marginTop: 8, marginBottom: 4 },
+  heroAddress: { color: colors.primary, fontSize: 13, marginTop: 4 },
+  heroError: { color: colors.warning, fontSize: 12, marginTop: 8, textAlign: 'center' },
+  actionsRow: { flexDirection: 'row', marginBottom: 24 },
+  actionTile: {
+    flex: 1,
+    backgroundColor: colors.surface,
+    borderRadius: 12,
+    padding: 16,
+    alignItems: 'center',
+    marginHorizontal: 4,
+  },
+  actionLabel: { color: colors.textPrimary, fontWeight: '600', fontSize: 15 },
+  sectionHeader: {
+    color: colors.textSecondary,
+    fontSize: 13,
+    textTransform: 'uppercase',
+    letterSpacing: 1.2,
+    marginBottom: 8,
+  },
+  listContent: { paddingBottom: 32 },
+  tokenRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: colors.surface,
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 8,
+  },
+  tokenRowLeft: { flexDirection: 'column' },
+  tokenRowRight: { justifyContent: 'center' },
+  tokenSymbol: { color: colors.textPrimary, fontSize: 16, fontWeight: '600' },
+  tokenChain: { color: colors.textMuted, fontSize: 13, marginTop: 2 },
+  tokenBalance: { color: colors.textPrimary, fontSize: 15 },
+  tokenError: { color: colors.danger, fontSize: 13 },
+  empty: { color: colors.textMuted, textAlign: 'center', paddingVertical: 48 },
+  signOut: { alignItems: 'center', paddingVertical: 16 },
+  signOutText: { color: colors.textMuted, fontSize: 13 },
+});
