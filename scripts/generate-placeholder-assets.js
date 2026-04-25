@@ -1,12 +1,25 @@
 /**
- * generate-placeholder-assets.js — emits the minimal-required image
- * + sound assets app.json points at, so EAS prebuild doesn't fail on
- * a missing PNG. Designs are placeholders (solid OmniBazaar dark
- * background with a centred white square as a visual anchor) that
- * any designer should replace before App Store / Play Store
- * submission.
+ * generate-placeholder-assets.js — emits the image + sound assets
+ * `app.json` references.
  *
- * Run from Mobile/:  node scripts/generate-placeholder-assets.js
+ * Two modes:
+ *   1. **Real-asset mode (preferred).** When `Mobile/branding/` contains
+ *      a source PNG of the right name, it's copied to `assets/images/`
+ *      verbatim. Use this for the OmniBazaar logo, splash artwork, etc.
+ *   2. **Placeholder mode (fallback).** When no `branding/` source
+ *      exists for a slot, a solid-color anchor PNG is generated so EAS
+ *      prebuild doesn't fail on a missing file.
+ *
+ * Required `branding/` files (any subset — missing slots fall back):
+ *   branding/icon.png              → assets/images/icon.png            (1024×1024, no alpha)
+ *   branding/adaptive-icon.png     → assets/images/adaptive-icon.png   (1024×1024, foreground only — safe area is centre 66%)
+ *   branding/splash.png            → assets/images/splash.png          (1284×2778 or 1242×2436)
+ *   branding/favicon.png           → assets/images/favicon.png         (48×48)
+ *   branding/notification-icon.png → assets/images/notification-icon.png (96×96, transparent monochrome white)
+ *   branding/notification.wav      → assets/sounds/notification.wav    (PCM WAV)
+ *
+ * Run from Mobile/:
+ *   node scripts/generate-placeholder-assets.js
  */
 
 const fs = require("fs");
@@ -14,6 +27,7 @@ const path = require("path");
 const { PNG } = require("pngjs");
 
 const root = path.resolve(__dirname, "..");
+const brandingDir = path.join(root, "branding");
 const imagesDir = path.join(root, "assets", "images");
 const soundsDir = path.join(root, "assets", "sounds");
 fs.mkdirSync(imagesDir, { recursive: true });
@@ -23,9 +37,27 @@ const BG = { r: 0x1a, g: 0x1a, b: 0x1a };
 const FG = { r: 0xff, g: 0xff, b: 0xff };
 
 /**
- * Write a square PNG with a centred white square anchor. Solid-only
- * canvases work for icons + splash; the centre square keeps the
- * placeholder visually distinct from "no asset at all".
+ * Copy `branding/<name>` to the target if it exists; otherwise fall back
+ * to the `placeholder` builder.
+ *
+ * @param {string} name - Source filename in `branding/`.
+ * @param {string} outDir - Output directory.
+ * @param {() => void} placeholder - Builder that writes a stub.
+ * @returns {string} 'real' or 'placeholder', for the run summary.
+ */
+function copyOrFallback(name, outDir, placeholder) {
+  const src = path.join(brandingDir, name);
+  const dst = path.join(outDir, name);
+  if (fs.existsSync(src)) {
+    fs.copyFileSync(src, dst);
+    return "real";
+  }
+  placeholder();
+  return "placeholder";
+}
+
+/**
+ * Write a square PNG with a centred white square anchor.
  *
  * @param {string} file - Output filename in imagesDir.
  * @param {number} size - Edge length in pixels.
@@ -51,40 +83,43 @@ function writeSquarePng(file, size, anchorRatio = 0) {
   png.pack().pipe(fs.createWriteStream(out));
 }
 
-writeSquarePng("icon.png", 1024, 0.45);
-writeSquarePng("adaptive-icon.png", 1024, 0.55);
-writeSquarePng("splash.png", 1242, 0.35);
-writeSquarePng("favicon.png", 48, 0.5);
-writeSquarePng("notification-icon.png", 96, 0.55);
-
 /**
- * Write a tiny valid silent .wav (PCM 16-bit mono, 8000 Hz, 0.05s).
- * Expo just needs the file to exist + be a parseable WAV; size doesn't
- * matter for the placeholder.
+ * Write a tiny silent PCM WAV.
  *
  * @param {string} file - Output filename in soundsDir.
  */
 function writeSilentWav(file) {
   const sampleRate = 8000;
-  const samples = 400; // 50 ms
+  const samples = 400;
   const dataSize = samples * 2;
   const buf = Buffer.alloc(44 + dataSize);
   buf.write("RIFF", 0);
   buf.writeUInt32LE(36 + dataSize, 4);
   buf.write("WAVE", 8);
   buf.write("fmt ", 12);
-  buf.writeUInt32LE(16, 16); // fmt chunk size
-  buf.writeUInt16LE(1, 20); // PCM
-  buf.writeUInt16LE(1, 22); // mono
+  buf.writeUInt32LE(16, 16);
+  buf.writeUInt16LE(1, 20);
+  buf.writeUInt16LE(1, 22);
   buf.writeUInt32LE(sampleRate, 24);
-  buf.writeUInt32LE(sampleRate * 2, 28); // byte rate
-  buf.writeUInt16LE(2, 32); // block align
-  buf.writeUInt16LE(16, 34); // bits per sample
+  buf.writeUInt32LE(sampleRate * 2, 28);
+  buf.writeUInt16LE(2, 32);
+  buf.writeUInt16LE(16, 34);
   buf.write("data", 36);
   buf.writeUInt32LE(dataSize, 40);
   fs.writeFileSync(path.join(soundsDir, file), buf);
 }
 
-writeSilentWav("notification.wav");
+const summary = [];
+summary.push(["icon.png", copyOrFallback("icon.png", imagesDir, () => writeSquarePng("icon.png", 1024, 0.45))]);
+summary.push(["adaptive-icon.png", copyOrFallback("adaptive-icon.png", imagesDir, () => writeSquarePng("adaptive-icon.png", 1024, 0.55))]);
+summary.push(["splash.png", copyOrFallback("splash.png", imagesDir, () => writeSquarePng("splash.png", 1242, 0.35))]);
+summary.push(["favicon.png", copyOrFallback("favicon.png", imagesDir, () => writeSquarePng("favicon.png", 48, 0.5))]);
+summary.push(["notification-icon.png", copyOrFallback("notification-icon.png", imagesDir, () => writeSquarePng("notification-icon.png", 96, 0.55))]);
+summary.push(["notification.wav", copyOrFallback("notification.wav", soundsDir, () => writeSilentWav("notification.wav"))]);
 
-console.log("Wrote placeholder assets to", imagesDir, "and", soundsDir);
+for (const [name, kind] of summary) {
+  const tag = kind === "real" ? "✓ real    " : "○ placeholder";
+  console.log(`  ${tag}  ${name}`);
+}
+const realCount = summary.filter(([, k]) => k === "real").length;
+console.log(`Wrote ${summary.length} assets (${realCount} from branding/, ${summary.length - realCount} placeholder).`);
