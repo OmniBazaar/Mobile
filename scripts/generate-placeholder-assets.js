@@ -29,9 +29,7 @@ const { PNG } = require("pngjs");
 const root = path.resolve(__dirname, "..");
 const brandingDir = path.join(root, "branding");
 const imagesDir = path.join(root, "assets", "images");
-const soundsDir = path.join(root, "assets", "sounds");
 fs.mkdirSync(imagesDir, { recursive: true });
-fs.mkdirSync(soundsDir, { recursive: true });
 
 const BG = { r: 0x1a, g: 0x1a, b: 0x1a };
 const FG = { r: 0xff, g: 0xff, b: 0xff };
@@ -83,31 +81,10 @@ function writeSquarePng(file, size, anchorRatio = 0) {
   png.pack().pipe(fs.createWriteStream(out));
 }
 
-/**
- * Write a tiny silent PCM WAV.
- *
- * @param {string} file - Output filename in soundsDir.
- */
-function writeSilentWav(file) {
-  const sampleRate = 8000;
-  const samples = 400;
-  const dataSize = samples * 2;
-  const buf = Buffer.alloc(44 + dataSize);
-  buf.write("RIFF", 0);
-  buf.writeUInt32LE(36 + dataSize, 4);
-  buf.write("WAVE", 8);
-  buf.write("fmt ", 12);
-  buf.writeUInt32LE(16, 16);
-  buf.writeUInt16LE(1, 20);
-  buf.writeUInt16LE(1, 22);
-  buf.writeUInt32LE(sampleRate, 24);
-  buf.writeUInt32LE(sampleRate * 2, 28);
-  buf.writeUInt16LE(2, 32);
-  buf.writeUInt16LE(16, 34);
-  buf.write("data", 36);
-  buf.writeUInt32LE(dataSize, 40);
-  fs.writeFileSync(path.join(soundsDir, file), buf);
-}
+// Note: app.json's expo-notifications plugin no longer references a
+// custom sound — the OS default chime plays. If a brand chime ships
+// later, re-add the `sounds` array in app.json + reintroduce a
+// notification.wav slot here.
 
 const summary = [];
 summary.push(["icon.png", copyOrFallback("icon.png", imagesDir, () => writeSquarePng("icon.png", 1024, 0.45))]);
@@ -115,7 +92,6 @@ summary.push(["adaptive-icon.png", copyOrFallback("adaptive-icon.png", imagesDir
 summary.push(["splash.png", copyOrFallback("splash.png", imagesDir, () => writeSquarePng("splash.png", 1242, 0.35))]);
 summary.push(["favicon.png", copyOrFallback("favicon.png", imagesDir, () => writeSquarePng("favicon.png", 48, 0.5))]);
 summary.push(["notification-icon.png", copyOrFallback("notification-icon.png", imagesDir, () => writeSquarePng("notification-icon.png", 96, 0.55))]);
-summary.push(["notification.wav", copyOrFallback("notification.wav", soundsDir, () => writeSilentWav("notification.wav"))]);
 
 for (const [name, kind] of summary) {
   const tag = kind === "real" ? "✓ real    " : "○ placeholder";

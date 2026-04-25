@@ -10,7 +10,13 @@ from `Mobile/`. Anything missing falls back to the centred-square placeholder.
 | `splash.png`                      | `assets/images/splash.png`              | **1284×2778 portrait PNG** (iPhone 14 Pro Max — Expo scales down for smaller devices). Logo centred; rest of canvas can be the brand background `#1a1a1a` or transparent. `splash.resizeMode: 'contain'` is set in app.json so any aspect ratio works. |
 | `favicon.png`                     | `assets/images/favicon.png`             | **48×48 square PNG** for the web target (browser tab icon). |
 | `notification-icon.png`           | `assets/images/notification-icon.png`   | **96×96 square PNG, transparent background, MONOCHROME WHITE foreground** (Android requirement — the system tints it). Don't use a colour logo here; Android will silhouette it anyway. |
-| `notification.wav`                | `assets/sounds/notification.wav`        | **PCM WAV, ≤2 s, mono or stereo, 16-bit**. Plays under push notifications. |
+
+> **Push notification sound** — Mobile uses the OS default chime
+> (iOS "ding" / Android user-selected default). To ship a brand
+> chime later: drop a `notification.wav` (PCM WAV, ≤2 s, 16-bit) in
+> here, re-add the `sounds: ['./assets/sounds/notification.wav']`
+> entry under expo-notifications in `app.json`, and restore the WAV
+> slot in `scripts/generate-placeholder-assets.js`.
 
 ## Quick-start with a single source logo
 
@@ -45,5 +51,5 @@ node scripts/generate-placeholder-assets.js
 ```
 
 The script prints `✓ real` next to each asset it copied from `branding/`
-and `○ placeholder` for any it generated. When all six show `✓ real`,
+and `○ placeholder` for any it generated. When all five show `✓ real`,
 you're ready for the next EAS build.
