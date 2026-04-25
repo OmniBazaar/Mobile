@@ -151,8 +151,8 @@ Wallet repo (`feat/platform-adapters` branch, 10 commits beyond `origin/main`) h
 
 ## Recommended next steps (for the next session)
 
-1. **Run the EAS preview** — `npm run build:preview` (script wrapper does typecheck + tests + login probe before kicking the build). Feeds sizes into Track E1/E2, screenshots into Track F1, and gives Maestro something to install on a real device farm.
-2. **Physical Ledger smoke** — follow `docs/LEDGER_SMOKE.md` end-to-end on iOS + Android. Once green: D1 + D2 + D4 flip ✅. Track Trezor with the same runbook (D3 ✅).
+1. **iOS preview IPA** — run `eas credentials` interactively once to set up the Apple Team + dist cert + provisioning profile for `com.omnibazaar.mobile`, then `npm run build:preview:ios`. Android preview APK is already in hand (build `f6ce2d8c`, ~12 MB, downloadable from `https://expo.dev/artifacts/eas/wtDdCVw1WzqfSS5BiAvgSt.apk`).
+2. **Physical Ledger smoke** — follow `docs/LEDGER_SMOKE.md` end-to-end on iOS + Android. Once green: D1 + D2 + D4 flip ✅. Track Trezor with the same runbook (D3 ✅). The Android APK can already be sideloaded for the BLE / USB-C portions.
 3. **Wire the new validator endpoints into deploy** — `MobileInventoryRoutes` is registered in both entry points; the next deploy of `omnicoin-validator-{1..5}` exposes the four read paths. After deploy, validate from a phone: hit `GET /api/v1/staking/:address/position` and confirm the body shape matches Mobile's `InventoryService.normalize*` parsers.
 4. **Validator-side `wallet_activity` view** — `GET /api/v1/wallet/:address/history` is wired but currently returns `[]` because the underlying materialised view doesn't exist. The schema lives in the indexer plan; once the view lands, history rows flow into the Mobile Activity tab without further client changes.
 

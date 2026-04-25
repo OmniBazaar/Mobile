@@ -91,8 +91,8 @@ Legend:
 
 | # | Criterion | Status | Notes |
 |---|---|---|---|
-| E1 | iOS download size < 60 MB | 🟨 | `eas.json` gains a `production` profile producing AAB (Play) + IPA (App Store). Size measurement runs off the first real build artifact — expected Phase 11 early. |
-| E2 | Android AAB split-APK download < 45 MB | 🟨 | Same `eas.json` production profile. `production-apk` variant exists for the website sideload track. |
+| E1 | iOS download size < 60 MB | ⏳ | iOS preview build blocked on interactive `eas credentials` setup (Apple Team + dist cert + provisioning profile). Code path is fully wired. |
+| E2 | Android AAB split-APK download < 45 MB | 🟨 | First Android preview APK shipped from EAS 2026-04-25 (build `f6ce2d8c`, commit `b795e504`, ~12 min cloud wallclock). APK lives at `https://expo.dev/artifacts/eas/wtDdCVw1WzqfSS5BiAvgSt.apk`. Size measurement of split AABs comes with the production-profile run. |
 | E3 | Cold start ≤ 2.0s on iPhone SE 4 | ⏳ | Instrumentation pending. |
 | E4 | Cold start ≤ 2.5s on Samsung A15 | ⏳ | Instrumentation pending. |
 | E5 | 60fps on FlashList scrolls on Samsung A15 | 🟨 | P2PBrowseScreen uses FlatList; FlashList swap-in is a one-line change. |
