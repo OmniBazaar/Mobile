@@ -18,10 +18,25 @@
  */
 
 const { getDefaultConfig } = require('expo/metro-config');
+const fs = require('fs');
 const path = require('path');
 
 const projectRoot = __dirname;
 const parentRoot = path.resolve(projectRoot, '..');
+
+// `.bundled/` is populated by `scripts/bundle-shared.mjs` before any
+// EAS upload — see ADD_MOBILE_APP.md Phase 0. When the bundled snapshot
+// exists, it's the source of truth (this is what runs on EAS where
+// the sibling repos aren't uploaded). When it doesn't, fall back to
+// the live sibling sources for local Metro dev.
+const bundledWallet = path.resolve(projectRoot, '.bundled', 'wallet', 'src');
+const bundledWebApp = path.resolve(projectRoot, '.bundled', 'webapp', 'src');
+const walletSrc = fs.existsSync(bundledWallet)
+  ? bundledWallet
+  : path.resolve(parentRoot, 'Wallet', 'src');
+const webappSrc = fs.existsSync(bundledWebApp)
+  ? bundledWebApp
+  : path.resolve(parentRoot, 'WebApp', 'src');
 
 const config = getDefaultConfig(projectRoot);
 
@@ -35,8 +50,8 @@ config.resolver.nodeModulesPaths = [
 ];
 
 config.resolver.extraNodeModules = {
-  '@wallet': path.resolve(parentRoot, 'Wallet', 'src'),
-  '@webapp': path.resolve(parentRoot, 'WebApp', 'src'),
+  '@wallet': walletSrc,
+  '@webapp': webappSrc,
 };
 
 // Don't let duplicate React instances slip in from sibling node_modules

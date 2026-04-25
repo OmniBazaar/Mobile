@@ -1,3 +1,23 @@
+/**
+ * Babel config — runs locally and on EAS Build's cloud worker.
+ *
+ * The `@wallet/*` + `@webapp/*` aliases prefer `.bundled/{wallet,webapp}/src`
+ * when the snapshot directory exists (populated by
+ * `scripts/bundle-shared.mjs` before any EAS upload). On a developer
+ * machine where the snapshot may not exist, they fall back to the
+ * sibling repos' live sources via `../Wallet/src` and `../WebApp/src`.
+ *
+ * Keep this file in lock-step with `metro.config.js` — both layers
+ * resolve aliases independently.
+ */
+const fs = require('fs');
+const path = require('path');
+
+const bundledWallet = path.resolve(__dirname, '.bundled', 'wallet', 'src');
+const bundledWebApp = path.resolve(__dirname, '.bundled', 'webapp', 'src');
+const walletAlias = fs.existsSync(bundledWallet) ? './.bundled/wallet/src' : '../Wallet/src';
+const webappAlias = fs.existsSync(bundledWebApp) ? './.bundled/webapp/src' : '../WebApp/src';
+
 module.exports = function (api) {
   api.cache(true);
   return {
@@ -20,11 +40,9 @@ module.exports = function (api) {
             '@utils': './src/utils',
             '@assets': './assets',
             '@shared': '../shared',
-            // Direct imports from sibling sources — see Validator/ADD_MOBILE_APP.md
-            // Phase 0 "path-alias" approach. Keeps Mobile in lock-step with
-            // the shipped Wallet extension and WebApp without extracting code.
-            '@wallet': '../Wallet/src',
-            '@webapp': '../WebApp/src',
+            // See bundled-vs-sibling fallback above.
+            '@wallet': walletAlias,
+            '@webapp': webappAlias,
           },
         },
       ],

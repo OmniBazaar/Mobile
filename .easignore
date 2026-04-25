@@ -84,4 +84,7 @@ CLAUDE.md
 
 # Snapshot of sibling Wallet/src + WebApp/src copied in by
 # scripts/bundle-shared.mjs before EAS builds. Always regenerated.
-.bundled/
+
+# Mobile-specific EAS exclusions
+# (NOTE: .bundled/ is INTENTIONALLY uploaded to EAS — see metro.config.js + babel.config.js)
+scripts/eas-preview.sh

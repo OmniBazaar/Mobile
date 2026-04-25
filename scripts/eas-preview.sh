@@ -36,6 +36,9 @@ case "$PLATFORM" in
     ;;
 esac
 
+echo "==> Bundling sibling Wallet/src + WebApp/src into .bundled/"
+node scripts/bundle-shared.mjs
+
 echo "==> Running typecheck"
 npm run typecheck
 
