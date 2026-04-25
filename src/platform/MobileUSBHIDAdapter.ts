@@ -4,7 +4,7 @@
  * a no-op there; callers should feature-detect via `Platform.OS` and
  * only register it on Android.
  *
- * Wraps `@ledgerhq/hw-transport-react-native-hid` (when installed),
+ * Wraps `@ledgerhq/react-native-hid` (when installed),
  * adapting the Ledger transport surface onto the
  * `@wallet/platform/adapters::USBHIDAdapter` contract the extension
  * already consumes. Loaded lazily so the 300 KB native module cost
@@ -46,7 +46,7 @@ interface LedgerHidDeviceDesc {
 }
 
 /**
- * Load `@ledgerhq/hw-transport-react-native-hid` on demand. Throws a
+ * Load `@ledgerhq/react-native-hid` on demand. Throws a
  * descriptive error when the module / native linkage is missing.
  *
  * @returns The default export (`TransportHID`) with its static `list`
@@ -55,19 +55,19 @@ interface LedgerHidDeviceDesc {
 function loadTransport(): LedgerHidStatic {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const mod = require("@ledgerhq/hw-transport-react-native-hid") as {
+    const mod = require("@ledgerhq/react-native-hid") as {
       default?: LedgerHidStatic;
     };
     if (mod.default === undefined) {
       throw new Error(
-        "@ledgerhq/hw-transport-react-native-hid: default export missing",
+        "@ledgerhq/react-native-hid: default export missing",
       );
     }
     return mod.default;
   } catch (err) {
     throw new Error(
       `USB-HID is not available on this build. Install ` +
-        `\`@ledgerhq/hw-transport-react-native-hid\` and run ` +
+        `\`@ledgerhq/react-native-hid\` and run ` +
         `\`expo prebuild && expo run:android\`. Underlying error: ` +
         `${err instanceof Error ? err.message : String(err)}`,
     );
@@ -139,7 +139,7 @@ export class MobileUSBHIDAdapter implements USBHIDAdapter {
 }
 
 /**
- * Wrap a raw `@ledgerhq/hw-transport-react-native-hid` transport in the
+ * Wrap a raw `@ledgerhq/react-native-hid` transport in the
  * narrow `USBHIDTransport` interface Mobile's consumers expect (a
  * single `send(apdu) → apdu` method plus `close()`).
  */
