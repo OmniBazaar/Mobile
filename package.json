@@ -91,7 +91,6 @@
     "@testing-library/react-native": "^12.4.2",
     "@types/jest": "^29.5.11",
     "@types/react": "~18.2.45",
-    "@types/react-native": "^0.73.0",
     "@typescript-eslint/eslint-plugin": "^6.17.0",
     "@typescript-eslint/parser": "^6.17.0",
     "detox": "^20.14.8",
