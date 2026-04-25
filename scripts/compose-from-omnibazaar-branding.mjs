@@ -81,7 +81,25 @@ async function writeIfMissing(label, dst, build, force = false) {
   console.log(`  ✓ wrote     ${label}`);
 }
 
-const globe256 = path.join(brandingSrc, "OmniBazaar Globe-clear-256x256.png");
+// Prefer the freshly-extracted 1024² globe (from
+// `Huge Logo 2 for YouTube 5825 x 1645.png` via
+// `extract-globe-from-wide-logo.mjs`) when it's available — it's
+// vector-quality crisp at App Store sizes. Fall back to the legacy
+// 256² globe for older repos.
+const globeExtracted1024 = path.join(brandingSrc, "globe-extracted-1024.png");
+const globeLegacy256 = path.join(brandingSrc, "OmniBazaar Globe-clear-256x256.png");
+const globe = (await fs
+  .access(globeExtracted1024)
+  .then(() => true)
+  .catch(() => false))
+  ? globeExtracted1024
+  : globeLegacy256;
+console.log(`Using globe source: ${path.relative(repoRoot, globe)}`);
+// Keep both names exported so the rest of the script can choose
+// per-slot — the extracted PNG is best for icon+adaptive (large
+// targets); favicon@48 looks identical from either.
+const globeBest = globe;
+const globe256 = globe;
 const wordmark = path.join(brandingSrc, "OmniCoin1000x300.png");
 const wordmarkWhite = path.join(brandingSrc, "OmniCoin-WhiteLetters1000x300.png");
 const outlineIcon = path.join(brandingSrc, "icons", "xom-icon-outline-128.png");
@@ -102,7 +120,7 @@ await writeIfMissing(
     })
       .composite([
         {
-          input: await sharp(globe256)
+          input: await sharp(globeBest)
             .resize(820, 820, { fit: "contain", background: { ...BG, alpha: 0 } })
             .toBuffer(),
           gravity: "center",
@@ -130,7 +148,7 @@ await writeIfMissing(
     })
       .composite([
         {
-          input: await sharp(globe256)
+          input: await sharp(globeBest)
             .resize(safe, safe, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
             .toBuffer(),
           gravity: "center",
