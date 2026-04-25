@@ -92,11 +92,11 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "omnibazaar-mobile-project-id"
+        "projectId": "0d6399b4-0dde-4218-99d7-41ce77607f7e"
       }
     },
     "updates": {
-      "url": "https://u.expo.dev/omnibazaar-mobile-project-id",
+      "url": "https://u.expo.dev/0d6399b4-0dde-4218-99d7-41ce77607f7e",
       "checkAutomatically": "ON_LOAD",
       "fallbackToCacheTimeout": 30000
     },
