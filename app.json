@@ -87,8 +87,7 @@
           ],
           "bluetoothAlwaysPermission": "Pair your Ledger hardware wallet to sign transactions securely."
         }
-      ],
-      "@sentry/react-native/expo"
+      ]
     ],
     "extra": {
       "eas": {
