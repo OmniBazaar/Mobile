@@ -72,14 +72,31 @@ eas submit --profile production --platform android
 
 `expo-updates` is configured in `app.json` with
 `runtimeVersion: "0.1.0"` and the update URL
-`https://u.expo.dev/<project-id>`. Ship JS-only patches with:
+`https://u.expo.dev/<project-id>`. The matching `production` channel is
+declared in both the `production` and `production-apk` profiles in
+`eas.json`, so any binary built with those profiles enrols itself in
+the production OTA pool automatically.
+
+Ship a JS-only patch with the wrapper script:
 
 ```bash
-eas update --branch production --message "Fix X"
+npm run ota:production -- --message "Fix swap quote rounding"
 ```
 
-Native changes (new native modules, manifest edits, upgraded RN or
-Expo SDK) always require a fresh binary — not an OTA.
+That runs `eas update --branch production --message "..."` after
+re-running typecheck + tests + the sibling-bundle script (so the
+shipped JS bundle reflects current Wallet/WebApp source, not stale
+.bundled/ snapshots).
+
+For preview-channel pushes (TestFlight + internal Play track):
+
+```bash
+npm run ota:preview -- --message "Catch login race"
+```
+
+**Native changes always require a fresh binary** — adding a native
+module, editing manifest permissions, or upgrading RN / Expo SDK can
+not ship via OTA. When in doubt: rebuild + resubmit.
 
 ## Environment variables
 

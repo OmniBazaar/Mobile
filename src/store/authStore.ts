@@ -47,7 +47,31 @@ export const useAuthStore = create<AuthStoreState>((set) => ({
   setAddress: (address, username) =>
     set({ address, ...(username !== undefined && { username }) }),
   setBiometricEnabled: (enabled) => set({ biometricEnabled: enabled }),
-  markUnlocked: () => set({ state: 'unlocked', lastUnlockMs: Date.now() }),
-  clear: () =>
-    set({ state: 'signedOut', address: '', username: '', lastUnlockMs: 0 }),
+  markUnlocked: () => {
+    set({ state: 'unlocked', lastUnlockMs: Date.now() });
+    // Kick off the decentralisation-dashboard heartbeat as soon as
+    // we have an unlocked session + address. Idempotent: second call
+    // is a no-op inside the reporter. Lazy-imported so unit tests
+    // that exercise authStore don't pull in fetch / setInterval.
+    void (async (): Promise<void> => {
+      try {
+        const mod = await import('../services/RpcOriginReporter');
+        const addr = useAuthStore.getState().address;
+        if (addr !== '') mod.startRpcOriginReporter(addr);
+      } catch {
+        /* reporter unavailable — silent. */
+      }
+    })();
+  },
+  clear: () => {
+    set({ state: 'signedOut', address: '', username: '', lastUnlockMs: 0 });
+    void (async (): Promise<void> => {
+      try {
+        const mod = await import('../services/RpcOriginReporter');
+        mod.stopRpcOriginReporter();
+      } catch {
+        /* reporter unavailable — silent. */
+      }
+    })();
+  },
 }));

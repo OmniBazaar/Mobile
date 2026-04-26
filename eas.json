@@ -36,7 +36,11 @@
       "android": {
         "buildType": "apk"
       },
-      "channel": "preview"
+      "channel": "preview",
+      "env": {
+        "EXPO_PUBLIC_BUILD_CHANNEL": "preview",
+        "EXPO_PUBLIC_SENTRY_DSN": "${SENTRY_DSN}"
+      }
     },
     "production-apk": {
       "extends": "base",
@@ -47,7 +51,8 @@
       },
       "channel": "production",
       "env": {
-        "EXPO_PUBLIC_BUILD_CHANNEL": "production"
+        "EXPO_PUBLIC_BUILD_CHANNEL": "production",
+        "EXPO_PUBLIC_SENTRY_DSN": "${SENTRY_DSN}"
       }
     },
     "production": {
@@ -62,7 +67,8 @@
       },
       "channel": "production",
       "env": {
-        "EXPO_PUBLIC_BUILD_CHANNEL": "production"
+        "EXPO_PUBLIC_BUILD_CHANNEL": "production",
+        "EXPO_PUBLIC_SENTRY_DSN": "${SENTRY_DSN}"
       }
     }
   },

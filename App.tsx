@@ -8,6 +8,11 @@ import { StatusBar } from 'expo-status-bar';
 import { registerMobileAdapters } from './src/platform/register-mobile-adapters';
 registerMobileAdapters();
 
+// Initialise Sentry crash + performance reporting. No-op until
+// EXPO_PUBLIC_SENTRY_DSN is set in the EAS profile environment.
+import { initSentry } from './src/services/SentryService';
+initSentry();
+
 // Initialize i18next with the 10 locales synced from Wallet.
 import { initI18n, pickLanguage } from './src/i18n';
 void initI18n(pickLanguage([]));
