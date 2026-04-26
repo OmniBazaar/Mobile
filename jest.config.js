@@ -16,6 +16,12 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   testMatch: ['**/__tests__/**/*.test.(js|jsx|ts|tsx)'],
+  // Skip the EAS-only sibling-source snapshot — it isn't part of the
+  // Mobile test surface and otherwise raises a haste-map "duplicate
+  // manual mock" warning when both Wallet/src and WebApp/src ship
+  // identically-named __mocks__ files.
+  modulePathIgnorePatterns: ['<rootDir>/.bundled/'],
+  haste: { providesModuleNodeModules: [] },
   transform: {
     '^.+\\.(ts|tsx)$': [
       'ts-jest',
