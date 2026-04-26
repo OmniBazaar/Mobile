@@ -5,17 +5,42 @@ import { StatusBar } from 'expo-status-bar';
 // Register Mobile platform adapters before any @wallet/* service module
 // is imported (those modules call getStorageAdapter() / getNotificationAdapter()
 // at use time; see Validator/ADD_MOBILE_APP.md Phase 0 + Wallet/src/platform/).
+//
+// Wrapped in try/catch so a single misbehaving native module can't crash
+// the JS bundle's synchronous bootstrap and bounce the user back to the
+// launcher with a white-screen flash. Errors here surface in the
+// version-check error banner instead.
 import { registerMobileAdapters } from './src/platform/register-mobile-adapters';
-registerMobileAdapters();
-
-// Initialise Sentry crash + performance reporting. No-op until
-// EXPO_PUBLIC_SENTRY_DSN is set in the EAS profile environment.
 import { initSentry } from './src/services/SentryService';
-initSentry();
-
-// Initialize i18next with the 10 locales synced from Wallet.
 import { initI18n, pickLanguage } from './src/i18n';
-void initI18n(pickLanguage([]));
+
+const bootErrors: string[] = [];
+
+try {
+  registerMobileAdapters();
+} catch (err) {
+  bootErrors.push(`platform-adapters: ${err instanceof Error ? err.message : String(err)}`);
+  // eslint-disable-next-line no-console
+  console.warn('[boot] registerMobileAdapters failed:', err);
+}
+
+try {
+  initSentry();
+} catch (err) {
+  bootErrors.push(`sentry: ${err instanceof Error ? err.message : String(err)}`);
+  // eslint-disable-next-line no-console
+  console.warn('[boot] initSentry failed:', err);
+}
+
+void (async (): Promise<void> => {
+  try {
+    await initI18n(pickLanguage([]));
+  } catch (err) {
+    bootErrors.push(`i18n: ${err instanceof Error ? err.message : String(err)}`);
+    // eslint-disable-next-line no-console
+    console.warn('[boot] initI18n failed:', err);
+  }
+})();
 
 import RootNavigator from './src/navigation/RootNavigator';
 import { VersionCheckService, type VersionCheckResult, type VersionStatus } from './src/services/VersionCheckService';
