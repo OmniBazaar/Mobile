@@ -1,17 +1,19 @@
 /**
  * EscrowActionsService — buyer-side actions on a funded escrow.
  *
- * Currently exposes a single action: `releaseEscrow` (the buyer's
- * "Mark received → release funds to seller" gesture). Wraps the
- * validator's `POST /api/v1/escrow/:id/release`. Future actions
- * (raise dispute, refund) get added as siblings here.
+ * `releaseEscrow` signs a canonical EIP-191 message with the user's
+ * wallet key and sends both the message + signature to the validator.
+ * The validator looks up the escrow row, recovers the signer from the
+ * signature, and refuses the release unless the recovered address
+ * matches the on-record buyer.
  *
- * The release endpoint is buyer-authenticated server-side via the
- * existing escrow row; no client-side EIP-712 intent is required for
- * v1 because the validator already verifies the caller against the
- * stored buyer address. We forward the bearer token if one is
- * available so the audit trail attributes the action correctly.
+ * This closes the original "anyone with an escrow id can release"
+ * gap: the message includes the escrow id, buyer address, and a
+ * recent timestamp, all bound by the signature. Replays inside a
+ * short window are still rejected by the validator's nonce check.
  */
+
+import { Wallet } from "ethers";
 
 import { getBaseUrl } from "./BootstrapService";
 
@@ -25,28 +27,49 @@ export interface ReleaseEscrowResult {
   error?: string;
 }
 
+/** Inputs for {@link releaseEscrow}. */
+export interface ReleaseEscrowParams {
+  /** Validator-issued escrow id. */
+  escrowId: string;
+  /** Mnemonic used to derive the buyer's signing key. */
+  mnemonic: string;
+  /** Optional bearer token for the validator session. */
+  token?: string;
+}
+
 /**
- * Call `POST /api/v1/escrow/:id/release` and parse the response.
+ * Sign + POST a release request. The validator verifies the
+ * recovered signer matches `escrow.buyer_address`.
  *
- * @param escrowId - Validator-issued escrow id.
- * @param token - Optional bearer token for the user's session.
+ * @param params - See {@link ReleaseEscrowParams}.
  * @returns Typed result.
  */
 export async function releaseEscrow(
-  escrowId: string,
-  token?: string,
+  params: ReleaseEscrowParams,
 ): Promise<ReleaseEscrowResult> {
+  const wallet = Wallet.fromPhrase(params.mnemonic);
+  const timestamp = Date.now();
+  const canonical = `RELEASE_ESCROW ${params.escrowId} ${wallet.address.toLowerCase()} ${timestamp}`;
+  const signature = await wallet.signMessage(canonical);
+
   const base = getBaseUrl().replace(/\/$/, "");
-  const url = `${base}/api/v1/escrow/${encodeURIComponent(escrowId)}/release`;
+  const url = `${base}/api/v1/escrow/${encodeURIComponent(params.escrowId)}/release`;
   try {
     const resp = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        ...(token !== undefined && token !== "" && { Authorization: `Bearer ${token}` }),
+        ...(params.token !== undefined && params.token !== "" && {
+          Authorization: `Bearer ${params.token}`,
+        }),
       },
-      body: "{}",
+      body: JSON.stringify({
+        address: wallet.address,
+        legacyCanonical: canonical,
+        legacySignature: signature,
+        timestamp,
+      }),
     });
     const body = (await resp.json().catch(() => ({}))) as {
       success?: boolean;

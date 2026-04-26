@@ -31,6 +31,8 @@ import { releaseEscrow } from '../services/EscrowActionsService';
 export interface EscrowsScreenProps {
   /** Back-nav. */
   onBack: () => void;
+  /** BIP39 mnemonic — required for signing the release request. */
+  mnemonic: string;
 }
 
 /**
@@ -41,6 +43,7 @@ export interface EscrowsScreenProps {
 export default function EscrowsScreen(props: EscrowsScreenProps): JSX.Element {
   const { t } = useTranslation();
   const address = useAuthStore((s) => s.address);
+  const { mnemonic } = props;
 
   const [rows, setRows] = useState<EscrowSummary[]>([]);
   const [loading, setLoading] = useState(false);
@@ -74,7 +77,7 @@ export default function EscrowsScreen(props: EscrowsScreenProps): JSX.Element {
         keyExtractor={(row) => row.escrowId}
         estimatedItemSize={140}
         renderItem={({ item }) => (
-          <EscrowRow row={item} onReleased={() => void load()} />
+          <EscrowRow row={item} mnemonic={mnemonic} onReleased={() => void load()} />
         )}
         contentContainerStyle={styles.listContent}
         refreshControl={
@@ -127,9 +130,11 @@ const STATUS_PALETTE: Record<EscrowSummary['status'], { fg: string; bg: string }
  * buyer can release (status FUNDED or SHIPPED). */
 function EscrowRow({
   row,
+  mnemonic,
   onReleased,
 }: {
   row: EscrowSummary;
+  mnemonic: string;
   onReleased: () => void;
 }): JSX.Element {
   const { t } = useTranslation();
@@ -155,7 +160,7 @@ function EscrowRow({
             setReleasing(true);
             setError(undefined);
             void (async (): Promise<void> => {
-              const res = await releaseEscrow(row.escrowId);
+              const res = await releaseEscrow({ escrowId: row.escrowId, mnemonic });
               setReleasing(false);
               if (!res.ok) {
                 setError(res.error ?? 'Release failed');
@@ -167,7 +172,7 @@ function EscrowRow({
         },
       ],
     );
-  }, [row.escrowId, t, onReleased]);
+  }, [row.escrowId, mnemonic, t, onReleased]);
 
   return (
     <Card style={styles.card}>

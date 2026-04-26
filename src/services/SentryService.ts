@@ -23,12 +23,17 @@ let initialised = false;
  * @returns Channel string (defaults to 'development').
  */
 function buildChannel(): string {
-  const ch =
-    process.env["EXPO_PUBLIC_BUILD_CHANNEL"] ??
-    process.env["EXPO_PUBLIC_VALIDATOR_ENDPOINT"]?.includes("localhost")
-      ? "development"
-      : process.env["EXPO_PUBLIC_BUILD_CHANNEL"];
-  return typeof ch === "string" && ch.length > 0 ? ch : "development";
+  // Explicit channel from EAS profile env always wins.
+  const explicit = process.env["EXPO_PUBLIC_BUILD_CHANNEL"];
+  if (typeof explicit === "string" && explicit.length > 0) return explicit;
+  // Fall back to a cheap heuristic: a localhost validator URL
+  // means the binary was built in dev. Prevents dev tooling from
+  // polluting the production Sentry quota.
+  const validator = process.env["EXPO_PUBLIC_VALIDATOR_ENDPOINT"];
+  if (typeof validator === "string" && validator.includes("localhost")) {
+    return "development";
+  }
+  return "development";
 }
 
 /**

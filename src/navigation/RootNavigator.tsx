@@ -250,7 +250,12 @@ export default function RootNavigator(): JSX.Element | null {
           />
         );
       case 'escrows':
-        return <EscrowsScreen onBack={() => setAuthedRoute('profile')} />;
+        return (
+          <EscrowsScreen
+            onBack={() => setAuthedRoute('profile')}
+            mnemonic={onboard.keys?.mnemonic ?? ''}
+          />
+        );
       case 'prediction-positions':
         return (
           <PredictionPositionsScreen
