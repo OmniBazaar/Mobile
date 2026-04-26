@@ -45,7 +45,7 @@ npm run type-check && npm run build:chrome && npm run validate:dist:chrome
 **END OF HEADER — EVERYTHING BELOW IS CURRENT HANDOFF CONTEXT**
 ---
 
-## Current state (2026-04-25 end of session — continuation V)
+## Current state (2026-04-26 end of session — continuation VI)
 
 ### What's shipped
 Seven phases at MVP+ plus the remaining Track A / Track B4 / Track C / Phase 5 Week 2 gaps closed in continuation III:
@@ -66,7 +66,7 @@ Seven phases at MVP+ plus the remaining Track A / Track B4 / Track C / Phase 5 W
 | B Privacy (COTI pXOM) | 5/5 🟨 |
 | C 5 Marketplaces | **11/15 ✅** 4/15 🟨 (RWA/Yield deep-link to DEX) |
 | D Hardware wallets | 4/4 🟨 (BLE + USB-HID adapters shipped, Trezor WebView shipped; physical-device gate pending) |
-| E Perf / bundle / battery | 3/6 🟨 3/6 ⏳ |
+| E Perf / bundle / battery | 4/6 🟨 (E5 ✅ via FlashList swap) 2/6 ⏳ |
 | F Store assets + compliance | 3/10 ✅ 1/10 🟨 2/10 ⏳ 4/10 ⛔ |
 
 Track C detail: ✅ rows are all 5 marketplace browse+buy+claim plus the three new per-subsystem inventory views (OwnedNFTsScreen, EscrowsScreen, PredictionPositionsScreen). 🟨 rows are RWA + Yield (which deep-link to the DEX tab — native per-marketplace screens remain a post-soft-launch enhancement).
@@ -75,9 +75,10 @@ See `docs/PRODUCTION_READINESS_AUDIT.md` for the full per-row scorecard with exp
 
 ### Gates at close
 - `npm run typecheck` — exit 0
-- `npm test` — **123 / 18 suites** passing, no open-handle warnings, ~1.8s
-- Wallet `type-check` + `build:chrome` + 226 tests — preserved across all refactors (Mobile imports existing Wallet helpers; no Wallet source edits in continuation III or IV)
-- WebApp `/mobile/install` + 4 Playwright smoke cases — committed in WebApp repo
+- `npm test` — **128 / 19 suites** passing, no open-handle warnings, ~1.8s
+- `npm run audit:i18n` — 0 errors, 18 warnings (all upstream WebApp `translation` namespace drift)
+- Validator `type-check` + `build` — green; new `MobileInventoryRoutes` UNION + `DashboardRoutes` + escrow buyer-signature verification all type-clean
+- WebApp `type-check` — green; `/mobile/install` page now renders APK SHA-256 + Unknown-Sources how-to
 
 ### Commit log (Mobile, newest first)
 ```

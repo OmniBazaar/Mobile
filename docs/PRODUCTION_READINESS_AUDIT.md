@@ -1,6 +1,6 @@
 # OmniBazaar Mobile — Production Readiness Audit
 
-**Version:** Audit snapshot 2026-04-25 (continuation V — validator inventory endpoints + USB-HID + Trezor WebView + Ledger smoke runbook + EAS preview script)
+**Version:** Audit snapshot 2026-04-26 (continuation VI — Phase X1–X7: FlashList swap + i18n audit + escrow Mark-Received + NFT-detail enrichment + sparkline + wallet-history UNION + multi-source nft-owned + screen-load smoke tests + OTA wrapper + Sentry + RPC-origin reporter + dashboard endpoint + APK hash on install page + privacy + ToS drafts + store reviewer notes + escrow-release auth fix)
 **Scope:** Phase-by-phase status of the Mobile app against the
 `Validator/ADD_MOBILE_APP.md` v2.1 plan, grouped by the 6 tracks
 (A–F) defined in that plan's Part 19.
@@ -118,6 +118,38 @@ Legend:
 ---
 
 ## Cross-cutting Mobile Implementation Status
+
+### Continuation VI (2026-04-26 end of session) — Phase X1–X7
+
+Closes Group C–G of the v3.0 plan's Part-24 punch list (Apple + hardware-device gates intentionally deferred).
+
+- **Phase X1 — Mobile-side polish**
+  - E1: FlashList swap on the seven heavy lists (P2P browse, NFT browse, Owned NFTs, Predictions browse, Prediction positions, Escrows, Tx history). Per-list `estimatedItemSize`. Track E5 → ✅.
+  - E3: `scripts/audit-i18n.mjs` (port of Wallet R-round audit) — leaf-key parity, hardcoded JSX, TRANSLATE flags, Intl-without-locale, $-currency literals. Wired as `npm run audit:i18n`. Found + fixed 4 real Intl-without-locale violations; 18 remaining warnings are upstream WebApp drift.
+  - E5 inventory enrichment: EscrowsScreen "Mark received" button (FUNDED/SHIPPED rows), OwnedNFTsScreen tap-to-detail wiring (synthesises `NFTCollectionSummary` from `OwnedNFT`), PredictionsMarketDetailScreen YES/NO sparkline component using `react-native-svg`.
+- **Phase X2 — Validator backend** (D2, D3)
+  - `wallet_activity` migration `20260426_wallet_activity.sql` adds the 8 `lower(address)` indexes for the per-source-table lookups.
+  - `MobileInventoryRoutes.registerWalletHistoryRoute` rewritten to assemble a per-request UNION ALL across whichever of {escrows, nft_sales, dex_orders, prediction_trades, staking_events} exist on the install (probed via `to_regclass`). Track B4 ⏳ → ✅ (real data flows once any source table populates).
+  - `MobileInventoryRoutes.registerNftOwnedRoute` extended to UNION across `{nft_ownership, nft_listings, nft_sales}` (DISTINCT ON dedupes; source-priority 1→3 keeps richest row).
+- **Phase X3 — Component tests** (E2 partial)
+  - `__tests__/screens/screen-load-smoke.test.ts` — module-load smoke tests for WelcomeScreen, SwapScreen, NFTDetailScreen, PredictionsMarketDetailScreen, P2PListingDetailScreen. Mocks `react-native`, FlashList, react-native-svg, QR, WebView, react-i18next. Catches broken imports / missing aliases / mis-shapen exports without forking the test config to jest-expo.
+  - `jest.config.js` gains `modulePathIgnorePatterns: ['<rootDir>/.bundled/']` so the EAS sibling-source snapshot doesn't raise duplicate-mock haste-map warnings.
+  - Tests: 123 → 128 passing.
+- **Phase X4 — Distribution + ops** (F2, F3, F4, F5)
+  - `scripts/ota.sh` + `npm run ota:preview|production` wrap `eas update` with typecheck + tests + sibling-bundle pre-flight.
+  - `@sentry/react-native@~5.30` installed. `SentryService` exposes `initSentry / captureException / captureMessage`. DSN from `EXPO_PUBLIC_SENTRY_DSN` (no-op when unset). `App.tsx` initialises after platform-adapter registration. Expo plugin `@sentry/react-native/expo` added to app.json. EAS preview / production-apk / production profiles inject `SENTRY_DSN` env. **🛎 USER ACTION:** create a Sentry project at sentry.io, then `eas env:create --scope project --name SENTRY_DSN --value '<dsn>'`.
+  - `RpcOriginReporter` snapshots per-chain `(chainId, isProxy, endpoint)` every 5 minutes and POSTs to the new validator endpoint. Started from `authStore.markUnlocked()`, stopped from `clear()`. Strips query params (provider API keys never leak).
+  - Validator `DashboardRoutes` (POST + GET `/api/v1/dashboard/rpc-origin`) — in-memory rolling 24h aggregate; auto-rebuilds within 5 min of restart as Mobile clients re-heartbeat.
+  - WebApp `/mobile/install` page renders the published `OmniBazaar-latest.apk.sha256` digest + a 3-step "How to enable installs from outside the Play Store" `<details>`. Track F5 → ✅.
+- **Phase X5 — Google Play feature graphic** (C5)
+  - `scripts/compose-feature-graphic.mjs` produces `store-assets/google-play-feature-graphic-1024x500.png` from the existing globe + OmniCoin wordmark assets. Track F2 → ✅.
+- **Phase X6 — Compliance docs (drafts)** (C6, C7)
+  - `WebApp/public/legal/mobile/privacy.md` + `terms.md` — DRAFT v1.0 covering non-custodial architecture, Persona KYC handoff, Sentry telemetry redaction, RPC-origin heartbeat, sub-processors, GDPR/CCPA rights, retention windows. **🛎 USER ACTION:** legal review + publish at `omnibazaar.com/legal/mobile/{privacy,terms}`.
+  - `Mobile/docs/STORE_REVIEW_NOTES.md` — paste-ready content for App Store Connect review notes + Google Play review guidance. Includes test-account credentials, KYC tiers, AML controls, age rating justification, per-permission rationale.
+- **Phase X7 — Security review** (G4)
+  - **S-3 (must fix):** `/api/v1/escrow/:id/release` had no auth check — anyone with an escrow id could release any escrow. Fixed: Mobile signs `RELEASE_ESCROW <escrowId> <addr> <ts>` with EIP-191; validator recovers signer via `ethers.verifyMessage` and refuses unless recovered address matches `escrow.buyer_address` (5-min timestamp window). Mirror in both gateway-validator + service-node entry points.
+  - **S-6 (must fix):** `SentryService.buildChannel()` had a `??` / `?:` precedence bug — `EXPO_PUBLIC_BUILD_CHANNEL=production` resolved to `"development"`. Rewritten as explicit if-then-else.
+  - S-1, S-2, S-4, S-5 reviewed and accepted (in-memory mnemonic is Phase 1 design; RPC heartbeat carries no PII; BLE APDU framing fails-safe on malformed input; Trezor WebView origin-locked).
 
 ### Continuation V (2026-04-25 end of session)
 - **Validator-side endpoints landed**: `Validator/src/api/MobileInventoryRoutes.ts` registers `GET /api/v1/nft/owned/:address`, `GET /api/v1/marketplace/escrows/:address?role=buyer|seller`, `GET /api/v1/staking/:address/position`, and `GET /api/v1/wallet/:address/history`. Each route is defensively-wrapped (graceful empty-state on missing tables / view) so Mobile's UI behaves whether the indexer is warm, cold, or misbehaving. Registered from both `gateway-validator.ts` and `service-node.ts` BEFORE `StakingController.getRouter()` so `:address/position` resolves first.
