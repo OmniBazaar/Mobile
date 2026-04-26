@@ -50,6 +50,7 @@
     "ios",
     "android",
     ".expo",
-    ".expo-shared"
+    ".expo-shared",
+    ".bundled"
   ]
 }
