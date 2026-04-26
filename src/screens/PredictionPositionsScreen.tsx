@@ -8,13 +8,13 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import {
-  FlatList,
   Pressable,
   RefreshControl,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -117,9 +117,10 @@ export default function PredictionPositionsScreen(
           {message}
         </Text>
       )}
-      <FlatList
+      <FlashList
         data={[...rows]}
         keyExtractor={(row) => `${row.marketId}:${row.outcome}`}
+        estimatedItemSize={210}
         renderItem={({ item }) => (
           <PositionRow
             row={item}

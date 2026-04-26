@@ -11,7 +11,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   Dimensions,
-  FlatList,
   Image,
   Pressable,
   RefreshControl,
@@ -19,11 +18,15 @@ import {
   Text,
   View,
 } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 import { useTranslation } from 'react-i18next';
+
+import type { NFTCollectionSummary } from '@wallet/services/marketplace/MarketplaceClient';
 
 import { colors } from '@theme/colors';
 import { useAuthStore } from '../store/authStore';
 import { listOwnedNFTs, type OwnedNFT } from '../services/InventoryService';
+import NFTDetailScreen from './NFTDetailScreen';
 
 const { width } = Dimensions.get('window');
 const GAP = 8;
@@ -33,6 +36,27 @@ const CARD = (width - 32 - GAP) / 2;
 export interface OwnedNFTsScreenProps {
   /** Back-nav. */
   onBack: () => void;
+  /** Mnemonic — required when an inline NFTDetailScreen pops open
+   * (the "view detail" enrichment lets the user tap an owned NFT to
+   * see the active collection floor + buy more). */
+  mnemonic: string;
+}
+
+/**
+ * Synthesise an NFTCollectionSummary from an OwnedNFT so we can reuse
+ * the existing NFTDetailScreen.
+ *
+ * @param nft - Owned-NFT row.
+ * @returns Minimal collection summary.
+ */
+function ownedToCollection(nft: OwnedNFT): NFTCollectionSummary {
+  return {
+    contractAddress: nft.contractAddress,
+    chainId: nft.chainId,
+    name: nft.collectionName ?? `Collection #${nft.contractAddress.slice(0, 8)}…`,
+    ...(nft.imageUrl !== undefined && { imageUrl: nft.imageUrl }),
+    ...(nft.floorPrice !== undefined && { floorPrice: nft.floorPrice }),
+  };
 }
 
 /**
@@ -43,9 +67,22 @@ export interface OwnedNFTsScreenProps {
 export default function OwnedNFTsScreen(props: OwnedNFTsScreenProps): JSX.Element {
   const { t } = useTranslation();
   const address = useAuthStore((s) => s.address);
+  const { mnemonic } = props;
 
   const [items, setItems] = useState<OwnedNFT[]>([]);
   const [loading, setLoading] = useState(false);
+  const [selected, setSelected] = useState<OwnedNFT | undefined>(undefined);
+
+  if (selected !== undefined) {
+    return (
+      <NFTDetailScreen
+        collection={ownedToCollection(selected)}
+        buyer={address}
+        mnemonic={mnemonic}
+        onBack={() => setSelected(undefined)}
+      />
+    );
+  }
 
   const load = useCallback(async (): Promise<void> => {
     if (address === '') return;
@@ -71,13 +108,17 @@ export default function OwnedNFTsScreen(props: OwnedNFTsScreenProps): JSX.Elemen
           {t('nft.owned.title', { defaultValue: 'Your NFTs' })}
         </Text>
       </View>
-      <FlatList
+      <FlashList
         data={items}
         keyExtractor={(row) => `${row.chainId}:${row.contractAddress}:${row.tokenId}`}
         numColumns={2}
-        columnWrapperStyle={styles.columnWrapper}
+        estimatedItemSize={CARD + 64}
         contentContainerStyle={styles.listContent}
-        renderItem={({ item }) => <OwnedCard nft={item} />}
+        renderItem={({ item }) => (
+          <View style={styles.cellWrap}>
+            <OwnedCard nft={item} onPress={() => setSelected(item)} />
+          </View>
+        )}
         refreshControl={
           <RefreshControl
             refreshing={loading}
@@ -105,9 +146,14 @@ export default function OwnedNFTsScreen(props: OwnedNFTsScreenProps): JSX.Elemen
 }
 
 /** Single card in the grid. */
-function OwnedCard({ nft }: { nft: OwnedNFT }): JSX.Element {
+function OwnedCard({ nft, onPress }: { nft: OwnedNFT; onPress?: () => void }): JSX.Element {
   return (
-    <View style={styles.card}>
+    <Pressable
+      style={styles.card}
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={nft.collectionName ?? `Token ${nft.tokenId}`}
+    >
       {nft.imageUrl !== undefined ? (
         <Image source={{ uri: nft.imageUrl }} style={styles.cardImage} accessibilityIgnoresInvertColors />
       ) : (
@@ -122,7 +168,7 @@ function OwnedCard({ nft }: { nft: OwnedNFT }): JSX.Element {
       {nft.activeListingId !== undefined && (
         <Text style={styles.listedChip}>Listed</Text>
       )}
-    </View>
+    </Pressable>
   );
 }
 
@@ -132,7 +178,7 @@ const styles = StyleSheet.create({
   backRow: { paddingVertical: 8 },
   back: { color: colors.primary, fontSize: 14 },
   title: { color: colors.textPrimary, fontSize: 24, fontWeight: '700', marginTop: 4 },
-  columnWrapper: { justifyContent: 'space-between', marginBottom: GAP, paddingHorizontal: 16 },
+  cellWrap: { paddingRight: GAP, paddingBottom: GAP },
   listContent: { paddingBottom: 32 },
   card: { width: CARD, backgroundColor: colors.surface, borderRadius: 12, padding: 8 },
   cardImage: {

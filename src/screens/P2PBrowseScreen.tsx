@@ -12,7 +12,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   Dimensions,
-  FlatList,
   Image,
   Pressable,
   RefreshControl,
@@ -21,6 +20,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -98,17 +98,19 @@ export default function P2PBrowseScreen(props: P2PBrowseScreenProps = {}): JSX.E
         </Text>
       )}
 
-      <FlatList
+      <FlashList
         data={listings}
         keyExtractor={(item) => item.id}
         numColumns={2}
-        columnWrapperStyle={styles.columnWrapper}
+        estimatedItemSize={CARD_WIDTH + 80}
         contentContainerStyle={styles.listContent}
         renderItem={({ item }) => (
-          <ListingCard
-            listing={item}
-            onPress={onSelectListing !== undefined ? () => onSelectListing(item) : undefined}
-          />
+          <View style={styles.cellWrap}>
+            <ListingCard
+              listing={item}
+              onPress={onSelectListing !== undefined ? () => onSelectListing(item) : undefined}
+            />
+          </View>
         )}
         ListEmptyComponent={
           loading ? (
@@ -180,7 +182,7 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     fontSize: 14,
   },
-  columnWrapper: { justifyContent: 'space-between', marginBottom: COLUMN_GAP },
+  cellWrap: { paddingRight: COLUMN_GAP, paddingBottom: COLUMN_GAP },
   listContent: { paddingBottom: 32 },
   card: {
     width: CARD_WIDTH,

@@ -10,7 +10,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   Dimensions,
-  FlatList,
   Image,
   Pressable,
   RefreshControl,
@@ -18,6 +17,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -99,17 +99,19 @@ export default function NFTBrowseScreen(props: NFTBrowseScreenProps = {}): JSX.E
         </Text>
       )}
 
-      <FlatList
+      <FlashList
         data={collections}
         keyExtractor={(item) => `${item.chainId}:${item.contractAddress}`}
         numColumns={2}
-        columnWrapperStyle={styles.columnWrapper}
+        estimatedItemSize={CARD_WIDTH + 80}
         contentContainerStyle={styles.listContent}
         renderItem={({ item }) => (
-          <CollectionCard
-            collection={item}
-            onPress={onSelectCollection !== undefined ? () => onSelectCollection(item) : undefined}
-          />
+          <View style={styles.cellWrap}>
+            <CollectionCard
+              collection={item}
+              onPress={onSelectCollection !== undefined ? () => onSelectCollection(item) : undefined}
+            />
+          </View>
         )}
         refreshControl={
           <RefreshControl
@@ -187,7 +189,7 @@ const styles = StyleSheet.create({
   chainChipActive: { backgroundColor: colors.primary, borderColor: colors.primary },
   chainChipText: { color: colors.textSecondary, fontSize: 12 },
   chainChipTextActive: { color: colors.background, fontWeight: '700' },
-  columnWrapper: { justifyContent: 'space-between', marginBottom: COLUMN_GAP },
+  cellWrap: { paddingRight: COLUMN_GAP, paddingBottom: COLUMN_GAP },
   listContent: { paddingBottom: 32 },
   card: { width: CARD_WIDTH, backgroundColor: colors.surface, borderRadius: 12, padding: 8 },
   cardImage: {

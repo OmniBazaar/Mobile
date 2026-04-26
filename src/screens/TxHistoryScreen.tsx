@@ -10,13 +10,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   ActivityIndicator,
-  FlatList,
   Pressable,
   RefreshControl,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 import { useTranslation } from 'react-i18next';
 
 import { colors } from '@theme/colors';
@@ -78,9 +78,10 @@ export default function TxHistoryScreen(props: TxHistoryScreenProps): JSX.Elemen
         </Text>
       )}
 
-      <FlatList
+      <FlashList
         data={rows}
         keyExtractor={(row) => row.id}
+        estimatedItemSize={96}
         renderItem={({ item }) => <HistoryRow row={item} />}
         contentContainerStyle={styles.listContent}
         refreshControl={

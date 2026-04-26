@@ -243,7 +243,12 @@ export default function RootNavigator(): JSX.Element | null {
       case 'tx-history':
         return <TxHistoryScreen onBack={() => setAuthedRoute('profile')} />;
       case 'nfts-owned':
-        return <OwnedNFTsScreen onBack={() => setAuthedRoute('profile')} />;
+        return (
+          <OwnedNFTsScreen
+            onBack={() => setAuthedRoute('profile')}
+            mnemonic={onboard.keys?.mnemonic ?? ''}
+          />
+        );
       case 'escrows':
         return <EscrowsScreen onBack={() => setAuthedRoute('profile')} />;
       case 'prediction-positions':

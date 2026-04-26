@@ -12,14 +12,15 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import {
-  FlatList,
   Pressable,
   RefreshControl,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 import { useTranslation } from 'react-i18next';
+import i18n from '../i18n';
 
 import {
   getPredictionsClient,
@@ -72,9 +73,10 @@ export default function PredictionsBrowseScreen(
           {error}
         </Text>
       )}
-      <FlatList
+      <FlashList
         data={markets}
         keyExtractor={(item) => item.id}
+        estimatedItemSize={170}
         renderItem={({ item }) => (
           <MarketRow
             market={item}
@@ -118,7 +120,7 @@ function MarketRow({
   const resolutionDate = new Date(market.resolutionDate);
   const resolutionDateFmt = Number.isNaN(resolutionDate.getTime())
     ? market.resolutionDate
-    : resolutionDate.toLocaleDateString();
+    : resolutionDate.toLocaleDateString(i18n.language);
 
   return (
     <Pressable accessibilityRole="button" accessibilityLabel={market.question} onPress={onPress}>
@@ -139,7 +141,7 @@ function MarketRow({
           />
           <StatBlock
             label={t('predictions.volume', { defaultValue: 'Volume' })}
-            value={`$${Number.parseFloat(market.totalVolume).toLocaleString()}`}
+            value={`$${Number.parseFloat(market.totalVolume).toLocaleString(i18n.language)}`}
           />
           <StatBlock
             label={t('predictions.resolves', { defaultValue: 'Resolves' })}

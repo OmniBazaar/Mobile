@@ -37,6 +37,7 @@ import {
 } from '@wallet/services/predictions/PredictionsClient';
 
 import { Button } from '../components';
+import Sparkline from '../components/Sparkline';
 import { colors } from '../theme/colors';
 import { buyOutcome, claimOutcome, getQuote } from '../services/PredictionsService';
 
@@ -249,6 +250,24 @@ export default function PredictionsMarketDetailScreen(
             </Pressable>
           </View>
 
+          {/* YES-price history sparkline (renders only when the
+              backend returned `priceHistory` on the detail). */}
+          {detail.priceHistory !== undefined && detail.priceHistory.length >= 2 && (
+            <View style={styles.sparklineCard}>
+              <Text style={styles.sectionTitle}>
+                {t('predictions.priceHistory', {
+                  defaultValue: outcome === 'yes' ? 'YES price history' : 'NO price history',
+                })}
+              </Text>
+              <Sparkline
+                data={detail.priceHistory.map((p) => (outcome === 'yes' ? p.yes : p.no))}
+                width={300}
+                height={80}
+                clampUnit
+              />
+            </View>
+          )}
+
           {/* Amount input */}
           <View style={styles.card}>
             <Text style={styles.sectionTitle}>
@@ -360,6 +379,15 @@ const styles = StyleSheet.create({
   },
   meta: { color: colors.textMuted, fontSize: 12, marginTop: 2, marginBottom: 12 },
   outcomeRow: { flexDirection: 'row', marginVertical: 12 },
+  sparklineCard: {
+    backgroundColor: colors.surface,
+    borderRadius: 12,
+    padding: 16,
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: colors.borderSoft,
+    alignItems: 'center',
+  },
   outcomeChip: {
     flex: 1,
     paddingVertical: 12,

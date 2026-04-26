@@ -19,6 +19,7 @@ import {
   View,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import i18n from '../i18n';
 import { ethers } from 'ethers';
 
 import Card from '@components/Card';
@@ -220,7 +221,7 @@ export default function StakingScreen(props: StakingScreenProps): JSX.Element {
                 {t('staking.unlockAt', { defaultValue: 'Unlocks' })}
               </Text>
               <Text style={styles.rowValue}>
-                {new Date(position.unlockAt * 1000).toLocaleDateString()}
+                {new Date(position.unlockAt * 1000).toLocaleDateString(i18n.language)}
               </Text>
             </View>
           )}
