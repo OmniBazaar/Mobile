@@ -1,3 +1,24 @@
+// CRITICAL: react-native-get-random-values MUST be the first import in
+// the entire app. It runs as a side effect that polyfills
+// `crypto.getRandomValues` on the React Native global. Without it, every
+// ethers crypto operation (Wallet.fromPhrase, HD derivation, signature
+// nonces) throws a fatal "no global crypto" error at runtime — the
+// classic post-splash-screen Android crash signature. Symptoms: app
+// installs, splash flashes, instant crash back to launcher.
+//
+// The polyfill is a side-effect-only import (no exports), so nothing
+// references it explicitly anywhere else in the app — but it MUST run
+// before any module touches ethers / crypto.
+import 'react-native-get-random-values';
+// Buffer polyfill — Node's `Buffer` global isn't present on RN by
+// default. Several @wallet/* services use it (e.g. raw APDU framing,
+// base64 encode/decode in BLE transport). Setting it as a global here
+// keeps those callers working without per-site `require('buffer')`.
+import { Buffer as BufferPolyfill } from 'buffer';
+if (typeof (globalThis as { Buffer?: unknown }).Buffer === 'undefined') {
+  (globalThis as { Buffer: typeof BufferPolyfill }).Buffer = BufferPolyfill;
+}
+
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Modal, Linking, Platform, Pressable } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
