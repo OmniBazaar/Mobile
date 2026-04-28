@@ -54,6 +54,7 @@ export async function signWithOwnerKey(mnemonic: string, message: string): Promi
  *
  * @param keys - DerivedKeys from WalletCreationService.
  * @param username - Desired username (lowercase, `^[a-z][a-z0-9_]{2,19}$`).
+ * @param email - Verified email address.
  * @param referralCode - Optional referrer username.
  * @returns RegistrationResult (token + refreshToken + userId).
  * @throws If the validator rejects the registration (409 username taken,
@@ -62,6 +63,7 @@ export async function signWithOwnerKey(mnemonic: string, message: string): Promi
 export async function registerWithAttestation(
   keys: DerivedKeys,
   username: string,
+  email: string,
   referralCode?: string,
 ): Promise<RegistrationResult> {
   const client = ChallengeAuthClient.getInstance();
@@ -71,6 +73,7 @@ export async function registerWithAttestation(
       ownerPublicKey: keys.ownerPublicKey,
       activePublicKey: keys.activePublicKey,
       username,
+      email,
       ...(referralCode !== undefined && { referralCode }),
     },
     async (message: string) => signWithOwnerKey(keys.mnemonic, message),
@@ -87,13 +90,15 @@ export async function registerWithAttestation(
  * with the owner key, posts the signature for verification.
  *
  * @param mnemonic - BIP39 phrase (already decrypted by the caller).
+ * @param username - Canonical lowercase username (the new
+ *   ChallengeAuthClient identifies the user by username, not address).
  * @returns SignInResult (token + refreshToken).
  * @throws On expired challenge, signature mismatch, or network error.
  */
-export async function signInWithMnemonic(mnemonic: string): Promise<SignInResult> {
+export async function signInWithMnemonic(mnemonic: string, username: string): Promise<SignInResult> {
   const wallet = Wallet.fromPhrase(mnemonic);
   const client = ChallengeAuthClient.getInstance();
-  const tokens = await client.login(wallet.address, async (message) =>
+  const tokens = await client.login(username, wallet.address, async (message: string) =>
     await wallet.signMessage(message),
   );
   return { token: tokens.token, refreshToken: tokens.refreshToken };

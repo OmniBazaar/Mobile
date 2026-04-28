@@ -10,6 +10,18 @@
 // references it explicitly anywhere else in the app — but it MUST run
 // before any module touches ethers / crypto.
 import 'react-native-get-random-values';
+// TextEncoder / TextDecoder polyfill. Hermes (RN 0.73) does NOT expose
+// these globally. The Cardano serialization library
+// (@emurgo/cardano-serialization-lib-nodejs, pulled in transitively via
+// @wallet/core/keyring/cardanoCip1852) destructures
+// `const { TextDecoder, TextEncoder } = require('util')` at module-load
+// time. With no global TextEncoder/TextDecoder, the bundled `util` shim
+// has them as `undefined`, and `new TextDecoder(...)` throws on app
+// boot — the post-splash crash signature on Pixel 7 Pro / Android 14.
+// `fast-text-encoding` attaches both classes to `globalThis` as a
+// side-effect import, which is exactly what the bundled `util` shim
+// reads from.
+import 'fast-text-encoding';
 // Buffer polyfill — Node's `Buffer` global isn't present on RN by
 // default. Several @wallet/* services use it (e.g. raw APDU framing,
 // base64 encode/decode in BLE transport). Setting it as a global here
@@ -17,6 +29,67 @@ import 'react-native-get-random-values';
 import { Buffer as BufferPolyfill } from 'buffer';
 if (typeof (globalThis as { Buffer?: unknown }).Buffer === 'undefined') {
   (globalThis as { Buffer: typeof BufferPolyfill }).Buffer = BufferPolyfill;
+}
+// `process` polyfill — chain SDKs (algosdk, stellar, hedera, flow,
+// cardano, cosmos, multiversx, tron) reference `process.nextTick`,
+// `process.browser`, `process.version`, `process.env`. Hermes has a
+// minimal `process` but it's missing `nextTick` and the rest. Mirrors
+// the polyfill in Wallet/polyfills.js so the same chain SDKs work
+// identically in the mobile bundle.
+const __g = globalThis as unknown as Record<string, unknown>;
+if (typeof (__g['process'] as { nextTick?: unknown } | undefined)?.nextTick !== 'function') {
+  const queue: Array<[(...a: unknown[]) => void, unknown[]]> = [];
+  let queued = false;
+  const drain = (): void => {
+    queued = false;
+    while (queue.length > 0) {
+      const next = queue.shift();
+      if (next === undefined) break;
+      const [fn, args] = next;
+      try { fn(...args); } catch (err) {
+        void Promise.resolve().then(() => { throw err; });
+      }
+    }
+  };
+  const existing = (__g['process'] as Record<string, unknown> | undefined) ?? {};
+  __g['process'] = {
+    env: {},
+    browser: true,
+    version: '',
+    versions: { node: '0.0.0' },
+    title: 'browser',
+    platform: 'browser',
+    arch: 'arm64',
+    argv: [],
+    argv0: 'browser',
+    pid: 0,
+    cwd: () => '/',
+    chdir: () => { throw new Error('process.chdir is not supported'); },
+    umask: () => 0,
+    nextTick: (fn: (...a: unknown[]) => void, ...args: unknown[]): void => {
+      if (typeof fn !== 'function') {
+        throw new TypeError('process.nextTick callback must be a function');
+      }
+      queue.push([fn, args]);
+      if (!queued) {
+        queued = true;
+        void Promise.resolve().then(drain);
+      }
+    },
+    stdout: { write: (): void => {} },
+    stderr: { write: (): void => {} },
+    on: (): void => {},
+    once: (): void => {},
+    off: (): void => {},
+    addListener: (): void => {},
+    removeListener: (): void => {},
+    removeAllListeners: (): void => {},
+    emit: (): boolean => false,
+    prependListener: (): void => {},
+    prependOnceListener: (): void => {},
+    listeners: (): unknown[] => [],
+    ...existing,
+  };
 }
 
 import React, { useEffect, useState } from 'react';

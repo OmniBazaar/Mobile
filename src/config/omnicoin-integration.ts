@@ -312,8 +312,12 @@ export const OMNICOIN_ADDRESSES: Record<string, ContractAddresses> = {
   // Redeployed: 2026-03-14 (v2, minBaseFee=1, PoS Native)
   // Contract addresses will be updated by deploy-all-mainnet-v2.js
   mainnet: {
-    rpcUrl:
-      "http://65.108.205.116:9650/ext/bc/B5gLCyeRWScxf1CeGHfXjEkcp5au8dQYQjtSV6cRammsLjsbK/rpc",
+    // Browser-reachable HTTPS endpoint. iOS App Transport Security
+    // refuses plain-HTTP requests by default; rather than maintain a
+    // per-IP `NSExceptionDomains` list, every chain RPC the mobile
+    // app talks to is now HTTPS. nginx proxies https://rpc.omnicoin.net
+    // to 127.0.0.1:9650/ext/bc/<id>/rpc on V1.
+    rpcUrl: "https://rpc.omnicoin.net",
     subnetId:
       "0000000000000000000000000000000000000000000000000000000000000000",
     blockchainId: "B5gLCyeRWScxf1CeGHfXjEkcp5au8dQYQjtSV6cRammsLjsbK",

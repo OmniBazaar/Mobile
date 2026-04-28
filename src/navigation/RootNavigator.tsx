@@ -158,7 +158,12 @@ export default function RootNavigator(): JSX.Element | null {
         // later wizard step will let the user pick a human-readable
         // username (subject to the `^[a-z][a-z0-9_]{2,19}$` rules).
         const username = `anon_${keys.address.slice(2, 10).toLowerCase()}`;
-        await registerWithAttestation(keys, username);
+        // Phase 1 placeholder — a real email-collection step lands in
+        // the dedicated onboarding wizard. Until then we synthesise a
+        // per-device alias so the validator's `email NOT NULL`
+        // constraint is satisfied.
+        const placeholderEmail = `${username}@anon.omnibazaar.local`;
+        await registerWithAttestation(keys, username, placeholderEmail);
         setAddress(keys.address, username);
         markUnlocked();
       } catch (err) {
@@ -166,7 +171,8 @@ export default function RootNavigator(): JSX.Element | null {
         // fall back to challenge-response sign-in rather than blocking.
         console.warn('[nav] registration failed, attempting sign-in', err);
         try {
-          await signInWithMnemonic(keys.mnemonic);
+          const fallbackUsername = `anon_${keys.address.slice(2, 10).toLowerCase()}`;
+          await signInWithMnemonic(keys.mnemonic, fallbackUsername);
           setAddress(addressFromMnemonic(keys.mnemonic));
           markUnlocked();
         } catch (signInErr) {

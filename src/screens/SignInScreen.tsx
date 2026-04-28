@@ -45,7 +45,9 @@ export default function SignInScreen(props: SignInScreenProps): JSX.Element {
     setError(undefined);
     setBusy(true);
     try {
-      await signInWithMnemonic(props.mnemonic);
+      // Sign-in screen exists only as a fallback for the onboarding
+      // mnemonic-already-registered path; it always knows the username.
+      await signInWithMnemonic(props.mnemonic, username);
       props.onSignedIn();
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);

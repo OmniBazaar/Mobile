@@ -54,8 +54,42 @@ config.resolver.extraNodeModules = {
   '@webapp': webappSrc,
 };
 
-// Don't let duplicate React instances slip in from sibling node_modules
-// — force every import to resolve from Mobile's own tree.
-config.resolver.resolveRequest = undefined;
+// Module aliases that must take effect at resolve time, not transform
+// time. Two cases here:
+//
+//   1. Bare-specifier `util` → `./util-shim.js`. The bundled `util`
+//      polyfill (npm `util` 0.12.5) does NOT export TextDecoder /
+//      TextEncoder, but several chain SDKs (Cardano, others) do
+//      `const { TextDecoder, TextEncoder } = require('util')` at
+//      module-eval and immediately `new TextDecoder(...)`. The
+//      destructured `undefined` crashed the bundle on Pixel 7 Pro
+//      (Android 14) at top-level eval — same root cause as the
+//      Wallet MV3 SW status-15 crash we shipped a util-shim for.
+//      The regex anchors `^util$` so nested paths like
+//      `util/util.js` (which our shim itself imports) still
+//      resolve through node_modules.
+//
+//   2. `@emurgo/cardano-serialization-lib-nodejs` → local stub. The
+//      Cardano SDK is a WebAssembly module; Hermes (RN 0.73) does
+//      not support WASM in any form — neither the `-nodejs` variant
+//      (uses `fs.readFileSync`) nor the `-browser` variant (uses
+//      `import.meta.url + fetch`) can ever run here. The lib is
+//      loaded transitively by familyAddressDerivation at module-eval,
+//      so without a stub it crashes the boot. Mobile V1 has no
+//      Cardano UX, so a stub that throws on use is the right
+//      no-functionality-loss escape hatch.
+const utilShimPath = path.resolve(projectRoot, 'util-shim.js');
+const cardanoStubPath = path.resolve(projectRoot, 'stubs', 'cardano-stub.js');
+const CARDANO_NODEJS = '@emurgo/cardano-serialization-lib-nodejs';
+
+config.resolver.resolveRequest = (context, moduleName, platform) => {
+  if (moduleName === 'util') {
+    return { type: 'sourceFile', filePath: utilShimPath };
+  }
+  if (moduleName === CARDANO_NODEJS || moduleName.startsWith(`${CARDANO_NODEJS}/`)) {
+    return { type: 'sourceFile', filePath: cardanoStubPath };
+  }
+  return context.resolveRequest(context, moduleName, platform);
+};
 
 module.exports = config;

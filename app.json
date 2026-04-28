@@ -65,8 +65,7 @@
             "newArchEnabled": false
           },
           "android": {
-            "newArchEnabled": false,
-            "usesCleartextTraffic": true
+            "newArchEnabled": false
           }
         }
       ],
