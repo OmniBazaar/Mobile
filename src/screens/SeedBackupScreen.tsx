@@ -15,8 +15,20 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
-import * as ScreenCapture from 'expo-screen-capture';
 import { useTranslation } from 'react-i18next';
+
+// Local stub for the screen-capture API. We intentionally don't depend on
+// `expo-screen-capture` because its native module calls Android 14's
+// `registerScreenCaptureObserver` at init, which throws SecurityException
+// on Pixel 7 Pro (Android 14) even with `DETECT_SCREEN_CAPTURE` declared
+// in the manifest. The native init failure crashed the entire JS bundle
+// before `main` could register with `AppRegistry`. Until the upstream
+// expo module ships a fix, screenshot prevention is a best-effort no-op
+// on mobile; the seed backup flow still gates display behind a tap.
+const ScreenCapture = {
+  preventScreenCaptureAsync: async (): Promise<void> => undefined,
+  allowScreenCaptureAsync: async (): Promise<void> => undefined,
+};
 
 import Button from '@components/Button';
 import { colors } from '@theme/colors';
