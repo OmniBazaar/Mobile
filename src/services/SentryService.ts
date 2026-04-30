@@ -44,7 +44,18 @@ function buildChannel(): string {
 export function initSentry(): void {
   if (initialised) return;
   const dsn = process.env["EXPO_PUBLIC_SENTRY_DSN"];
-  if (typeof dsn !== "string" || dsn.length === 0) {
+  // Skip init unless the DSN is a real Sentry URL. Sentry's native
+  // SDK throws synchronously on a non-URI value (e.g. the literal
+  // `${SENTRY_DSN}` template that EAS leaves behind when a secret is
+  // unset, or any other non-`http(s)://` string), and that throw lands
+  // on the `mqt_native_modules` thread — bypassing the JS try/catch
+  // around this call and crashing the entire app at boot. The strict
+  // shape check is the only reliable defense; only a Sentry DSN starts
+  // with `https://` (or `http://` in development).
+  if (
+    typeof dsn !== "string" ||
+    !(dsn.startsWith("https://") || dsn.startsWith("http://"))
+  ) {
     initialised = true;
     return;
   }
