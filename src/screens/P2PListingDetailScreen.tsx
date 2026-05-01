@@ -25,6 +25,7 @@ import type {
 } from '@wallet/services/marketplace/MarketplaceClient';
 
 import { Button } from '../components';
+import { useRequireAuth } from '../components/RequireAuth';
 import { colors } from '../theme/colors';
 import { purchaseEscrow } from '../services/EscrowPurchaseService';
 
@@ -50,11 +51,12 @@ export default function P2PListingDetailScreen(
 ): JSX.Element {
   const { listing, buyer, mnemonic, onBack } = props;
   const { t } = useTranslation();
+  const requireAuth = useRequireAuth();
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<CreateEscrowResult | undefined>(undefined);
   const [error, setError] = useState<string | undefined>(undefined);
 
-  const onBuy = useCallback((): void => {
+  const rawOnBuy = useCallback((): void => {
     setError(undefined);
     Alert.alert(
       t('p2p.confirmBuyTitle', { defaultValue: 'Confirm escrow purchase' }),
@@ -82,6 +84,15 @@ export default function P2PListingDetailScreen(
       ],
     );
   }, [listing, buyer, mnemonic, t]);
+
+  const onBuy = useCallback((): void => {
+    requireAuth(
+      t('authPrompt.toBuyP2P', {
+        defaultValue: 'Sign in to fund the escrow and buy this listing.',
+      }),
+      rawOnBuy,
+    );
+  }, [requireAuth, rawOnBuy, t]);
 
   const coverUrl = listing.images[0];
 

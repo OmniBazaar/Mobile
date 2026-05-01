@@ -15,16 +15,24 @@
 import { create } from 'zustand';
 
 /** High-level auth lifecycle state. */
-export type AuthState = 'bootstrapping' | 'signedOut' | 'locked' | 'unlocked';
+export type AuthState = 'bootstrapping' | 'signedOut' | 'guest' | 'locked' | 'unlocked';
 
 /** Shape of the auth slice. */
 export interface AuthStoreState {
   /** Current state. */
   state: AuthState;
-  /** Primary EVM address of the signed-in user (empty when signedOut). */
+  /** Primary EVM address of the signed-in user (empty when signedOut/guest). */
   address: string;
   /** Username if claimed; empty otherwise. */
   username: string;
+  /**
+   * Plain-text BIP-39 mnemonic held in memory while the wallet is
+   * unlocked. Erased on `clear()`. Read with `useAuthStore.getState().mnemonic`
+   * (don't subscribe — we don't want components to re-render on every
+   * unlock event). Required by signing flows (swap, listing-create,
+   * NFT buy, predictions, staking).
+   */
+  mnemonic: string;
   /** True when the user has enabled biometric unlock. */
   biometricEnabled: boolean;
   /** Epoch ms of the most recent successful unlock. */
@@ -32,8 +40,10 @@ export interface AuthStoreState {
   // Actions
   setState(next: AuthState): void;
   setAddress(address: string, username?: string): void;
+  setMnemonic(mnemonic: string): void;
   setBiometricEnabled(enabled: boolean): void;
   markUnlocked(): void;
+  enterGuestMode(): void;
   clear(): void;
 }
 
@@ -41,12 +51,15 @@ export const useAuthStore = create<AuthStoreState>((set) => ({
   state: 'bootstrapping',
   address: '',
   username: '',
+  mnemonic: '',
   biometricEnabled: false,
   lastUnlockMs: 0,
   setState: (next) => set({ state: next }),
   setAddress: (address, username) =>
     set({ address, ...(username !== undefined && { username }) }),
+  setMnemonic: (mnemonic) => set({ mnemonic }),
   setBiometricEnabled: (enabled) => set({ biometricEnabled: enabled }),
+  enterGuestMode: () => set({ state: 'guest', address: '', username: '', mnemonic: '' }),
   markUnlocked: () => {
     set({ state: 'unlocked', lastUnlockMs: Date.now() });
     // Kick off the decentralisation-dashboard heartbeat as soon as
@@ -64,7 +77,13 @@ export const useAuthStore = create<AuthStoreState>((set) => ({
     })();
   },
   clear: () => {
-    set({ state: 'signedOut', address: '', username: '', lastUnlockMs: 0 });
+    set({
+      state: 'signedOut',
+      address: '',
+      username: '',
+      mnemonic: '',
+      lastUnlockMs: 0,
+    });
     void (async (): Promise<void> => {
       try {
         const mod = await import('../services/RpcOriginReporter');

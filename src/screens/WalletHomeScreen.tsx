@@ -35,6 +35,7 @@ import {
 } from '../services/PortfolioService';
 import { usePortfolio } from '../hooks/usePortfolio';
 import { useAuthStore } from '../store/authStore';
+import { useRequireAuth } from '@components/RequireAuth';
 
 /**
  * Format a USD number for the hero "Portfolio" total.
@@ -79,6 +80,9 @@ export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Elem
   const { t } = useTranslation();
   const address = useAuthStore((s) => s.address);
   const username = useAuthStore((s) => s.username);
+  const authState = useAuthStore((s) => s.state);
+  const requireAuth = useRequireAuth();
+  const isGuest = authState === 'guest';
 
   const [balances, setBalances] = useState<ChainBalance[]>([]);
   const [refreshing, setRefreshing] = useState(false);
@@ -183,17 +187,38 @@ export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Elem
           <ActionTile
             icon="arrow-up-outline"
             label={t('walletHome.send', { defaultValue: 'Send' })}
-            onPress={props.onSend}
+            onPress={(): void =>
+              requireAuth(
+                t('authPrompt.toSend', {
+                  defaultValue: 'Sign in to send tokens from your wallet.',
+                }),
+                props.onSend,
+              )
+            }
           />
           <ActionTile
             icon="arrow-down-outline"
             label={t('walletHome.receive', { defaultValue: 'Receive' })}
-            onPress={props.onReceive}
+            onPress={(): void =>
+              requireAuth(
+                t('authPrompt.toReceive', {
+                  defaultValue: 'Sign in to view your receive address and QR code.',
+                }),
+                props.onReceive,
+              )
+            }
           />
           <ActionTile
             icon="swap-horizontal-outline"
             label={t('walletHome.swap', { defaultValue: 'Swap' })}
-            onPress={props.onSwap}
+            onPress={(): void =>
+              requireAuth(
+                t('authPrompt.toSwap', {
+                  defaultValue: 'Sign in to swap or trade tokens.',
+                }),
+                props.onSwap,
+              )
+            }
           />
         </View>
         <View style={styles.actionsRow}>
@@ -211,6 +236,17 @@ export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Elem
           <View style={styles.actionTileSpacer} />
         </View>
       </View>
+
+      {isGuest && (
+        <View style={styles.guestBanner} accessibilityRole="alert" accessibilityLiveRegion="polite">
+          <Ionicons name="information-circle-outline" size={16} color={colors.textSecondary} />
+          <Text style={styles.guestBannerText}>
+            {t('walletHome.guestBanner', {
+              defaultValue: "You're browsing as a guest. Sign in to see your balances or trade.",
+            })}
+          </Text>
+        </View>
+      )}
 
       <Text style={styles.sectionHeader}>
         {t('walletHome.tokens', { defaultValue: 'Tokens' })}
@@ -356,4 +392,17 @@ const styles = StyleSheet.create({
   empty: { color: colors.textMuted, textAlign: 'center', paddingVertical: 48 },
   signOut: { alignItems: 'center', paddingVertical: 16 },
   signOutText: { color: colors.textMuted, fontSize: 13 },
+  guestBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    marginBottom: 12,
+    borderRadius: 8,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.borderSoft,
+  },
+  guestBannerText: { flex: 1, color: colors.textSecondary, fontSize: 13, lineHeight: 18 },
 });

@@ -119,6 +119,51 @@
       "earnApr": "APRs up to\n{{apr}}%"
     }
   },
+  "tabs": {
+    "shop": "Shop",
+    "shopA11y": "Shop tab — browse marketplaces",
+    "trade": "Trade",
+    "tradeA11y": "Trade tab — DEX, swap, liquidity",
+    "wallet": "Wallet",
+    "walletA11y": "Wallet tab — portfolio and assets",
+    "chat": "Chat",
+    "chatA11y": "Chat tab — conversations with sellers",
+    "profile": "Profile",
+    "profileA11y": "Profile tab — account, KYC, settings"
+  },
+  "authPrompt": {
+    "title": "Sign in required",
+    "defaultReason": "Sign in to continue.",
+    "signIn": "Sign In",
+    "signInA11y": "Sign in to your wallet",
+    "create": "Create Wallet",
+    "createA11y": "Create a new wallet",
+    "toSend": "Sign in to send tokens from your wallet.",
+    "toReceive": "Sign in to view your receive address and QR code.",
+    "toSwap": "Sign in to swap or trade tokens.",
+    "toBuyP2P": "Sign in to fund the escrow and buy this listing.",
+    "toBuyNft": "Sign in to buy this NFT.",
+    "toBuyPrediction": "Sign in to buy this prediction position.",
+    "toClaim": "Sign in to claim your winnings.",
+    "toCreateListing": "Sign in to list an item for sale.",
+    "toStake": "Sign in to stake or unstake.",
+    "toBridge": "Sign in to bridge assets across chains."
+  },
+  "comingSoon": {
+    "body": "This screen lands in {{sprint}}. Track progress in MOBILE_REMEDIATION_PLAN.md."
+  },
+  "walletHome": {
+    "guestBanner": "You're browsing as a guest. Sign in to see your balances or trade."
+  },
+  "welcome": {
+    "cta": {
+      "guest": "Browse as Guest",
+      "guestHint": "Browse marketplaces without an account. Sign in is required to buy or sell."
+    }
+  },
+  "onboarding": {
+    "registerFailed": "Registration failed."
+  },
   "common": {
     "export": "Export",
     "back": "Back",

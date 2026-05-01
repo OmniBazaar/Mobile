@@ -37,6 +37,7 @@ import {
 } from '@wallet/services/predictions/PredictionsClient';
 
 import { Button } from '../components';
+import { useRequireAuth } from '../components/RequireAuth';
 import Sparkline from '../components/Sparkline';
 import { colors } from '../theme/colors';
 import { buyOutcome, claimOutcome, getQuote } from '../services/PredictionsService';
@@ -63,6 +64,7 @@ export default function PredictionsMarketDetailScreen(
 ): JSX.Element {
   const { market, buyer, mnemonic, onBack } = props;
   const { t } = useTranslation();
+  const requireAuth = useRequireAuth();
 
   const [detail, setDetail] = useState<PredictionMarketDetail | undefined>(undefined);
   const [loading, setLoading] = useState(true);
@@ -115,7 +117,7 @@ export default function PredictionsMarketDetailScreen(
   }, [refreshQuote]);
 
   // ── Buy handler ──────────────────────────────────────────────────────
-  const onBuy = useCallback((): void => {
+  const rawOnBuy = useCallback((): void => {
     if (detail === undefined || quote === undefined) return;
     Alert.alert(
       t('predictions.confirmBuyTitle', { defaultValue: 'Confirm purchase' }),
@@ -157,8 +159,17 @@ export default function PredictionsMarketDetailScreen(
     );
   }, [detail, quote, outcome, amountUsd, buyer, mnemonic, t]);
 
+  const onBuy = useCallback((): void => {
+    requireAuth(
+      t('authPrompt.toBuyPrediction', {
+        defaultValue: 'Sign in to buy this prediction position.',
+      }),
+      rawOnBuy,
+    );
+  }, [requireAuth, rawOnBuy, t]);
+
   // ── Claim handler ────────────────────────────────────────────────────
-  const onClaim = useCallback((): void => {
+  const rawOnClaim = useCallback((): void => {
     if (detail === undefined) return;
     if (detail.status !== 'resolved') {
       setTradeMessage(
@@ -188,6 +199,15 @@ export default function PredictionsMarketDetailScreen(
       }
     })();
   }, [detail, outcome, buyer, mnemonic, t]);
+
+  const onClaim = useCallback((): void => {
+    requireAuth(
+      t('authPrompt.toClaim', {
+        defaultValue: 'Sign in to claim your winnings.',
+      }),
+      rawOnClaim,
+    );
+  }, [requireAuth, rawOnClaim, t]);
 
   const yesPrice = useMemo(() => {
     const row = detail?.outcomes.find((o) => o.label.toLowerCase() === 'yes');

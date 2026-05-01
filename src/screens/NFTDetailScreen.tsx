@@ -29,6 +29,7 @@ import {
 } from '@wallet/services/marketplace/MarketplaceClient';
 
 import { Button } from '../components';
+import { useRequireAuth } from '../components/RequireAuth';
 import { colors } from '../theme/colors';
 import { buyNFT, type BuyNFTResult } from '../services/NFTBuyService';
 
@@ -52,6 +53,7 @@ export interface NFTDetailScreenProps {
 export default function NFTDetailScreen(props: NFTDetailScreenProps): JSX.Element {
   const { collection, buyer, mnemonic, onBack } = props;
   const { t } = useTranslation();
+  const requireAuth = useRequireAuth();
 
   const [floor, setFloor] = useState<NFTFloorListing | undefined>(undefined);
   const [loading, setLoading] = useState(true);
@@ -99,7 +101,7 @@ export default function NFTDetailScreen(props: NFTDetailScreenProps): JSX.Elemen
     }
   }, [floor, buyer, mnemonic]);
 
-  const confirmBuy = useCallback((): void => {
+  const rawConfirmBuy = useCallback((): void => {
     if (floor === undefined) return;
     Alert.alert(
       t('nft.buyConfirmTitle', { defaultValue: 'Confirm NFT purchase' }),
@@ -117,6 +119,15 @@ export default function NFTDetailScreen(props: NFTDetailScreenProps): JSX.Elemen
       ],
     );
   }, [floor, onConfirm, t]);
+
+  const confirmBuy = useCallback((): void => {
+    requireAuth(
+      t('authPrompt.toBuyNft', {
+        defaultValue: 'Sign in to buy this NFT.',
+      }),
+      rawConfirmBuy,
+    );
+  }, [requireAuth, rawConfirmBuy, t]);
 
   return (
     <ScrollView contentContainerStyle={styles.root}>

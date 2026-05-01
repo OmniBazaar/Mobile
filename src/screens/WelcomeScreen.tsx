@@ -34,6 +34,14 @@ export interface WelcomeScreenProps {
   onCreateWallet: () => void;
   /** Called when the user taps "Log In" (existing account on this or any device). */
   onSignIn: () => void;
+  /**
+   * Called when the user taps "Continue as Guest". Optional — when
+   * omitted the button is hidden. Sets the auth-store state to `guest`,
+   * which routes the app to the bottom-tab MainTabs with full read
+   * access to marketplaces. Action buttons (Buy, Send, Swap) prompt
+   * for sign-in at the moment they're tapped.
+   */
+  onContinueAsGuest?: () => void;
 }
 
 interface Slide {
@@ -132,6 +140,16 @@ export default function WelcomeScreen(props: WelcomeScreenProps): JSX.Element {
           variant="secondary"
           style={styles.actionButton}
         />
+        {props.onContinueAsGuest !== undefined && (
+          <Button
+            title={t('welcome.cta.guest', { defaultValue: 'Browse as Guest' })}
+            onPress={props.onContinueAsGuest}
+            variant="ghost"
+            accessibilityHint={t('welcome.cta.guestHint', {
+              defaultValue: 'Browse marketplaces without an account. Sign in is required to buy or sell.',
+            })}
+          />
+        )}
       </View>
     </View>
   );
