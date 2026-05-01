@@ -122,6 +122,7 @@
   "common": {
     "export": "エクスポート",
     "back": "戻る",
+    "backToMarketplace": "Back to Marketplace",
     "close": "閉じる",
     "dismiss": "Dismiss",
     "toggleTheme": "Toggle theme",
@@ -985,67 +986,57 @@
     },
     "mining": {
       "title": "流動性マイニング",
-      "subtitle": "LPトークンをステークしてXOM報酬を獲得",
+      "description": "Earn XOM rewards by providing liquidity",
       "pools": "マイニングプール",
-      "noPoolsTitle": "利用可能なプールなし",
-      "noPoolsDescription": "マイニングプールは近日中に設定されます。後でもう一度確認してください。",
-      "poolId": "プール #{{id}}",
+      "noPools": "No active mining pools at the moment",
       "apr": "APR",
+      "aprTooltip": "Estimated annual percentage rate based on current rewards",
       "tvl": "TVL",
-      "rewardRate": "報酬レート",
-      "perSecond": "{{rate}} XOM/秒",
-      "yourStake": "あなたのステーク",
-      "pendingRewards": "保留中の報酬",
-      "totalStaked": "ステーク合計",
-      "active": "アクティブ",
-      "inactive": "非アクティブ",
-      "connectWallet": "ウォレットを接続してポジションを確認",
-      "noPosition": "アクティブなマイニングポジションはありません",
-      "errorLoading": "マイニングデータの読み込みエラー"
+      "tvlTooltip": "Total value of LP tokens staked in this pool",
+      "staked": "Your Stake",
+      "pending": "Pending Rewards",
+      "immediate": "Immediate (30%)",
+      "vesting": "Vesting (70%)",
+      "fetchError": "Failed to load mining pools. Please try again."
     },
     "bonding": {
       "title": "プロトコルボンディング",
-      "subtitle": "ボンド購入で割引XOMを取得",
-      "availableBonds": "利用可能なボンド",
-      "noBondsTitle": "利用可能なボンドなし",
-      "noBondsDescription": "ボンド条件は近日中に設定されます。後でもう一度確認してください。",
-      "bondAsset": "ボンドアセット",
-      "price": "価格",
-      "discount": "割引",
-      "vestingPeriod": "ベスティング期間",
-      "days": "{{count}}日",
-      "xomPerToken": "{{amount}} XOM/トークン",
-      "calculator": "ボンド計算機",
-      "youPay": "支払い",
-      "youReceive": "受取り",
-      "tokens": "トークン",
-      "yourBonds": "あなたのボンド",
+      "description": "Bond assets for discounted XOM with linear vesting",
+      "available": "Available Bonds",
       "noBonds": "アクティブなボンドはありません",
+      "discount": "割引",
+      "discountTooltip": "Discount off market price when bonding this asset",
+      "vestingPeriod": "ベスティング期間",
+      "capacity": "Daily Capacity",
+      "remaining": "Remaining Today",
+      "calculator": "ボンド計算機",
+      "selectAsset": "Asset",
+      "amountInput": "Bond amount",
+      "xomReceived": "XOM received",
+      "yourBonds": "あなたのボンド",
       "claimed": "請求済み",
-      "vesting": "ベスティング中",
+      "owed": "Total Owed",
       "vestingEnds": "ベスティング終了",
-      "connectWallet": "ウォレットを接続してポジションを確認",
-      "errorLoading": "ボンドデータの読み込みエラー"
+      "progress": "Vesting progress",
+      "fetchError": "Failed to load bond programs. Please try again."
     },
     "lbp": {
       "title": "トークンローンチ (LBP)",
-      "subtitle": "公平なトークン配布のための流動性ブートストラッピングプール",
-      "spotPrice": "スポット価格",
+      "description": "Fair price discovery via Liquidity Bootstrapping Pool",
+      "price": "Current Price",
+      "finalPrice": "Final Price",
       "weights": "プールウェイト",
       "xomWeight": "XOM {{weight}}%",
-      "usdcWeight": "USDC {{weight}}%",
-      "endsIn": "終了まで",
-      "ended": "終了",
-      "notStarted": "未開始",
+      "xomWeightTooltip": "XOM weight decreases over time to enable fair price discovery",
+      "counterWeight": "USDC Weight",
+      "counterWeightTooltip": "Counter-asset weight increases over time",
+      "weightBar": "Pool weight distribution",
       "reserves": "プールリザーブ",
-      "xomReserve": "XOMリザーブ",
-      "usdcReserve": "USDCリザーブ",
-      "totalSwaps": "総スワップ数",
-      "status": "ステータス",
-      "active": "アクティブ",
-      "inactive": "非アクティブ",
-      "loading": "LBPデータを読み込み中...",
-      "errorLoading": "LBPデータの読み込みエラー"
+      "timeRemaining": "Time Remaining",
+      "notActive": "No active LBP at the moment",
+      "ended": "終了",
+      "totalRaised": "Total Raised",
+      "fetchError": "Failed to load LBP status. Please try again."
     },
     "chart": {
       "title": "Price Chart",
@@ -1654,9 +1645,9 @@
         "connecting": "Connecting...",
         "connectionFailed": "Failed to connect wallet: {{message}}",
         "select": "Select Wallet",
+        "selectWallet": "ウォレットを接続",
         "selectDescription": "Choose how you want to connect",
         "disconnect": "切断",
-        "selectWallet": "ウォレットを接続",
         "recommended": "推奨",
         "notInstalled": "未インストール"
       },
@@ -1752,7 +1743,10 @@
       "txFailed": "スワップ取引が失敗しました。もう一度お試しください。",
       "swapSubmitted": "スワップが送信されました — ウォレットで確認してください。",
       "selectPair": "トークンを選択し、金額を入力して見積もりを取得",
-      "popularPairs": "人気のペア"
+      "popularPairs": "人気のペア",
+      "priceChartAria": "Price chart for {{sell}}/{{buy}}",
+      "loadingPrice": "Loading price data...",
+      "enterAmountForChart": "Enter an amount above to see live price data"
     }
   },
   "lbp": {
@@ -2871,6 +2865,12 @@
       "totalIssuersValue": "{{count}} 発行体",
       "totalIssuersTooltip": "マーケットプレイスにおけるトークン発行体のユニーク数"
     },
+    "sidebar": {
+      "resultsCount": "{{displayed}} / {{total}} 件の資産",
+      "statistics": "統計",
+      "verificationTier": "検証",
+      "assetType": "資産タイプ"
+    },
     "tiers": {
       "verified": "Verified",
       "verifiedAria": "Show only verified assets with enhanced quality standards",
@@ -3228,12 +3228,6 @@
       "volume": "24時間取引量"
     },
     "importHint": "コントラクトアドレスでカスタムRWAトークンをインポート",
-    "sidebar": {
-      "assetType": "資産タイプ",
-      "resultsCount": "{{displayed}} / {{total}} 件の資産",
-      "statistics": "統計",
-      "verificationTier": "検証"
-    },
     "portfolio": {
       "title": "RWA ポートフォリオ",
       "backToRwa": "RWAマーケットに戻る",
@@ -3549,6 +3543,11 @@
     "featured": {
       "title": "OmniBazaar ネイティブイールド",
       "subtitle": "XOM で収益を獲得 — ステーキング、流動性提供、OmniBazaar ネイティブの収益機会にご参加ください。"
+    },
+    "earlyLPBanner": {
+      "title": "Earn from Validator Overflow — Up to $890K/year",
+      "description": "USDC流動性を提供し、ブロック報酬のオーバーフローから収益を得ましょう。初期提供者が最高APRを獲得します。下の注目カードをご覧ください。",
+      "cta": "Learn More"
     },
     "native": {
       "badge": "OmniBazaar",
@@ -4170,9 +4169,6 @@
       "rewardHighlight": "LP提供者に年間約$890K",
       "ariaLabel": "アーリーLPオーバーフロー報酬 — バリデーター報酬オーバーフロー",
       "ctaAria": "マルチチェーン流動性プールモーダルを開く"
-    },
-    "earlyLPBanner": {
-      "description": "USDC流動性を提供し、ブロック報酬のオーバーフローから収益を得ましょう。初期提供者が最高APRを獲得します。下の注目カードをご覧ください。"
     }
   },
   "earnings": {
@@ -4282,6 +4278,20 @@
       "refunded": "Funds Refunded",
       "unknown": "Unknown Status"
     },
+    "secured": "secured",
+    "protection": "Escrow Protection",
+    "securedAmount": "Secured Amount",
+    "inspectionEnds": "Inspection period ends {{time}}.",
+    "confirmReceipt": "Confirm receipt before this time to release funds.",
+    "disputeFiledBy": "Dispute filed by {{user}}",
+    "fundsReleased": "Funds were released to the seller",
+    "timelineTitle": "Escrow Timeline",
+    "timelineSteps": {
+      "fundsDeposited": "Funds Deposited",
+      "itemShipped": "Item Shipped",
+      "deliveryConfirmed": "Delivery Confirmed",
+      "fundsReleased": "Funds Released"
+    },
     "actions": {
       "release": "Release",
       "dispute": "Dispute",
@@ -4357,40 +4367,12 @@
       "disputeRate": "Dispute Rate",
       "successRate": "Success Rate"
     },
-    "session": {
-      "activeTitle": "Active Support Session",
-      "supporting": "Supporting {{userName}} - User Score: {{score}}/100",
-      "markResolved": "Mark as Resolved",
-      "escalate": "Escalate Session",
-      "acceptButton": "Accept Session"
-    },
-    "queue": {
-      "title": "Support Queue",
-      "waiting": "{{count}} waiting",
-      "description": "Accept sessions to help users and earn PoP points",
-      "noSessions": "No sessions waiting",
-      "checkBack": "Check back in a moment"
-    },
     "tooltips": {
       "releaseFunds": "Transfer the escrowed funds to the seller after confirming delivery",
       "openDispute": "File a dispute if there's an issue with the transaction",
       "viewDetails": "See complete escrow transaction details and timeline",
       "contactParty": "Send a message to the other party in this transaction",
       "exportData": "Download escrow transaction records for your accounting"
-    },
-    "secured": "secured",
-    "protection": "Escrow Protection",
-    "securedAmount": "Secured Amount",
-    "inspectionEnds": "Inspection period ends {{time}}.",
-    "confirmReceipt": "Confirm receipt before this time to release funds.",
-    "disputeFiledBy": "Dispute filed by {{user}}",
-    "fundsReleased": "Funds were released to the seller",
-    "timelineTitle": "Escrow Timeline",
-    "timelineSteps": {
-      "fundsDeposited": "Funds Deposited",
-      "itemShipped": "Item Shipped",
-      "deliveryConfirmed": "Delivery Confirmed",
-      "fundsReleased": "Funds Released"
     },
     "offerPending": "あなたのオファーは売り手に送信されました",
     "offerAccepted": "売り手があなたのオファーを承認しました",
@@ -5433,75 +5415,138 @@
       "title": "取引上限",
       "daily": "1日あたり",
       "monthly": "1か月あたり",
+      "unlimited": "Unlimited",
       "format": "{{used}} / {{limit}} XOM"
     },
     "tiers": {
+      "anonymous": {
+        "name": "Anonymous",
+        "description": "Email-only access with basic functionality",
+        "requirements": {
+          "items": [
+            "Email verification"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "View listings",
+            "Use chat"
+          ]
+        }
+      },
       "basic": {
         "name": "基本認証",
         "description": "メール、電話番号、ソーシャルメディアの認証",
-        "requirements": [
-          "メール認証",
-          "電話番号認証",
-          "ソーシャルメディアアカウント"
-        ],
-        "privileges": [
-          "基本取引",
-          "マーケットプレイスへのアクセス",
-          "チャット機能"
-        ]
+        "requirements": {
+          "items": [
+            "Email verification",
+            "Phone verification",
+            "Social media account"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "Basic trading",
+            "Marketplace access",
+            "Chat features"
+          ]
+        }
       },
       "identity": {
         "name": "本人確認",
         "description": "政府発行の身分証明書による認証",
-        "requirements": [
-          "有効な政府発行の身分証明書",
-          "セルフィー認証",
-          "住所証明"
-        ],
-        "privileges": [
-          "ティア1の全機能",
-          "より高い取引上限",
-          "優先サポート"
-        ]
+        "requirements": {
+          "items": [
+            "Full legal name",
+            "Physical address",
+            "OCR-verified document (bank statement, utility bill, etc.)"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "All Tier 1 features",
+            "Higher trading limits",
+            "Priority support"
+          ]
+        }
       },
       "enhanced": {
         "name": "強化認証",
         "description": "第三者KYCプロバイダーによる認証",
-        "requirements": [
-          "第三者KYC",
-          "金融認証",
-          "強化デューデリジェンス"
-        ],
-        "privileges": [
-          "ティア2の全機能",
-          "無制限取引",
-          "OTCアクセス"
-        ]
+        "requirements": {
+          "items": [
+            "Government-issued photo ID (via Persona)",
+            "Live selfie verification",
+            "AML/PEP screening clearance",
+            "Accredited investor certification (optional)"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "All Tier 2 features",
+            "Unlimited trading",
+            "OTC access",
+            "Validator eligibility"
+          ]
+        }
       },
       "institutional": {
         "name": "機関投資家",
         "description": "ビジネスおよび機関投資家向け認証",
-        "requirements": [
-          "事業者登録",
-          "役員認証",
-          "コンプライアンス文書"
-        ],
-        "privileges": [
-          "全機能",
-          "APIアクセス",
-          "カスタム統合",
-          "専任サポート"
-        ]
+        "requirements": {
+          "items": [
+            "Business registration documents",
+            "Director/officer verification",
+            "Entity verification (via Persona)"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "All features",
+            "API access",
+            "Custom integration",
+            "Dedicated support"
+          ]
+        }
       }
     },
     "verification": {
+      "basic": {
+        "title": "Complete Basic Verification"
+      },
+      "email": {
+        "label": "Email",
+        "title": "Email Verification"
+      },
+      "phone": {
+        "label": "Phone",
+        "title": "Phone Verification",
+        "placeholder": "+1234567890"
+      },
       "social": {
+        "label": "Social Media",
+        "title": "Social Media Verification",
         "twitter": "Twitter",
         "linkedin": "LinkedIn",
-        "instagram": "Instagram"
+        "instagram": "Instagram",
+        "facebook": "Facebook"
+      },
+      "id": {
+        "label": "ID Verified"
+      },
+      "sendCode": "Send Code",
+      "enterCode": "Enter verification code",
+      "success": {
+        "emailSent": "Verification email sent! Please check your inbox.",
+        "codeSent": "Verification code sent to your phone!",
+        "socialVerified": "{{platform}} account verified successfully!"
       },
       "errors": {
-        "loadFailed": "Failed to load KYC status"
+        "loadFailed": "Failed to load KYC status",
+        "emailFailed": "Failed to send verification email. Please try again.",
+        "enterPhone": "Please enter a valid phone number.",
+        "codeFailed": "Failed to send verification code. Please try again.",
+        "socialFailed": "Failed to start social media verification. Please try again."
       }
     },
     "uploadDocument": {
@@ -5517,14 +5562,16 @@
       "verifyIdentity": "Start the identity verification process to unlock higher limits",
       "linkSocial": "Connect your social media account to improve verification",
       "submitVerification": "Submit your documents for review by our verification team",
-      "tierInfo": "Higher tiers unlock increased transaction limits and features"
+      "tierInfo": "Higher tiers unlock increased transaction limits and features",
+      "viewLimits": "See your current transaction limits based on verification level"
     },
     "loading": "KYC ステータスを読み込み中...",
     "title": "KYC 認証",
     "subtitle": "認証を完了して高額取引の上限を解除しましょう",
     "yourStatus": {
       "title": "認証状況",
-      "currentTier": "現在のティア: {{tier}} / 4"
+      "currentTier": "現在のティア: {{tier}} / 4",
+      "verificationStatus": "Verification Status"
     },
     "verificationStatus": {
       "title": "認証状況",
@@ -5591,7 +5638,139 @@
       "invalidFileType": "JPG、PNG、PDFファイルのみ許可されています",
       "statusLoadFailed": "KYCステータスの読み込みに失敗しました"
     },
-    "tier": "ティア {{number}}: {{name}}"
+    "tier": "ティア {{number}}: {{name}}",
+    "currentTier": "Current Tier",
+    "persona": {
+      "tier3": {
+        "title": "Identity Verification",
+        "description": "Complete government ID verification and live selfie through Persona to unlock higher limits and validator eligibility.",
+        "successMessage": "Identity verification completed successfully! Your account has been upgraded."
+      },
+      "tier4": {
+        "title": "Institutional Verification",
+        "description": "Complete business entity verification through Persona to unlock institutional features and unlimited limits.",
+        "successMessage": "Institutional verification completed successfully! Your account has been upgraded."
+      },
+      "requirements": {
+        "intro": "You will need the following to complete verification:",
+        "governmentId": "A valid government-issued photo ID (passport, driver's license, or national ID)",
+        "liveSelfie": "A live selfie for liveness verification",
+        "amlScreening": "You will be screened against AML/PEP databases",
+        "businessRegistration": "Business registration documents",
+        "entityVerification": "Company officer/director identification"
+      },
+      "startVerification": "Start Identity Verification",
+      "loading": "Preparing your verification session...",
+      "retry": "Try Again",
+      "verified": "Verification Approved",
+      "notApproved": "Verification Not Approved",
+      "notApprovedMessage": "Your identity verification was not approved. You may try again or contact support for assistance.",
+      "tryAgain": "Try Again",
+      "iframeDescription": "Complete the verification steps in the form below. You may be asked to present your ID and take a selfie.",
+      "iframeTitle": "Persona Identity Verification",
+      "errors": {
+        "startFailed": "Failed to start identity verification. Please try again.",
+        "createFailed": "Failed to create verification session."
+      }
+    },
+    "accreditedInvestor": {
+      "title": "Accredited Investor Certification",
+      "description": "SEC Rule 501(a) allows self-certification of accredited investor status. This is optional and does not affect your KYC tier.",
+      "criteriaTitle": "Do any of the following apply to you?",
+      "criteria": {
+        "netWorth": "My net worth (or joint net worth with spouse) exceeds $1,000,000, excluding my primary residence",
+        "individualIncome": "My individual income has exceeded $200,000 in each of the last two years, and I expect it to exceed $200,000 this year",
+        "jointIncome": "My joint income with my spouse has exceeded $300,000 in each of the last two years, and we expect it to exceed $300,000 this year",
+        "professionalLicense": "I hold a Series 7, Series 65, or Series 82 professional license in good standing",
+        "knowledgeableEmployee": "I am a knowledgeable employee of a private fund"
+      },
+      "acknowledgment": "I certify under penalty of law that the information provided above is true and correct. I understand that providing false information may result in legal consequences and account restrictions.",
+      "notAccredited": "I am NOT an accredited investor",
+      "submit": "Submit Certification",
+      "submitting": "Submitting...",
+      "submitted": "Certification Submitted",
+      "accreditedConfirmed": "Your accredited investor certification has been recorded. This may unlock additional investment features.",
+      "notAccreditedConfirmed": "Your non-accredited status has been recorded. You can update this at any time if your circumstances change.",
+      "successMessage": "Accredited investor certification submitted successfully.",
+      "disclaimer": "This self-certification is for informational purposes within the OmniBazaar platform. It does not constitute legal advice or a binding legal determination of your accredited investor status.",
+      "errors": {
+        "selectCriteria": "Please select at least one qualifying criterion, or choose the non-accredited option.",
+        "acknowledgeRequired": "You must acknowledge the legal certification statement before submitting.",
+        "submitFailed": "Failed to submit accredited investor certification. Please try again."
+      }
+    },
+    "tier2Upload": {
+      "title": "Document Verification",
+      "description": "Upload a document that shows your name and address for OCR-based verification. Accepted documents include bank statements, utility bills, tax documents, and official letters.",
+      "nameLabel": "Full Legal Name",
+      "namePlaceholder": "Enter your full legal name as it appears on official documents",
+      "addressLabel": "Physical Address",
+      "addressPlaceholder": "Enter your full physical address",
+      "documentTypeLabel": "Document Type",
+      "documentTypePlaceholder": "Select a document type",
+      "documentTypes": {
+        "bankStatement": "Bank Statement",
+        "utilityBill": "Utility Bill",
+        "taxDocument": "Tax Document",
+        "officialLetter": "Official Letter"
+      },
+      "fileLabel": "Upload Document",
+      "dropzoneLabel": "Click or drag to upload a document",
+      "dropzoneText": "Click to select a file or drag and drop",
+      "fileRequirements": "JPG, PNG, or PDF (max 10MB)",
+      "removeFile": "Remove file",
+      "previewAlt": "Document preview",
+      "submit": "Submit for Verification",
+      "submitting": "Submitting...",
+      "progressLabel": "Document verification progress",
+      "progressPreparing": "Preparing document...",
+      "progressConverting": "Processing document...",
+      "progressVerifying": "Verifying with OCR...",
+      "progressComplete": "Verification complete",
+      "verified": "Document Verified",
+      "pending": "Verification Pending",
+      "rejected": "Document Rejected",
+      "statusMessage": "Your document has been submitted for review.",
+      "ocrResults": "Extracted Information",
+      "extractedName": "Name",
+      "extractedAddress": "Address",
+      "tryAgain": "Upload Different Document",
+      "successMessage": "Document submitted successfully! Verification is in progress.",
+      "errors": {
+        "fileTooLarge": "File size must be less than 10MB. Please select a smaller file.",
+        "invalidFileType": "Only JPG, PNG, and PDF files are accepted. Please select a valid file type.",
+        "nameRequired": "Please enter your full legal name.",
+        "addressRequired": "Please enter your physical address.",
+        "documentTypeRequired": "Please select a document type.",
+        "fileRequired": "Please select a file to upload.",
+        "submitFailed": "Failed to submit document for verification. Please try again."
+      }
+    },
+    "tier3": {
+      "title": "Tier 3: Identity Verification",
+      "description": "Complete the following steps to achieve full identity verification. AML screening is performed automatically after Persona verification.",
+      "steps": {
+        "personaId": "Government ID + Live Selfie (via Persona)",
+        "amlScreening": "AML/PEP Screening",
+        "accreditedInvestor": "Accredited Investor Certification"
+      },
+      "optional": "optional",
+      "amlCleared": "AML screening cleared",
+      "amlPending": "AML screening in progress",
+      "accreditedSubmitted": "Certification submitted",
+      "aml": {
+        "title": "AML/PEP Screening Status",
+        "cleared": "AML/PEP screening has been completed and cleared. No flags were found.",
+        "flagged": "AML/PEP screening has flagged your account. Please contact support for assistance.",
+        "pending": "AML/PEP screening is pending. This will be processed automatically after your identity is verified through Persona."
+      }
+    },
+    "errors": {
+      "personaCreateFailed": "Failed to start identity verification. Please try again.",
+      "personaStatusFailed": "Failed to check verification status.",
+      "tier2SubmitFailed": "Failed to submit document for verification. Please try again.",
+      "accreditedSubmitFailed": "Failed to submit accredited investor certification. Please try again."
+    }
   },
   "transaction": {
     "history": {
@@ -5883,6 +6062,7 @@
     "placeholders": {
       "username": "Enter your username",
       "chooseUsername": "Choose a username",
+      "chooseUsernameHint": "This becomes your wallet address",
       "email": "your@email.com",
       "password": "Enter your password",
       "passwordRequirement": "At least 12 characters",
@@ -6070,6 +6250,7 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "faq": "FAQ",
+    "fees": "Fee Schedule",
     "profile": "プロフィール",
     "settings": "設定",
     "notifications": "通知",
@@ -6655,36 +6836,7 @@
       "avalanche": "Avalanche",
       "bsc": "BSC",
       "arbitrum": "Arbitrum",
-      "optimism": "Optimism",
-      "base": "Base",
-      "fantom": "Fantom",
-      "gnosis": "Gnosis Chain",
-      "moonbeam": "Moonbeam",
-      "celo": "Celo",
-      "harmony": "Harmony",
-      "cronos": "Cronos",
-      "zksync": "zkSync Era",
-      "linea": "Linea",
-      "scroll": "Scroll",
-      "metis": "Metis",
-      "ethereumClassic": "Ethereum Classic",
-      "sonic": "Sonic",
-      "kaia": "Kaia",
-      "conflux": "Conflux eSpace",
-      "rootstock": "Rootstock",
-      "immutableZkevm": "Immutable zkEVM",
-      "berachain": "Berachain",
-      "shibarium": "Shibarium",
-      "kadena": "Kadena",
-      "bitcoin": "Bitcoin",
-      "litecoin": "Litecoin",
-      "dogecoin": "Dogecoin",
-      "bitcoinCash": "Bitcoin Cash",
-      "dash": "Dash",
-      "solana": "Solana",
-      "telos": "Telos",
-      "canto": "Canto",
-      "viction": "Viction"
+      "optimism": "Optimism"
     }
   },
   "chat": {
@@ -7354,7 +7506,8 @@
       "cookiePolicy": "Cookie Policy",
       "disputeResolution": "Dispute Resolution",
       "kycPolicy": "KYC Policy",
-      "amlCompliance": "AML Compliance"
+      "amlCompliance": "AML Compliance",
+      "feeSchedule": "Fee Schedule"
     },
     "about": {
       "description1": "OmniBazaar is a global network of e-commerce marketplaces designed to eliminate middlemen and reduce transaction fees via blockchain technology. We are building an advanced marketplace software template that will allow tens or hundreds of thousands of individuals and small businesses to open localized and specialized marketplaces around the world.",
@@ -7745,6 +7898,45 @@
       "search": "Search pairs...",
       "favorites": "お気に入り",
       "all": "All Pairs"
+    }
+  },
+  "notificationPreferences": {
+    "title": "通知設定",
+    "description": "通知の設定をカスタマイズ",
+    "save": "設定を保存",
+    "methodsTitle": "通知方法",
+    "methodsDescription": "通知の受信方法を選択してください",
+    "inApp": "アプリ内通知",
+    "inAppDescription": "アプリ内に通知を表示",
+    "push": "プッシュ通知",
+    "pushDescription": "ブラウザのプッシュ通知を受信",
+    "email": "メール通知",
+    "emailDescription": "メールで通知を受信",
+    "sound": "サウンドアラート",
+    "soundDescription": "重要な通知時にサウンドを再生",
+    "comingSoon": "近日公開",
+    "categoriesTitle": "通知カテゴリ",
+    "categoriesDescription": "受信したい通知の種類を選択してください",
+    "resetDefaults": "デフォルトに戻す",
+    "savePreferences": "設定を保存",
+    "saved": "設定が保存されました",
+    "savedDescription": "通知の設定が更新されました。",
+    "saveFailed": "設定の保存に失敗しました",
+    "cat": {
+      "orders": "注文",
+      "ordersDesc": "購入・販売に関する更新",
+      "messages": "メッセージ",
+      "messagesDesc": "新着メッセージとチャットリクエスト",
+      "marketplace": "マーケットプレイス",
+      "marketplaceDesc": "出品情報とオファーの更新",
+      "trading": "トレーディング",
+      "tradingDesc": "DEX取引と注文の更新",
+      "staking": "ステーキング",
+      "stakingDesc": "ステーキングと報酬の通知",
+      "wallet": "ウォレット",
+      "walletDesc": "支払いと残高のアラート",
+      "system": "システム",
+      "systemDesc": "重要なシステム更新とアラート"
     }
   },
   "escrowPage": {
@@ -8238,6 +8430,10 @@
     "resultsCount_other": "{{count}} listings found",
     "resultsCountPartial": "{{displayed}} / {{total}} 件の結果",
     "endOfResults": "You've viewed all {{count}} listings. Try adjusting your filters to see more results.",
+    "recommendations": {
+      "title": "あなたへのおすすめ",
+      "empty": "より多くの商品を閲覧して、パーソナライズされたおすすめを受け取りましょう"
+    },
     "errors": {
       "fetchListingsFailed": "Unable to load listings. Please check your network connection and try again. If the problem persists, try refreshing the page.",
       "fetchListingFailed": "Unable to load this listing. It may have been removed or is temporarily unavailable. Please try again or browse other listings.",
@@ -8265,10 +8461,6 @@
       "promotionFailed": "プロモーションを作成できませんでした。すべての項目を確認して再度お試しください。",
       "promotionDeleteFailed": "このプロモーションを削除できませんでした。再度お試しください。",
       "trackingEventFailed": "追跡イベントを追加できませんでした。追跡情報を確認して再度お試しください。"
-    },
-    "recommendations": {
-      "title": "あなたへのおすすめ",
-      "empty": "より多くの商品を閲覧して、パーソナライズされたおすすめを受け取りましょう"
     }
   },
   "createListing": {
@@ -8358,13 +8550,21 @@
       "title": "コメントと質問",
       "placeholder": "コメントを書くか質問をする...",
       "submit": "コメントを投稿",
+      "posted": "Comment posted",
       "reply": "返信",
       "question": "質問として投稿",
+      "markAsQuestion": "Ask a question",
       "noComments": "まだコメントはありません。最初のコメントを投稿しましょう！",
       "charCount": "{{current}}/{{max}}文字",
+      "flag": "Report",
       "flagged": "コメントが審査のためにフラグされました",
       "sellerReply": "販売者",
-      "deleted": "コメントが削除されました"
+      "seller": "Seller",
+      "anonymous": "Anonymous",
+      "deleted": "コメントが削除されました",
+      "errors": {
+        "postFailed": "Failed to post comment"
+      }
     },
     "reactions": {
       "like": "いいね",
@@ -8494,6 +8694,7 @@
     "status": {
       "ACCEPTED": "見積もり承諾済み",
       "COLLATERAL_LOCKED": "担保ロック済み",
+      "PENDING_USER_SETTLEMENT": "Awaiting Your Signature",
       "EXECUTING": "取引執行中",
       "SETTLED": "決済完了",
       "DISPUTED": "紛争中",
@@ -8503,6 +8704,7 @@
     "statusDescription": {
       "ACCEPTED": "見積もりが承諾されました。担保をロック中...",
       "COLLATERAL_LOCKED": "担保がオンチェーンで確保されました。取引を執行中...",
+      "PENDING_USER_SETTLEMENT": "Trade matched! Sign the settlement transaction to complete on-chain.",
       "EXECUTING": "取引を執行中です。しばらくお待ちください...",
       "SETTLED": "取引が正常に決済されました！資金が送金されました。",
       "DISPUTED": "この決済は紛争中です。当社チームが確認しています。",
@@ -8514,7 +8716,14 @@
     "viewOnExplorer": "エクスプローラーで表示",
     "estimatedTime": "完了予定時間",
     "seconds": "{{count}} 秒",
-    "refreshing": "ステータスを更新中..."
+    "refreshing": "ステータスを更新中...",
+    "settleOnChain": "Settle On-Chain",
+    "settling": "Settling...",
+    "settled": "Trade settled on-chain successfully!",
+    "signing": "Please sign the settlement transaction...",
+    "walletRequired": "Please connect your wallet to settle this trade.",
+    "notFound": "Settlement data not found. It may have expired.",
+    "userSettlementRequired": "Your trade is matched and ready. Sign the settlement transaction to complete it on-chain."
   },
   "staking": {
     "title": "XOM Staking",
@@ -8670,9 +8879,9 @@
     "status": {
       "active": "アクティブ",
       "unlocked": "Unlocked",
-      "withdrawn": "Withdrawn",
       "unlocking": "Unlocking",
-      "completed": "Completed"
+      "completed": "Completed",
+      "withdrawn": "Withdrawn"
     },
     "errors": {
       "connectWallet": "Please connect your wallet",
@@ -8901,7 +9110,9 @@
       "noAccount": "No account found for this seed phrase. Please ensure you entered the correct seed phrase.",
       "recoveryFailed": "Failed to recover username. Please check your internet connection and try again.",
       "usernameNotFound": "Username not found. The account may not be registered yet.",
-      "unsupportedChain": "This network is not currently supported. Please select a supported network."
+      "unsupportedChain": "This network is not currently supported. Please select a supported network.",
+      "txNotFound": "The original transaction was not found. It may have already been confirmed or dropped by the network.",
+      "gasEstimationFailed": "Could not estimate gas price. Please try again in a moment."
     }
   },
   "unifiedWallet": {
@@ -8930,18 +9141,6 @@
       "lbpNotDeployed": "LBP contract not deployed on this network.",
       "noRouter": "No swap router contract available. Please try again later.",
       "routerNotDeployed": "OmniSwapRouter not deployed on this network."
-    },
-    "external": {
-      "embeddedTab": "OmniWallet",
-      "externalTab": "外部ウォレット",
-      "connect": "ウォレットを接続",
-      "disconnect": "切断",
-      "waitingForApproval": "ウォレットの承認を待機中…",
-      "missingProjectId": "WalletConnect プロジェクト ID が設定されていません。EXPO_PUBLIC_WALLETCONNECT_PROJECT_ID を設定して再読込してください。",
-      "requiresEmbedded": "このルートは OmniCoin を使用し、組み込みウォレットで署名する必要があります。OmniCoin スワップには OmniWallet に切り替えてください。"
-    },
-    "cta": {
-      "confirmInWallet": "ウォレットで確認してください…"
     }
   },
   "exchange": {
@@ -9260,8 +9459,8 @@
         "placeholder": "Search by block height, transaction hash, or address...",
         "found": "Found {{type}}: {{query}}",
         "notFound": "No results found",
-        "failed": "Search failed",
         "notFoundAction": "No results found. Try entering a valid block height, transaction hash, or wallet address.",
+        "failed": "Search failed",
         "failedAction": "Search failed. Please verify your query and try again."
       },
       "time": {
@@ -9419,12 +9618,12 @@
     "status": {
       "completed": "完了",
       "failed": "失敗",
-      "bridging": "ブリッジ中",
-      "swapping": "スワップ中",
-      "executing": "実行中",
       "pending": "保留中",
       "approving": "承認中",
+      "bridging": "ブリッジ中",
+      "swapping": "スワップ中",
       "settling": "決済中",
+      "executing": "実行中",
       "awaitingClaim": "受取待ち"
     },
     "route": {
@@ -9791,10 +9990,25 @@
     }
   },
   "privacy": {
-    "errors": {
-      "conversionFailed": "Privacy conversion failed. Please try again."
-    },
     "tabTitle": "プライバシー",
+    "checkout": {
+      "toggle": "プライベート決済",
+      "enabled": "プライベート決済が有効 — お支払いは暗号化されたpXOMを使用します。金額はオンチェーンで非公開ですが、トランザクション自体は記録されます。",
+      "disabled": "標準決済 — 取引はブロックチェーン上で可視",
+      "fee": "プライベート決済には0.3%の変換手数料がかかります",
+      "guarantee": "支払い金額はCOTIガーブルド回路で暗号化されます。ウォレットアドレスはオンチェーンで引き続き可視です。アドレスのプライバシーにはリレイヤーモードを有効にしてください。",
+      "tooltip": "プライベート決済はpXOMを使用して取引詳細を隠します"
+    },
+    "listing": {
+      "makePrivate": "プライベート出品",
+      "privateLabel": "プライベート",
+      "threshold": "スコア50以上の出品者が利用可能"
+    },
+    "payment": {
+      "processing": "プライベート決済を処理中...",
+      "complete": "プライベート決済が完了しました",
+      "badge": "プライベート決済"
+    },
     "dashboard": {
       "title": "プライバシーダッシュボード",
       "description": "プライベート残高を管理し、XOMとpXOM間で変換",
@@ -9850,8 +10064,8 @@
           "private_transfer": "プライベート送金"
         },
         "status": {
-          "pending": "保留中",
           "confirmed": "確認済み",
+          "pending": "保留中",
           "failed": "失敗"
         }
       },
@@ -9880,6 +10094,13 @@
         "treasuryPercent": "10%"
       }
     },
+    "gasless": {
+      "toggle": "ガスレスリレーを使用",
+      "tooltip": "OmniCoin側の操作はOmniForwarderを使用します — バリデーターがあなたの代わりにガスを支払います。COTI側の操作には引き続きCOTIガスが必要です。",
+      "badge": "ガスレス",
+      "omnicoinSide": "ガスレス（バリデーターがガスを支払い）",
+      "cotiSide": "COTIガスが必要"
+    },
     "transfer": {
       "title": "プライベート送金",
       "description": "pXOMを別のアドレスに送信します。金額はオンチェーンで暗号化されます。",
@@ -9897,340 +10118,6 @@
       "connected": "COTI V2 ネットワーク接続済み",
       "slow": "COTI V2 ネットワーク低速",
       "offline": "COTI V2 ネットワークオフライン"
-    },
-    "onboarding": {
-      "welcome": {
-        "title": "プライバシーへようこそ",
-        "description": "プライベートトランザクションはCOTI V2上でGarbled Circuits（MPC）を使用して実行されます。金額は暗号化され、確認できるのはあなただけです。"
-      },
-      "cotiSetup": {
-        "title": "COTI V2 セットアップ",
-        "onboarded": "COTI V2プライバシーネットワークに登録済みです。",
-        "notOnboarded": "COTI V2プライバシーネットワークに登録してください。この設定は一度だけ行います。",
-        "onboardButton": "今すぐ登録"
-      },
-      "gasSetup": {
-        "title": "COTIガス",
-        "description": "プライバシー操作にはガス手数料として少量のCOTIが必要です。",
-        "autoOption": "自動ガス取得 — 必要に応じてOmniBazaarがXOMをCOTIガスに自動的に交換します。",
-        "manualOption": "XOMをCOTIガスに直接交換します。",
-        "externalNote": "bridge.coti.ioでもCOTIを取得できます。"
-      },
-      "ready": {
-        "title": "準備完了！",
-        "description": "プライベートトランザクションの設定が完了しました。このダッシュボードからいつでもXOMをpXOMに変換できます。",
-        "dismiss": "了解"
-      },
-      "step1Title": "プライバシーへようこそ",
-      "step1Description": "プライベート取引は COTI V2 のガーブルド回路（MPC）で実行されます。金額は暗号化されており、ご自身だけが確認できます。",
-      "step1Body1": "COTI V2 はガーブルド回路（MPC）を使用してオンチェーンの取引金額を暗号化します。復号鍵を持っているのはあなただけです。",
-      "step1Body2": "XOM を pXOM に変換してプライベート残高を有効にします。pXOM 保有者間のプライベート送金では金額が他の人から隠されます。",
-      "step2Title": "COTI V2 セットアップ",
-      "step2Description": "COTI V2 プライバシーネットワークに登録します。これは一度だけの設定です。",
-      "step2Body": "小額の自己送金でウォレットを COTI MPC ネットワークに登録します。一度だけ行えば完了です。",
-      "step3Title": "COTI ガス",
-      "step3Description": "プライバシー操作にはガス代として少量の COTI が必要です。",
-      "step4Title": "準備完了！",
-      "step4Description": "プライベート取引の準備が整いました。プライバシーダッシュボードからいつでも XOM を pXOM に変換できます。",
-      "onboardNow": "今すぐ登録",
-      "onboardSuccess": "COTI V2 プライバシーネットワークに登録されました。",
-      "onboarding": "登録中...",
-      "onboardError": "登録に失敗しました — もう一度お試しください",
-      "next": "次へ",
-      "skip": "スキップ",
-      "gotIt": "了解",
-      "gasBalance": "ガス残高",
-      "refreshBalance": "残高を更新",
-      "insufficientGas": "COTI ガスが不足しています。COTI V2 ネットワークでのプライバシー操作に必要な COTI トークンを取得してください。",
-      "getCotiGas": "Swap で COTI ガスを取得",
-      "externalBridge": "または bridge.coti.io を使用",
-      "readyMessage": "プライベート取引の準備が整いました！",
-      "readySubtext": "プライバシーダッシュボードからいつでも XOM を pXOM に変換できます。",
-      "stepIndicator": "セットアップの進捗"
-    },
-    "gasless": {
-      "toggle": "ガスレスリレーを使用",
-      "tooltip": "OmniCoin側の操作はOmniForwarderを使用します — バリデーターがあなたの代わりにガスを支払います。COTI側の操作には引き続きCOTIガスが必要です。",
-      "badge": "ガスレス",
-      "omnicoinSide": "ガスレス（バリデーターがガスを支払い）",
-      "cotiSide": "COTIガスが必要"
-    },
-    "title": "プライバシーポリシー",
-    "subtitle": "分散型世界でのデータの取り扱い方法",
-    "lastUpdated": "最終更新: 2025年1月15日",
-    "toc": {
-      "title": "目次"
-    },
-    "notice": {
-      "title": "プライバシー第一の分散型アーキテクチャ",
-      "description": "OmniBazaar は、ユーザーのプライバシーを優先する分散型技術に基づいて構築されています。データのほとんどは、集中型サーバーではなく、ローカルまたはあなたの管理下にある分散ネットワークに保存されます。このポリシーでは、処理する限られたデータとあなたの情報に関する権利について説明します。"
-    },
-    "sections": {
-      "overview": {
-        "title": "プライバシー概要",
-        "intro": "OmniBazaar は、データ収集を最小限に抑え、個人情報に対するユーザーの管理を最大化する分散型マーケットプレイスプロトコルとして機能します:",
-        "principles": {
-          "decentralized": {
-            "title": "設計による分散化",
-            "description": "ほとんどのデータはあなたのデバイスまたは分散ネットワークに保存されます"
-          },
-          "minimal": {
-            "title": "最小限のデータ収集",
-            "description": "コア機能に必要なものだけを収集します"
-          },
-          "control": {
-            "title": "ユーザー管理",
-            "description": "共有する情報と共有相手を決定します"
-          },
-          "transparent": {
-            "title": "透明な処理",
-            "description": "すべてのデータ処理はスマートコントラクトとオープンプロトコルによって管理されます"
-          }
-        },
-        "keyPrinciple": {
-          "title": "基本原則",
-          "description": "データはあなたのものです。私たちはツールとインフラストラクチャを提供しますが、あなたは情報の管理を維持します。"
-        }
-      },
-      "collection": {
-        "title": "収集する情報",
-        "tabs": {
-          "provided": "あなたが提供する情報",
-          "automatic": "自動的に収集される情報",
-          "notCollected": "収集しない情報"
-        },
-        "table": {
-          "dataType": "データタイプ",
-          "storage": "保存場所",
-          "purpose": "目的"
-        },
-        "data": {
-          "profile": {
-            "type": "プロフィール情報",
-            "storage": "IPFS/ローカル",
-            "purpose": "マーケットプレイスアイデンティティのための表示名、プロフィール、アバター"
-          },
-          "listings": {
-            "type": "リスティングデータ",
-            "storage": "IPFS/Blockchain",
-            "purpose": "商品説明、画像、価格"
-          },
-          "messages": {
-            "type": "メッセージ",
-            "storage": "暗号化 P2P",
-            "purpose": "購入者と販売者間のコミュニケーション"
-          },
-          "wallet": {
-            "type": "ウォレットアドレス",
-            "storage": "Blockchain",
-            "purpose": "取引処理と支払い"
-          }
-        },
-        "automatic": {
-          "transaction": "トランザクションデータ",
-          "transactionDesc": "公開ブロックチェーンに記録",
-          "analytics": "使用分析",
-          "analyticsDesc": "匿名化されたインタラクションデータ（オプトイン）",
-          "technical": "技術データ",
-          "technicalDesc": "IP アドレス、ブラウザタイプ、デバイス情報（一時的）",
-          "performance": "パフォーマンスデータ",
-          "performanceDesc": "エラーログとパフォーマンスメトリクス"
-        },
-        "notCollected": {
-          "documents": "個人識別書類（必要に応じてサードパーティ KYC プロバイダーによって処理）",
-          "creditCard": "クレジットカードまたは銀行口座情報",
-          "governmentId": "社会保障番号または政府発行の ID",
-          "browsingHistory": "詳細な閲覧履歴または他のウェブサイトでの追跡",
-          "privateKeys": "秘密鍵またはシードフレーズ（常にあなたの元に残ります）"
-        }
-      },
-      "usage": {
-        "title": "情報の使用方法",
-        "intro": "OmniBazaar は、分散型マーケットプレイスの運営に必要な目的のためにのみ収集した情報を使用します:",
-        "purposes": {
-          "marketplace": "買い手と売り手間のマーケットプレイス取引の促進",
-          "identity": "ユーザー名登録およびオプションの本人確認（KYC）の提供",
-          "reputation": "参加スコアおよび評判メトリクスの算出",
-          "communication": "ユーザー間のピアツーピア暗号化メッセージングの実現",
-          "security": "詐欺、不正利用、および禁止されている活動の検出と防止",
-          "improvement": "集約された匿名化分析によるプラットフォームのパフォーマンスおよびユーザーエクスペリエンスの向上"
-        },
-        "noSale": "当社は、マーケティングや広告の目的で、あなたの個人情報を第三者に販売、貸与、または取引することは一切ありません。",
-        "automated": "プラットフォームの特定の機能は、自動処理（スマートコントラクト、評判スコアリング）を使用しており、オンチェーンまたは監査可能なバリデーターロジックを通じて透明に動作します。"
-      },
-      "storage": {
-        "title": "データストレージと IPFS",
-        "subtitle": "分散ストレージアーキテクチャ",
-        "ipfs": {
-          "title": "IPFS（InterPlanetary File System）",
-          "description": "リスティング、画像、プロフィールデータは、秘密鍵を通じてあなたが管理する分散 IPFS ネットワークに保存されます。"
-        },
-        "table": {
-          "type": "ストレージタイプ",
-          "data": "保存されるデータ",
-          "control": "管理",
-          "privacy": "プライバシーレベル"
-        },
-        "types": {
-          "local": {
-            "name": "ローカルデバイス",
-            "data": "設定、環境設定、ドラフトコンテンツ",
-            "control": "完全なユーザー管理",
-            "privacy": "完全なプライバシー"
-          },
-          "ipfs": {
-            "name": "IPFS ネットワーク",
-            "data": "リスティング、画像、公開プロフィールデータ",
-            "control": "ユーザー管理キー",
-            "privacy": "仮名"
-          },
-          "blockchain": {
-            "name": "Blockchain",
-            "data": "トランザクション、スマートコントラクトインタラクション",
-            "control": "不変で透明",
-            "privacy": "仮名"
-          },
-          "p2p": {
-            "name": "暗号化 P2P",
-            "data": "プライベートメッセージ、コミュニケーション",
-            "control": "エンドツーエンド暗号化",
-            "privacy": "プライベート"
-          }
-        }
-      },
-      "sharing": {
-        "title": "情報共有",
-        "intro": "分散型プラットフォームとして、OmniBazaar は中央集権型サービスとは異なる方法で情報を共有します:",
-        "categories": {
-          "public": {
-            "title": "設計上の公開性",
-            "content": "ブロックチェーン取引、マーケットプレイスのリスティング、および公開プロフィール情報は、すべてのネットワーク参加者に本質的に可視です。この透明性は分散型アーキテクチャの特徴であり、データ共有の決定ではありません。"
-          },
-          "p2p": {
-            "title": "ピアツーピア",
-            "content": "プライベートメッセージはエンドツーエンドで暗号化され、バリデーターリレーネットワークを通じてユーザー間で直接送信されます。バリデーターは暗号化されたデータを中継しますが、メッセージの内容を読むことはできません。"
-          },
-          "validators": {
-            "title": "バリデーターノード",
-            "content": "バリデーターオペレーターは、分散ネットワークの一部としてトランザクションを処理し、マーケットプレイスデータを保存します。彼らはバリデーター行動規範に拘束され、暗号化されたプライベートデータにアクセスすることはできません。"
-          },
-          "legal": {
-            "title": "法的要件",
-            "content": "個々のバリデーターオペレーターは、それぞれの管轄区域における法的要請に従う必要がある場合があります。ただし、データはネットワーク全体に分散されているため、単一のオペレーターがすべてのユーザーデータを保持することはありません。"
-          }
-        },
-        "noSale": "OmniBazaar エコシステムの参加者は、ユーザーデータを広告主、データブローカー、またはいかなる第三者にも販売しません。"
-      },
-      "cookies": {
-        "title": "Cookie と追跡",
-        "intro": "OmniBazaar は、ブラウザストレージとトラッキングに関してプライバシー第一のアプローチを採用しています:",
-        "items": {
-          "localStorage": "アプリケーションはブラウザの localStorage を使用して、設定、セッション状態、およびウォレット接続データを保存します。このデータがあなたのデバイスの外に出ることはありません。",
-          "noCookies": "OmniBazaar はトラッキング Cookie、広告 Cookie、またはサードパーティ分析 Cookie を使用しません。",
-          "noTracking": "当社はウェブサイト間でユーザーを追跡したり、広告プロファイルを構築したり、閲覧データを第三者と共有したりすることはありません。",
-          "essential": "ブラウザに保存されるデータは、アプリケーションの機能に不可欠なもののみです: 認証トークン、言語設定、テーマ設定、およびキャッシュされたマーケットプレイスデータ。"
-        },
-        "dnt": "OmniBazaar は、クロスサイトトラッキングを行わないため、デフォルトでブラウザの Do Not Track（DNT）信号を尊重します。"
-      },
-      "thirdParty": {
-        "title": "サードパーティサービス",
-        "intro": "OmniBazaar は以下のサードパーティサービスおよびプロトコルと連携します。それぞれに独自のプライバシーポリシーがあります:",
-        "services": {
-          "blockchain": {
-            "title": "Avalanche ブロックチェーン",
-            "content": "取引データは公開ブロックチェーンである Avalanche ネットワークに記録されます。オンチェーンデータは永続的で一般に公開されます。"
-          },
-          "ipfs": {
-            "title": "IPFS ネットワーク",
-            "content": "リスティング画像およびマーケットプレイスデータは、分散ストレージネットワークである InterPlanetary File System（IPFS）に保存されます。IPFS にピン留めされたデータは、コンテンツハッシュを持つすべてのネットワーク参加者が利用できます。"
-          },
-          "kyc": {
-            "title": "KYC 確認プロバイダー",
-            "content": "本人確認を行う場合、あなたの書類はサードパーティの KYC プロバイダーによって処理されます。OmniBazaar のバリデーターは、確認結果（合否およびティアレベル）のみを保存し、元の本人確認書類は保存しません。"
-          },
-          "rpc": {
-            "title": "ブロックチェーン RPC プロバイダー",
-            "content": "ウォレット操作は、ブロックチェーンネットワークとの通信のためにサードパーティの RPC プロバイダーを経由する場合があります。これらのプロバイダーは、独自のポリシーに従って IP アドレスやリクエストデータを記録する場合があります。"
-          }
-        },
-        "disclaimer": "OmniBazaar の貢献者は、サードパーティサービスのプライバシー慣行について責任を負いません。利用するサードパーティサービスのプライバシーポリシーを確認されることをお勧めします。"
-      },
-      "rights": {
-        "title": "プライバシー権",
-        "dataControl": {
-          "title": "データ管理権",
-          "access": "アクセス",
-          "accessDesc": "個人データのコピーをリクエスト",
-          "portability": "ポータビリティ",
-          "portabilityDesc": "機械可読形式でデータをエクスポート",
-          "correction": "訂正",
-          "correctionDesc": "不正確な情報を更新または訂正",
-          "deletion": "削除",
-          "deletionDesc": "個人データの削除をリクエスト（技術的に可能な場合）",
-          "restriction": "制限",
-          "restrictionDesc": "データの処理方法を制限"
-        }
-      },
-      "security": {
-        "title": "データセキュリティ",
-        "intro": "OmniBazaar は、分散型アーキテクチャに沿った複数のセキュリティレイヤーを採用しています:",
-        "measures": {
-          "encryption": {
-            "title": "暗号化",
-            "content": "プライベートメッセージはエンドツーエンド暗号化を使用します。ウォレットの秘密鍵は AES-256-GCM で暗号化され、あなたのデバイスの外に出ることはありません。すべてのネットワーク通信は TLS 暗号化を使用します。"
-          },
-          "keys": {
-            "title": "鍵管理",
-            "content": "ウォレットの鍵はあなたの認証情報から決定論的に導出され、ブラウザの暗号化ストレージにのみ保存されます。OmniBazaar のバリデーターがあなたの秘密鍵やシードフレーズにアクセスすることはありません。"
-          },
-          "decentralized": {
-            "title": "分散型セキュリティ",
-            "content": "データは独立したバリデーターノードに分散されているため、単一障害点や侵害対象となる単一のデータベースは存在しません。攻撃者はバリデーターの過半数を同時に侵害する必要があります。"
-          },
-          "smartContracts": {
-            "title": "スマートコントラクトセキュリティ",
-            "content": "金融操作は、ブロックチェーン上にデプロイされた監査可能なスマートコントラクトによって管理されます。コントラクトコードはオープンソースであり、誰でも検証可能です。"
-          }
-        },
-        "disclaimer": "これらの対策にもかかわらず、完全に安全なシステムは存在しません。認証情報、秘密鍵、シードフレーズのセキュリティ維持はあなたの責任です。紛失した鍵は誰にも復元できません。"
-      },
-      "children": {
-        "title": "子供のプライバシー",
-        "content": "OmniBazaar は 18 歳未満の方の使用を対象としていません。18 歳未満の児童から故意に個人情報を収集することはありません。",
-        "action": "保護者の方で、お子様がプラットフォームに個人情報を提供したと思われる場合は、コミュニティガバナンスチャンネルを通じてご連絡ください。プラットフォームが分散型であるため、データの削除は分散ネットワーク内で技術的に可能な範囲に限定される場合があります。",
-        "verification": "マーケットプレイスでの取引や暗号通貨取引を含むプラットフォームの特定の機能では、KYC プロセスを通じた年齢確認が必要になる場合があります。"
-      },
-      "changes": {
-        "title": "ポリシーの変更",
-        "content": "このプライバシーポリシーは、プラットフォーム、適用法、またはプライバシー慣行の変更を反映するために定期的に更新される場合があります。OmniBazaar は分散型であるため、ポリシーの変更はコミュニティガバナンスプロセスを通じて提案および承認されます。",
-        "notification": "このポリシーの重要な変更は、プラットフォームのガバナンスシステムを通じて告知され、ウェブサイト上で目立つように表示されます。変更の掲載後にプラットフォームの使用を継続することで、改定されたポリシーに同意したものとみなされます。",
-        "history": "透明性と監査可能性のため、このポリシーの過去のバージョンはプロジェクトのオープンソースリポジトリで管理されています。"
-      },
-      "contact": {
-        "title": "連絡先情報",
-        "description": "このプライバシーポリシーまたは個人データについて質問がある場合は、お問い合わせください:",
-        "email": "メール",
-        "address": "住所",
-        "addressDetails": "分散型 - 物理的な本社なし"
-      }
-    },
-    "checkout": {
-      "toggle": "プライベート決済",
-      "enabled": "プライベート決済が有効 — お支払いは暗号化されたpXOMを使用します。金額はオンチェーンで非公開ですが、トランザクション自体は記録されます。",
-      "disabled": "標準決済 — 取引はブロックチェーン上で可視",
-      "fee": "プライベート決済には0.3%の変換手数料がかかります",
-      "guarantee": "支払い金額はCOTIガーブルド回路で暗号化されます。ウォレットアドレスはオンチェーンで引き続き可視です。アドレスのプライバシーにはリレイヤーモードを有効にしてください。",
-      "tooltip": "プライベート決済はpXOMを使用して取引詳細を隠します"
-    },
-    "listing": {
-      "makePrivate": "プライベート出品",
-      "privateLabel": "プライベート",
-      "threshold": "スコア50以上の出品者が利用可能"
-    },
-    "payment": {
-      "processing": "プライベート決済を処理中...",
-      "complete": "プライベート決済が完了しました",
-      "badge": "プライベート決済"
     },
     "tiers": {
       "amount": {
@@ -10310,6 +10197,56 @@
       "mpcSettlement": "MPC決済",
       "bridgeBack": "OmniCoinへブリッジバック",
       "complete": "プライベート決済完了"
+    },
+    "onboarding": {
+      "welcome": {
+        "title": "プライバシーへようこそ",
+        "description": "プライベートトランザクションはCOTI V2上でGarbled Circuits（MPC）を使用して実行されます。金額は暗号化され、確認できるのはあなただけです。"
+      },
+      "cotiSetup": {
+        "title": "COTI V2 セットアップ",
+        "onboarded": "COTI V2プライバシーネットワークに登録済みです。",
+        "notOnboarded": "COTI V2プライバシーネットワークに登録してください。この設定は一度だけ行います。",
+        "onboardButton": "今すぐ登録"
+      },
+      "gasSetup": {
+        "title": "COTIガス",
+        "description": "プライバシー操作にはガス手数料として少量のCOTIが必要です。",
+        "autoOption": "自動ガス取得 — 必要に応じてOmniBazaarがXOMをCOTIガスに自動的に交換します。",
+        "manualOption": "XOMをCOTIガスに直接交換します。",
+        "externalNote": "bridge.coti.ioでもCOTIを取得できます。"
+      },
+      "ready": {
+        "title": "準備完了！",
+        "description": "プライベートトランザクションの設定が完了しました。このダッシュボードからいつでもXOMをpXOMに変換できます。",
+        "dismiss": "了解"
+      },
+      "step1Title": "プライバシーへようこそ",
+      "step1Description": "プライベート取引は COTI V2 のガーブルド回路（MPC）で実行されます。金額は暗号化されており、ご自身だけが確認できます。",
+      "step1Body1": "COTI V2 はガーブルド回路（MPC）を使用してオンチェーンの取引金額を暗号化します。復号鍵を持っているのはあなただけです。",
+      "step1Body2": "XOM を pXOM に変換してプライベート残高を有効にします。pXOM 保有者間のプライベート送金では金額が他の人から隠されます。",
+      "step2Title": "COTI V2 セットアップ",
+      "step2Description": "COTI V2 プライバシーネットワークに登録します。これは一度だけの設定です。",
+      "step2Body": "小額の自己送金でウォレットを COTI MPC ネットワークに登録します。一度だけ行えば完了です。",
+      "step3Title": "COTI ガス",
+      "step3Description": "プライバシー操作にはガス代として少量の COTI が必要です。",
+      "step4Title": "準備完了！",
+      "step4Description": "プライベート取引の準備が整いました。プライバシーダッシュボードからいつでも XOM を pXOM に変換できます。",
+      "onboardNow": "今すぐ登録",
+      "onboardSuccess": "COTI V2 プライバシーネットワークに登録されました。",
+      "onboarding": "登録中...",
+      "onboardError": "登録に失敗しました — もう一度お試しください",
+      "next": "次へ",
+      "skip": "スキップ",
+      "gotIt": "了解",
+      "gasBalance": "ガス残高",
+      "refreshBalance": "残高を更新",
+      "insufficientGas": "COTI ガスが不足しています。COTI V2 ネットワークでのプライバシー操作に必要な COTI トークンを取得してください。",
+      "getCotiGas": "Swap で COTI ガスを取得",
+      "externalBridge": "または bridge.coti.io を使用",
+      "readyMessage": "プライベート取引の準備が整いました！",
+      "readySubtext": "プライバシーダッシュボードからいつでも XOM を pXOM に変換できます。",
+      "stepIndicator": "セットアップの進捗"
     }
   },
   "liveChat": {
@@ -10361,6 +10298,15 @@
       "description": "メッセージはあなただけに対して削除されます。他の参加者は引き続き閲覧できます。",
       "cancel": "キャンセル",
       "confirm": "履歴を削除"
+    },
+    "loadingRooms": "Loading rooms...",
+    "loadingMessages": "Loading messages...",
+    "noRooms": "No conversations yet",
+    "noMessages": "No messages yet. Start the conversation!",
+    "errors": {
+      "loadRoomsFailed": "Failed to load chat rooms",
+      "loadMessagesFailed": "Failed to load messages",
+      "retryLater": "Please check your connection and try again."
     }
   },
   "filters": {
@@ -10605,12 +10551,12 @@
     },
     "card": {
       "allocation": "配分",
-      "tvl": "プール TVL",
-      "price": "XOM 価格",
       "allocationTooltip": "このチェーンの流動性プールのうちプロトコルに割り当てられた割合",
       "annualShare": "年間シェア",
       "annualShareTooltip": "配分ウェイトに基づく、年間総オーバーフロー報酬におけるこのチェーンのシェア",
+      "tvl": "プール TVL",
       "tvlTooltip": "このチェーンの流動性プールにロックされた資産の合計価値",
+      "price": "XOM 価格",
       "priceTooltip": "このチェーンの流動性プールにおける現在のXOMトークン価格",
       "dailyOverflow": "日次オーバーフロー",
       "dailyOverflowTooltip": "バリデーターのブロック報酬からこのプールに割り当てられる推定日次オーバーフロー報酬（USD）",
@@ -10699,12 +10645,14 @@
       "calculating": "計算中...",
       "usdcIn": "入金された USDC",
       "halfSwapped": "半分が XOM に交換",
+      "priceImpactWarning": "Price impact: {{impact}}%. Large deposits relative to pool size cause significant slippage.",
       "lpTokens": "受け取った LP トークン",
+      "lpValue": "Your LP Position",
       "postDepositAPR": "推定 APR（入金後）",
-      "highAPRWarning": "現在のAPRは、ステーキングされた流動性の合計が非常に少ないため、極めて高くなっています。流動性が追加されるにつれてAPRは低下します。",
       "dailyReward": "推定日次報酬",
       "monthlyReward": "推定月次報酬",
       "annualReward": "推定年次報酬",
+      "highAPRWarning": "現在のAPRは、ステーキングされた流動性の合計が非常に少ないため、極めて高くなっています。流動性が追加されるにつれてAPRは低下します。",
       "vestingNote": "報酬の 30% は即座に請求可能です。70% は 90 日間で線形に付与されます。",
       "lockNote": "最低 1 日のステーキング期間が適用されます（フラッシュステーク防止保護）。",
       "provideLiquidity": "流動性を提供",
@@ -10742,11 +10690,7 @@
       "withdrawSuccess": "引き出しに成功しました！USDC がウォレットに返却されました。",
       "withdrawFailed": "引き出しに失敗しました",
       "emergencySuccess": "緊急引き出しが完了しました。",
-      "emergencyFailed": "緊急引き出しに失敗しました",
-      "contractsNotConfigured": "RWAAMM またはトークンコントラクトがこのネットワークで設定されていません。しばらくしてから再度ご確認ください。",
-      "poolNotFound": "XOM/USDC 流動性プールが見つかりません。プールはまだデプロイされていない可能性があります。",
-      "emptyPool": "流動性プールにリザーブがありません。プールに資金が投入されるまでお待ちください。",
-      "estimationFailed": "引き出し額を見積もることができませんでした。しばらくしてから再度お試しください。"
+      "emergencyFailed": "緊急引き出しに失敗しました"
     },
     "allChains": {
       "title": "全チェーンの保有ポジション",
@@ -11382,7 +11326,6 @@
       "days": "{{days}} days, {{hours}} hours left",
       "hours": "{{hours}} hours left"
     },
-    "loading": "ガバナンスデータを読み込み中...",
     "overview": {
       "title": "Governance Overview",
       "totalProposals": "Total Proposals",
@@ -11502,6 +11445,7 @@
       "insufficientPower": "投票力が不足しています",
       "connectFirst": "ウォレットを接続し、提案を作成するために必要な XOM を保有してください。"
     },
+    "loading": "ガバナンスデータを読み込み中...",
     "status": {
       "active": "アクティブ",
       "passed": "可決",
@@ -11619,9 +11563,6 @@
       "confirmations": "確認数",
       "types": {
         "transfer": "送金",
-        "swap": "スワップ",
-        "stake": "ステーク",
-        "unstake": "ステーク解除",
         "staking": "ステーキング",
         "marketplace": "マーケットプレイス",
         "dex": "DEX 取引",
@@ -11629,21 +11570,9 @@
         "escrow": "エスクロー",
         "reward": "報酬",
         "bridge": "ブリッジ",
-        "listing": "出品",
-        "purchase": "購入",
         "contract": "コントラクト",
         "unknown": "不明"
       }
-    },
-    "tooltips": {
-      "search": "ブロックチェーンデータを検索",
-      "copyHash": "ハッシュをクリップボードにコピー",
-      "copyNodeId": "ノードIDをクリップボードにコピー",
-      "expandTransaction": "クリックしてトランザクション詳細を表示",
-      "transactionDetails": "トランザクション詳細",
-      "dataTabs": "ブロックチェーンデータカテゴリ",
-      "validatorSummary": "バリデーターネットワーク概要",
-      "uptimeValue": "稼働率：{{value}}%"
     },
     "status": {
       "pending": "保留中",
@@ -11667,9 +11596,7 @@
       "acrossAll": "全バリデーター合計",
       "types": {
         "gateway": "ゲートウェイ",
-        "computation": "コンピュテーション",
-        "service": "サービス",
-        "listing": "リスティング"
+        "computation": "コンピュテーション"
       }
     },
     "table": {
@@ -11864,10 +11791,10 @@
     },
     "errors": {
       "fetchFailed": "Failed to fetch disputes. Please try again later.",
+      "loadFailed": "Failed to load disputes. Please refresh the page or try again later.",
       "detailsFailed": "Failed to fetch dispute details. Please try again later.",
       "evidenceFailed": "Failed to submit evidence. Please try again.",
-      "messageFailed": "Failed to send message. Please try again.",
-      "loadFailed": "Failed to load disputes. Please refresh the page or try again later."
+      "messageFailed": "Failed to send message. Please try again."
     }
   },
   "dispute": {
@@ -14702,20 +14629,21 @@
       "registrationTypedDataFailed": "Failed to get registration data. Please try again.",
       "registrationFailed": "Registration failed. Please try again.",
       "noReferralCode": "No referral code available. You may not be registered yet.",
-      "stakingRewardPoolNotConfigured": "ステーキング報酬プールコントラクトはまだデプロイされていません。報酬は間もなく利用可能になります。",
-      "claimRewardsFailed": "報酬請求トランザクションが失敗しました - レシートが受信されませんでした。もう一度お試しください。",
       "omniCoreNotConfigured": "Staking system not configured. Please contact support.",
       "omniCoinNotConfigured": "Token contract not configured. Please contact support.",
       "insufficientXomBalance": "Insufficient XOM balance. Please check your wallet balance.",
       "approveFailed": "Token approval failed. Please try again.",
       "stakeTransactionFailed": "Staking transaction failed - no receipt received. Please try again.",
-      "unlockTransactionFailed": "Unlock transaction failed - no receipt received. Please try again."
+      "unlockTransactionFailed": "Unlock transaction failed - no receipt received. Please try again.",
+      "stakingRewardPoolNotConfigured": "ステーキング報酬プールコントラクトはまだデプロイされていません。報酬は間もなく利用可能になります。",
+      "claimRewardsFailed": "報酬請求トランザクションが失敗しました - レシートが受信されませんでした。もう一度お試しください。"
     }
   },
   "predictions": {
     "intentToggle": "インテントベース取引",
     "intentToggleTooltip": "ソルバーが複数の流動性ソースから最良の価格で予測取引を実行するよう競い合います。",
     "intentSubmitting": "予測インテントを送信中...",
+    "backToPredictions": "Back to Predictions",
     "features": {
       "title": "機能",
       "regionLabel": "Prediction Features",
@@ -14851,8 +14779,6 @@
       }
     },
     "sidebar": {
-      "showResolved": "解決済みを表示",
-      "showResolvedLabel": "解決済みマーケットの表示切替",
       "resultsCount": "{{displayed}} / {{total}} マーケット",
       "statistics": "Statistics",
       "category": "Category",
@@ -14865,10 +14791,22 @@
       "gridLabel": "Prediction markets",
       "footerTitle": "About Prediction Markets",
       "footerText": "Prediction markets let you trade on the outcomes of real-world events. Prices reflect the crowd-sourced probability of each outcome. Markets are settled automatically when outcomes are confirmed by trusted data sources.",
+      "showResolved": "解決済みを表示",
+      "showResolvedLabel": "解決済みマーケットの表示切替",
       "showResolvedTooltip": "決済済みのマーケットを表示します。解決済みマーケットは最終結果を表示します。",
       "subcategoryLabel": "サブカテゴリで絞り込み",
       "subcategoryTooltip": "{{name}} に {{count}} 件のアクティブマーケット"
     },
+    "sort": {
+      "volume": "Highest Volume",
+      "newest": "Recently Created",
+      "endingSoon": "Ending Soon",
+      "alphabetical": "Alphabetical"
+    },
+    "noMarketsSearch": "No markets match your search criteria. Try a different search term.",
+    "noMarketsFilter": "No markets match the selected category.",
+    "clearFiltersAria": "Clear all filters and reset to default view",
+    "loadingAria": "Loading prediction markets",
     "loadingMore": "さらに読み込み中...",
     "endOfResults": "{{count}} 件の全マーケットを表示",
     "intent": {
@@ -15069,74 +15007,9 @@
       "invalidMarketId": "無効なマーケットID。URLを確認して再試行してください。",
       "marketNotFound": "マーケットが見つかりません。削除されたか、IDが正しくない可能性があります。",
       "loadFailed": "マーケットの詳細を読み込めませんでした。後でもう一度お試しください。",
-      "unknown": "不明なエラーが発生しました。もう一度お試しください。",
       "tradeFailed": "予測インテントの送信に失敗しました。もう一度お試しください。",
-      "connectWallet": "取引するにはウォレットを接続してください。"
-    },
-    "sort": {
-      "volume": "Highest Volume",
-      "newest": "Recently Created",
-      "endingSoon": "Ending Soon",
-      "alphabetical": "Alphabetical"
-    },
-    "noMarketsSearch": "No markets match your search criteria. Try a different search term.",
-    "noMarketsFilter": "No markets match the selected category.",
-    "clearFiltersAria": "Clear all filters and reset to default view",
-    "loadingAria": "Loading prediction markets",
-    "tradePanel": {
-      "title": "取引",
-      "buyYes": "YES を購入",
-      "buyNo": "NO を購入",
-      "amount": "金額",
-      "amountPlaceholder": "金額を入力",
-      "preset10": "$10",
-      "preset25": "$25",
-      "preset50": "$50",
-      "preset100": "$100",
-      "currentPrice": "現在価格",
-      "feeRate": "手数料率",
-      "feeAmount": "手数料",
-      "netAmount": "純額",
-      "estimatedShares": "推定シェア数",
-      "feeDisclosure": "OmniBazaar ルーターコントラクトにより、{{rate}}% の動的手数料がオンチェーンで課金されます。",
-      "totalCost": "合計費用",
-      "submitTrade": "取引を送信",
-      "approveTokens": "{{symbol}} を承認",
-      "confirmInWallet": "ウォレットで確認",
-      "submitting": "送信中...",
-      "approving": "承認中...",
-      "txSubmitted": "トランザクションが送信されました",
-      "txConfirmed": "取引が確認されました",
-      "txFailed": "トランザクションが完了しませんでした。拒否した場合は操作不要です。それ以外の場合は、もう一度お試しください。",
-      "orderPending": "注文の確認を待っています...",
-      "orderFilled": "注文が正常に約定しました",
-      "connectWallet": "ウォレットを接続",
-      "connectWalletDesc": "このマーケットで取引するにはウォレットを接続してください",
-      "wrongNetwork": "{{network}} に切り替え",
-      "wrongNetworkDesc": "このマーケットで取引するには、ウォレットを {{network}} に切り替えてください",
-      "switchNetwork": "ネットワークを切り替え",
-      "insufficientBalance": "{{symbol}} の残高が不足しています",
-      "minimumAmount": "最小取引額は $1.00 です",
-      "quoteError": "見積もりを取得できませんでした。もう一度お試しください。",
-      "buildError": "取引を準備できませんでした。残高とネットワーク接続を確認して、もう一度お試しください。",
-      "notAvailable": "このプラットフォームではオンチェーン取引を利用できません。",
-      "notAvailableDesc": "このマーケットは {{platform}} にあります。下のプラットフォームリンクから直接取引してください。",
-      "fallbackLink": "{{platform}} で取引",
-      "viewOrder": "注文 #{{orderId}} を表示",
-      "orderStatus": {
-        "pending": "保留中",
-        "submitted": "送信済み",
-        "confirmed": "確認済み",
-        "filled": "約定済み",
-        "cancelled": "キャンセル済み",
-        "failed": "失敗"
-      },
-      "privacyToggle": "プライベート取引 (pXOM)",
-      "privacyTooltip": "pXOMを使用してプライベートな予測を行います。あなたのポジションはCOTIプライバシーレイヤーで保護されます。0.3%の変換手数料と0.03 XOMの基本手数料がかかります。",
-      "privacyEnabled": "プライバシー有効",
-      "privacyConversionFee": "変換手数料 (0.3%)",
-      "privacyBaseFee": "基本手数料",
-      "privacyTotalFee": "プライバシー手数料"
+      "connectWallet": "取引するにはウォレットを接続してください。",
+      "unknown": "不明なエラーが発生しました。もう一度お試しください。"
     },
     "leaderboard": {
       "title": "予測リーダーボード",
@@ -15903,6 +15776,138 @@
       "configFailed": "設定の保存に失敗しました。もう一度お試しください。"
     }
   },
+  "social": {
+    "title": "連絡先と支払い",
+    "description": "ウォレットの連絡先を管理し、支払いリクエストを送信し、ソーシャルリカバリーのガーディアンを指定します。",
+    "loading": "ソーシャル機能を読み込み中...",
+    "tabs": {
+      "contacts": "連絡先",
+      "requests": "リクエスト",
+      "guardians": "ガーディアン"
+    },
+    "contactCount": "{{count}} 件の連絡先",
+    "addContact": "連絡先を追加",
+    "addContactTitle": "連絡先を追加",
+    "addContactDescription": "ウォレットアドレスを連絡先に追加して、素早い支払いやリカバリーに利用できます。",
+    "contactAdded": "連絡先が正常に追加されました。",
+    "contactRemoved": "連絡先が削除されました。",
+    "noContacts": "まだ連絡先がありません。連絡先を追加して、素早く支払いを送信したり、リカバリーガーディアンを指定したりできます。",
+    "walletAddress": "ウォレットアドレス",
+    "nickname": "ニックネーム",
+    "nicknamePlaceholder": "例：太郎",
+    "markAsGuardian": "ソーシャルリカバリーガーディアン",
+    "guardianHint": "ガーディアンは、アクセスを失った場合にウォレットの回復を手助けできます。",
+    "add": "追加",
+    "cancel": "キャンセル",
+    "favorite": "お気に入りに追加",
+    "unfavorite": "お気に入りから削除",
+    "removeContact": "連絡先を削除",
+    "copyAddress": "アドレスをコピー",
+    "addressCopied": "アドレスがクリップボードにコピーされました。",
+    "guardian": "ガーディアン",
+    "guardiansInfo": "ソーシャルリカバリーガーディアンは、ウォレットへのアクセスを回復する手助けをしてくれます。あなたの身元を確認できる信頼できる連絡先を選んでください。",
+    "noGuardians": "まだガーディアンが指定されていません。連絡先を追加し、ソーシャルリカバリー用にガーディアンとして指定してください。",
+    "addGuardian": "ガーディアンを追加",
+    "requestPayment": "支払いをリクエスト",
+    "requestPaymentTitle": "支払いをリクエスト",
+    "requestPaymentDescription": "別のウォレットアドレスに支払いリクエストを送信します。",
+    "requestTo": "リクエスト先（アドレス）",
+    "requestAmount": "金額（XOM）",
+    "requestMemo": "メモ（任意）",
+    "memoPlaceholder": "この支払いの目的は何ですか？",
+    "sendRequest": "リクエストを送信",
+    "requestSent": "支払いリクエストが送信されました。",
+    "requestDeclined": "支払いリクエストが拒否されました。",
+    "pendingRequests": "{{count}} 件の保留中リクエスト",
+    "newRequest": "新しいリクエスト",
+    "incoming": "受信リクエスト",
+    "outgoing": "送信済みリクエスト",
+    "from": "送信元",
+    "to": "送信先",
+    "decline": "拒否",
+    "noRequests": "支払いリクエストはありません。新しいリクエストボタンを使用して、誰かに支払いをリクエストしてください。",
+    "status": {
+      "pending": "保留中",
+      "paid": "支払い済み",
+      "declined": "拒否済み",
+      "expired": "期限切れ"
+    },
+    "timeAgo": {
+      "justNow": "たった今",
+      "minutesAgo": "{{count}}分前",
+      "hoursAgo": "{{count}}時間前",
+      "daysAgo": "{{count}}日前"
+    },
+    "errors": {
+      "addContactFailed": "連絡先を追加できませんでした。アドレスを確認して再試行してください。",
+      "removeContactFailed": "連絡先を削除できませんでした。再試行してください。",
+      "createRequestFailed": "支払いリクエストを送信できませんでした。再試行してください。",
+      "declineFailed": "リクエストを拒否できませんでした。再試行してください。"
+    }
+  },
+  "flexGas": {
+    "title": "FlexGas",
+    "description": "チェーンのネイティブトークンの代わりに XOM でガス代を支払えます。新規ユーザーは無料トランザクションを利用できます。",
+    "comingSoonDescription": "ネイティブトークンの代わりにXOMでガス料金を支払います。この機能は正式リリース時に利用可能になります。",
+    "loading": "ガスオプションを読み込み中...",
+    "payInXom": "XOM でガス代を支払う",
+    "xomPayment": "XOM ガス",
+    "nativePayment": "ネイティブガス",
+    "toggleLabel": "XOM ガス支払いを切り替え",
+    "sponsored": "無料トランザクション利用可能",
+    "freeRemaining": "無料トランザクション残り {{count}} 回",
+    "free": "無料",
+    "left": "残り",
+    "sponsoredHint": "次のトランザクションはバリデーターネットワークの提供によりガス代無料です。",
+    "savings": "XOM でガス代を支払うと ${{amount}} 節約できます",
+    "nativeCostTooltip": "チェーンのネイティブトークンでの推定ガス費用",
+    "xomCostTooltip": "ペイマスター経由で XOM で支払った場合の同等ガス費用",
+    "history": "ガス履歴",
+    "noHistory": "ガス操作の履歴はまだありません。",
+    "preferences": "ガス設定",
+    "errors": {
+      "loadFailed": "ガスオプションの読み込みに失敗しました。再試行してください。",
+      "updateFailed": "ガス設定の更新に失敗しました。再試行してください。"
+    }
+  },
+  "portfolioAlerts": {
+    "title": "ポートフォリオ通知",
+    "description": "価格アラートを設定し、ポートフォリオの通知設定を管理します。",
+    "loading": "アラートを読み込み中...",
+    "preferencesTitle": "通知設定",
+    "priceAlertsTitle": "価格アラート",
+    "prefs": {
+      "balanceChange": "残高変動",
+      "tokenReceived": "トークン受信",
+      "stakingReward": "ステーキング報酬",
+      "priceAlert": "価格アラート",
+      "liquidationWarning": "清算警告",
+      "tokenDiscovered": "新しいトークンの発見",
+      "sound": "サウンド通知"
+    },
+    "addAlert": "アラートを追加",
+    "addAlertTitle": "新しい価格アラート",
+    "addAlertDescription": "トークンが目標価格に達した時に通知を受け取ります。",
+    "symbol": "トークンシンボル",
+    "condition": "条件",
+    "above": "価格が上回った時",
+    "below": "価格が下回った時",
+    "targetPrice": "目標価格（USD）",
+    "create": "アラートを作成",
+    "cancel": "キャンセル",
+    "active": "アクティブ",
+    "triggered": "トリガー済み",
+    "noAlerts": "価格アラートが設定されていません。アラートを追加して、トークンが目標価格に達した時に通知を受け取りましょう。",
+    "alertCreated": "価格アラートが作成されました。",
+    "alertDeleted": "価格アラートが削除されました。",
+    "deleteAlert": "アラートを削除",
+    "errors": {
+      "loadFailed": "アラート設定の読み込みに失敗しました。再試行してください。",
+      "updateFailed": "設定の更新に失敗しました。再試行してください。",
+      "createAlertFailed": "価格アラートの作成に失敗しました。再試行してください。",
+      "deleteAlertFailed": "価格アラートの削除に失敗しました。再試行してください。"
+    }
+  },
   "nftDetail": {
     "back": "戻る",
     "goBack": "前のページに戻る",
@@ -15931,6 +15936,7 @@
       "traits": "特性",
       "activity": "アクティビティ",
       "offers": "オファー",
+      "listings": "Listings",
       "details": "詳細"
     },
     "traits": {
@@ -16107,6 +16113,14 @@
     },
     "rankOf": "#{{rank}} / {{total}}"
   },
+  "nftFees": {
+    "badge": "1% Fee — Up to 60% less than competitors",
+    "title": "NFT Marketplace Fee Comparison",
+    "ourFee": "Our 1% fee is sustainable and supports the decentralized network",
+    "vcSubsidized": "VC subsidized",
+    "platform": "Platform",
+    "fee": "Fee"
+  },
   "nftPortfolio": {
     "title": "NFTポートフォリオ",
     "subtitle": "NFTの保有状況、パフォーマンス、エクスポージャーを追跡します。",
@@ -16268,20 +16282,31 @@
     "title": "NFT ローンチパッド",
     "subtitle": "数分でNFTコレクションを作成・デプロイ — コード不要。",
     "collectionName": "コレクション名",
+    "collectionNamePlaceholder": "My Awesome Collection",
     "symbol": "シンボル",
     "description": "説明",
+    "descriptionPlaceholder": "Tell the world about your collection...",
     "maxSupply": "最大供給量",
     "blockchain": "ブロックチェーン",
     "zeroGas": "ゼロガス",
     "finishedArt": "完成アート",
     "layerBuilder": "レイヤービルダー",
     "dragDrop": "アートワークファイルをドラッグ＆ドロップ",
+    "supportedFormats": "PNG, JPG, GIF, SVG, MP4 — Max 100MB each",
     "browse": "ファイルを参照",
+    "layerBuilderDescription": "Upload trait layers (backgrounds, bodies, accessories, etc.) and set rarity weights. The launchpad will generate unique combinations automatically.",
+    "uploadLayers": "Upload Layer Folders",
+    "layerInstructions": "One folder per trait category",
+    "unrevealedUri": "Unrevealed Placeholder URI",
+    "unrevealedHelp": "Shown for all tokens before the collection is revealed. Leave blank to skip delayed reveal.",
     "royaltyPercentage": "ロイヤリティパーセンテージ",
+    "royaltySlider": "Royalty percentage slider",
     "royaltyRecipients": "ロイヤリティ受取人",
     "addRecipient": "追加",
     "walletAddress": "ウォレットアドレス",
     "share": "シェア %",
+    "removeRecipient": "Remove recipient",
+    "royaltyEnforcement": "Royalties are enforced via ERC-2981 at marketplace settlement. The OmniBazaar marketplace automatically queries and distributes royalties on every sale.",
     "phaseName": "名前",
     "mintPrice": "ミント価格（ETH）",
     "maxPerWallet": "ウォレットあたりの最大数",
@@ -16291,6 +16316,13 @@
     "addPhase": "販売フェーズを追加",
     "summary": "コレクションサマリー",
     "royalty": "ロイヤリティ",
+    "artType": "Art Type",
+    "salePhases": "Sale Phases",
+    "whitelist": "Whitelist",
+    "price": "Price",
+    "limit": "Limit",
+    "wallet": "wallet",
+    "zeroGasNote": "Deploying on OmniCoin — validators absorb gas costs. Your creators and minters pay zero gas fees!",
     "deploying": "デプロイ中...",
     "deployCollection": "コレクションをデプロイ",
     "back": "戻る",
@@ -16303,10 +16335,37 @@
       "phases": "販売フェーズ",
       "review": "確認"
     },
+    "stepDescription": {
+      "details": "Set your collection name, supply, and blockchain",
+      "art": "Upload your artwork or configure layered generation",
+      "royalty": "Configure royalty percentage and recipients",
+      "phases": "Define sale phases with pricing and limits",
+      "review": "Review everything and deploy your collection"
+    },
     "errors": {
       "saveFailed": "保存に失敗しました。もう一度お試しください。",
       "deployFailed": "デプロイに失敗しました。設定を確認してもう一度お試しください。"
     }
+  },
+  "nftClaim": {
+    "title": "Claim Your NFT",
+    "subtitle": "Import your NFT to OmniBazaar and manage offers",
+    "connectWallet": "Connect Wallet to Claim",
+    "verifyClaim": "Verify Ownership & Claim",
+    "verifying": "Verifying ownership...",
+    "claimed": "NFT Claimed Successfully!",
+    "claimedDescription": "Your NFT has been imported. You can now list it on OmniBazaar marketplace.",
+    "createListing": "List for Sale",
+    "viewOffers": "View Offers",
+    "activeOffers": "{{count}} active offer(s)",
+    "highestOffer": "Highest offer: {{amount}} {{currency}}",
+    "onChain": "on {{chain}}",
+    "tokenId": "Token #{{id}}",
+    "notFound": "NFT not found",
+    "notFoundDescription": "We couldn't find this NFT. Please verify the contract address and token ID.",
+    "ownershipFailed": "Ownership verification failed",
+    "ownershipFailedDescription": "The connected wallet does not own this NFT. Please connect the wallet that holds this token.",
+    "signMessage": "Sign the verification message in your wallet"
   },
   "claimListing": {
     "title": "リスティングを申請する",
@@ -16362,6 +16421,7 @@
     "collections": "コレクション",
     "recentRoyalties": "最近のロイヤリティ",
     "yourCollections": "あなたのコレクション",
+    "collectionsDescription": "All NFT collections you have created or manage",
     "collection": "コレクション",
     "items": "アイテム",
     "floor": "フロア価格",
@@ -16370,156 +16430,31 @@
     "royalty": "ロイヤリティ",
     "noCollections": "まだコレクションがありません",
     "createFirst": "最初のコレクションを作成",
+    "royaltiesDescription": "Royalty payments from secondary sales",
     "date": "日付",
     "token": "トークン",
     "salePrice": "販売価格",
     "royaltyAmount": "ロイヤリティ",
     "tx": "Tx",
-    "noRoyalties": "まだロイヤリティの支払いはありません"
-  },
-  "social": {
-    "title": "連絡先と支払い",
-    "description": "ウォレットの連絡先を管理し、支払いリクエストを送信し、ソーシャルリカバリーのガーディアンを指定します。",
-    "loading": "ソーシャル機能を読み込み中...",
-    "tabs": {
-      "contacts": "連絡先",
-      "requests": "リクエスト",
-      "guardians": "ガーディアン"
-    },
-    "contactCount": "{{count}} 件の連絡先",
-    "addContact": "連絡先を追加",
-    "addContactTitle": "連絡先を追加",
-    "addContactDescription": "ウォレットアドレスを連絡先に追加して、素早い支払いやリカバリーに利用できます。",
-    "contactAdded": "連絡先が正常に追加されました。",
-    "contactRemoved": "連絡先が削除されました。",
-    "noContacts": "まだ連絡先がありません。連絡先を追加して、素早く支払いを送信したり、リカバリーガーディアンを指定したりできます。",
-    "walletAddress": "ウォレットアドレス",
-    "nickname": "ニックネーム",
-    "nicknamePlaceholder": "例：太郎",
-    "markAsGuardian": "ソーシャルリカバリーガーディアン",
-    "guardianHint": "ガーディアンは、アクセスを失った場合にウォレットの回復を手助けできます。",
-    "add": "追加",
-    "cancel": "キャンセル",
-    "favorite": "お気に入りに追加",
-    "unfavorite": "お気に入りから削除",
-    "removeContact": "連絡先を削除",
-    "copyAddress": "アドレスをコピー",
-    "addressCopied": "アドレスがクリップボードにコピーされました。",
-    "guardian": "ガーディアン",
-    "guardiansInfo": "ソーシャルリカバリーガーディアンは、ウォレットへのアクセスを回復する手助けをしてくれます。あなたの身元を確認できる信頼できる連絡先を選んでください。",
-    "noGuardians": "まだガーディアンが指定されていません。連絡先を追加し、ソーシャルリカバリー用にガーディアンとして指定してください。",
-    "addGuardian": "ガーディアンを追加",
-    "requestPayment": "支払いをリクエスト",
-    "requestPaymentTitle": "支払いをリクエスト",
-    "requestPaymentDescription": "別のウォレットアドレスに支払いリクエストを送信します。",
-    "requestTo": "リクエスト先（アドレス）",
-    "requestAmount": "金額（XOM）",
-    "requestMemo": "メモ（任意）",
-    "memoPlaceholder": "この支払いの目的は何ですか？",
-    "sendRequest": "リクエストを送信",
-    "requestSent": "支払いリクエストが送信されました。",
-    "requestDeclined": "支払いリクエストが拒否されました。",
-    "pendingRequests": "{{count}} 件の保留中リクエスト",
-    "newRequest": "新しいリクエスト",
-    "incoming": "受信リクエスト",
-    "outgoing": "送信済みリクエスト",
-    "from": "送信元",
-    "to": "送信先",
-    "decline": "拒否",
-    "noRequests": "支払いリクエストはありません。新しいリクエストボタンを使用して、誰かに支払いをリクエストしてください。",
-    "status": {
-      "pending": "保留中",
-      "paid": "支払い済み",
-      "declined": "拒否済み",
-      "expired": "期限切れ"
-    },
-    "timeAgo": {
-      "justNow": "たった今",
-      "minutesAgo": "{{count}}分前",
-      "hoursAgo": "{{count}}時間前",
-      "daysAgo": "{{count}}日前"
-    },
-    "errors": {
-      "addContactFailed": "連絡先を追加できませんでした。アドレスを確認して再試行してください。",
-      "removeContactFailed": "連絡先を削除できませんでした。再試行してください。",
-      "createRequestFailed": "支払いリクエストを送信できませんでした。再試行してください。",
-      "declineFailed": "リクエストを拒否できませんでした。再試行してください。"
-    }
-  },
-  "flexGas": {
-    "title": "FlexGas",
-    "description": "チェーンのネイティブトークンの代わりに XOM でガス代を支払えます。新規ユーザーは無料トランザクションを利用できます。",
-    "comingSoonDescription": "ネイティブトークンの代わりにXOMでガス料金を支払います。この機能は正式リリース時に利用可能になります。",
-    "loading": "ガスオプションを読み込み中...",
-    "payInXom": "XOM でガス代を支払う",
-    "xomPayment": "XOM ガス",
-    "nativePayment": "ネイティブガス",
-    "toggleLabel": "XOM ガス支払いを切り替え",
-    "sponsored": "無料トランザクション利用可能",
-    "freeRemaining": "無料トランザクション残り {{count}} 回",
-    "free": "無料",
-    "left": "残り",
-    "sponsoredHint": "次のトランザクションはバリデーターネットワークの提供によりガス代無料です。",
-    "savings": "XOM でガス代を支払うと ${{amount}} 節約できます",
-    "nativeCostTooltip": "チェーンのネイティブトークンでの推定ガス費用",
-    "xomCostTooltip": "ペイマスター経由で XOM で支払った場合の同等ガス費用",
-    "history": "ガス履歴",
-    "noHistory": "ガス操作の履歴はまだありません。",
-    "preferences": "ガス設定",
-    "errors": {
-      "loadFailed": "ガスオプションの読み込みに失敗しました。再試行してください。",
-      "updateFailed": "ガス設定の更新に失敗しました。再試行してください。"
-    }
-  },
-  "portfolioAlerts": {
-    "title": "ポートフォリオ通知",
-    "description": "価格アラートを設定し、ポートフォリオの通知設定を管理します。",
-    "loading": "アラートを読み込み中...",
-    "preferencesTitle": "通知設定",
-    "priceAlertsTitle": "価格アラート",
-    "prefs": {
-      "balanceChange": "残高変動",
-      "tokenReceived": "トークン受信",
-      "stakingReward": "ステーキング報酬",
-      "priceAlert": "価格アラート",
-      "liquidationWarning": "清算警告",
-      "tokenDiscovered": "新しいトークンの発見",
-      "sound": "サウンド通知"
-    },
-    "addAlert": "アラートを追加",
-    "addAlertTitle": "新しい価格アラート",
-    "addAlertDescription": "トークンが目標価格に達した時に通知を受け取ります。",
-    "symbol": "トークンシンボル",
-    "condition": "条件",
-    "above": "価格が上回った時",
-    "below": "価格が下回った時",
-    "targetPrice": "目標価格（USD）",
-    "create": "アラートを作成",
-    "cancel": "キャンセル",
-    "active": "アクティブ",
-    "triggered": "トリガー済み",
-    "noAlerts": "価格アラートが設定されていません。アラートを追加して、トークンが目標価格に達した時に通知を受け取りましょう。",
-    "alertCreated": "価格アラートが作成されました。",
-    "alertDeleted": "価格アラートが削除されました。",
-    "deleteAlert": "アラートを削除",
-    "errors": {
-      "loadFailed": "アラート設定の読み込みに失敗しました。再試行してください。",
-      "updateFailed": "設定の更新に失敗しました。再試行してください。",
-      "createAlertFailed": "価格アラートの作成に失敗しました。再試行してください。",
-      "deleteAlertFailed": "価格アラートの削除に失敗しました。再試行してください。"
-    }
+    "noRoyalties": "まだロイヤリティの支払いはありません",
+    "royaltiesWillAppear": "Royalties are collected automatically when your NFTs are sold on secondary markets."
   },
   "wishlist": {
     "title": "マイウィッシュリスト",
+    "count": "{{count}} items",
     "empty": "ウィッシュリストは空です",
     "emptyDescription": "マーケットプレイスを閲覧して、気に入った商品を保存しましょう",
     "browseMarketplace": "マーケットプレイスを閲覧",
+    "loadMore": "Load more",
     "removeConfirm": "ウィッシュリストから削除しますか？",
     "removedToast": "ウィッシュリストから削除しました"
   },
   "savedSearches": {
     "title": "保存した検索",
     "save": "この検索を保存",
+    "saved": "Search saved!",
+    "saveFailed": "Failed to save search",
+    "loginRequired": "Please sign in to save searches",
     "nameLabel": "検索名",
     "namePlaceholder": "例：500ドル以下のノートパソコン",
     "empty": "保存した検索はまだありません",
@@ -16528,9 +16463,17 @@
     "matchNotification": "「{{name}}」に新しい一致があります",
     "maxReached": "保存できる検索は最大20件です",
     "deleted": "保存した検索を削除しました",
+    "delete": "Delete",
     "matches": "{{count}}件の一致",
     "criteria": "条件",
     "notifications": "通知",
+    "notificationsOn": "Notifications enabled",
+    "notificationsOff": "Notifications disabled",
+    "unnamed": "Unnamed Search",
+    "executeSearch": "Run search: {{name}}",
+    "tags": "Tags",
+    "from": "from",
+    "upTo": "up to",
     "errors": {
       "loadFailed": "保存した検索を読み込めませんでした。接続を確認して再度お試しください。",
       "saveFailed": "この検索を保存できませんでした。再度お試しください。",
@@ -16539,6 +16482,8 @@
     }
   },
   "promotions": {
+    "title": "Promotions",
+    "description": "Manage discounts and promotions for your listings",
     "create": "プロモーションを作成",
     "type": "プロモーションタイプ",
     "types": {
@@ -16548,15 +16493,19 @@
       "coupon": "クーポン"
     },
     "discount": "割引額",
+    "off": "off",
     "flashSale": "タイムセール",
     "bundle": "セット割引",
     "coupon": "クーポンコード",
     "expires": "{{date}}に有効期限切れ",
+    "uses": "uses",
     "apply": "適用",
     "invalid": "無効または有効期限切れのクーポン",
     "applied": "クーポンが適用されました！{{amount}}お得です",
     "maxReached": "1商品につき最大5つのプロモーション",
     "deleted": "プロモーションが削除されました",
+    "deleteFailed": "Failed to delete promotion",
+    "delete": "Delete promotion",
     "active": "アクティブなプロモーション",
     "noPromotions": "アクティブなプロモーションはありません"
   },
@@ -16734,6 +16683,61 @@
       "removeFeatured": "Remove",
       "save": "Save Changes",
       "saved": "Settings saved"
+    },
+    "tradePanel": {
+      "title": "Trade",
+      "buyYes": "Buy YES",
+      "buyNo": "Buy NO",
+      "amount": "Amount",
+      "amountPlaceholder": "Enter amount",
+      "preset10": "$10",
+      "preset25": "$25",
+      "preset50": "$50",
+      "preset100": "$100",
+      "currentPrice": "Current Price",
+      "feeRate": "Fee Rate",
+      "feeAmount": "Fee",
+      "netAmount": "Net Amount",
+      "estimatedShares": "Est. Shares",
+      "feeDisclosure": "A dynamic fee of {{rate}}% is charged on-chain by the OmniBazaar Router contract.",
+      "totalCost": "Total Cost",
+      "submitTrade": "Submit Trade",
+      "approveTokens": "Approve {{symbol}}",
+      "confirmInWallet": "Confirm in Wallet",
+      "submitting": "Submitting...",
+      "approving": "Approving...",
+      "txSubmitted": "Transaction submitted",
+      "txConfirmed": "Trade confirmed",
+      "txFailed": "Transaction was not completed. If you rejected it, no action is needed. Otherwise, please try again.",
+      "orderPending": "Order pending confirmation...",
+      "orderFilled": "Order filled successfully",
+      "connectWallet": "Connect Wallet",
+      "connectWalletDesc": "Connect your wallet to trade on this market",
+      "wrongNetwork": "Switch to {{network}}",
+      "wrongNetworkDesc": "Please switch your wallet to {{network}} to trade on this market",
+      "switchNetwork": "Switch Network",
+      "insufficientBalance": "Insufficient {{symbol}} balance",
+      "minimumAmount": "Minimum trade is $1.00",
+      "quoteError": "Unable to get quote. Please try again.",
+      "buildError": "Unable to prepare your trade. Please check your balance and network connection, then try again.",
+      "notAvailable": "On-chain trading is not available for this platform.",
+      "notAvailableDesc": "This market is on {{platform}}. Use the platform link below to trade directly.",
+      "fallbackLink": "Trade on {{platform}}",
+      "viewOrder": "View Order #{{orderId}}",
+      "orderStatus": {
+        "pending": "Pending",
+        "submitted": "Submitted",
+        "confirmed": "Confirmed",
+        "filled": "Filled",
+        "cancelled": "Cancelled",
+        "failed": "Failed"
+      },
+      "privacyToggle": "Private trade (pXOM)",
+      "privacyTooltip": "Use pXOM for private predictions. Your position will be shielded via the COTI privacy layer. A 0.3% conversion fee plus 0.03 XOM base fee applies.",
+      "privacyEnabled": "Privacy enabled",
+      "privacyConversionFee": "Conversion fee (0.3%)",
+      "privacyBaseFee": "Base fee",
+      "privacyTotalFee": "Privacy overhead"
     },
     "discovery": {
       "title": "Local Markets",
@@ -17493,7 +17497,6 @@
   "feesPage": {
     "title": "Fee Schedule",
     "subtitle": "Transparent breakdown of all fees on the OmniBazaar platform",
-    "lastUpdated": "Last updated: {{date}}",
     "tabs": {
       "marketplace": "Marketplace",
       "dex": "DEX",
@@ -17677,45 +17680,6 @@
       "screeningFailed": "ウォレットのコンプライアンスステータスを確認できませんでした。もう一度お試しください。",
       "screeningInProgress": "ウォレットのコンプライアンスを確認中...",
       "serviceUnavailable": "コンプライアンススクリーニングは一時的に利用できません。後でもう一度お試しください。"
-    }
-  },
-  "notificationPreferences": {
-    "title": "通知設定",
-    "description": "通知の設定をカスタマイズ",
-    "save": "設定を保存",
-    "methodsTitle": "通知方法",
-    "methodsDescription": "通知の受信方法を選択してください",
-    "inApp": "アプリ内通知",
-    "inAppDescription": "アプリ内に通知を表示",
-    "push": "プッシュ通知",
-    "pushDescription": "ブラウザのプッシュ通知を受信",
-    "email": "メール通知",
-    "emailDescription": "メールで通知を受信",
-    "sound": "サウンドアラート",
-    "soundDescription": "重要な通知時にサウンドを再生",
-    "comingSoon": "近日公開",
-    "categoriesTitle": "通知カテゴリ",
-    "categoriesDescription": "受信したい通知の種類を選択してください",
-    "resetDefaults": "デフォルトに戻す",
-    "savePreferences": "設定を保存",
-    "saved": "設定が保存されました",
-    "savedDescription": "通知の設定が更新されました。",
-    "saveFailed": "設定の保存に失敗しました",
-    "cat": {
-      "orders": "注文",
-      "ordersDesc": "購入・販売に関する更新",
-      "messages": "メッセージ",
-      "messagesDesc": "新着メッセージとチャットリクエスト",
-      "marketplace": "マーケットプレイス",
-      "marketplaceDesc": "出品情報とオファーの更新",
-      "trading": "トレーディング",
-      "tradingDesc": "DEX取引と注文の更新",
-      "staking": "ステーキング",
-      "stakingDesc": "ステーキングと報酬の通知",
-      "wallet": "ウォレット",
-      "walletDesc": "支払いと残高のアラート",
-      "system": "システム",
-      "systemDesc": "重要なシステム更新とアラート"
     }
   }
 }

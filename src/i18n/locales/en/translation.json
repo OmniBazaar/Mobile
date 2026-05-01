@@ -9130,18 +9130,6 @@
     }
   },
   "swap": {
-    "external": {
-      "embeddedTab": "OmniWallet",
-      "externalTab": "External Wallet",
-      "connect": "Connect Wallet",
-      "disconnect": "Disconnect",
-      "waitingForApproval": "Waiting for wallet approval…",
-      "missingProjectId": "WalletConnect project id is not configured. Set EXPO_PUBLIC_WALLETCONNECT_PROJECT_ID and reload.",
-      "requiresEmbedded": "This route uses OmniCoin and must be signed by the embedded wallet. Switch to OmniWallet for OmniCoin swaps."
-    },
-    "cta": {
-      "confirmInWallet": "Confirm in your wallet…"
-    },
     "errors": {
       "noDex": "Swapping is not supported on this network. Please switch to a supported network.",
       "tokenNotFound": "Token information not found. The token may not be supported on this network.",

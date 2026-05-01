@@ -43,22 +43,21 @@
       "termsLink": "Terms of Service"
     },
     "createWallet": {
-      "heading": "Create Wallet",
-      "passwordHint": "Set a password to protect your wallet on this device. Your seed phrase is the true backup — keep it safe.",
+      "heading": "Create OmniBazaar Account",
+      "deterministicHint": "Your username and password together generate your wallet keys. Use the same credentials on any device to recover the same wallet — there is no separate seed phrase to back up.",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "3–20 chars, lowercase letters / digits / underscore",
+      "usernameInvalid": "Username must be 3–20 characters: lowercase letters, digits, underscore. Must start with a letter.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@example.com",
+      "emailInvalid": "Please enter a valid email address.",
+      "passwordHint": "Choose a strong password — it is the only secret protecting your wallet.",
       "passwordLabel": "Password",
       "passwordPlaceholder": "Min 8 characters",
       "confirmPasswordLabel": "Confirm Password",
       "confirmPasswordPlaceholder": "Repeat password",
       "continue": "Continue",
       "creating": "Creating…",
-      "seedHeading": "Your Recovery Phrase",
-      "seedWarning": "⚠️ Write these 12 words down and store them somewhere safe. Anyone with these words can access your wallet.",
-      "writtenDown": "I've Written It Down →",
-      "confirmHeading": "Confirm Backup",
-      "confirmHint": "Enter the words at positions {{positions}} to verify your backup.",
-      "wordLabel": "Word #{{position}}",
-      "wordPlaceholder": "Word {{position}}",
-      "wordIncorrect": "Word #{{position}} is incorrect",
       "createWalletBtn": "Create Wallet",
       "registering": "Registering…",
       "passwordTooShort": "Password must be at least 8 characters",
@@ -101,14 +100,17 @@
     },
     "login": {
       "heading": "Welcome Back",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "Your OmniBazaar username",
       "passwordLabel": "Password",
       "passwordPlaceholder": "Enter your password",
       "unlock": "Unlock",
       "unlocking": "Unlocking…",
       "useDifferent": "Use a different wallet",
+      "errorUsernameRequired": "Username is required",
       "errorPasswordRequired": "Password is required",
-      "errorIncorrectPassword": "Incorrect password",
-      "unlockAria": "Unlock your wallet with the entered password",
+      "errorIncorrectPassword": "Incorrect username or password",
+      "unlockAria": "Unlock your wallet with the entered credentials",
       "useDifferentAria": "Import a different wallet or create a new one"
     }
   },
@@ -137,6 +139,7 @@
       "privateTab": "Private (pXOM)",
       "revealAmount": "Reveal amount",
       "amountHidden": "Amount hidden — tap Reveal to decrypt",
+      "hideAmount": "Hide amount",
       "status": {
         "confirmed": "confirmed",
         "pending": "pending",
@@ -348,6 +351,7 @@
     },
     "comingSoon": "Coming Soon",
     "swap": {
+      "signerLabel": "Sign with",
       "youPay": "You Pay",
       "youReceive": "You Receive",
       "max": "Max",
@@ -522,6 +526,31 @@
         "draft": "Draft",
         "cancelled": "Cancelled",
         "expired": "Expired"
+      },
+      "create": {
+        "listingCurrencyLabel": "Listing currency",
+        "listingPriceLabel": "Price in {{currency}}",
+        "listingNodeLabel": "Listing node",
+        "sellingNodeLabel": "Selling node",
+        "advancedToggle": "Advanced",
+        "feeBreakdown": "Marketplace fee {{pct}}% — split 70 / 20 / 10 between referral, listing node and protocol treasury"
+      },
+      "buy": {
+        "payInLabel": "You pay",
+        "receiveLabel": "Seller receives",
+        "swapFeeDisclosure": "Swap fee: 0.30% routed via OmniSwapRouter",
+        "confirmButton": "Confirm purchase",
+        "success": {
+          "toast": "Purchase confirmed — transaction {{tx}}…"
+        },
+        "error": {
+          "legacyListing": "This listing uses the legacy XOM-only purchase flow which has been retired. Ask the seller to re-list with the new flow.",
+          "listingNodeMismatch": "This listing's node configuration doesn't match the latest data on the network. Please refresh the page and try again.",
+          "listingHashMismatch": "This listing has been edited since you opened it. Please refresh the page and try again.",
+          "priceTooLow": "The listing price is below the marketplace minimum. Please pick a listing priced above the floor.",
+          "expired": "Your purchase intent has expired. Please retry — your wallet will sign a fresh one.",
+          "nodeMismatchRefreshHint": "Refresh the listing to fetch the latest node attribution."
+        }
       }
     },
     "nft": {
@@ -570,6 +599,8 @@
         "confirmButton": "Confirm purchase",
         "buyFloor": "Buy Floor",
         "fetchingFloor": "Loading…",
+        "receiveTokenLabel": "Seller receives",
+        "swapFeeDisclosure": "Swap fee: 0.30% routed via OmniSwapRouter",
         "error": {
           "selfReferral": "Referrer cannot be you or the seller.",
           "sellerReferral": "Referrer cannot be the seller.",
@@ -581,7 +612,16 @@
           "prereqsNotMet": "Purchase prerequisites failed. Please retry.",
           "insufficientBalance": "Not enough XOM in your wallet for this purchase.",
           "settlementNotDeployed": "NFT marketplace is being upgraded — please try again shortly.",
-          "noFloorListing": "No listings are currently available for this collection."
+          "noFloorListing": "No listings are currently available for this collection.",
+          "sameTokenHashMismatch": "Same-token purchases must not carry a swap route. Please retry.",
+          "nonzeroHashNeedsRoute": "Cross-token purchases require a swap route. Please retry.",
+          "priceTooLow": "Listing price is below the marketplace minimum — please pick a listing priced above the floor.",
+          "zeroPrice": "Listing price is zero — please refresh and retry.",
+          "invalidPaymentToken": "Payment token is not supported on this network.",
+          "invalidReceiveToken": "Receive token address is invalid — please pick a supported token.",
+          "zeroAddress": "A required address (buyer, seller, or contract) is missing. Please refresh and retry.",
+          "expired": "Listing expired — please refresh and retry.",
+          "selfBuy": "You cannot buy your own listing."
         },
         "success": {
           "toast": "NFT purchased — transaction {{tx}}…"
@@ -804,7 +844,8 @@
       "amountLabel": "Amount",
       "amountPlaceholder": "0.00",
       "lockLabel": "Lock period",
-      "lockNone": "None",
+      "lock1d": "1 day",
+
       "lock1m": "1 month",
       "lock6m": "6 months",
       "lock2y": "2 years",
@@ -1062,7 +1103,8 @@
       "approveNftCollection": "approve NFT collection",
       "approveXomForNftBuy": "approve XOM for NFT purchase",
       "buyNft": "buy NFT"
-    }
+    },
+    "chunkLoadFailed": "Failed to load {{module}} support. Check your connection and try again."
   },
   "dapp": {
     "connect": {
@@ -1131,6 +1173,7 @@
       "collisionDiffName": "chain name",
       "collisionDiffSymbol": "native currency symbol",
       "iUnderstandRisk": "I understand the risk and want to add this chain anyway",
+      "addAnyway": "Add anyway",
       "forceApproveDisabledTooltip": "Disabled: confirm you understand the risk to continue."
     },
     "addtoken": {

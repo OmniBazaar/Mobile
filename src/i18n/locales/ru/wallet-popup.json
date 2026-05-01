@@ -43,28 +43,27 @@
       "termsLink": "Условиями использования"
     },
     "createWallet": {
-      "heading": "Создать кошелёк",
-      "passwordHint": "Установите пароль для защиты кошелька на этом устройстве. Настоящей резервной копией является ваша seed-фраза — храните её в безопасном месте.",
-      "passwordLabel": "Пароль",
-      "passwordPlaceholder": "Минимум 8 символов",
-      "confirmPasswordLabel": "Подтвердите пароль",
-      "confirmPasswordPlaceholder": "Повторите пароль",
-      "continue": "Продолжить",
-      "creating": "Создание…",
-      "seedHeading": "Ваша фраза восстановления",
-      "seedWarning": "⚠️ Запишите эти 12 слов и храните их в безопасном месте. Любой, у кого есть эти слова, сможет получить доступ к вашему кошельку.",
-      "writtenDown": "Я записал(а) →",
-      "confirmHeading": "Подтвердите резервную копию",
-      "confirmHint": "Введите слова на позициях {{positions}}, чтобы подтвердить резервную копию.",
-      "wordLabel": "Слово №{{position}}",
-      "wordPlaceholder": "Слово {{position}}",
-      "wordIncorrect": "Слово №{{position}} неверно",
-      "createWalletBtn": "Создать кошелёк",
-      "registering": "Регистрация…",
-      "passwordTooShort": "Пароль должен содержать не менее 8 символов",
-      "passwordMismatch": "Пароли не совпадают",
-      "createFailed": "Не удалось создать кошелёк",
-      "registerFailed": "Не удалось зарегистрировать"
+      "heading": "Create OmniBazaar Account",
+      "deterministicHint": "Your username and password together generate your wallet keys. Use the same credentials on any device to recover the same wallet — there is no separate seed phrase to back up.",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "3–20 chars, lowercase letters / digits / underscore",
+      "usernameInvalid": "Username must be 3–20 characters: lowercase letters, digits, underscore. Must start with a letter.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@example.com",
+      "emailInvalid": "Please enter a valid email address.",
+      "passwordHint": "Choose a strong password — it is the only secret protecting your wallet.",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Min 8 characters",
+      "confirmPasswordLabel": "Confirm Password",
+      "confirmPasswordPlaceholder": "Repeat password",
+      "continue": "Continue",
+      "creating": "Creating…",
+      "createWalletBtn": "Create Wallet",
+      "registering": "Registering…",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "passwordMismatch": "Passwords do not match",
+      "createFailed": "Failed to create wallet",
+      "registerFailed": "Registration failed"
     },
     "importWallet": {
       "heading": "Импорт кошелька",
@@ -101,11 +100,14 @@
     },
     "login": {
       "heading": "С возвращением",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "Your OmniBazaar username",
       "passwordLabel": "Пароль",
       "passwordPlaceholder": "Введите ваш пароль",
       "unlock": "Разблокировать",
       "unlocking": "Разблокировка…",
       "useDifferent": "Использовать другой кошелёк",
+      "errorUsernameRequired": "Username is required",
       "errorPasswordRequired": "Требуется пароль",
       "errorIncorrectPassword": "Неверный пароль",
       "unlockAria": "Разблокируй кошелёк введённым паролем",
@@ -137,6 +139,7 @@
       "privateTab": "Приватная (pXOM)",
       "revealAmount": "Показать сумму",
       "amountHidden": "Сумма скрыта — нажмите Показать для расшифровки",
+      "hideAmount": "Скрыть сумму",
       "status": {
         "confirmed": "подтверждено",
         "pending": "в ожидании",
@@ -193,6 +196,8 @@
       "sectionSecurity": "Безопасность",
       "sectionNetwork": "Сеть",
       "sectionAccount": "Аккаунт",
+      "sectionFeatures": "Функции",
+      "sectionInfo": "Информация",
       "securityPrivacyTitle": "Безопасность и конфиденциальность",
       "securityPrivacySub": "Пароль, биометрия, seed-фраза",
       "connectedSitesTitle": "Подключённые сайты",
@@ -206,8 +211,6 @@
       "signOutTitle": "Выйти",
       "signOutSub": "Заблокировать кошелёк",
       "versionRow": "OmniWallet v{{version}}",
-      "sectionFeatures": "Функции",
-      "sectionInfo": "Информация",
       "stakingTitle": "Стейкинг",
       "stakingSub": "Стейкайте XOM и получайте награды",
       "kycTitle": "KYC и верификация",
@@ -216,12 +219,12 @@
       "bridgeSub": "Перемещайте активы между сетями",
       "addressBookTitle": "Адресная книга",
       "addressBookSub": "Сохранённые контакты",
-      "aboutTitle": "О приложении",
-      "aboutSub": "Версия, валидаторы, ссылки",
       "hardwareTitle": "Подключить Аппаратный Кошелёк",
       "hardwareSub": "Добавить аккаунт Ledger или Trezor",
       "portfolioTitle": "Аналитика Портфеля",
       "portfolioSub": "Разбивка балансов ERC-20 по цепочкам",
+      "aboutTitle": "О приложении",
+      "aboutSub": "Версия, валидаторы, ссылки",
       "participationTitle": "Оценка участия",
       "participationSub": "Посмотрите, как рассчитывается ваша оценка {{score}}/100",
       "governanceTitle": "Управление",
@@ -234,6 +237,7 @@
     "security": {
       "heading": "Безопасность и конфиденциальность",
       "sectionWallet": "Кошелёк",
+      "sectionAccess": "Доступ",
       "showSeedTitle": "Показать фразу восстановления",
       "showSeedSub": "Просмотреть вашу seed из 12/24 слов",
       "exportKeyTitle": "Экспорт приватного ключа",
@@ -245,7 +249,6 @@
       "errorIncorrectPassword": "Неверный пароль",
       "errorExportFailed": "Ошибка экспорта",
       "exportedAlert": "Приватный ключ скопирован в буфер обмена. Храните его в безопасности и очистите буфер.",
-      "sectionAccess": "Доступ",
       "passwordChangeTitle": "Сменить пароль",
       "passwordChangeSub": "Обновите пароль для разблокировки кошелька",
       "passwordChangeHeading": "Сменить пароль",
@@ -348,6 +351,7 @@
     },
     "comingSoon": "Скоро",
     "swap": {
+      "signerLabel": "Подписать с",
       "youPay": "Вы платите",
       "youReceive": "Вы получаете",
       "max": "Макс",
@@ -522,6 +526,31 @@
         "draft": "Черновик",
         "cancelled": "Отменено",
         "expired": "Истекло"
+      },
+      "create": {
+        "listingCurrencyLabel": "Валюта объявления",
+        "listingPriceLabel": "Цена в {{currency}}",
+        "listingNodeLabel": "Узел листинга",
+        "sellingNodeLabel": "Узел продажи",
+        "advancedToggle": "Дополнительно",
+        "feeBreakdown": "Комиссия маркетплейса {{pct}}% — распределяется 70 / 20 / 10 между рефералом, узлом листинга и казной протокола"
+      },
+      "buy": {
+        "payInLabel": "Вы платите",
+        "receiveLabel": "Продавец получает",
+        "swapFeeDisclosure": "Комиссия за обмен: 0,30% через OmniSwapRouter",
+        "confirmButton": "Подтвердить покупку",
+        "success": {
+          "toast": "Покупка подтверждена — транзакция {{tx}}…"
+        },
+        "error": {
+          "legacyListing": "Это объявление использует устаревший XOM-only-поток, который выведен из эксплуатации. Попросите продавца разместить его заново в новом потоке.",
+          "listingNodeMismatch": "Конфигурация узлов этого объявления не совпадает с последними данными сети. Обновите страницу и попробуйте снова.",
+          "listingHashMismatch": "Объявление было изменено после открытия. Обновите страницу и попробуйте снова.",
+          "priceTooLow": "Цена объявления ниже минимальной для маркетплейса. Выберите объявление с ценой выше минимума.",
+          "expired": "Срок действия вашего намерения покупки истёк. Повторите — кошелёк подпишет новое.",
+          "nodeMismatchRefreshHint": "Обновите объявление, чтобы получить актуальную привязку узлов."
+        }
       }
     },
     "nft": {
@@ -547,12 +576,6 @@
         "errorFailed": "Не удалось опубликовать",
         "step": "Шаг 2 из 2: Подпишите ваше объявление"
       },
-      "buyConfirm": "Подтвердить покупку? XOM будут отправлены, а NFT атомарно передан в блокчейне.",
-      "buyToast": {
-        "success": "NFT куплен — транзакция {{tx}}",
-        "failed": "Не удалось купить NFT"
-      },
-      "buyUnavailable": "Покупки NFT пока недоступны — пожалуйста, загляните позже.",
       "approveCollection": {
         "step": "Шаг 1 из 2: Одобрить маркетплейс для этой NFT-коллекции",
         "button": "Одобрить (без газа)",
@@ -576,6 +599,8 @@
         "confirmButton": "Подтвердить покупку",
         "buyFloor": "Купить по минимальной цене",
         "fetchingFloor": "Загрузка…",
+        "receiveTokenLabel": "Продавец получит",
+        "swapFeeDisclosure": "Комиссия свопа: 0,30% через OmniSwapRouter",
         "error": {
           "selfReferral": "Реферер не может быть вами или продавцом.",
           "sellerReferral": "Реферер не может быть продавцом.",
@@ -587,12 +612,27 @@
           "prereqsNotMet": "Предварительные условия покупки не выполнены. Попробуйте снова.",
           "insufficientBalance": "Недостаточно XOM в кошельке для этой покупки.",
           "settlementNotDeployed": "NFT-маркетплейс обновляется — пожалуйста, попробуйте чуть позже.",
-          "noFloorListing": "В этой коллекции сейчас нет активных объявлений."
+          "noFloorListing": "В этой коллекции сейчас нет активных объявлений.",
+          "sameTokenHashMismatch": "Покупка за тот же токен не должна содержать маршрут свопа. Попробуйте снова.",
+          "nonzeroHashNeedsRoute": "Для покупки с разными токенами требуется маршрут свопа. Попробуйте снова.",
+          "priceTooLow": "Цена объявления ниже минимальной для маркетплейса — выберите объявление выше порога.",
+          "zeroPrice": "Цена объявления равна нулю — обновите и попробуйте снова.",
+          "invalidPaymentToken": "Платёжный токен не поддерживается в этой сети.",
+          "invalidReceiveToken": "Адрес токена получения недействителен — выберите поддерживаемый токен.",
+          "zeroAddress": "Отсутствует обязательный адрес (покупатель, продавец или контракт). Обновите и попробуйте снова.",
+          "expired": "Объявление истекло — обновите и попробуйте снова.",
+          "selfBuy": "Вы не можете купить собственное объявление."
         },
         "success": {
           "toast": "NFT куплен — транзакция {{tx}}…"
         }
-      }
+      },
+      "buyConfirm": "Подтвердить покупку? XOM будут отправлены, а NFT атомарно передан в блокчейне.",
+      "buyToast": {
+        "success": "NFT куплен — транзакция {{tx}}",
+        "failed": "Не удалось купить NFT"
+      },
+      "buyUnavailable": "Покупки NFT пока недоступны — пожалуйста, загляните позже."
     },
     "listing": {
       "notFound": "Объявление не найдено",
@@ -791,67 +831,6 @@
       "tradersLabel": "Трейдеров"
     }
   },
-  "errors": {
-    "unknown": {
-      "title": "Что-то пошло не так",
-      "body": "Не удалось выполнить это действие.",
-      "action": "Попробуй чуть позже. Если ошибка повторится — перезапусти кошелёк."
-    },
-    "invalidInput": "Неверный ввод",
-    "network": {
-      "title": "Проблема с подключением",
-      "body": "Кошелёк не смог связаться с интернетом или валидатором.",
-      "action": "Проверь соединение и повтори попытку."
-    },
-    "session": {
-      "title": "Сессия истекла",
-      "body": "Ваша защищённая сессия больше не действительна.",
-      "action": "Войдите снова, чтобы продолжить."
-    },
-    "notFound": {
-      "title": "Не найдено",
-      "body": "Запрошенный элемент больше недоступен.",
-      "action": "Обнови экран и попробуй снова."
-    },
-    "rateLimit": {
-      "title": "Слишком много запросов",
-      "body": "Вы превысили допустимую частоту.",
-      "action": "Подожди примерно минуту и повтори попытку."
-    },
-    "serverDown": {
-      "title": "Сервис временно недоступен",
-      "body": "Наши серверы сейчас недоступны.",
-      "action": "Мы автоматически повторим — оставь этот экран открытым."
-    },
-    "locked": {
-      "title": "Кошелёк заблокирован",
-      "body": "Для этого действия нужен разблокированный кошелёк.",
-      "action": "Разблокируй кошелёк и попробуй снова."
-    },
-    "insufficient": {
-      "title": "Недостаточно средств",
-      "body": "Баланс в этой сети слишком мал.",
-      "action": "Получи или обмени больше средств перед повторной попыткой."
-    },
-    "validation": {
-      "title": "Проверь ввод",
-      "body": "Запрос отклонён из-за некорректного значения.",
-      "action": "Исправь форму и попробуй снова."
-    },
-    "cancelled": {
-      "title": "Отменено",
-      "body": "Вы отменили это действие.",
-      "action": ""
-    },
-    "retry": "Повторить",
-    "retryAria": "Повторить неудачное действие",
-    "dismissAria": "Закрыть сообщение об ошибке",
-    "context": {
-      "approveNftCollection": "одобрить NFT-коллекцию",
-      "approveXomForNftBuy": "одобрить XOM для покупки NFT",
-      "buyNft": "купить NFT"
-    }
-  },
   "features": {
     "staking": {
       "heading": "Стейкинг",
@@ -865,7 +844,7 @@
       "amountLabel": "Сумма",
       "amountPlaceholder": "0,00",
       "lockLabel": "Срок блокировки",
-      "lockNone": "Нет",
+      "lock1d": "1 день",
       "lock1m": "1 месяц",
       "lock6m": "6 месяцев",
       "lock2y": "2 года",
@@ -1064,6 +1043,68 @@
       "partialError_other": "{{count}} сетей не удалось прочитать — показаны частичные результаты."
     }
   },
+  "errors": {
+    "unknown": {
+      "title": "Что-то пошло не так",
+      "body": "Не удалось выполнить это действие.",
+      "action": "Попробуй чуть позже. Если ошибка повторится — перезапусти кошелёк."
+    },
+    "invalidInput": "Неверный ввод",
+    "network": {
+      "title": "Проблема с подключением",
+      "body": "Кошелёк не смог связаться с интернетом или валидатором.",
+      "action": "Проверь соединение и повтори попытку."
+    },
+    "session": {
+      "title": "Сессия истекла",
+      "body": "Ваша защищённая сессия больше не действительна.",
+      "action": "Войдите снова, чтобы продолжить."
+    },
+    "notFound": {
+      "title": "Не найдено",
+      "body": "Запрошенный элемент больше недоступен.",
+      "action": "Обнови экран и попробуй снова."
+    },
+    "rateLimit": {
+      "title": "Слишком много запросов",
+      "body": "Вы превысили допустимую частоту.",
+      "action": "Подожди примерно минуту и повтори попытку."
+    },
+    "serverDown": {
+      "title": "Сервис временно недоступен",
+      "body": "Наши серверы сейчас недоступны.",
+      "action": "Мы автоматически повторим — оставь этот экран открытым."
+    },
+    "locked": {
+      "title": "Кошелёк заблокирован",
+      "body": "Для этого действия нужен разблокированный кошелёк.",
+      "action": "Разблокируй кошелёк и попробуй снова."
+    },
+    "insufficient": {
+      "title": "Недостаточно средств",
+      "body": "Баланс в этой сети слишком мал.",
+      "action": "Получи или обмени больше средств перед повторной попыткой."
+    },
+    "validation": {
+      "title": "Проверь ввод",
+      "body": "Запрос отклонён из-за некорректного значения.",
+      "action": "Исправь форму и попробуй снова."
+    },
+    "cancelled": {
+      "title": "Отменено",
+      "body": "Вы отменили это действие.",
+      "action": ""
+    },
+    "retry": "Повторить",
+    "retryAria": "Повторить неудачное действие",
+    "dismissAria": "Закрыть сообщение об ошибке",
+    "context": {
+      "approveNftCollection": "одобрить NFT-коллекцию",
+      "approveXomForNftBuy": "одобрить XOM для покупки NFT",
+      "buyNft": "купить NFT"
+    },
+    "chunkLoadFailed": "Не удалось загрузить поддержку {{module}}. Проверьте подключение и попробуйте ещё раз."
+  },
   "dapp": {
     "connect": {
       "heading": "Подключение к dApp",
@@ -1131,6 +1172,7 @@
       "collisionDiffName": "название сети",
       "collisionDiffSymbol": "символ нативной валюты",
       "iUnderstandRisk": "Я понимаю риск и всё равно хочу добавить эту сеть",
+      "addAnyway": "Всё равно добавить",
       "forceApproveDisabledTooltip": "Отключено: подтвердите, что понимаете риск, чтобы продолжить."
     },
     "addtoken": {

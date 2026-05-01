@@ -43,28 +43,27 @@
       "termsLink": "利用規約"
     },
     "createWallet": {
-      "heading": "ウォレットを作成",
-      "passwordHint": "このデバイスでウォレットを保護するためのパスワードを設定してください。シードフレーズこそが本当のバックアップです — 安全に保管してください。",
-      "passwordLabel": "パスワード",
-      "passwordPlaceholder": "8 文字以上",
-      "confirmPasswordLabel": "パスワードの確認",
-      "confirmPasswordPlaceholder": "パスワードを再入力",
-      "continue": "続行",
-      "creating": "作成中…",
-      "seedHeading": "リカバリーフレーズ",
-      "seedWarning": "⚠️ この 12 個の単語を書き留めて安全な場所に保管してください。この単語を持つ人は誰でもウォレットにアクセスできます。",
-      "writtenDown": "書き留めました →",
-      "confirmHeading": "バックアップの確認",
-      "confirmHint": "バックアップを確認するため、位置 {{positions}} の単語を入力してください。",
-      "wordLabel": "単語 #{{position}}",
-      "wordPlaceholder": "単語 {{position}}",
-      "wordIncorrect": "単語 #{{position}} が正しくありません",
-      "createWalletBtn": "ウォレットを作成",
-      "registering": "登録中…",
-      "passwordTooShort": "パスワードは 8 文字以上である必要があります",
-      "passwordMismatch": "パスワードが一致しません",
-      "createFailed": "ウォレットの作成に失敗しました",
-      "registerFailed": "登録に失敗しました"
+      "heading": "Create OmniBazaar Account",
+      "deterministicHint": "Your username and password together generate your wallet keys. Use the same credentials on any device to recover the same wallet — there is no separate seed phrase to back up.",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "3–20 chars, lowercase letters / digits / underscore",
+      "usernameInvalid": "Username must be 3–20 characters: lowercase letters, digits, underscore. Must start with a letter.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@example.com",
+      "emailInvalid": "Please enter a valid email address.",
+      "passwordHint": "Choose a strong password — it is the only secret protecting your wallet.",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Min 8 characters",
+      "confirmPasswordLabel": "Confirm Password",
+      "confirmPasswordPlaceholder": "Repeat password",
+      "continue": "Continue",
+      "creating": "Creating…",
+      "createWalletBtn": "Create Wallet",
+      "registering": "Registering…",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "passwordMismatch": "Passwords do not match",
+      "createFailed": "Failed to create wallet",
+      "registerFailed": "Registration failed"
     },
     "importWallet": {
       "heading": "ウォレットをインポート",
@@ -101,11 +100,14 @@
     },
     "login": {
       "heading": "おかえりなさい",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "Your OmniBazaar username",
       "passwordLabel": "パスワード",
       "passwordPlaceholder": "パスワードを入力",
       "unlock": "ロック解除",
       "unlocking": "ロック解除中…",
       "useDifferent": "別のウォレットを使用",
+      "errorUsernameRequired": "Username is required",
       "errorPasswordRequired": "パスワードが必要です",
       "errorIncorrectPassword": "パスワードが正しくありません",
       "unlockAria": "入力したパスワードでウォレットを解除",
@@ -137,6 +139,7 @@
       "privateTab": "プライベート (pXOM)",
       "revealAmount": "金額を表示",
       "amountHidden": "金額は非表示です — 表示をタップして復号",
+      "hideAmount": "金額を隠す",
       "status": {
         "confirmed": "確認済み",
         "pending": "保留中",
@@ -193,6 +196,8 @@
       "sectionSecurity": "セキュリティ",
       "sectionNetwork": "ネットワーク",
       "sectionAccount": "アカウント",
+      "sectionFeatures": "機能",
+      "sectionInfo": "情報",
       "securityPrivacyTitle": "セキュリティとプライバシー",
       "securityPrivacySub": "パスワード、生体認証、シードフレーズ",
       "connectedSitesTitle": "接続済みサイト",
@@ -206,8 +211,6 @@
       "signOutTitle": "サインアウト",
       "signOutSub": "ウォレットをロック",
       "versionRow": "OmniWallet v{{version}}",
-      "sectionFeatures": "機能",
-      "sectionInfo": "情報",
       "stakingTitle": "ステーキング",
       "stakingSub": "XOMをステーキングして報酬を獲得",
       "kycTitle": "KYC・本人確認",
@@ -216,12 +219,12 @@
       "bridgeSub": "チェーン間で資産を移動",
       "addressBookTitle": "アドレス帳",
       "addressBookSub": "保存済みの連絡先",
-      "aboutTitle": "概要",
-      "aboutSub": "バージョン、バリデーター、リンク",
       "hardwareTitle": "ハードウェアウォレットを接続",
       "hardwareSub": "Ledger または Trezor アカウントを追加",
       "portfolioTitle": "ポートフォリオ分析",
       "portfolioSub": "マルチチェーン ERC-20 残高の内訳",
+      "aboutTitle": "概要",
+      "aboutSub": "バージョン、バリデーター、リンク",
       "participationTitle": "参加スコア",
       "participationSub": "あなたの {{score}}/100 スコアの計算方法を確認",
       "governanceTitle": "ガバナンス",
@@ -234,6 +237,7 @@
     "security": {
       "heading": "セキュリティとプライバシー",
       "sectionWallet": "ウォレット",
+      "sectionAccess": "アクセス",
       "showSeedTitle": "リカバリーフレーズを表示",
       "showSeedSub": "12/24 語のシードを表示",
       "exportKeyTitle": "秘密鍵をエクスポート",
@@ -245,7 +249,6 @@
       "errorIncorrectPassword": "パスワードが正しくありません",
       "errorExportFailed": "エクスポートに失敗しました",
       "exportedAlert": "秘密鍵をクリップボードにコピーしました。安全に保管し、クリップボードをクリアしてください。",
-      "sectionAccess": "アクセス",
       "passwordChangeTitle": "パスワードを変更",
       "passwordChangeSub": "ウォレットのロック解除パスワードを更新",
       "passwordChangeHeading": "パスワードを変更",
@@ -348,6 +351,7 @@
     },
     "comingSoon": "近日公開",
     "swap": {
+      "signerLabel": "署名者",
       "youPay": "支払う",
       "youReceive": "受け取る",
       "max": "最大",
@@ -522,6 +526,31 @@
         "draft": "下書き",
         "cancelled": "キャンセル済み",
         "expired": "期限切れ"
+      },
+      "create": {
+        "listingCurrencyLabel": "出品通貨",
+        "listingPriceLabel": "{{currency}} 建ての価格",
+        "listingNodeLabel": "リスティングノード",
+        "sellingNodeLabel": "セリングノード",
+        "advancedToggle": "詳細設定",
+        "feeBreakdown": "マーケット手数料 {{pct}}% — リファラル / リスティングノード / プロトコル財団に 70 / 20 / 10 で分配"
+      },
+      "buy": {
+        "payInLabel": "支払額",
+        "receiveLabel": "出品者の受取額",
+        "swapFeeDisclosure": "スワップ手数料:0.30%(OmniSwapRouter 経由)",
+        "confirmButton": "購入を確定",
+        "success": {
+          "toast": "購入が確定しました — トランザクション {{tx}}…"
+        },
+        "error": {
+          "legacyListing": "この出品は廃止された旧 XOM 限定フローを使用しています。出品者に新フローで再出品するよう依頼してください。",
+          "listingNodeMismatch": "この出品のノード構成が最新のネットワークデータと一致しません。ページを更新してから再試行してください。",
+          "listingHashMismatch": "出品が開いてから変更されています。ページを更新してから再試行してください。",
+          "priceTooLow": "出品価格がマーケットの最低額を下回っています。最低額を上回る出品を選択してください。",
+          "expired": "購入インテントの有効期限が切れました。再試行してください — ウォレットが新しいインテントに署名します。",
+          "nodeMismatchRefreshHint": "出品を更新して最新のノード割り当てを取得してください。"
+        }
       }
     },
     "nft": {
@@ -547,12 +576,6 @@
         "errorFailed": "出品に失敗しました",
         "step": "ステップ 2/2:出品に署名"
       },
-      "buyConfirm": "購入を確認しますか？XOMが送信され、NFTはオンチェーンで原子的に転送されます。",
-      "buyToast": {
-        "success": "NFTを購入しました — トランザクション {{tx}}",
-        "failed": "NFTの購入に失敗しました"
-      },
-      "buyUnavailable": "NFTの購入はまだご利用いただけません — 後ほど再度ご確認ください。",
       "approveCollection": {
         "step": "ステップ 1/2:この NFT コレクションにマーケットプレイスを承認",
         "button": "承認(ガスレス)",
@@ -576,6 +599,8 @@
         "confirmButton": "購入を確定",
         "buyFloor": "最安値で購入",
         "fetchingFloor": "読み込み中…",
+        "receiveTokenLabel": "売り手が受け取る",
+        "swapFeeDisclosure": "スワップ手数料:0.30%(OmniSwapRouter 経由)",
         "error": {
           "selfReferral": "紹介者は自分自身または売り手にはできません。",
           "sellerReferral": "紹介者は売り手にはできません。",
@@ -587,12 +612,27 @@
           "prereqsNotMet": "購入の前提条件を満たしていません。再試行してください。",
           "insufficientBalance": "この購入に必要な XOM が不足しています。",
           "settlementNotDeployed": "NFT マーケットプレイスはアップグレード中です — しばらくしてから再試行してください。",
-          "noFloorListing": "このコレクションには現在出品がありません。"
+          "noFloorListing": "このコレクションには現在出品がありません。",
+          "sameTokenHashMismatch": "同じトークンでの購入にはスワップ経路を含めないでください。再試行してください。",
+          "nonzeroHashNeedsRoute": "異なるトークン間の購入にはスワップ経路が必要です。再試行してください。",
+          "priceTooLow": "出品価格がマーケットプレイスの下限を下回っています — フロア価格以上の出品を選んでください。",
+          "zeroPrice": "出品価格がゼロです — 再読み込みしてください。",
+          "invalidPaymentToken": "このネットワークでは支払いトークンがサポートされていません。",
+          "invalidReceiveToken": "受け取りトークンのアドレスが無効です — サポートされているトークンを選んでください。",
+          "zeroAddress": "必要なアドレス(購入者、売り手、またはコントラクト)が欠けています。再読み込みしてください。",
+          "expired": "出品の有効期限が切れています — 再読み込みしてください。",
+          "selfBuy": "自分自身の出品を購入することはできません。"
         },
         "success": {
           "toast": "NFT を購入しました — トランザクション {{tx}}…"
         }
-      }
+      },
+      "buyConfirm": "購入を確認しますか？XOMが送信され、NFTはオンチェーンで原子的に転送されます。",
+      "buyToast": {
+        "success": "NFTを購入しました — トランザクション {{tx}}",
+        "failed": "NFTの購入に失敗しました"
+      },
+      "buyUnavailable": "NFTの購入はまだご利用いただけません — 後ほど再度ご確認ください。"
     },
     "listing": {
       "notFound": "出品が見つかりません",
@@ -791,67 +831,6 @@
       "tradersLabel": "トレーダー数"
     }
   },
-  "errors": {
-    "unknown": {
-      "title": "問題が発生しました",
-      "body": "操作を完了できませんでした。",
-      "action": "少し待ってから再試行してください。続く場合はウォレットを再起動してください。"
-    },
-    "invalidInput": "入力が無効です",
-    "network": {
-      "title": "接続エラー",
-      "body": "ウォレットがインターネットまたはバリデーターに到達できませんでした。",
-      "action": "接続を確認して再試行してください。"
-    },
-    "session": {
-      "title": "セッションの有効期限切れ",
-      "body": "安全なセッションは無効になりました。",
-      "action": "再度サインインしてください。"
-    },
-    "notFound": {
-      "title": "見つかりません",
-      "body": "リクエストした項目はもう利用できません。",
-      "action": "画面を更新してもう一度お試しください。"
-    },
-    "rateLimit": {
-      "title": "リクエスト過多",
-      "body": "上限を超えた速度で操作しています。",
-      "action": "1分ほど待ってから再試行してください。"
-    },
-    "serverDown": {
-      "title": "一時的に利用できません",
-      "body": "サーバーに到達できません。",
-      "action": "自動で再試行します。この画面を開いたままにしてください。"
-    },
-    "locked": {
-      "title": "ウォレットはロック中",
-      "body": "この操作にはロック解除が必要です。",
-      "action": "ウォレットをロック解除してから再試行してください。"
-    },
-    "insufficient": {
-      "title": "残高不足",
-      "body": "このチェーンの残高が不足しています。",
-      "action": "受け取りまたはスワップしてから再試行してください。"
-    },
-    "validation": {
-      "title": "入力を確認してください",
-      "body": "いずれかの項目が正しくないため、リクエストは拒否されました。",
-      "action": "フォームを確認してもう一度お試しください。"
-    },
-    "cancelled": {
-      "title": "キャンセル",
-      "body": "この操作をキャンセルしました。",
-      "action": ""
-    },
-    "retry": "再試行",
-    "retryAria": "失敗したアクションを再試行",
-    "dismissAria": "エラーメッセージを閉じる",
-    "context": {
-      "approveNftCollection": "NFT コレクションを承認",
-      "approveXomForNftBuy": "NFT 購入のために XOM を承認",
-      "buyNft": "NFT を購入"
-    }
-  },
   "features": {
     "staking": {
       "heading": "ステーキング",
@@ -865,7 +844,7 @@
       "amountLabel": "金額",
       "amountPlaceholder": "0.00",
       "lockLabel": "ロック期間",
-      "lockNone": "なし",
+      "lock1d": "1 日",
       "lock1m": "1か月",
       "lock6m": "6か月",
       "lock2y": "2年",
@@ -1064,6 +1043,68 @@
       "partialError_other": "{{count}} 件のチェーンを読み取れませんでした — 部分的な結果を表示しています。"
     }
   },
+  "errors": {
+    "unknown": {
+      "title": "問題が発生しました",
+      "body": "操作を完了できませんでした。",
+      "action": "少し待ってから再試行してください。続く場合はウォレットを再起動してください。"
+    },
+    "invalidInput": "入力が無効です",
+    "network": {
+      "title": "接続エラー",
+      "body": "ウォレットがインターネットまたはバリデーターに到達できませんでした。",
+      "action": "接続を確認して再試行してください。"
+    },
+    "session": {
+      "title": "セッションの有効期限切れ",
+      "body": "安全なセッションは無効になりました。",
+      "action": "再度サインインしてください。"
+    },
+    "notFound": {
+      "title": "見つかりません",
+      "body": "リクエストした項目はもう利用できません。",
+      "action": "画面を更新してもう一度お試しください。"
+    },
+    "rateLimit": {
+      "title": "リクエスト過多",
+      "body": "上限を超えた速度で操作しています。",
+      "action": "1分ほど待ってから再試行してください。"
+    },
+    "serverDown": {
+      "title": "一時的に利用できません",
+      "body": "サーバーに到達できません。",
+      "action": "自動で再試行します。この画面を開いたままにしてください。"
+    },
+    "locked": {
+      "title": "ウォレットはロック中",
+      "body": "この操作にはロック解除が必要です。",
+      "action": "ウォレットをロック解除してから再試行してください。"
+    },
+    "insufficient": {
+      "title": "残高不足",
+      "body": "このチェーンの残高が不足しています。",
+      "action": "受け取りまたはスワップしてから再試行してください。"
+    },
+    "validation": {
+      "title": "入力を確認してください",
+      "body": "いずれかの項目が正しくないため、リクエストは拒否されました。",
+      "action": "フォームを確認してもう一度お試しください。"
+    },
+    "cancelled": {
+      "title": "キャンセル",
+      "body": "この操作をキャンセルしました。",
+      "action": ""
+    },
+    "retry": "再試行",
+    "retryAria": "失敗したアクションを再試行",
+    "dismissAria": "エラーメッセージを閉じる",
+    "context": {
+      "approveNftCollection": "NFT コレクションを承認",
+      "approveXomForNftBuy": "NFT 購入のために XOM を承認",
+      "buyNft": "NFT を購入"
+    },
+    "chunkLoadFailed": "{{module}} のサポートを読み込めませんでした。接続を確認してもう一度お試しください。"
+  },
   "dapp": {
     "connect": {
       "heading": "dApp に接続",
@@ -1131,6 +1172,7 @@
       "collisionDiffName": "チェーン名",
       "collisionDiffSymbol": "ネイティブ通貨シンボル",
       "iUnderstandRisk": "リスクを理解し、それでもこのチェーンを追加する",
+      "addAnyway": "それでも追加する",
       "forceApproveDisabledTooltip": "無効: 続行するには、リスクを理解したことを確認してください。"
     },
     "addtoken": {

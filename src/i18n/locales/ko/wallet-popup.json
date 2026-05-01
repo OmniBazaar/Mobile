@@ -43,28 +43,27 @@
       "termsLink": "이용약관"
     },
     "createWallet": {
-      "heading": "지갑 만들기",
-      "passwordHint": "이 기기에서 지갑을 보호할 비밀번호를 설정하세요. 시드 문구가 진짜 백업입니다 — 안전하게 보관하세요.",
-      "passwordLabel": "비밀번호",
-      "passwordPlaceholder": "최소 8자",
-      "confirmPasswordLabel": "비밀번호 확인",
-      "confirmPasswordPlaceholder": "비밀번호 재입력",
-      "continue": "계속",
-      "creating": "생성 중…",
-      "seedHeading": "복구 문구",
-      "seedWarning": "⚠️ 이 12개 단어를 적어 안전한 곳에 보관하세요. 이 단어를 아는 사람은 누구나 지갑에 접근할 수 있습니다.",
-      "writtenDown": "적었습니다 →",
-      "confirmHeading": "백업 확인",
-      "confirmHint": "백업을 확인하기 위해 {{positions}} 위치의 단어를 입력하세요.",
-      "wordLabel": "{{position}}번 단어",
-      "wordPlaceholder": "{{position}}번 단어",
-      "wordIncorrect": "{{position}}번 단어가 올바르지 않습니다",
-      "createWalletBtn": "지갑 만들기",
-      "registering": "등록 중…",
-      "passwordTooShort": "비밀번호는 최소 8자 이상이어야 합니다",
-      "passwordMismatch": "비밀번호가 일치하지 않습니다",
-      "createFailed": "지갑 생성에 실패했습니다",
-      "registerFailed": "등록에 실패했습니다"
+      "heading": "Create OmniBazaar Account",
+      "deterministicHint": "Your username and password together generate your wallet keys. Use the same credentials on any device to recover the same wallet — there is no separate seed phrase to back up.",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "3–20 chars, lowercase letters / digits / underscore",
+      "usernameInvalid": "Username must be 3–20 characters: lowercase letters, digits, underscore. Must start with a letter.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@example.com",
+      "emailInvalid": "Please enter a valid email address.",
+      "passwordHint": "Choose a strong password — it is the only secret protecting your wallet.",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Min 8 characters",
+      "confirmPasswordLabel": "Confirm Password",
+      "confirmPasswordPlaceholder": "Repeat password",
+      "continue": "Continue",
+      "creating": "Creating…",
+      "createWalletBtn": "Create Wallet",
+      "registering": "Registering…",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "passwordMismatch": "Passwords do not match",
+      "createFailed": "Failed to create wallet",
+      "registerFailed": "Registration failed"
     },
     "importWallet": {
       "heading": "지갑 가져오기",
@@ -101,11 +100,14 @@
     },
     "login": {
       "heading": "다시 오신 것을 환영합니다",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "Your OmniBazaar username",
       "passwordLabel": "비밀번호",
       "passwordPlaceholder": "비밀번호를 입력하세요",
       "unlock": "잠금 해제",
       "unlocking": "잠금 해제 중…",
       "useDifferent": "다른 지갑 사용",
+      "errorUsernameRequired": "Username is required",
       "errorPasswordRequired": "비밀번호가 필요합니다",
       "errorIncorrectPassword": "비밀번호가 올바르지 않습니다",
       "unlockAria": "입력한 비밀번호로 지갑 잠금 해제",
@@ -137,6 +139,7 @@
       "privateTab": "비공개 (pXOM)",
       "revealAmount": "금액 표시",
       "amountHidden": "금액 숨김 — 복호화하려면 표시를 탭하세요",
+      "hideAmount": "금액 숨기기",
       "status": {
         "confirmed": "확인됨",
         "pending": "대기 중",
@@ -193,6 +196,8 @@
       "sectionSecurity": "보안",
       "sectionNetwork": "네트워크",
       "sectionAccount": "계정",
+      "sectionFeatures": "기능",
+      "sectionInfo": "정보",
       "securityPrivacyTitle": "보안 및 개인정보 보호",
       "securityPrivacySub": "비밀번호, 생체인식, 시드 문구",
       "connectedSitesTitle": "연결된 사이트",
@@ -206,8 +211,6 @@
       "signOutTitle": "로그아웃",
       "signOutSub": "지갑 잠금",
       "versionRow": "OmniWallet v{{version}}",
-      "sectionFeatures": "기능",
-      "sectionInfo": "정보",
       "stakingTitle": "스테이킹",
       "stakingSub": "XOM을 스테이킹하고 보상 받기",
       "kycTitle": "KYC 및 인증",
@@ -216,12 +219,12 @@
       "bridgeSub": "체인 간 자산 이동",
       "addressBookTitle": "주소록",
       "addressBookSub": "저장된 연락처",
-      "aboutTitle": "정보",
-      "aboutSub": "버전, 검증자, 링크",
       "hardwareTitle": "하드웨어 지갑 연결",
       "hardwareSub": "Ledger 또는 Trezor 계정 추가",
       "portfolioTitle": "포트폴리오 분석",
       "portfolioSub": "멀티체인 ERC-20 잔액 내역",
+      "aboutTitle": "정보",
+      "aboutSub": "버전, 검증자, 링크",
       "participationTitle": "참여 점수",
       "participationSub": "{{score}}/100 점수가 어떻게 계산되는지 확인하세요",
       "governanceTitle": "거버넌스",
@@ -234,6 +237,7 @@
     "security": {
       "heading": "보안 및 개인정보 보호",
       "sectionWallet": "지갑",
+      "sectionAccess": "접근",
       "showSeedTitle": "복구 문구 표시",
       "showSeedSub": "12/24개 단어 시드 보기",
       "exportKeyTitle": "개인 키 내보내기",
@@ -245,7 +249,6 @@
       "errorIncorrectPassword": "비밀번호가 올바르지 않습니다",
       "errorExportFailed": "내보내기에 실패했습니다",
       "exportedAlert": "개인 키가 클립보드에 복사되었습니다. 안전하게 보관하고 클립보드를 지우세요.",
-      "sectionAccess": "접근",
       "passwordChangeTitle": "비밀번호 변경",
       "passwordChangeSub": "지갑 잠금 해제 비밀번호를 업데이트",
       "passwordChangeHeading": "비밀번호 변경",
@@ -348,6 +351,7 @@
     },
     "comingSoon": "곧 출시",
     "swap": {
+      "signerLabel": "서명자",
       "youPay": "지불",
       "youReceive": "수령",
       "max": "최대",
@@ -522,6 +526,31 @@
         "draft": "초안",
         "cancelled": "취소됨",
         "expired": "만료됨"
+      },
+      "create": {
+        "listingCurrencyLabel": "리스팅 통화",
+        "listingPriceLabel": "{{currency}} 가격",
+        "listingNodeLabel": "리스팅 노드",
+        "sellingNodeLabel": "판매 노드",
+        "advancedToggle": "고급 설정",
+        "feeBreakdown": "마켓플레이스 수수료 {{pct}}% — 추천인, 리스팅 노드, 프로토콜 트레저리에 70 / 20 / 10 분배"
+      },
+      "buy": {
+        "payInLabel": "지불 금액",
+        "receiveLabel": "판매자 수령액",
+        "swapFeeDisclosure": "스왑 수수료: 0.30% (OmniSwapRouter 경유)",
+        "confirmButton": "구매 확인",
+        "success": {
+          "toast": "구매가 확정되었습니다 — 트랜잭션 {{tx}}…"
+        },
+        "error": {
+          "legacyListing": "이 리스팅은 더 이상 지원되지 않는 XOM 전용 구버전 흐름을 사용합니다. 판매자에게 새 흐름으로 다시 등록하도록 요청하세요.",
+          "listingNodeMismatch": "이 리스팅의 노드 구성이 최신 네트워크 데이터와 일치하지 않습니다. 페이지를 새로고침한 후 다시 시도하세요.",
+          "listingHashMismatch": "리스팅이 열린 이후 변경되었습니다. 페이지를 새로고침한 후 다시 시도하세요.",
+          "priceTooLow": "리스팅 가격이 마켓플레이스 최저가보다 낮습니다. 최저가보다 높은 리스팅을 선택하세요.",
+          "expired": "구매 의도가 만료되었습니다. 다시 시도하세요 — 지갑이 새 의도에 서명합니다.",
+          "nodeMismatchRefreshHint": "리스팅을 새로고침하여 최신 노드 귀속 정보를 가져오세요."
+        }
       }
     },
     "nft": {
@@ -547,12 +576,6 @@
         "errorFailed": "등록 실패",
         "step": "2/2단계: 등록에 서명하세요"
       },
-      "buyConfirm": "구매를 확인하시겠습니까? XOM이 전송되고 NFT가 체인에서 원자적으로 이전됩니다.",
-      "buyToast": {
-        "success": "NFT 구매 완료 — 트랜잭션 {{tx}}",
-        "failed": "NFT 구매 실패"
-      },
-      "buyUnavailable": "NFT 구매는 아직 이용할 수 없습니다 — 잠시 후 다시 확인해 주세요.",
       "approveCollection": {
         "step": "1/2단계: 이 NFT 컬렉션에 대해 마켓플레이스 승인",
         "button": "승인(가스리스)",
@@ -576,6 +599,8 @@
         "confirmButton": "구매 확인",
         "buyFloor": "최저가 구매",
         "fetchingFloor": "불러오는 중…",
+        "receiveTokenLabel": "판매자 수령",
+        "swapFeeDisclosure": "스왑 수수료: OmniSwapRouter를 통해 0.30%",
         "error": {
           "selfReferral": "추천인은 본인이나 판매자가 될 수 없습니다.",
           "sellerReferral": "추천인은 판매자가 될 수 없습니다.",
@@ -587,12 +612,27 @@
           "prereqsNotMet": "구매 사전 조건이 충족되지 않았습니다. 다시 시도하세요.",
           "insufficientBalance": "이 구매에 필요한 XOM 잔액이 부족합니다.",
           "settlementNotDeployed": "NFT 마켓플레이스가 업그레이드 중입니다 — 잠시 후 다시 시도하세요.",
-          "noFloorListing": "이 컬렉션에 활성 등록 상품이 없습니다."
+          "noFloorListing": "이 컬렉션에 활성 등록 상품이 없습니다.",
+          "sameTokenHashMismatch": "동일 토큰 구매에는 스왑 경로가 포함되면 안 됩니다. 다시 시도하세요.",
+          "nonzeroHashNeedsRoute": "다른 토큰 간의 구매에는 스왑 경로가 필요합니다. 다시 시도하세요.",
+          "priceTooLow": "상품 가격이 마켓플레이스 최저가보다 낮습니다 — 플로어 이상 상품을 선택하세요.",
+          "zeroPrice": "상품 가격이 0입니다 — 새로고침하세요.",
+          "invalidPaymentToken": "이 네트워크에서는 결제 토큰이 지원되지 않습니다.",
+          "invalidReceiveToken": "수령 토큰 주소가 유효하지 않습니다 — 지원되는 토큰을 선택하세요.",
+          "zeroAddress": "필수 주소(구매자, 판매자 또는 계약)가 없습니다. 새로고침하세요.",
+          "expired": "상품 등록이 만료되었습니다 — 새로고침하세요.",
+          "selfBuy": "본인의 등록 상품은 구매할 수 없습니다."
         },
         "success": {
           "toast": "NFT 구매 완료 — 거래 {{tx}}…"
         }
-      }
+      },
+      "buyConfirm": "구매를 확인하시겠습니까? XOM이 전송되고 NFT가 체인에서 원자적으로 이전됩니다.",
+      "buyToast": {
+        "success": "NFT 구매 완료 — 트랜잭션 {{tx}}",
+        "failed": "NFT 구매 실패"
+      },
+      "buyUnavailable": "NFT 구매는 아직 이용할 수 없습니다 — 잠시 후 다시 확인해 주세요."
     },
     "listing": {
       "notFound": "리스팅을 찾을 수 없습니다",
@@ -791,67 +831,6 @@
       "tradersLabel": "트레이더"
     }
   },
-  "errors": {
-    "unknown": {
-      "title": "문제가 발생했습니다",
-      "body": "작업을 완료할 수 없습니다.",
-      "action": "잠시 후 다시 시도하세요. 계속되면 지갑을 재시작하세요."
-    },
-    "invalidInput": "잘못된 입력",
-    "network": {
-      "title": "연결 문제",
-      "body": "지갑이 인터넷 또는 검증 노드에 접속할 수 없습니다.",
-      "action": "연결을 확인한 후 다시 시도하세요."
-    },
-    "session": {
-      "title": "세션 만료",
-      "body": "보안 세션이 더 이상 유효하지 않습니다.",
-      "action": "계속하려면 다시 로그인하세요."
-    },
-    "notFound": {
-      "title": "찾을 수 없음",
-      "body": "요청한 항목이 더 이상 제공되지 않습니다.",
-      "action": "화면을 새로 고치고 다시 시도하세요."
-    },
-    "rateLimit": {
-      "title": "요청이 너무 많습니다",
-      "body": "허용된 속도를 초과했습니다.",
-      "action": "약 1분 후에 다시 시도하세요."
-    },
-    "serverDown": {
-      "title": "서비스 일시 중단",
-      "body": "서버에 접근할 수 없습니다.",
-      "action": "자동으로 재시도합니다. 화면을 유지하세요."
-    },
-    "locked": {
-      "title": "지갑이 잠겨 있음",
-      "body": "이 작업에는 잠금 해제된 지갑이 필요합니다.",
-      "action": "지갑을 잠금 해제한 뒤 다시 시도하세요."
-    },
-    "insufficient": {
-      "title": "잔액 부족",
-      "body": "이 체인의 잔액이 부족합니다.",
-      "action": "먼저 받거나 스왑한 후 다시 시도하세요."
-    },
-    "validation": {
-      "title": "입력값을 확인하세요",
-      "body": "올바르지 않은 항목으로 인해 요청이 거부되었습니다.",
-      "action": "양식을 확인한 뒤 다시 시도하세요."
-    },
-    "cancelled": {
-      "title": "취소됨",
-      "body": "이 작업을 취소했습니다.",
-      "action": ""
-    },
-    "retry": "다시 시도",
-    "retryAria": "실패한 작업 다시 시도",
-    "dismissAria": "오류 메시지 닫기",
-    "context": {
-      "approveNftCollection": "NFT 컬렉션 승인",
-      "approveXomForNftBuy": "NFT 구매를 위한 XOM 승인",
-      "buyNft": "NFT 구매"
-    }
-  },
   "features": {
     "staking": {
       "heading": "스테이킹",
@@ -865,7 +844,7 @@
       "amountLabel": "수량",
       "amountPlaceholder": "0.00",
       "lockLabel": "잠금 기간",
-      "lockNone": "없음",
+      "lock1d": "1 일",
       "lock1m": "1개월",
       "lock6m": "6개월",
       "lock2y": "2년",
@@ -1064,6 +1043,68 @@
       "partialError_other": "{{count}}개 체인을 읽을 수 없습니다 — 부분 결과를 표시합니다."
     }
   },
+  "errors": {
+    "unknown": {
+      "title": "문제가 발생했습니다",
+      "body": "작업을 완료할 수 없습니다.",
+      "action": "잠시 후 다시 시도하세요. 계속되면 지갑을 재시작하세요."
+    },
+    "invalidInput": "잘못된 입력",
+    "network": {
+      "title": "연결 문제",
+      "body": "지갑이 인터넷 또는 검증 노드에 접속할 수 없습니다.",
+      "action": "연결을 확인한 후 다시 시도하세요."
+    },
+    "session": {
+      "title": "세션 만료",
+      "body": "보안 세션이 더 이상 유효하지 않습니다.",
+      "action": "계속하려면 다시 로그인하세요."
+    },
+    "notFound": {
+      "title": "찾을 수 없음",
+      "body": "요청한 항목이 더 이상 제공되지 않습니다.",
+      "action": "화면을 새로 고치고 다시 시도하세요."
+    },
+    "rateLimit": {
+      "title": "요청이 너무 많습니다",
+      "body": "허용된 속도를 초과했습니다.",
+      "action": "약 1분 후에 다시 시도하세요."
+    },
+    "serverDown": {
+      "title": "서비스 일시 중단",
+      "body": "서버에 접근할 수 없습니다.",
+      "action": "자동으로 재시도합니다. 화면을 유지하세요."
+    },
+    "locked": {
+      "title": "지갑이 잠겨 있음",
+      "body": "이 작업에는 잠금 해제된 지갑이 필요합니다.",
+      "action": "지갑을 잠금 해제한 뒤 다시 시도하세요."
+    },
+    "insufficient": {
+      "title": "잔액 부족",
+      "body": "이 체인의 잔액이 부족합니다.",
+      "action": "먼저 받거나 스왑한 후 다시 시도하세요."
+    },
+    "validation": {
+      "title": "입력값을 확인하세요",
+      "body": "올바르지 않은 항목으로 인해 요청이 거부되었습니다.",
+      "action": "양식을 확인한 뒤 다시 시도하세요."
+    },
+    "cancelled": {
+      "title": "취소됨",
+      "body": "이 작업을 취소했습니다.",
+      "action": ""
+    },
+    "retry": "다시 시도",
+    "retryAria": "실패한 작업 다시 시도",
+    "dismissAria": "오류 메시지 닫기",
+    "context": {
+      "approveNftCollection": "NFT 컬렉션 승인",
+      "approveXomForNftBuy": "NFT 구매를 위한 XOM 승인",
+      "buyNft": "NFT 구매"
+    },
+    "chunkLoadFailed": "{{module}} 지원을 불러오지 못했습니다. 연결을 확인하고 다시 시도해 주세요."
+  },
   "dapp": {
     "connect": {
       "heading": "dApp 연결",
@@ -1131,6 +1172,7 @@
       "collisionDiffName": "체인 이름",
       "collisionDiffSymbol": "기본 통화 기호",
       "iUnderstandRisk": "위험을 이해하고 이 체인을 그래도 추가하겠습니다",
+      "addAnyway": "그래도 추가하기",
       "forceApproveDisabledTooltip": "비활성화됨: 계속하려면 위험을 이해했음을 확인하세요."
     },
     "addtoken": {

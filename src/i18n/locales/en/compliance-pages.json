@@ -2,7 +2,7 @@
   "kyc": {
     "loading": "Loading KYC status...",
     "title": "KYC Verification",
-    "subtitle": "Complete verification to unlock higher transaction limits and save on fees",
+    "subtitle": "Completing KYC requirements allows us to give you higher transaction limits",
     "tier": "Tier",
     "currentTier": "Current Tier",
     "yourStatus": {

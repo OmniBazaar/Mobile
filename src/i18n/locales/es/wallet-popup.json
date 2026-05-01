@@ -43,28 +43,27 @@
       "termsLink": "Términos de servicio"
     },
     "createWallet": {
-      "heading": "Crear cartera",
-      "passwordHint": "Establece una contraseña para proteger tu cartera en este dispositivo. Tu frase semilla es la verdadera copia de seguridad — guárdala en un lugar seguro.",
-      "passwordLabel": "Contraseña",
-      "passwordPlaceholder": "Mínimo 8 caracteres",
-      "confirmPasswordLabel": "Confirmar contraseña",
-      "confirmPasswordPlaceholder": "Repite la contraseña",
-      "continue": "Continuar",
-      "creating": "Creando…",
-      "seedHeading": "Tu frase de recuperación",
-      "seedWarning": "⚠️ Escribe estas 12 palabras y guárdalas en un lugar seguro. Cualquier persona con estas palabras puede acceder a tu cartera.",
-      "writtenDown": "La he anotado →",
-      "confirmHeading": "Confirmar copia de seguridad",
-      "confirmHint": "Introduce las palabras en las posiciones {{positions}} para verificar tu copia de seguridad.",
-      "wordLabel": "Palabra n.º {{position}}",
-      "wordPlaceholder": "Palabra {{position}}",
-      "wordIncorrect": "La palabra n.º {{position}} no es correcta",
-      "createWalletBtn": "Crear cartera",
-      "registering": "Registrando…",
-      "passwordTooShort": "La contraseña debe tener al menos 8 caracteres",
-      "passwordMismatch": "Las contraseñas no coinciden",
-      "createFailed": "No se pudo crear la cartera",
-      "registerFailed": "Error de registro"
+      "heading": "Create OmniBazaar Account",
+      "deterministicHint": "Your username and password together generate your wallet keys. Use the same credentials on any device to recover the same wallet — there is no separate seed phrase to back up.",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "3–20 chars, lowercase letters / digits / underscore",
+      "usernameInvalid": "Username must be 3–20 characters: lowercase letters, digits, underscore. Must start with a letter.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@example.com",
+      "emailInvalid": "Please enter a valid email address.",
+      "passwordHint": "Choose a strong password — it is the only secret protecting your wallet.",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Min 8 characters",
+      "confirmPasswordLabel": "Confirm Password",
+      "confirmPasswordPlaceholder": "Repeat password",
+      "continue": "Continue",
+      "creating": "Creating…",
+      "createWalletBtn": "Create Wallet",
+      "registering": "Registering…",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "passwordMismatch": "Passwords do not match",
+      "createFailed": "Failed to create wallet",
+      "registerFailed": "Registration failed"
     },
     "importWallet": {
       "heading": "Importar cartera",
@@ -101,11 +100,14 @@
     },
     "login": {
       "heading": "Bienvenido de nuevo",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "Your OmniBazaar username",
       "passwordLabel": "Contraseña",
       "passwordPlaceholder": "Introduce tu contraseña",
       "unlock": "Desbloquear",
       "unlocking": "Desbloqueando…",
       "useDifferent": "Usar otra cartera",
+      "errorUsernameRequired": "Username is required",
       "errorPasswordRequired": "Se requiere una contraseña",
       "errorIncorrectPassword": "Contraseña incorrecta",
       "unlockAria": "Desbloquea tu cartera con la contraseña introducida",
@@ -137,6 +139,7 @@
       "privateTab": "Privado (pXOM)",
       "revealAmount": "Mostrar importe",
       "amountHidden": "Importe oculto — toca Mostrar para descifrar",
+      "hideAmount": "Ocultar importe",
       "status": {
         "confirmed": "confirmado",
         "pending": "pendiente",
@@ -193,6 +196,8 @@
       "sectionSecurity": "Seguridad",
       "sectionNetwork": "Red",
       "sectionAccount": "Cuenta",
+      "sectionFeatures": "Funciones",
+      "sectionInfo": "Información",
       "securityPrivacyTitle": "Seguridad y privacidad",
       "securityPrivacySub": "Contraseña, biometría, frase semilla",
       "connectedSitesTitle": "Sitios conectados",
@@ -206,8 +211,6 @@
       "signOutTitle": "Cerrar sesión",
       "signOutSub": "Bloquear cartera",
       "versionRow": "OmniWallet v{{version}}",
-      "sectionFeatures": "Funciones",
-      "sectionInfo": "Información",
       "stakingTitle": "Staking",
       "stakingSub": "Pon en staking XOM y gana recompensas",
       "kycTitle": "KYC y verificación",
@@ -216,12 +219,12 @@
       "bridgeSub": "Mueve activos entre cadenas",
       "addressBookTitle": "Libreta de direcciones",
       "addressBookSub": "Contactos guardados",
-      "aboutTitle": "Acerca de",
-      "aboutSub": "Versión, validadores, enlaces",
       "hardwareTitle": "Conectar Cartera de Hardware",
       "hardwareSub": "Añadir una cuenta de Ledger o Trezor",
       "portfolioTitle": "Analítica de Cartera",
       "portfolioSub": "Desglose de saldos ERC-20 multi-cadena",
+      "aboutTitle": "Acerca de",
+      "aboutSub": "Versión, validadores, enlaces",
       "participationTitle": "Puntuación de Participación",
       "participationSub": "Ve cómo se calcula tu puntuación de {{score}}/100",
       "governanceTitle": "Gobernanza",
@@ -234,6 +237,7 @@
     "security": {
       "heading": "Seguridad y privacidad",
       "sectionWallet": "Cartera",
+      "sectionAccess": "Acceso",
       "showSeedTitle": "Mostrar frase de recuperación",
       "showSeedSub": "Ver tu semilla de 12/24 palabras",
       "exportKeyTitle": "Exportar clave privada",
@@ -245,7 +249,6 @@
       "errorIncorrectPassword": "Contraseña incorrecta",
       "errorExportFailed": "Error al exportar",
       "exportedAlert": "Clave privada copiada al portapapeles. Guárdala de forma segura y borra el portapapeles.",
-      "sectionAccess": "Acceso",
       "passwordChangeTitle": "Cambiar contraseña",
       "passwordChangeSub": "Actualiza la contraseña usada para desbloquear la cartera",
       "passwordChangeHeading": "Cambiar contraseña",
@@ -348,6 +351,7 @@
     },
     "comingSoon": "Próximamente",
     "swap": {
+      "signerLabel": "Firmar con",
       "youPay": "Pagas",
       "youReceive": "Recibes",
       "max": "Máx",
@@ -522,6 +526,31 @@
         "draft": "Borrador",
         "cancelled": "Cancelado",
         "expired": "Expirado"
+      },
+      "create": {
+        "listingCurrencyLabel": "Moneda del anuncio",
+        "listingPriceLabel": "Precio en {{currency}}",
+        "listingNodeLabel": "Nodo del anuncio",
+        "sellingNodeLabel": "Nodo de venta",
+        "advancedToggle": "Avanzado",
+        "feeBreakdown": "Comisión del mercado {{pct}}% — repartida 70 / 20 / 10 entre referido, nodo del anuncio y tesorería del protocolo"
+      },
+      "buy": {
+        "payInLabel": "Pagas",
+        "receiveLabel": "El vendedor recibe",
+        "swapFeeDisclosure": "Comisión de canje: 0,30 % a través de OmniSwapRouter",
+        "confirmButton": "Confirmar compra",
+        "success": {
+          "toast": "Compra confirmada — transacción {{tx}}…"
+        },
+        "error": {
+          "legacyListing": "Este anuncio usa el flujo antiguo solo en XOM, que ya no está disponible. Pide al vendedor que vuelva a publicarlo con el nuevo flujo.",
+          "listingNodeMismatch": "La configuración de nodos de este anuncio no coincide con los datos más recientes de la red. Actualiza la página y vuelve a intentarlo.",
+          "listingHashMismatch": "El anuncio ha cambiado desde que lo abriste. Actualiza la página y vuelve a intentarlo.",
+          "priceTooLow": "El precio del anuncio es inferior al mínimo del mercado. Elige un anuncio con un precio superior al mínimo.",
+          "expired": "Tu intención de compra ha expirado. Vuelve a intentarlo — la cartera firmará una nueva.",
+          "nodeMismatchRefreshHint": "Actualiza el anuncio para obtener la atribución de nodos más reciente."
+        }
       }
     },
     "nft": {
@@ -547,12 +576,6 @@
         "errorFailed": "No se pudo publicar",
         "step": "Paso 2 de 2: Firma tu anuncio"
       },
-      "buyConfirm": "¿Confirmar compra? Se enviará XOM y el NFT se transferirá atómicamente en la cadena.",
-      "buyToast": {
-        "success": "NFT comprado — transacción {{tx}}",
-        "failed": "Compra de NFT fallida"
-      },
-      "buyUnavailable": "Las compras de NFT aún no están disponibles — por favor vuelva pronto.",
       "approveCollection": {
         "step": "Paso 1 de 2: Aprobar el mercado para esta colección NFT",
         "button": "Aprobar (sin gas)",
@@ -576,6 +599,8 @@
         "confirmButton": "Confirmar compra",
         "buyFloor": "Comprar precio mínimo",
         "fetchingFloor": "Cargando…",
+        "receiveTokenLabel": "El vendedor recibe",
+        "swapFeeDisclosure": "Comisión de swap: 0,30% vía OmniSwapRouter",
         "error": {
           "selfReferral": "El referente no puede ser ni tú ni el vendedor.",
           "sellerReferral": "El referente no puede ser el vendedor.",
@@ -587,12 +612,27 @@
           "prereqsNotMet": "Los requisitos previos de la compra fallaron. Inténtalo de nuevo.",
           "insufficientBalance": "No tienes suficiente XOM para esta compra.",
           "settlementNotDeployed": "El mercado de NFT está en actualización — inténtalo en unos instantes.",
-          "noFloorListing": "No hay anuncios activos para esta colección en este momento."
+          "noFloorListing": "No hay anuncios activos para esta colección en este momento.",
+          "sameTokenHashMismatch": "Las compras con el mismo token no deben incluir una ruta de swap. Reintenta.",
+          "nonzeroHashNeedsRoute": "Las compras entre tokens distintos requieren una ruta de swap. Reintenta.",
+          "priceTooLow": "El precio del anuncio está por debajo del mínimo del mercado — elige un anuncio por encima del suelo.",
+          "zeroPrice": "El precio del anuncio es cero — actualiza y reintenta.",
+          "invalidPaymentToken": "El token de pago no es compatible en esta red.",
+          "invalidReceiveToken": "La dirección del token de recepción no es válida — elige un token compatible.",
+          "zeroAddress": "Falta una dirección requerida (comprador, vendedor o contrato). Actualiza y reintenta.",
+          "expired": "El anuncio ha expirado — actualiza y reintenta.",
+          "selfBuy": "No puedes comprar tu propio anuncio."
         },
         "success": {
           "toast": "NFT comprado — transacción {{tx}}…"
         }
-      }
+      },
+      "buyConfirm": "¿Confirmar compra? Se enviará XOM y el NFT se transferirá atómicamente en la cadena.",
+      "buyToast": {
+        "success": "NFT comprado — transacción {{tx}}",
+        "failed": "Compra de NFT fallida"
+      },
+      "buyUnavailable": "Las compras de NFT aún no están disponibles — por favor vuelva pronto."
     },
     "listing": {
       "notFound": "Anuncio no encontrado",
@@ -791,67 +831,6 @@
       "tradersLabel": "Operadores"
     }
   },
-  "errors": {
-    "unknown": {
-      "title": "Algo salió mal",
-      "body": "No pudimos completar esa acción.",
-      "action": "Inténtalo en un momento. Si el error persiste, reinicia la cartera."
-    },
-    "invalidInput": "Entrada no válida",
-    "network": {
-      "title": "Problema de conexión",
-      "body": "La cartera no pudo acceder a Internet ni al validador.",
-      "action": "Revisa tu conexión y pulsa reintentar."
-    },
-    "session": {
-      "title": "Sesión caducada",
-      "body": "Tu sesión segura ya no es válida.",
-      "action": "Vuelve a iniciar sesión para continuar."
-    },
-    "notFound": {
-      "title": "No encontrado",
-      "body": "El elemento solicitado ya no está disponible.",
-      "action": "Recarga la pantalla y vuelve a intentarlo."
-    },
-    "rateLimit": {
-      "title": "Demasiadas solicitudes",
-      "body": "Vas más rápido de lo que permiten nuestros límites.",
-      "action": "Espera alrededor de un minuto y reintenta."
-    },
-    "serverDown": {
-      "title": "Servicio temporalmente no disponible",
-      "body": "Nuestros servidores están fuera de alcance.",
-      "action": "Reintentamos automáticamente: deja la pantalla abierta."
-    },
-    "locked": {
-      "title": "Cartera bloqueada",
-      "body": "Esta acción requiere tu cartera desbloqueada.",
-      "action": "Desbloquea la cartera y vuelve a intentarlo."
-    },
-    "insufficient": {
-      "title": "Saldo insuficiente",
-      "body": "Tu saldo en esta red es demasiado bajo para la acción solicitada.",
-      "action": "Recibe o intercambia más antes de reintentar."
-    },
-    "validation": {
-      "title": "Revisa los datos",
-      "body": "La solicitud se rechazó porque algún campo no es válido.",
-      "action": "Revisa el formulario e inténtalo de nuevo."
-    },
-    "cancelled": {
-      "title": "Cancelado",
-      "body": "Has cancelado esta acción.",
-      "action": ""
-    },
-    "retry": "Reintentar",
-    "retryAria": "Reintentar la acción fallida",
-    "dismissAria": "Descartar el mensaje de error",
-    "context": {
-      "approveNftCollection": "aprobar colección NFT",
-      "approveXomForNftBuy": "aprobar XOM para compra de NFT",
-      "buyNft": "comprar NFT"
-    }
-  },
   "features": {
     "staking": {
       "heading": "Staking",
@@ -865,7 +844,7 @@
       "amountLabel": "Importe",
       "amountPlaceholder": "0,00",
       "lockLabel": "Período de bloqueo",
-      "lockNone": "Ninguno",
+      "lock1d": "1 día",
       "lock1m": "1 mes",
       "lock6m": "6 meses",
       "lock2y": "2 años",
@@ -1064,6 +1043,68 @@
       "partialError_other": "{{count}} cadenas no pudieron leerse — mostrando resultados parciales."
     }
   },
+  "errors": {
+    "unknown": {
+      "title": "Algo salió mal",
+      "body": "No pudimos completar esa acción.",
+      "action": "Inténtalo en un momento. Si el error persiste, reinicia la cartera."
+    },
+    "invalidInput": "Entrada no válida",
+    "network": {
+      "title": "Problema de conexión",
+      "body": "La cartera no pudo acceder a Internet ni al validador.",
+      "action": "Revisa tu conexión y pulsa reintentar."
+    },
+    "session": {
+      "title": "Sesión caducada",
+      "body": "Tu sesión segura ya no es válida.",
+      "action": "Vuelve a iniciar sesión para continuar."
+    },
+    "notFound": {
+      "title": "No encontrado",
+      "body": "El elemento solicitado ya no está disponible.",
+      "action": "Recarga la pantalla y vuelve a intentarlo."
+    },
+    "rateLimit": {
+      "title": "Demasiadas solicitudes",
+      "body": "Vas más rápido de lo que permiten nuestros límites.",
+      "action": "Espera alrededor de un minuto y reintenta."
+    },
+    "serverDown": {
+      "title": "Servicio temporalmente no disponible",
+      "body": "Nuestros servidores están fuera de alcance.",
+      "action": "Reintentamos automáticamente: deja la pantalla abierta."
+    },
+    "locked": {
+      "title": "Cartera bloqueada",
+      "body": "Esta acción requiere tu cartera desbloqueada.",
+      "action": "Desbloquea la cartera y vuelve a intentarlo."
+    },
+    "insufficient": {
+      "title": "Saldo insuficiente",
+      "body": "Tu saldo en esta red es demasiado bajo para la acción solicitada.",
+      "action": "Recibe o intercambia más antes de reintentar."
+    },
+    "validation": {
+      "title": "Revisa los datos",
+      "body": "La solicitud se rechazó porque algún campo no es válido.",
+      "action": "Revisa el formulario e inténtalo de nuevo."
+    },
+    "cancelled": {
+      "title": "Cancelado",
+      "body": "Has cancelado esta acción.",
+      "action": ""
+    },
+    "retry": "Reintentar",
+    "retryAria": "Reintentar la acción fallida",
+    "dismissAria": "Descartar el mensaje de error",
+    "context": {
+      "approveNftCollection": "aprobar colección NFT",
+      "approveXomForNftBuy": "aprobar XOM para compra de NFT",
+      "buyNft": "comprar NFT"
+    },
+    "chunkLoadFailed": "No se pudo cargar la compatibilidad con {{module}}. Comprueba tu conexión e inténtalo de nuevo."
+  },
   "dapp": {
     "connect": {
       "heading": "Conectar a la dApp",
@@ -1131,6 +1172,7 @@
       "collisionDiffName": "nombre de la cadena",
       "collisionDiffSymbol": "símbolo de moneda nativa",
       "iUnderstandRisk": "Entiendo el riesgo y quiero añadir esta cadena igualmente",
+      "addAnyway": "Añadir de todos modos",
       "forceApproveDisabledTooltip": "Deshabilitado: confirma que entiendes el riesgo para continuar."
     },
     "addtoken": {

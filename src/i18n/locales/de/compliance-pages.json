@@ -2,7 +2,7 @@
   "kyc": {
     "loading": "KYC-Status wird geladen...",
     "title": "KYC-Verifizierung",
-    "subtitle": "Schließen Sie die Verifizierung ab, um höhere Transaktionslimits freizuschalten und Gebühren zu sparen",
+    "subtitle": "Mit dem Abschluss der KYC-Anforderungen können wir Ihnen höhere Transaktionslimits gewähren",
     "tier": "Stufe",
     "currentTier": "Aktuelle Stufe",
     "yourStatus": {

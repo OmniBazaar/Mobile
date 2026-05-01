@@ -2,7 +2,7 @@
   "kyc": {
     "loading": "KYC ステータスを読み込み中...",
     "title": "KYC 認証",
-    "subtitle": "認証を完了して取引上限を引き上げ、手数料を節約しましょう",
+    "subtitle": "KYC要件を完了いただくことで、より高い取引限度額をご提供できます",
     "tier": "ティア",
     "currentTier": "現在のティア",
     "yourStatus": {

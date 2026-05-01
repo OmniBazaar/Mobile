@@ -2,7 +2,7 @@
   "kyc": {
     "loading": "Chargement du statut KYC...",
     "title": "Vérification KYC",
-    "subtitle": "Complétez la vérification pour débloquer des limites de transaction plus élevées et économiser sur les frais",
+    "subtitle": "Compléter les exigences KYC nous permet de vous offrir des limites de transaction plus élevées",
     "tier": "Palier",
     "currentTier": "Palier Actuel",
     "yourStatus": {

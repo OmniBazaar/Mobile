@@ -2,7 +2,7 @@
   "kyc": {
     "loading": "Caricamento stato KYC...",
     "title": "Verifica KYC",
-    "subtitle": "Completa la verifica per sbloccare limiti di transazione piu elevati e risparmiare sulle commissioni",
+    "subtitle": "Completare i requisiti KYC ci consente di offrirti limiti di transazione più elevati",
     "tier": "Livello",
     "currentTier": "Livello attuale",
     "yourStatus": {

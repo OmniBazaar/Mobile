@@ -2,7 +2,7 @@
   "kyc": {
     "loading": "正在加载 KYC 状态...",
     "title": "KYC 身份验证",
-    "subtitle": "完成验证以解锁更高的交易限额并节省手续费",
+    "subtitle": "完成 KYC 合规要求后，我们即可为您提供更高的交易限额",
     "tier": "等级",
     "currentTier": "当前等级",
     "yourStatus": {

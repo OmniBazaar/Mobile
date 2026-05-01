@@ -43,28 +43,27 @@
       "termsLink": "服务条款"
     },
     "createWallet": {
-      "heading": "创建钱包",
-      "passwordHint": "设置一个密码以在此设备上保护您的钱包。您的助记词才是真正的备份——请妥善保管。",
-      "passwordLabel": "密码",
-      "passwordPlaceholder": "至少 8 个字符",
-      "confirmPasswordLabel": "确认密码",
-      "confirmPasswordPlaceholder": "再次输入密码",
-      "continue": "继续",
-      "creating": "创建中…",
-      "seedHeading": "您的恢复助记词",
-      "seedWarning": "⚠️ 请将这 12 个单词写下来并妥善保管。任何获得这些单词的人都可以访问您的钱包。",
-      "writtenDown": "我已记录 →",
-      "confirmHeading": "确认备份",
-      "confirmHint": "请输入位置 {{positions}} 处的单词以验证您的备份。",
-      "wordLabel": "第 {{position}} 个单词",
-      "wordPlaceholder": "第 {{position}} 个单词",
-      "wordIncorrect": "第 {{position}} 个单词不正确",
-      "createWalletBtn": "创建钱包",
-      "registering": "注册中…",
-      "passwordTooShort": "密码至少需要 8 个字符",
-      "passwordMismatch": "两次输入的密码不一致",
-      "createFailed": "创建钱包失败",
-      "registerFailed": "注册失败"
+      "heading": "Create OmniBazaar Account",
+      "deterministicHint": "Your username and password together generate your wallet keys. Use the same credentials on any device to recover the same wallet — there is no separate seed phrase to back up.",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "3–20 chars, lowercase letters / digits / underscore",
+      "usernameInvalid": "Username must be 3–20 characters: lowercase letters, digits, underscore. Must start with a letter.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@example.com",
+      "emailInvalid": "Please enter a valid email address.",
+      "passwordHint": "Choose a strong password — it is the only secret protecting your wallet.",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Min 8 characters",
+      "confirmPasswordLabel": "Confirm Password",
+      "confirmPasswordPlaceholder": "Repeat password",
+      "continue": "Continue",
+      "creating": "Creating…",
+      "createWalletBtn": "Create Wallet",
+      "registering": "Registering…",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "passwordMismatch": "Passwords do not match",
+      "createFailed": "Failed to create wallet",
+      "registerFailed": "Registration failed"
     },
     "importWallet": {
       "heading": "导入钱包",
@@ -101,11 +100,14 @@
     },
     "login": {
       "heading": "欢迎回来",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "Your OmniBazaar username",
       "passwordLabel": "密码",
       "passwordPlaceholder": "请输入您的密码",
       "unlock": "解锁",
       "unlocking": "解锁中…",
       "useDifferent": "使用其他钱包",
+      "errorUsernameRequired": "Username is required",
       "errorPasswordRequired": "必须输入密码",
       "errorIncorrectPassword": "密码错误",
       "unlockAria": "使用已输入的密码解锁您的钱包",
@@ -137,6 +139,7 @@
       "privateTab": "隐私 (pXOM)",
       "revealAmount": "显示金额",
       "amountHidden": "金额已隐藏 — 点击 显示 进行解密",
+      "hideAmount": "隐藏金额",
       "status": {
         "confirmed": "已确认",
         "pending": "待处理",
@@ -193,6 +196,8 @@
       "sectionSecurity": "安全",
       "sectionNetwork": "网络",
       "sectionAccount": "账户",
+      "sectionFeatures": "功能",
+      "sectionInfo": "信息",
       "securityPrivacyTitle": "安全与隐私",
       "securityPrivacySub": "密码、生物识别、助记词",
       "connectedSitesTitle": "已连接的网站",
@@ -206,8 +211,6 @@
       "signOutTitle": "退出登录",
       "signOutSub": "锁定钱包",
       "versionRow": "OmniWallet v{{version}}",
-      "sectionFeatures": "功能",
-      "sectionInfo": "信息",
       "stakingTitle": "质押",
       "stakingSub": "质押 XOM 并获得奖励",
       "kycTitle": "KYC 与验证",
@@ -216,12 +219,12 @@
       "bridgeSub": "在区块链之间移动资产",
       "addressBookTitle": "通讯录",
       "addressBookSub": "已保存的联系人",
-      "aboutTitle": "关于",
-      "aboutSub": "版本、验证者、链接",
       "hardwareTitle": "连接硬件钱包",
       "hardwareSub": "添加 Ledger 或 Trezor 账户",
       "portfolioTitle": "投资组合分析",
       "portfolioSub": "多链 ERC-20 余额明细",
+      "aboutTitle": "关于",
+      "aboutSub": "版本、验证者、链接",
       "participationTitle": "参与度评分",
       "participationSub": "查看您的 {{score}}/100 分数是如何计算的",
       "governanceTitle": "治理",
@@ -234,6 +237,7 @@
     "security": {
       "heading": "安全与隐私",
       "sectionWallet": "钱包",
+      "sectionAccess": "访问",
       "showSeedTitle": "显示恢复助记词",
       "showSeedSub": "查看您的 12/24 个单词助记词",
       "exportKeyTitle": "导出私钥",
@@ -245,7 +249,6 @@
       "errorIncorrectPassword": "密码错误",
       "errorExportFailed": "导出失败",
       "exportedAlert": "私钥已复制到剪贴板。请妥善保管并清空剪贴板。",
-      "sectionAccess": "访问",
       "passwordChangeTitle": "修改密码",
       "passwordChangeSub": "更新用于解锁钱包的密码",
       "passwordChangeHeading": "修改密码",
@@ -348,6 +351,7 @@
     },
     "comingSoon": "即将推出",
     "swap": {
+      "signerLabel": "签名者",
       "youPay": "您支付",
       "youReceive": "您收到",
       "max": "最大",
@@ -522,6 +526,31 @@
         "draft": "草稿",
         "cancelled": "已取消",
         "expired": "已过期"
+      },
+      "create": {
+        "listingCurrencyLabel": "挂单货币",
+        "listingPriceLabel": "{{currency}} 计价",
+        "listingNodeLabel": "挂单节点",
+        "sellingNodeLabel": "销售节点",
+        "advancedToggle": "高级",
+        "feeBreakdown": "市场手续费 {{pct}}% — 按 70 / 20 / 10 分配给推荐人、挂单节点与协议金库"
+      },
+      "buy": {
+        "payInLabel": "你支付",
+        "receiveLabel": "卖家收到",
+        "swapFeeDisclosure": "兑换手续费:0.30%(通过 OmniSwapRouter)",
+        "confirmButton": "确认购买",
+        "success": {
+          "toast": "购买已确认 — 交易 {{tx}}…"
+        },
+        "error": {
+          "legacyListing": "此挂单使用已下线的纯 XOM 旧版流程。请让卖家以新流程重新挂单。",
+          "listingNodeMismatch": "此挂单的节点配置与网络最新数据不一致。请刷新页面后重试。",
+          "listingHashMismatch": "挂单内容自打开后已被修改。请刷新页面后重试。",
+          "priceTooLow": "挂单价格低于市场最低限额,请选择高于最低限额的挂单。",
+          "expired": "你的购买意向已过期。请重试 — 钱包将签署一个新意向。",
+          "nodeMismatchRefreshHint": "刷新挂单以获取最新的节点归属信息。"
+        }
       }
     },
     "nft": {
@@ -547,12 +576,6 @@
         "errorFailed": "上架失败",
         "step": "第 2 步(共 2 步):签署您的挂单"
       },
-      "buyConfirm": "确认购买？XOM 将被发送，NFT 将在链上原子化转移。",
-      "buyToast": {
-        "success": "NFT 已购买 — 交易 {{tx}}",
-        "failed": "NFT 购买失败"
-      },
-      "buyUnavailable": "NFT 购买尚未开放 — 请稍后再试。",
       "approveCollection": {
         "step": "第 1 步(共 2 步):授权市场访问此 NFT 合集",
         "button": "授权(免 Gas)",
@@ -576,6 +599,8 @@
         "confirmButton": "确认购买",
         "buyFloor": "按底价购买",
         "fetchingFloor": "加载中…",
+        "receiveTokenLabel": "卖家收到",
+        "swapFeeDisclosure": "兑换手续费:0.30%(通过 OmniSwapRouter)",
         "error": {
           "selfReferral": "推荐人不能是您本人或卖家。",
           "sellerReferral": "推荐人不能是卖家。",
@@ -587,12 +612,27 @@
           "prereqsNotMet": "购买前置条件未满足。请重试。",
           "insufficientBalance": "您的 XOM 余额不足以完成此次购买。",
           "settlementNotDeployed": "NFT 市场正在升级 — 请稍后再试。",
-          "noFloorListing": "此合集暂无可购买的挂单。"
+          "noFloorListing": "此合集暂无可购买的挂单。",
+          "sameTokenHashMismatch": "同币种购买不应携带兑换路径,请重试。",
+          "nonzeroHashNeedsRoute": "跨币种购买需要兑换路径,请重试。",
+          "priceTooLow": "挂单价格低于市场最低要求 — 请选择高于地板价的挂单。",
+          "zeroPrice": "挂单价格为零 — 请刷新后重试。",
+          "invalidPaymentToken": "此网络不支持该支付代币。",
+          "invalidReceiveToken": "收款代币地址无效 — 请选择受支持的代币。",
+          "zeroAddress": "缺少必要地址(买家、卖家或合约)。请刷新后重试。",
+          "expired": "挂单已过期 — 请刷新后重试。",
+          "selfBuy": "您不能购买自己的挂单。"
         },
         "success": {
           "toast": "NFT 已购买 — 交易 {{tx}}…"
         }
-      }
+      },
+      "buyConfirm": "确认购买？XOM 将被发送，NFT 将在链上原子化转移。",
+      "buyToast": {
+        "success": "NFT 已购买 — 交易 {{tx}}",
+        "failed": "NFT 购买失败"
+      },
+      "buyUnavailable": "NFT 购买尚未开放 — 请稍后再试。"
     },
     "listing": {
       "notFound": "未找到商品",
@@ -791,67 +831,6 @@
       "tradersLabel": "交易者"
     }
   },
-  "errors": {
-    "unknown": {
-      "title": "出现问题",
-      "body": "我们无法完成该操作。",
-      "action": "请稍后重试。若问题持续,请重启钱包。"
-    },
-    "invalidInput": "输入无效",
-    "network": {
-      "title": "连接问题",
-      "body": "钱包无法访问互联网或验证节点。",
-      "action": "请检查网络连接后重试。"
-    },
-    "session": {
-      "title": "会话已过期",
-      "body": "您的安全会话已失效。",
-      "action": "请重新登录以继续。"
-    },
-    "notFound": {
-      "title": "未找到",
-      "body": "您请求的条目已不可用。",
-      "action": "请刷新页面后重试。"
-    },
-    "rateLimit": {
-      "title": "请求过多",
-      "body": "操作速度超出了我们的限制。",
-      "action": "请等待约一分钟后重试。"
-    },
-    "serverDown": {
-      "title": "服务暂时不可用",
-      "body": "我们的服务器暂时无法访问。",
-      "action": "系统会自动重试,请保持此页面打开。"
-    },
-    "locked": {
-      "title": "钱包已锁定",
-      "body": "此操作需要已解锁的钱包。",
-      "action": "请解锁钱包后再试。"
-    },
-    "insufficient": {
-      "title": "余额不足",
-      "body": "您在此链上的余额不足以完成操作。",
-      "action": "请先接收或兑换更多资产再重试。"
-    },
-    "validation": {
-      "title": "请检查输入",
-      "body": "由于某个字段无效,请求被拒绝。",
-      "action": "请检查表单后重试。"
-    },
-    "cancelled": {
-      "title": "已取消",
-      "body": "您已取消此操作。",
-      "action": ""
-    },
-    "retry": "重试",
-    "retryAria": "重试失败的操作",
-    "dismissAria": "关闭错误信息",
-    "context": {
-      "approveNftCollection": "授权 NFT 合集",
-      "approveXomForNftBuy": "为 NFT 购买授权 XOM",
-      "buyNft": "购买 NFT"
-    }
-  },
   "features": {
     "staking": {
       "heading": "质押",
@@ -865,7 +844,7 @@
       "amountLabel": "数量",
       "amountPlaceholder": "0.00",
       "lockLabel": "锁定期",
-      "lockNone": "无",
+      "lock1d": "1 天",
       "lock1m": "1 个月",
       "lock6m": "6 个月",
       "lock2y": "2 年",
@@ -1064,6 +1043,68 @@
       "partialError_other": "{{count}} 条链无法读取 — 显示部分结果。"
     }
   },
+  "errors": {
+    "unknown": {
+      "title": "出现问题",
+      "body": "我们无法完成该操作。",
+      "action": "请稍后重试。若问题持续,请重启钱包。"
+    },
+    "invalidInput": "输入无效",
+    "network": {
+      "title": "连接问题",
+      "body": "钱包无法访问互联网或验证节点。",
+      "action": "请检查网络连接后重试。"
+    },
+    "session": {
+      "title": "会话已过期",
+      "body": "您的安全会话已失效。",
+      "action": "请重新登录以继续。"
+    },
+    "notFound": {
+      "title": "未找到",
+      "body": "您请求的条目已不可用。",
+      "action": "请刷新页面后重试。"
+    },
+    "rateLimit": {
+      "title": "请求过多",
+      "body": "操作速度超出了我们的限制。",
+      "action": "请等待约一分钟后重试。"
+    },
+    "serverDown": {
+      "title": "服务暂时不可用",
+      "body": "我们的服务器暂时无法访问。",
+      "action": "系统会自动重试,请保持此页面打开。"
+    },
+    "locked": {
+      "title": "钱包已锁定",
+      "body": "此操作需要已解锁的钱包。",
+      "action": "请解锁钱包后再试。"
+    },
+    "insufficient": {
+      "title": "余额不足",
+      "body": "您在此链上的余额不足以完成操作。",
+      "action": "请先接收或兑换更多资产再重试。"
+    },
+    "validation": {
+      "title": "请检查输入",
+      "body": "由于某个字段无效,请求被拒绝。",
+      "action": "请检查表单后重试。"
+    },
+    "cancelled": {
+      "title": "已取消",
+      "body": "您已取消此操作。",
+      "action": ""
+    },
+    "retry": "重试",
+    "retryAria": "重试失败的操作",
+    "dismissAria": "关闭错误信息",
+    "context": {
+      "approveNftCollection": "授权 NFT 合集",
+      "approveXomForNftBuy": "为 NFT 购买授权 XOM",
+      "buyNft": "购买 NFT"
+    },
+    "chunkLoadFailed": "无法加载 {{module}} 支持。请检查网络连接后重试。"
+  },
   "dapp": {
     "connect": {
       "heading": "连接到 dApp",
@@ -1131,6 +1172,7 @@
       "collisionDiffName": "链名称",
       "collisionDiffSymbol": "原生货币符号",
       "iUnderstandRisk": "我了解风险,仍要添加此链",
+      "addAnyway": "仍然添加",
       "forceApproveDisabledTooltip": "已禁用: 确认您了解风险后继续。"
     },
     "addtoken": {

@@ -122,6 +122,7 @@
   "common": {
     "export": "Esporta",
     "back": "Indietro",
+    "backToMarketplace": "Back to Marketplace",
     "close": "Chiudi",
     "dismiss": "Dismiss",
     "toggleTheme": "Toggle theme",
@@ -985,67 +986,57 @@
     },
     "mining": {
       "title": "Liquidity Mining",
-      "subtitle": "Metti in staking i token LP per guadagnare premi XOM",
+      "description": "Earn XOM rewards by providing liquidity",
       "pools": "Pool di mining",
-      "noPoolsTitle": "Nessun pool disponibile",
-      "noPoolsDescription": "I pool di mining saranno configurati a breve. Ricontrolla piu tardi.",
-      "poolId": "Pool #{{id}}",
+      "noPools": "No active mining pools at the moment",
       "apr": "APR",
+      "aprTooltip": "Estimated annual percentage rate based on current rewards",
       "tvl": "TVL",
-      "rewardRate": "Tasso di ricompensa",
-      "perSecond": "{{rate}} XOM/s",
-      "yourStake": "Il tuo stake",
-      "pendingRewards": "Ricompense in sospeso",
-      "totalStaked": "Totale in staking",
-      "active": "Attivo",
-      "inactive": "Inattivo",
-      "connectWallet": "Connetti il wallet per vedere la posizione",
-      "noPosition": "Non hai una posizione di mining attiva",
-      "errorLoading": "Errore nel caricamento dei dati di mining"
+      "tvlTooltip": "Total value of LP tokens staked in this pool",
+      "staked": "Your Stake",
+      "pending": "Pending Rewards",
+      "immediate": "Immediate (30%)",
+      "vesting": "Vesting (70%)",
+      "fetchError": "Failed to load mining pools. Please try again."
     },
     "bonding": {
       "title": "Protocol Bonding",
-      "subtitle": "Acquista XOM scontati tramite acquisto di bond",
-      "availableBonds": "Bond disponibili",
-      "noBondsTitle": "Nessun bond disponibile",
-      "noBondsDescription": "I termini dei bond saranno configurati a breve. Ricontrolla piu tardi.",
-      "bondAsset": "Asset del bond",
-      "price": "Prezzo",
-      "discount": "Sconto",
-      "vestingPeriod": "Periodo di vesting",
-      "days": "{{count}} giorni",
-      "xomPerToken": "{{amount}} XOM per token",
-      "calculator": "Calcolatore bond",
-      "youPay": "Paghi",
-      "youReceive": "Ricevi",
-      "tokens": "Token",
-      "yourBonds": "I tuoi bond",
+      "description": "Bond assets for discounted XOM with linear vesting",
+      "available": "Available Bonds",
       "noBonds": "Non hai bond attivi",
+      "discount": "Sconto",
+      "discountTooltip": "Discount off market price when bonding this asset",
+      "vestingPeriod": "Periodo di vesting",
+      "capacity": "Daily Capacity",
+      "remaining": "Remaining Today",
+      "calculator": "Calcolatore bond",
+      "selectAsset": "Asset",
+      "amountInput": "Bond amount",
+      "xomReceived": "XOM received",
+      "yourBonds": "I tuoi bond",
       "claimed": "Riscosso",
-      "vesting": "In vesting",
+      "owed": "Total Owed",
       "vestingEnds": "Fine vesting",
-      "connectWallet": "Connetti il wallet per vedere la posizione",
-      "errorLoading": "Errore nel caricamento dei dati bond"
+      "progress": "Vesting progress",
+      "fetchError": "Failed to load bond programs. Please try again."
     },
     "lbp": {
       "title": "Lancio Token (LBP)",
-      "subtitle": "Pool di bootstrapping della liquidita per una distribuzione equa dei token",
-      "spotPrice": "Prezzo spot",
+      "description": "Fair price discovery via Liquidity Bootstrapping Pool",
+      "price": "Current Price",
+      "finalPrice": "Final Price",
       "weights": "Pesi del pool",
       "xomWeight": "XOM {{weight}}%",
-      "usdcWeight": "USDC {{weight}}%",
-      "endsIn": "Termina tra",
-      "ended": "Terminato",
-      "notStarted": "Non ancora iniziato",
+      "xomWeightTooltip": "XOM weight decreases over time to enable fair price discovery",
+      "counterWeight": "USDC Weight",
+      "counterWeightTooltip": "Counter-asset weight increases over time",
+      "weightBar": "Pool weight distribution",
       "reserves": "Riserve del pool",
-      "xomReserve": "Riserva XOM",
-      "usdcReserve": "Riserva USDC",
-      "totalSwaps": "Swap totali",
-      "status": "Stato",
-      "active": "Attivo",
-      "inactive": "Inattivo",
-      "loading": "Caricamento dati LBP...",
-      "errorLoading": "Errore nel caricamento dei dati LBP"
+      "timeRemaining": "Time Remaining",
+      "notActive": "No active LBP at the moment",
+      "ended": "Terminato",
+      "totalRaised": "Total Raised",
+      "fetchError": "Failed to load LBP status. Please try again."
     },
     "chart": {
       "title": "Price Chart",
@@ -1654,9 +1645,9 @@
         "connecting": "Connecting...",
         "connectionFailed": "Impossibile connect wallet: {{message}}",
         "select": "Seleziona Portafoglio",
+        "selectWallet": "Connetti Portafoglio",
         "selectDescription": "Choose how you want to connect",
         "disconnect": "Disconnetti",
-        "selectWallet": "Connetti Portafoglio",
         "recommended": "Consigliato",
         "notInstalled": "Non installato"
       },
@@ -1752,7 +1743,10 @@
       "txFailed": "Transazione di scambio fallita. Per favore riprova.",
       "swapSubmitted": "Scambio inviato — controlla il tuo wallet per la conferma.",
       "selectPair": "Seleziona i token e inserisci un importo per ottenere una quotazione",
-      "popularPairs": "Coppie Popolari"
+      "popularPairs": "Coppie Popolari",
+      "priceChartAria": "Price chart for {{sell}}/{{buy}}",
+      "loadingPrice": "Loading price data...",
+      "enterAmountForChart": "Enter an amount above to see live price data"
     }
   },
   "lbp": {
@@ -2441,13 +2435,13 @@
         "online": "Online",
         "offline": "Offline",
         "degraded": "Degraded",
-        "active": "Attive",
-        "assetsCovered": "Asset Coperti",
         "description": "Monitori la salute e le prestazioni di tutte le fonti di dati sui prezzi",
-        "down": "Non Disponibili",
-        "errors": "Errori",
+        "assetsCovered": "Asset Coperti",
         "responseTime": "Tempo di Risposta",
-        "successRate": "Tasso di Successo"
+        "successRate": "Tasso di Successo",
+        "errors": "Errori",
+        "active": "Attive",
+        "down": "Non Disponibili"
       },
       "assets": {
         "title": "Asset Health",
@@ -2462,9 +2456,9 @@
         "stale": "Stale",
         "lowConfidence": "Low Confidence",
         "noData": "No Data",
-        "alerts": "Avvisi",
         "description": "Tracci la qualità e la freschezza dei dati sui prezzi per tutti i token RWA",
         "freshness": "Freschezza",
+        "alerts": "Avvisi",
         "sources": "Fonti"
       },
       "alerts": {
@@ -2493,32 +2487,32 @@
           "missing_data": "Missing Data"
         },
         "description": "Visualizzi e gestisca gli avvisi di sistema attivi",
-        "detected": "Rilevato {{time}}",
-        "hideAcknowledged": "Nascondi Confermati"
+        "hideAcknowledged": "Nascondi Confermati",
+        "detected": "Rilevato {{time}}"
       },
       "error": {
         "loadFailed": "Impossibile load monitoring data",
         "refreshFailed": "Impossibile refresh data",
         "acknowledgeFailed": "Impossibile acknowledge alert"
       },
-      "alertAcknowledgeFailed": "Impossibile confermare l'avviso. La preghiamo di riprovare.",
       "alertAcknowledged": "Avviso confermato con successo",
-      "assetsWithLiveData": "Asset con Dati in Tempo Reale",
+      "alertAcknowledgeFailed": "Impossibile confermare l'avviso. La preghiamo di riprovare.",
       "backToTrading": "Torna al Trading",
-      "lastRefresh": "Ultimo aggiornamento {{time}}",
-      "overview": {
-        "description": "Monitoraggio in tempo reale delle fonti dei prezzi RWA e della qualità dei dati",
-        "title": "Panoramica del Sistema"
-      },
       "priceHealth": "Salute dei Prezzi",
+      "assetsWithLiveData": "Asset con Dati in Tempo Reale",
       "sourceHealth": "Salute delle Fonti",
       "sourcesActive": "Fonti Attive",
       "tabs": {
-        "alerts": "Avvisi",
-        "assets": "Asset",
         "overview": "Panoramica",
-        "sources": "Fonti"
-      }
+        "sources": "Fonti",
+        "assets": "Asset",
+        "alerts": "Avvisi"
+      },
+      "overview": {
+        "title": "Panoramica del Sistema",
+        "description": "Monitoraggio in tempo reale delle fonti dei prezzi RWA e della qualità dei dati"
+      },
+      "lastRefresh": "Ultimo aggiornamento {{time}}"
     },
     "geofence": {
       "title": "Geographic Restrictions",
@@ -2868,8 +2862,14 @@
       "footerTitle": "About RWA Listings",
       "footerText": "RWAs are discovered and listed algorithmically from multiple sources (token lists, DeFi Llama, on-chain events, issuer APIs). Verification is based on objective criteria: liquidity depth, price feed confidence, contract verification, and quality indicators. Community members can flag suspicious assets for review.",
       "totalIssuers": "Emittenti Totali",
-      "totalIssuersTooltip": "Numero di emittenti di token unici nel mercato",
-      "totalIssuersValue": "{{count}} emittenti"
+      "totalIssuersValue": "{{count}} emittenti",
+      "totalIssuersTooltip": "Numero di emittenti di token unici nel mercato"
+    },
+    "sidebar": {
+      "resultsCount": "{{displayed}} di {{total}} asset",
+      "statistics": "Statistiche",
+      "verificationTier": "Verifica",
+      "assetType": "Tipo di Asset"
     },
     "tiers": {
       "verified": "Verificato",
@@ -2933,164 +2933,164 @@
         "completed": "Trasferimento completato",
         "failed": "Trasferimento fallito"
       },
+      "noRoutes": "Nessuna rotta bridge disponibile per questa coppia di token. Il bridge cross-chain è in fase di distribuzione — ricontrolla presto.",
+      "pageTitle": "Bridge Cross-Chain",
+      "pageDescription": "Trasferisci token in modo sicuro tra diverse blockchain",
+      "description": "Trasferisci token RWA tra blockchain usando il protocollo LayerZero OFT",
+      "selectSourceChain": "Seleziona rete di origine",
+      "selectDestChain": "Seleziona rete di destinazione",
+      "selectChain": "Seleziona rete",
       "amountPlaceholder": "Inserisci l'importo da trasferire",
-      "aria": {
-        "amountInput": "Inserisci l'importo per il bridge",
-        "bridgeForm": "Modulo bridge cross-chain",
-        "destChainSelect": "Seleziona blockchain di destinazione",
-        "routeList": "Percorsi bridge disponibili",
-        "routeOption": "Percorso bridge via {{protocol}}, commissione {{fee}}, tempo stimato {{time}}",
-        "sourceChainSelect": "Seleziona blockchain di origine"
-      },
-      "audits": "Audit",
       "balance": "Saldo",
-      "bridgeComplete": "Bridge completato",
-      "bridgeId": "ID del bridge",
-      "bridgeInProgress": "Bridge in corso",
-      "bridgeNow": "Trasferisci {{amount}} {{symbol}}",
-      "cardDescription": "Seleziona le reti di origine e destinazione per trasferire i tuoi asset",
-      "cardTitle": "Trasferisci token",
-      "cardTooltip": "Trasferisci i tuoi token tra diverse blockchain usando protocolli bridge sicuri.",
-      "category": {
-        "native": "Nativo",
-        "rwa": "RWA",
-        "stablecoin": "Stablecoin",
-        "wrapped": "Wrapped"
-      },
-      "chainDisabled": "Questa rete non è disponibile per questo percorso",
+      "maxButton": "Max",
+      "initializing": "Inizializzazione del bridge...",
+      "fetchingQuote": "Recupero del preventivo...",
+      "routesList": "Percorsi bridge",
+      "refreshRoutes": "Aggiorna percorsi",
       "compliancePreserved": "Conformità preservata",
       "complianceTooltip": "Lo stato di conformità del token viene mantenuto tra le reti tramite messaggistica LayerZero",
-      "confirmBridge": "Conferma bridge",
-      "connected": "Connesso",
-      "connectedTooltip": "Il tuo portafoglio è connesso a questa rete",
-      "description": "Trasferisci token RWA tra blockchain usando il protocollo LayerZero OFT",
-      "destTx": "TX di destinazione",
-      "errors": {
-        "amountTooLow": "L'importo è inferiore alla soglia minima del bridge",
-        "bridgeFailed": "Bridge non riuscito: {{message}}",
-        "failedToFetchRoutes": "Impossibile ottenere i percorsi bridge",
-        "initFailed": "Inizializzazione del bridge non riuscita: {{message}}",
-        "insufficientBalance": "Saldo insufficiente",
-        "noRoute": "Seleziona un percorso bridge",
-        "noRoutesFound": "Nessun percorso bridge trovato per questa coppia di token",
-        "notAuthenticated": "Effettua prima l'accesso",
-        "routesFailed": "Impossibile ottenere i percorsi: {{message}}",
-        "unknown": "Si è verificato un errore sconosciuto",
-        "walletLocked": "Sblocca prima il tuo portafoglio"
-      },
-      "estimatedTime": "Tempo stimato",
-      "fastest": "Più veloce",
       "fee": "Commissione",
-      "feeBreakdown": "Dettaglio delle commissioni",
-      "feeBreakdownTooltip": "Dettaglio di tutte le commissioni associate a questa transazione bridge.",
-      "fetchingQuote": "Recupero del preventivo...",
-      "filter": {
-        "all": "Tutti",
-        "native": "Nativi",
-        "rwa": "RWA",
-        "stablecoins": "Stablecoin",
-        "wrapped": "Wrapped"
-      },
-      "gasCost": "Costo del gas",
-      "historyDescription": "Monitora i tuoi trasferimenti cross-chain",
-      "historyTitle": "Transazioni recenti",
-      "importCustomToken": "Importa token personalizzato per indirizzo",
-      "initializing": "Inizializzazione del bridge...",
-      "learnMore": "Scopri di più",
-      "lowestFee": "Commissione più bassa",
-      "maxButton": "Max",
-      "minReceived": "Min. ricevuto",
-      "mostSecure": "Più sicuro",
-      "noChainFound": "Nessuna rete trovata.",
-      "noHistory": "Nessuna transazione bridge recente",
-      "noRoutes": "Nessuna rotta bridge disponibile per questa coppia di token. Il bridge cross-chain è in fase di distribuzione — ricontrolla presto.",
-      "noRoutesAvailable": "Nessun percorso bridge disponibile",
-      "noTokensFound": "Nessun token trovato",
-      "pageDescription": "Trasferisci token in modo sicuro tra diverse blockchain",
-      "pageTitle": "Bridge Cross-Chain",
-      "platformFee": "Commissione della piattaforma",
-      "platformFeeDistribution": "Distribuzione della commissione della piattaforma",
-      "popular": "Popolare",
-      "processing": "Elaborazione...",
-      "progress": "Avanzamento",
-      "protocol": {
-        "avalanche-bridge": "Avalanche Bridge",
-        "cctp": "Circle CCTP",
-        "chainlink-ccip": "Chainlink CCIP",
-        "layerzero": "LayerZero OFT",
-        "lifi": "LI.FI",
-        "native": "Bridge nativo",
-        "socket": "Socket",
-        "wormhole": "Wormhole"
-      },
-      "protocolFee": "Commissione del protocollo",
-      "protocolFeeTooltip": "Commissione addebitata da {{protocol}} per la messaggistica cross-chain",
-      "protocolTooltip": {
-        "avalanche-bridge": "Bridge ufficiale di Avalanche per trasferimenti Ethereum-Avalanche con meccanismo lock/mint",
-        "cctp": "Protocollo nativo di trasferimento cross-chain di USDC di Circle",
-        "chainlink-ccip": "Protocollo di interoperabilità cross-chain di Chainlink con sicurezza della Risk Management Network",
-        "layerzero": "OFT nativo con burn-and-mint e conformità unificata tra le reti",
-        "lifi": "Aggregatore multi-bridge con ottimizzazione del percorso migliore",
-        "native": "Bridge ufficiale dell'emittente con le massime garanzie di sicurezza",
-        "socket": "Protocollo di aggregazione di liquidità cross-chain",
-        "wormhole": "Bridge basato su rete di guardiani con ampio supporto multi-chain e verifica VAA"
-      },
-      "protocols": "Protocolli bridge",
-      "recommendedTooltip": "Percorso migliore in base ai criteri selezionati",
-      "refreshRoutes": "Aggiorna percorsi",
-      "refreshStatus": "Aggiorna stato",
-      "route": "Percorso",
-      "routesList": "Percorsi bridge",
-      "saveWithUpgrade": "Risparmia {{percent}}% sulle commissioni",
-      "savingWithTier": "Risparmiando {{amount}} con il livello {{tier}}",
-      "searchChain": "Cerca rete...",
-      "searchToken": "Cerca per nome, simbolo o indirizzo",
-      "security": "Sicurezza",
-      "securityMessage": "Verifica sempre i dettagli della transazione prima di confermare. Le transazioni bridge sono irreversibili.",
-      "securityNotice": "Avviso di sicurezza",
+      "estimatedTime": "Tempo stimato",
       "securityTooltip": "Punteggio di sicurezza basato sulla maturità del protocollo, storico degli audit e architettura del bridge",
-      "selectChain": "Seleziona rete",
-      "selectDestChain": "Seleziona rete di destinazione",
-      "selectDestPlaceholder": "Seleziona rete di destinazione",
-      "selectRoute": "Seleziona percorso",
-      "selectSourceChain": "Seleziona rete di origine",
-      "selectSourcePlaceholder": "Seleziona rete di origine",
-      "selectTokenLabel": "Seleziona un token da trasferire",
-      "sort": {
-        "az": "A-Z",
-        "balance": "Saldo",
-        "popular": "Popolare"
-      },
-      "sortBy": "Ordina per",
-      "sortedBy": "Ordinato per",
-      "sourceTx": "TX di origine",
-      "success": "Bridge avviato! ID della transazione: {{id}}",
-      "supportedChains": "Reti supportate",
+      "tryDifferentChain": "Prova a selezionare una rete di destinazione diversa.",
+      "bridgeNow": "Trasferisci {{amount}} {{symbol}}",
+      "processing": "Elaborazione...",
+      "confirmBridge": "Conferma bridge",
+      "bridgeInProgress": "Bridge in corso",
+      "bridgeComplete": "Bridge completato",
+      "viewOnExplorer": "Visualizza nell'explorer",
+      "trackStatus": "Monitora stato",
       "tabs": {
         "bridge": "Bridge",
         "history": "Cronologia"
       },
-      "tier": "livello",
-      "time": "Tempo",
-      "toUnlock": "per sbloccare",
-      "tooltips": {
-        "amount": "Quantità di token da trasferire (le commissioni gas vengono detratte sulla destinazione)",
-        "destChain": "La blockchain verso cui stai trasferendo",
-        "route": "Clicca per selezionare questo percorso bridge",
-        "sourceChain": "La blockchain da cui stai trasferendo"
-      },
+      "cardTitle": "Trasferisci token",
+      "cardTooltip": "Trasferisci i tuoi token tra diverse blockchain usando protocolli bridge sicuri.",
+      "cardDescription": "Seleziona le reti di origine e destinazione per trasferire i tuoi asset",
+      "youWillReceive": "Riceverai",
+      "minReceived": "Min. ricevuto",
+      "protocolFee": "Commissione del protocollo",
+      "gasCost": "Costo del gas",
       "totalFee": "Commissione totale",
-      "totalFees": "Commissioni totali",
-      "trackProgress": "Monitora l'avanzamento della tua transazione bridge",
-      "trackStatus": "Monitora stato",
+      "protocols": "Protocolli bridge",
+      "supportedChains": "Reti supportate",
+      "securityNotice": "Avviso di sicurezza",
+      "securityMessage": "Verifica sempre i dettagli della transazione prima di confermare. Le transazioni bridge sono irreversibili.",
+      "historyTitle": "Transazioni recenti",
+      "historyDescription": "Monitora i tuoi trasferimenti cross-chain",
+      "noHistory": "Nessuna transazione bridge recente",
       "transactionStatus": "Stato della transazione",
-      "tryDifferentChain": "Prova a selezionare una rete di destinazione diversa.",
+      "trackProgress": "Monitora l'avanzamento della tua transazione bridge",
+      "progress": "Avanzamento",
+      "bridgeId": "ID del bridge",
+      "route": "Percorso",
+      "sourceTx": "TX di origine",
+      "destTx": "TX di destinazione",
+      "refreshStatus": "Aggiorna stato",
+      "success": "Bridge avviato! ID della transazione: {{id}}",
+      "protocol": {
+        "layerzero": "LayerZero OFT",
+        "avalanche-bridge": "Avalanche Bridge",
+        "chainlink-ccip": "Chainlink CCIP",
+        "wormhole": "Wormhole",
+        "lifi": "LI.FI",
+        "socket": "Socket",
+        "cctp": "Circle CCTP",
+        "native": "Bridge nativo"
+      },
+      "protocolTooltip": {
+        "layerzero": "OFT nativo con burn-and-mint e conformità unificata tra le reti",
+        "avalanche-bridge": "Bridge ufficiale di Avalanche per trasferimenti Ethereum-Avalanche con meccanismo lock/mint",
+        "chainlink-ccip": "Protocollo di interoperabilità cross-chain di Chainlink con sicurezza della Risk Management Network",
+        "wormhole": "Bridge basato su rete di guardiani con ampio supporto multi-chain e verifica VAA",
+        "lifi": "Aggregatore multi-bridge con ottimizzazione del percorso migliore",
+        "socket": "Protocollo di aggregazione di liquidità cross-chain",
+        "cctp": "Protocollo nativo di trasferimento cross-chain di USDC di Circle",
+        "native": "Bridge ufficiale dell'emittente con le massime garanzie di sicurezza"
+      },
+      "errors": {
+        "initFailed": "Inizializzazione del bridge non riuscita: {{message}}",
+        "routesFailed": "Impossibile ottenere i percorsi: {{message}}",
+        "failedToFetchRoutes": "Impossibile ottenere i percorsi bridge",
+        "noRoutesFound": "Nessun percorso bridge trovato per questa coppia di token",
+        "bridgeFailed": "Bridge non riuscito: {{message}}",
+        "notAuthenticated": "Effettua prima l'accesso",
+        "walletLocked": "Sblocca prima il tuo portafoglio",
+        "noRoute": "Seleziona un percorso bridge",
+        "insufficientBalance": "Saldo insufficiente",
+        "amountTooLow": "L'importo è inferiore alla soglia minima del bridge",
+        "unknown": "Si è verificato un errore sconosciuto"
+      },
+      "tooltips": {
+        "sourceChain": "La blockchain da cui stai trasferendo",
+        "destChain": "La blockchain verso cui stai trasferendo",
+        "amount": "Quantità di token da trasferire (le commissioni gas vengono detratte sulla destinazione)",
+        "route": "Clicca per selezionare questo percorso bridge"
+      },
+      "aria": {
+        "bridgeForm": "Modulo bridge cross-chain",
+        "sourceChainSelect": "Seleziona blockchain di origine",
+        "destChainSelect": "Seleziona blockchain di destinazione",
+        "amountInput": "Inserisci l'importo per il bridge",
+        "routeList": "Percorsi bridge disponibili",
+        "routeOption": "Percorso bridge via {{protocol}}, commissione {{fee}}, tempo stimato {{time}}"
+      },
+      "selectSourcePlaceholder": "Seleziona rete di origine",
+      "selectDestPlaceholder": "Seleziona rete di destinazione",
+      "searchChain": "Cerca rete...",
+      "noChainFound": "Nessuna rete trovata.",
+      "connected": "Connesso",
+      "connectedTooltip": "Il tuo portafoglio è connesso a questa rete",
+      "chainDisabled": "Questa rete non è disponibile per questo percorso",
+      "selectTokenLabel": "Seleziona un token da trasferire",
+      "searchToken": "Cerca per nome, simbolo o indirizzo",
+      "noTokensFound": "Nessun token trovato",
       "tryDifferentSearch": "Prova una ricerca o un filtro diverso",
-      "tvl": "TVL",
+      "importCustomToken": "Importa token personalizzato per indirizzo",
       "verified": "Verificato",
       "verifiedToken": "Token verificato",
-      "viewOnExplorer": "Visualizza nell'explorer",
-      "youWillReceive": "Riceverai"
+      "popular": "Popolare",
+      "filter": {
+        "all": "Tutti",
+        "stablecoins": "Stablecoin",
+        "wrapped": "Wrapped",
+        "rwa": "RWA",
+        "native": "Nativi"
+      },
+      "sortBy": "Ordina per",
+      "sort": {
+        "balance": "Saldo",
+        "popular": "Popolare",
+        "az": "A-Z"
+      },
+      "category": {
+        "stablecoin": "Stablecoin",
+        "wrapped": "Wrapped",
+        "native": "Nativo",
+        "rwa": "RWA"
+      },
+      "selectRoute": "Seleziona percorso",
+      "sortedBy": "Ordinato per",
+      "lowestFee": "Commissione più bassa",
+      "fastest": "Più veloce",
+      "mostSecure": "Più sicuro",
+      "noRoutesAvailable": "Nessun percorso bridge disponibile",
+      "time": "Tempo",
+      "security": "Sicurezza",
+      "audits": "Audit",
+      "tvl": "TVL",
+      "recommendedTooltip": "Percorso migliore in base ai criteri selezionati",
+      "feeBreakdown": "Dettaglio delle commissioni",
+      "feeBreakdownTooltip": "Dettaglio di tutte le commissioni associate a questa transazione bridge.",
+      "platformFee": "Commissione della piattaforma",
+      "platformFeeDistribution": "Distribuzione della commissione della piattaforma",
+      "totalFees": "Commissioni totali",
+      "protocolFeeTooltip": "Commissione addebitata da {{protocol}} per la messaggistica cross-chain",
+      "savingWithTier": "Risparmiando {{amount}} con il livello {{tier}}",
+      "saveWithUpgrade": "Risparmia {{percent}}% sulle commissioni",
+      "toUnlock": "per sbloccare",
+      "tier": "livello",
+      "learnMore": "Scopri di più"
     },
     "subtitle": "Real World Asset trading compliance and requirements",
     "lastUpdated": "Last updated: December 2025",
@@ -3161,51 +3161,51 @@
       "upgrade": "Upgrade your KYC tier to access higher trading limits"
     },
     "flagging": {
+      "title": "Segnalazioni della Comunità",
+      "subtitle": "Segnali token RWA non conformi o sospetti per la revisione della comunità",
+      "yourScore": "Il Suo Punteggio di Partecipazione",
       "canFlag": "Lei può inviare segnalazioni (punteggio ≥ 25)",
       "cannotFlag": "Punteggio troppo basso per inviare segnalazioni (necessario ≥ 25)",
-      "errors": {
-        "insufficientEvidence": "La preghiamo di fornire prove dettagliate per la Sua segnalazione",
-        "invalidAddress": "La preghiamo di inserire un indirizzo di contratto token valido",
-        "lowScore": "Il Suo punteggio di partecipazione è troppo basso per inviare segnalazioni. È richiesto un punteggio minimo di 25.",
-        "notAuthenticated": "La preghiamo di accedere per inviare segnalazioni",
-        "submitFailed": "Impossibile inviare la segnalazione. La preghiamo di riprovare."
-      },
+      "submitTab": "Invia Segnalazione",
+      "recentTab": "Segnalazioni Recenti",
+      "formTitle": "Invia una Segnalazione",
+      "formDescription": "Aiuti a mantenere la qualità del mercato segnalando token sospetti",
+      "tokenAddress": "Indirizzo Token",
+      "flagType": "Tipo di Segnalazione",
       "evidence": "Prove",
       "evidencePlaceholder": "Descriva il problema e fornisca prove a sostegno (link, screenshot, ecc.)",
-      "flagType": "Tipo di Segnalazione",
-      "flaggedBy": "Segnalato da",
-      "formDescription": "Aiuti a mantenere la qualità del mercato segnalando token sospetti",
-      "formTitle": "Invia una Segnalazione",
+      "submit": "Invia Segnalazione",
+      "types": {
+        "scam": "Truffa / Frode",
+        "duplicate": "Token Duplicato",
+        "nonCompliant": "Non Conforme",
+        "deadProject": "Progetto Inattivo",
+        "priceManip": "Manipolazione dei Prezzi"
+      },
+      "guidelines": "Linee Guida per le Segnalazioni",
       "guideline1": "È richiesto un punteggio di partecipazione minimo di 25 per segnalare token",
       "guideline2": "Fornisca prove chiare e una descrizione del problema",
       "guideline3": "Segnalazioni false possono comportare una riduzione del punteggio di partecipazione",
       "guideline4": "Segnalazioni accurate ripetute aumentano il Suo punteggio di reputazione",
       "guideline5": "I validatori esaminano tutte le segnalazioni e prendono le decisioni finali",
-      "guidelines": "Linee Guida per le Segnalazioni",
-      "noRecentFlags": "Nessuna segnalazione recente",
+      "stats": {
+        "totalFlags": "Segnalazioni Totali",
+        "activeFlags": "Segnalazioni Attive",
+        "resolvedFlags": "Segnalazioni Risolte",
+        "flaggedRWAs": "RWA Segnalati"
+      },
       "recentFlags": "Segnalazioni Recenti",
       "recentFlagsDesc": "Segnalazioni inviate dalla comunità in fase di revisione",
-      "recentTab": "Segnalazioni Recenti",
-      "stats": {
-        "activeFlags": "Segnalazioni Attive",
-        "flaggedRWAs": "RWA Segnalati",
-        "resolvedFlags": "Segnalazioni Risolte",
-        "totalFlags": "Segnalazioni Totali"
+      "noRecentFlags": "Nessuna segnalazione recente",
+      "flaggedBy": "Segnalato da",
+      "errors": {
+        "notAuthenticated": "La preghiamo di accedere per inviare segnalazioni",
+        "lowScore": "Il Suo punteggio di partecipazione è troppo basso per inviare segnalazioni. È richiesto un punteggio minimo di 25.",
+        "invalidAddress": "La preghiamo di inserire un indirizzo di contratto token valido",
+        "insufficientEvidence": "La preghiamo di fornire prove dettagliate per la Sua segnalazione",
+        "submitFailed": "Impossibile inviare la segnalazione. La preghiamo di riprovare."
       },
-      "submit": "Invia Segnalazione",
-      "submitTab": "Invia Segnalazione",
-      "subtitle": "Segnali token RWA non conformi o sospetti per la revisione della comunità",
-      "success": "Segnalazione inviata con successo. I validatori esamineranno la Sua presentazione.",
-      "title": "Segnalazioni della Comunità",
-      "tokenAddress": "Indirizzo Token",
-      "types": {
-        "deadProject": "Progetto Inattivo",
-        "duplicate": "Token Duplicato",
-        "nonCompliant": "Non Conforme",
-        "priceManip": "Manipolazione dei Prezzi",
-        "scam": "Truffa / Frode"
-      },
-      "yourScore": "Il Suo Punteggio di Partecipazione"
+      "success": "Segnalazione inviata con successo. I validatori esamineranno la Sua presentazione."
     },
     "comparison": {
       "accreditedOnly": "Solo Accreditati",
@@ -3228,12 +3228,6 @@
       "volume": "Volume 24h"
     },
     "importHint": "Importa un token RWA personalizzato tramite indirizzo del contratto",
-    "sidebar": {
-      "assetType": "Tipo di Asset",
-      "resultsCount": "{{displayed}} di {{total}} asset",
-      "statistics": "Statistiche",
-      "verificationTier": "Verifica"
-    },
     "portfolio": {
       "title": "Portafoglio RWA",
       "backToRwa": "Torna al mercato RWA",
@@ -3549,6 +3543,11 @@
     "featured": {
       "title": "Rendimento nativo OmniBazaar",
       "subtitle": "Guadagna con XOM: fai staking, fornisci liquidita e partecipa alle opportunita native di OmniBazaar."
+    },
+    "earlyLPBanner": {
+      "title": "Earn from Validator Overflow — Up to $890K/year",
+      "description": "Fornisci liquidità USDC e guadagna dal surplus di ricompense. I primi fornitori ottengono il miglior APR. Vedi la scheda in evidenza sotto.",
+      "cta": "Learn More"
     },
     "native": {
       "badge": "OmniBazaar",
@@ -4170,9 +4169,6 @@
       "rewardHighlight": "~$890K/anno ai fornitori di LP",
       "ariaLabel": "Ricompense LP anticipate — overflow ricompense dei validatori",
       "ctaAria": "Apri il modale del pool di liquidità multi-catena"
-    },
-    "earlyLPBanner": {
-      "description": "Fornisci liquidità USDC e guadagna dal surplus di ricompense. I primi fornitori ottengono il miglior APR. Vedi la scheda in evidenza sotto."
     }
   },
   "earnings": {
@@ -4273,13 +4269,37 @@
       "delivered": "Delivered",
       "completed": "Completato",
       "disputed": "Disputed",
-      "cancelled": "Cancelled"
+      "cancelled": "Cancelled",
+      "locked": "Funds Locked",
+      "awaitingDelivery": "Awaiting Delivery",
+      "inspectionPeriod": "Inspection Period",
+      "readyForRelease": "Ready for Release",
+      "released": "Funds Released",
+      "refunded": "Funds Refunded",
+      "unknown": "Unknown Status"
+    },
+    "secured": "secured",
+    "protection": "Escrow Protection",
+    "securedAmount": "Secured Amount",
+    "inspectionEnds": "Inspection period ends {{time}}.",
+    "confirmReceipt": "Confirm receipt before this time to release funds.",
+    "disputeFiledBy": "Dispute filed by {{user}}",
+    "fundsReleased": "Funds were released to the seller",
+    "timelineTitle": "Escrow Timeline",
+    "timelineSteps": {
+      "fundsDeposited": "Funds Deposited",
+      "itemShipped": "Item Shipped",
+      "deliveryConfirmed": "Delivery Confirmed",
+      "fundsReleased": "Funds Released"
     },
     "actions": {
       "release": "Rilascia",
       "dispute": "Contesta",
       "openChat": "Apri Chat",
       "exportData": "Esporta Dati",
+      "releaseFunds": "Release Funds",
+      "claimFunds": "Claim Funds",
+      "viewDisputeDetails": "View Dispute Details",
       "expandDetails": "Espandi dettagli escrow",
       "collapseDetails": "Comprimi dettagli escrow",
       "viewDetails": "Visualizza dettagli escrow"
@@ -4347,20 +4367,6 @@
       "disputeRate": "Dispute Rate",
       "successRate": "Success Rate"
     },
-    "session": {
-      "activeTitle": "Active Support Session",
-      "supporting": "Supporting {{userName}} - User Score: {{score}}/100",
-      "markResolved": "Mark as Resolved",
-      "escalate": "Escalate Session",
-      "acceptButton": "Accept Session"
-    },
-    "queue": {
-      "title": "Support Queue",
-      "waiting": "{{count}} waiting",
-      "description": "Accept sessions to help users and earn PoP points",
-      "noSessions": "No sessions waiting",
-      "checkBack": "Check back in a moment"
-    },
     "tooltips": {
       "releaseFunds": "Transfer the escrowed funds to the seller after confirming delivery",
       "openDispute": "File a dispute if there's an issue with the transaction",
@@ -4400,7 +4406,9 @@
       "languagesLabel": "Languages you can support",
       "expertiseLabel": "Areas of expertise",
       "experienceLabel": "Experience level",
-      "registerButton": "Register as Volunteer"
+      "registerButton": "Register as Volunteer",
+      "success": "Successfully registered as a volunteer!",
+      "error": "Failed to register. Please try again."
     },
     "expertise": {
       "walletSetup": "Wallet Setup",
@@ -4420,17 +4428,25 @@
       "supporting": "Supporting {{userName}} - User Score: {{score}}/100",
       "markResolved": "Mark as Resolved",
       "escalate": "Escalate Session",
-      "acceptButton": "Accept Session"
+      "acceptButton": "Accept Session",
+      "acceptError": "Failed to join session. Please try again.",
+      "resolved": "Session resolved successfully.",
+      "resolveError": "Failed to close session. Please try again."
     },
     "queue": {
       "title": "Support Queue",
       "waiting": "{{count}} waiting",
       "description": "Accept sessions to help users and earn PoP points",
       "noSessions": "No sessions waiting",
-      "checkBack": "Check back in a moment"
+      "checkBack": "Check back in a moment",
+      "waitingTime": "Waiting {{time}}",
+      "userScore": "Score: {{score}}/100"
     },
     "chat": {
-      "placeholder": "Type your message..."
+      "placeholder": "Type your message...",
+      "send": "Send message",
+      "you": "You",
+      "sendError": "Failed to send message. Please try again."
     },
     "performance": {
       "title": "Il tuo Performance",
@@ -4445,6 +4461,13 @@
       "resolutionRate": "Resolution Rate",
       "avgResponseTime": "Avg Response Time",
       "avgResolutionTime": "Avg Resolution Time"
+    },
+    "satisfaction": {
+      "verySatisfied": "Very Satisfied",
+      "satisfied": "Satisfied",
+      "neutral": "Neutral",
+      "dissatisfied": "Dissatisfied",
+      "veryDissatisfied": "Very Dissatisfied"
     }
   },
   "languages": {
@@ -5162,7 +5185,51 @@
         "resolution": "Resolution",
         "resolvedBy": "Resolved by",
         "resolvedOn": "Resolved on"
-      }
+      },
+      "banned": "Banned",
+      "underReview": "Under Review",
+      "cleared": "Cleared",
+      "pendingReview": "Pending Review",
+      "successfulBan": "Successful Ban",
+      "noActionTaken": "No Action Taken",
+      "seller": "Seller",
+      "ofTotal": "of {{total}}",
+      "noReportedListings": "No reported listings found.",
+      "leaderboardEmpty": "Leaderboard data is not yet available.",
+      "leaderboardHelp": "Submit reports to help protect the community and earn your ranking.",
+      "reportSuccess": "Report submitted. Thank you for helping keep our community safe.",
+      "errors": {
+        "selectReason": "Please select a reason for your report.",
+        "submitFailed": "Failed to submit report. Please try again."
+      },
+      "yourContribution": "Your Contribution",
+      "totalReports": "Total Reports",
+      "successfulBans": "Successful Bans",
+      "communityScore": "Community Score",
+      "yourRank": "Your Rank",
+      "guardian": "Guardian",
+      "level3": "Level 3",
+      "reportedListings": "Reported Listings",
+      "leaderboard": "Leaderboard",
+      "topContributors": "Top Contributors",
+      "leaderboardDescription": "Users making the biggest impact on community safety",
+      "yourReportHistory": "Your Report History",
+      "reports": "Reports",
+      "reportedScore": "Reported Score",
+      "sellerScore": "Seller Score",
+      "banRatio": "Ban Ratio",
+      "reportListing": "Report Listing",
+      "reportReason": "Reason for Report",
+      "selectReason": "Select a reason",
+      "illegalContent": "Illegal Content",
+      "prohibitedItem": "Prohibited Item",
+      "fraudulent": "Fraudulent",
+      "misleading": "Misleading",
+      "copyrightViolation": "Copyright Violation",
+      "inappropriate": "Inappropriate",
+      "spam": "Spam",
+      "provideDetails": "Provide any additional information...",
+      "reportFee": "A 1 XOM fee is required to submit a report. This helps prevent spam and ensures serious reports only."
     },
     "participation": {
       "title": "Il tuo Participation Score",
@@ -5348,75 +5415,138 @@
       "title": "Transaction Limits",
       "daily": "Giornaliero",
       "monthly": "Mensile",
+      "unlimited": "Unlimited",
       "format": "{{used}} / {{limit}} XOM"
     },
     "tiers": {
+      "anonymous": {
+        "name": "Anonymous",
+        "description": "Email-only access with basic functionality",
+        "requirements": {
+          "items": [
+            "Email verification"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "View listings",
+            "Use chat"
+          ]
+        }
+      },
       "basic": {
         "name": "Basic Verification",
         "description": "Email, phone, and social media verification",
-        "requirements": [
-          "Email verification",
-          "Phone verification",
-          "Social media account"
-        ],
-        "privileges": [
-          "Basic trading",
-          "Marketplace access",
-          "Chat features"
-        ]
+        "requirements": {
+          "items": [
+            "Email verification",
+            "Phone verification",
+            "Social media account"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "Basic trading",
+            "Marketplace access",
+            "Chat features"
+          ]
+        }
       },
       "identity": {
         "name": "Identity Verification",
         "description": "Government-issued ID verification",
-        "requirements": [
-          "Valid government ID",
-          "Selfie verification",
-          "Address proof"
-        ],
-        "privileges": [
-          "All Tier 1 features",
-          "Higher trading limits",
-          "Priority support"
-        ]
+        "requirements": {
+          "items": [
+            "Full legal name",
+            "Physical address",
+            "OCR-verified document (bank statement, utility bill, etc.)"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "All Tier 1 features",
+            "Higher trading limits",
+            "Priority support"
+          ]
+        }
       },
       "enhanced": {
         "name": "Enhanced Verification",
         "description": "Third-party KYC provider verification",
-        "requirements": [
-          "Third-party KYC",
-          "Financial verification",
-          "Enhanced due diligence"
-        ],
-        "privileges": [
-          "All Tier 2 features",
-          "Unlimited trading",
-          "OTC access"
-        ]
+        "requirements": {
+          "items": [
+            "Government-issued photo ID (via Persona)",
+            "Live selfie verification",
+            "AML/PEP screening clearance",
+            "Accredited investor certification (optional)"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "All Tier 2 features",
+            "Unlimited trading",
+            "OTC access",
+            "Validator eligibility"
+          ]
+        }
       },
       "institutional": {
         "name": "Institutional",
         "description": "Business and institutional verification",
-        "requirements": [
-          "Business registration",
-          "Director verification",
-          "Compliance documentation"
-        ],
-        "privileges": [
-          "All features",
-          "API access",
-          "Custom integration",
-          "Dedicated support"
-        ]
+        "requirements": {
+          "items": [
+            "Business registration documents",
+            "Director/officer verification",
+            "Entity verification (via Persona)"
+          ]
+        },
+        "privileges": {
+          "items": [
+            "All features",
+            "API access",
+            "Custom integration",
+            "Dedicated support"
+          ]
+        }
       }
     },
     "verification": {
+      "basic": {
+        "title": "Complete Basic Verification"
+      },
+      "email": {
+        "label": "Email",
+        "title": "Email Verification"
+      },
+      "phone": {
+        "label": "Phone",
+        "title": "Phone Verification",
+        "placeholder": "+1234567890"
+      },
       "social": {
+        "label": "Social Media",
+        "title": "Social Media Verification",
         "twitter": "Twitter",
         "linkedin": "LinkedIn",
-        "instagram": "Instagram"
+        "instagram": "Instagram",
+        "facebook": "Facebook"
+      },
+      "id": {
+        "label": "ID Verified"
+      },
+      "sendCode": "Send Code",
+      "enterCode": "Enter verification code",
+      "success": {
+        "emailSent": "Verification email sent! Please check your inbox.",
+        "codeSent": "Verification code sent to your phone!",
+        "socialVerified": "{{platform}} account verified successfully!"
       },
       "errors": {
-        "loadFailed": "Impossibile load KYC status"
+        "loadFailed": "Impossibile load KYC status",
+        "emailFailed": "Failed to send verification email. Please try again.",
+        "enterPhone": "Please enter a valid phone number.",
+        "codeFailed": "Failed to send verification code. Please try again.",
+        "socialFailed": "Failed to start social media verification. Please try again."
       }
     },
     "uploadDocument": {
@@ -5432,14 +5562,16 @@
       "verifyIdentity": "Start the identity verification process to unlock higher limits",
       "linkSocial": "Connect your social media account to improve verification",
       "submitVerification": "Submit your documents for review by our verification team",
-      "tierInfo": "Higher tiers unlock increased transaction limits and features"
+      "tierInfo": "Higher tiers unlock increased transaction limits and features",
+      "viewLimits": "See your current transaction limits based on verification level"
     },
     "loading": "Caricamento KYC status...",
     "title": "KYC Verification",
     "subtitle": "Complete verification to unlock higher transaction limits",
     "yourStatus": {
       "title": "Il tuo Verification Status",
-      "currentTier": "Current Tier: {{tier}} of 4"
+      "currentTier": "Current Tier: {{tier}} of 4",
+      "verificationStatus": "Verification Status"
     },
     "verificationStatus": {
       "title": "Verification Status",
@@ -5506,7 +5638,139 @@
       "invalidFileType": "Only JPG, PNG, and PDF files are allowed",
       "statusLoadFailed": "Impossibile load KYC status"
     },
-    "tier": "Tier {{number}}: {{name}}"
+    "tier": "Tier {{number}}: {{name}}",
+    "currentTier": "Current Tier",
+    "persona": {
+      "tier3": {
+        "title": "Identity Verification",
+        "description": "Complete government ID verification and live selfie through Persona to unlock higher limits and validator eligibility.",
+        "successMessage": "Identity verification completed successfully! Your account has been upgraded."
+      },
+      "tier4": {
+        "title": "Institutional Verification",
+        "description": "Complete business entity verification through Persona to unlock institutional features and unlimited limits.",
+        "successMessage": "Institutional verification completed successfully! Your account has been upgraded."
+      },
+      "requirements": {
+        "intro": "You will need the following to complete verification:",
+        "governmentId": "A valid government-issued photo ID (passport, driver's license, or national ID)",
+        "liveSelfie": "A live selfie for liveness verification",
+        "amlScreening": "You will be screened against AML/PEP databases",
+        "businessRegistration": "Business registration documents",
+        "entityVerification": "Company officer/director identification"
+      },
+      "startVerification": "Start Identity Verification",
+      "loading": "Preparing your verification session...",
+      "retry": "Try Again",
+      "verified": "Verification Approved",
+      "notApproved": "Verification Not Approved",
+      "notApprovedMessage": "Your identity verification was not approved. You may try again or contact support for assistance.",
+      "tryAgain": "Try Again",
+      "iframeDescription": "Complete the verification steps in the form below. You may be asked to present your ID and take a selfie.",
+      "iframeTitle": "Persona Identity Verification",
+      "errors": {
+        "startFailed": "Failed to start identity verification. Please try again.",
+        "createFailed": "Failed to create verification session."
+      }
+    },
+    "accreditedInvestor": {
+      "title": "Accredited Investor Certification",
+      "description": "SEC Rule 501(a) allows self-certification of accredited investor status. This is optional and does not affect your KYC tier.",
+      "criteriaTitle": "Do any of the following apply to you?",
+      "criteria": {
+        "netWorth": "My net worth (or joint net worth with spouse) exceeds $1,000,000, excluding my primary residence",
+        "individualIncome": "My individual income has exceeded $200,000 in each of the last two years, and I expect it to exceed $200,000 this year",
+        "jointIncome": "My joint income with my spouse has exceeded $300,000 in each of the last two years, and we expect it to exceed $300,000 this year",
+        "professionalLicense": "I hold a Series 7, Series 65, or Series 82 professional license in good standing",
+        "knowledgeableEmployee": "I am a knowledgeable employee of a private fund"
+      },
+      "acknowledgment": "I certify under penalty of law that the information provided above is true and correct. I understand that providing false information may result in legal consequences and account restrictions.",
+      "notAccredited": "I am NOT an accredited investor",
+      "submit": "Submit Certification",
+      "submitting": "Submitting...",
+      "submitted": "Certification Submitted",
+      "accreditedConfirmed": "Your accredited investor certification has been recorded. This may unlock additional investment features.",
+      "notAccreditedConfirmed": "Your non-accredited status has been recorded. You can update this at any time if your circumstances change.",
+      "successMessage": "Accredited investor certification submitted successfully.",
+      "disclaimer": "This self-certification is for informational purposes within the OmniBazaar platform. It does not constitute legal advice or a binding legal determination of your accredited investor status.",
+      "errors": {
+        "selectCriteria": "Please select at least one qualifying criterion, or choose the non-accredited option.",
+        "acknowledgeRequired": "You must acknowledge the legal certification statement before submitting.",
+        "submitFailed": "Failed to submit accredited investor certification. Please try again."
+      }
+    },
+    "tier2Upload": {
+      "title": "Document Verification",
+      "description": "Upload a document that shows your name and address for OCR-based verification. Accepted documents include bank statements, utility bills, tax documents, and official letters.",
+      "nameLabel": "Full Legal Name",
+      "namePlaceholder": "Enter your full legal name as it appears on official documents",
+      "addressLabel": "Physical Address",
+      "addressPlaceholder": "Enter your full physical address",
+      "documentTypeLabel": "Document Type",
+      "documentTypePlaceholder": "Select a document type",
+      "documentTypes": {
+        "bankStatement": "Bank Statement",
+        "utilityBill": "Utility Bill",
+        "taxDocument": "Tax Document",
+        "officialLetter": "Official Letter"
+      },
+      "fileLabel": "Upload Document",
+      "dropzoneLabel": "Click or drag to upload a document",
+      "dropzoneText": "Click to select a file or drag and drop",
+      "fileRequirements": "JPG, PNG, or PDF (max 10MB)",
+      "removeFile": "Remove file",
+      "previewAlt": "Document preview",
+      "submit": "Submit for Verification",
+      "submitting": "Submitting...",
+      "progressLabel": "Document verification progress",
+      "progressPreparing": "Preparing document...",
+      "progressConverting": "Processing document...",
+      "progressVerifying": "Verifying with OCR...",
+      "progressComplete": "Verification complete",
+      "verified": "Document Verified",
+      "pending": "Verification Pending",
+      "rejected": "Document Rejected",
+      "statusMessage": "Your document has been submitted for review.",
+      "ocrResults": "Extracted Information",
+      "extractedName": "Name",
+      "extractedAddress": "Address",
+      "tryAgain": "Upload Different Document",
+      "successMessage": "Document submitted successfully! Verification is in progress.",
+      "errors": {
+        "fileTooLarge": "File size must be less than 10MB. Please select a smaller file.",
+        "invalidFileType": "Only JPG, PNG, and PDF files are accepted. Please select a valid file type.",
+        "nameRequired": "Please enter your full legal name.",
+        "addressRequired": "Please enter your physical address.",
+        "documentTypeRequired": "Please select a document type.",
+        "fileRequired": "Please select a file to upload.",
+        "submitFailed": "Failed to submit document for verification. Please try again."
+      }
+    },
+    "tier3": {
+      "title": "Tier 3: Identity Verification",
+      "description": "Complete the following steps to achieve full identity verification. AML screening is performed automatically after Persona verification.",
+      "steps": {
+        "personaId": "Government ID + Live Selfie (via Persona)",
+        "amlScreening": "AML/PEP Screening",
+        "accreditedInvestor": "Accredited Investor Certification"
+      },
+      "optional": "optional",
+      "amlCleared": "AML screening cleared",
+      "amlPending": "AML screening in progress",
+      "accreditedSubmitted": "Certification submitted",
+      "aml": {
+        "title": "AML/PEP Screening Status",
+        "cleared": "AML/PEP screening has been completed and cleared. No flags were found.",
+        "flagged": "AML/PEP screening has flagged your account. Please contact support for assistance.",
+        "pending": "AML/PEP screening is pending. This will be processed automatically after your identity is verified through Persona."
+      }
+    },
+    "errors": {
+      "personaCreateFailed": "Failed to start identity verification. Please try again.",
+      "personaStatusFailed": "Failed to check verification status.",
+      "tier2SubmitFailed": "Failed to submit document for verification. Please try again.",
+      "accreditedSubmitFailed": "Failed to submit accredited investor certification. Please try again."
+    }
   },
   "transaction": {
     "history": {
@@ -5798,6 +6062,7 @@
     "placeholders": {
       "username": "Inserisci Il tuo Nome utente",
       "chooseUsername": "Choose a username",
+      "chooseUsernameHint": "This becomes your wallet address",
       "email": "your@email.com",
       "password": "Inserisci Il tuo Password",
       "passwordRequirement": "At least 12 characters",
@@ -5985,6 +6250,7 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "faq": "FAQ",
+    "fees": "Fee Schedule",
     "profile": "Profilo",
     "settings": "Impostazioni",
     "notifications": "Notifiche",
@@ -6570,36 +6836,7 @@
       "avalanche": "Avalanche",
       "bsc": "BSC",
       "arbitrum": "Arbitrum",
-      "optimism": "Optimism",
-      "base": "Base",
-      "fantom": "Fantom",
-      "gnosis": "Gnosis Chain",
-      "moonbeam": "Moonbeam",
-      "celo": "Celo",
-      "harmony": "Harmony",
-      "cronos": "Cronos",
-      "zksync": "zkSync Era",
-      "linea": "Linea",
-      "scroll": "Scroll",
-      "metis": "Metis",
-      "ethereumClassic": "Ethereum Classic",
-      "sonic": "Sonic",
-      "kaia": "Kaia",
-      "conflux": "Conflux eSpace",
-      "rootstock": "Rootstock",
-      "immutableZkevm": "Immutable zkEVM",
-      "berachain": "Berachain",
-      "shibarium": "Shibarium",
-      "kadena": "Kadena",
-      "bitcoin": "Bitcoin",
-      "litecoin": "Litecoin",
-      "dogecoin": "Dogecoin",
-      "bitcoinCash": "Bitcoin Cash",
-      "dash": "Dash",
-      "solana": "Solana",
-      "telos": "Telos",
-      "canto": "Canto",
-      "viction": "Viction"
+      "optimism": "Optimism"
     }
   },
   "chat": {
@@ -7269,7 +7506,8 @@
       "cookiePolicy": "Cookie Policy",
       "disputeResolution": "Dispute Resolution",
       "kycPolicy": "KYC Policy",
-      "amlCompliance": "AML Compliance"
+      "amlCompliance": "AML Compliance",
+      "feeSchedule": "Fee Schedule"
     },
     "about": {
       "description1": "OmniBazaar is a global network of e-commerce marketplaces designed to eliminate middlemen and reduce transaction fees via blockchain technology. We are building an advanced marketplace software template that will allow tens or hundreds of thousands of individuals and small businesses to open localized and specialized marketplaces around the world.",
@@ -7660,6 +7898,45 @@
       "search": "Search pairs...",
       "favorites": "Favorites",
       "all": "All Pairs"
+    }
+  },
+  "notificationPreferences": {
+    "title": "Preferenze di notifica",
+    "description": "Personalizza le impostazioni delle notifiche",
+    "save": "Salva preferenze",
+    "methodsTitle": "Metodi di notifica",
+    "methodsDescription": "Scegli come ricevere le notifiche",
+    "inApp": "Notifiche in-app",
+    "inAppDescription": "Mostra le notifiche all'interno dell'app",
+    "push": "Notifiche push",
+    "pushDescription": "Ricevi notifiche push dal browser",
+    "email": "Notifiche via e-mail",
+    "emailDescription": "Ricevi notifiche via e-mail",
+    "sound": "Avvisi sonori",
+    "soundDescription": "Riproduci suono per notifiche importanti",
+    "comingSoon": "Prossimamente",
+    "categoriesTitle": "Categorie di notifica",
+    "categoriesDescription": "Scegli quali tipi di notifiche desideri ricevere",
+    "resetDefaults": "Ripristina valori predefiniti",
+    "savePreferences": "Salva preferenze",
+    "saved": "Preferenze salvate",
+    "savedDescription": "Le tue preferenze di notifica sono state aggiornate.",
+    "saveFailed": "Impossibile salvare le preferenze",
+    "cat": {
+      "orders": "Ordini",
+      "ordersDesc": "Aggiornamenti sui tuoi acquisti e vendite",
+      "messages": "Messaggi",
+      "messagesDesc": "Nuovi messaggi e richieste di chat",
+      "marketplace": "Marketplace",
+      "marketplaceDesc": "Aggiornamenti su inserzioni e offerte",
+      "trading": "Trading",
+      "tradingDesc": "Aggiornamenti su trading DEX e ordini",
+      "staking": "Staking",
+      "stakingDesc": "Notifiche su staking e ricompense",
+      "wallet": "Portafoglio",
+      "walletDesc": "Avvisi su pagamenti e saldo",
+      "system": "Sistema",
+      "systemDesc": "Aggiornamenti di sistema importanti e avvisi"
     }
   },
   "escrowPage": {
@@ -8153,6 +8430,10 @@
     "resultsCount_other": "{{count}} listings found",
     "resultsCountPartial": "{{displayed}} di {{total}} risultati",
     "endOfResults": "You've viewed all {{count}} listings. Try adjusting your filters to see more results.",
+    "recommendations": {
+      "title": "Consigliato per te",
+      "empty": "Esplora piu annunci per ricevere raccomandazioni personalizzate"
+    },
     "errors": {
       "fetchListingsFailed": "Impossibile load listings. Please check your network connection and try again. If the problem persists, try refreshing the page.",
       "fetchListingFailed": "Impossibile load this listing. It may have been removed or is temporarily unavailable. Please try again or browse other listings.",
@@ -8180,10 +8461,6 @@
       "promotionFailed": "Impossibile creare la promozione. Controlla tutti i campi e riprova.",
       "promotionDeleteFailed": "Impossibile eliminare questa promozione. Riprova.",
       "trackingEventFailed": "Impossibile aggiungere l'evento di tracciamento. Controlla i dettagli e riprova."
-    },
-    "recommendations": {
-      "title": "Consigliato per te",
-      "empty": "Esplora piu annunci per ricevere raccomandazioni personalizzate"
     }
   },
   "createListing": {
@@ -8273,13 +8550,21 @@
       "title": "Commenti e domande",
       "placeholder": "Scrivi un commento o fai una domanda...",
       "submit": "Pubblica commento",
+      "posted": "Comment posted",
       "reply": "Rispondi",
       "question": "Chiedi come domanda",
+      "markAsQuestion": "Ask a question",
       "noComments": "Nessun commento ancora. Sii il primo!",
       "charCount": "{{current}}/{{max}} caratteri",
+      "flag": "Report",
       "flagged": "Commento segnalato per revisione",
       "sellerReply": "Venditore",
-      "deleted": "Commento eliminato"
+      "seller": "Seller",
+      "anonymous": "Anonymous",
+      "deleted": "Commento eliminato",
+      "errors": {
+        "postFailed": "Failed to post comment"
+      }
     },
     "reactions": {
       "like": "Mi piace",
@@ -8409,6 +8694,7 @@
     "status": {
       "ACCEPTED": "Quotazione accettata",
       "COLLATERAL_LOCKED": "Garanzia bloccata",
+      "PENDING_USER_SETTLEMENT": "Awaiting Your Signature",
       "EXECUTING": "Esecuzione dell'operazione",
       "SETTLED": "Liquidazione completata",
       "DISPUTED": "In contestazione",
@@ -8418,6 +8704,7 @@
     "statusDescription": {
       "ACCEPTED": "La tua quotazione è stata accettata. Blocco della garanzia in corso...",
       "COLLATERAL_LOCKED": "Garanzia protetta on-chain. Esecuzione dell'operazione in corso...",
+      "PENDING_USER_SETTLEMENT": "Trade matched! Sign the settlement transaction to complete on-chain.",
       "EXECUTING": "L'operazione è in fase di esecuzione. Potrebbe richiedere qualche istante...",
       "SETTLED": "Operazione liquidata con successo! I fondi sono stati trasferiti.",
       "DISPUTED": "Questa liquidazione è in contestazione. Il nostro team sta esaminando il caso.",
@@ -8429,7 +8716,14 @@
     "viewOnExplorer": "Visualizza nell'esploratore",
     "estimatedTime": "Tempo stimato di completamento",
     "seconds": "{{count}} secondi",
-    "refreshing": "Aggiornamento dello stato..."
+    "refreshing": "Aggiornamento dello stato...",
+    "settleOnChain": "Settle On-Chain",
+    "settling": "Settling...",
+    "settled": "Trade settled on-chain successfully!",
+    "signing": "Please sign the settlement transaction...",
+    "walletRequired": "Please connect your wallet to settle this trade.",
+    "notFound": "Settlement data not found. It may have expired.",
+    "userSettlementRequired": "Your trade is matched and ready. Sign the settlement transaction to complete it on-chain."
   },
   "staking": {
     "title": "XOM Staking",
@@ -8510,7 +8804,9 @@
       "unstake": "Unstake",
       "restake": "Restake",
       "confirmStake": "Confirm Stake",
-      "confirmUnstake": "Confirm Unstake"
+      "confirmUnstake": "Confirm Unstake",
+      "stakingInProgress": "Staking...",
+      "unstakingInProgress": "Unstaking..."
     },
     "tooltips": {
       "selectTier": "Choose a staking tier based on your XOM amount for higher APR",
@@ -8583,6 +8879,8 @@
     "status": {
       "active": "Attivo",
       "unlocked": "Unlocked",
+      "unlocking": "Unlocking",
+      "completed": "Completed",
       "withdrawn": "Withdrawn"
     },
     "errors": {
@@ -8601,7 +8899,8 @@
       "contractNotInitialized": "Staking contract is not ready. Please wait a moment and try again.",
       "noSigner": "No wallet connected. Please connect your wallet to continue.",
       "txNotConfirmed": "Transaction was not confirmed. Please check your wallet and try again.",
-      "calculationUnavailable": "Staking reward calculation unavailable. Please ensure the validator is running."
+      "calculationUnavailable": "Staking reward calculation unavailable. Please ensure the validator is running.",
+      "walletNotConnected": "Wallet not connected. Please log in to stake tokens."
     },
     "success": {
       "staked": "Staking di {{amount}} XOM effettuato con successo a {{tier}}",
@@ -8811,7 +9110,9 @@
       "noAccount": "No account found for this seed phrase. Please ensure you entered the correct seed phrase.",
       "recoveryFailed": "Impossibile recover username. Please check your internet connection and try again.",
       "usernameNotFound": "Username not found. The account may not be registered yet.",
-      "unsupportedChain": "This network is not currently supported. Please select a supported network."
+      "unsupportedChain": "This network is not currently supported. Please select a supported network.",
+      "txNotFound": "The original transaction was not found. It may have already been confirmed or dropped by the network.",
+      "gasEstimationFailed": "Could not estimate gas price. Please try again in a moment."
     }
   },
   "unifiedWallet": {
@@ -8840,18 +9141,6 @@
       "lbpNotDeployed": "LBP contract not deployed on this network.",
       "noRouter": "No swap router contract available. Please try again later.",
       "routerNotDeployed": "OmniSwapRouter not deployed on this network."
-    },
-    "external": {
-      "embeddedTab": "OmniWallet",
-      "externalTab": "Wallet Esterno",
-      "connect": "Connetti Wallet",
-      "disconnect": "Disconnetti",
-      "waitingForApproval": "In attesa di approvazione del wallet…",
-      "missingProjectId": "L'ID progetto WalletConnect non è configurato. Imposta EXPO_PUBLIC_WALLETCONNECT_PROJECT_ID e ricarica.",
-      "requiresEmbedded": "Questa rotta usa OmniCoin e deve essere firmata dal wallet integrato. Passa a OmniWallet per gli swap OmniCoin."
-    },
-    "cta": {
-      "confirmInWallet": "Conferma nel tuo wallet…"
     }
   },
   "exchange": {
@@ -8882,28 +9171,28 @@
       "historyNotInitialized": "Bridge history service not initialized. Please refresh the page.",
       "unknown": "Si è verificato un errore sconosciuto"
     },
-    "amount": "Importo",
-    "availableRoutes": "Percorsi disponibili",
-    "bridgeNow": "Trasferisci {{amount}} {{symbol}} su {{chain}}",
-    "compliancePreserved": "Conformità preservata",
-    "complianceTooltip": "Lo stato KYC/conformità viene preservato tra le reti",
-    "connectWallet": "Collega il tuo portafoglio per effettuare il trasferimento",
-    "description": "Trasferisci {{symbol}} su un'altra blockchain",
-    "fee": "Commissione",
-    "findingRoutes": "Ricerca dei percorsi migliori...",
-    "from": "Da",
-    "noRoutes": "Nessun percorso bridge disponibile per questa coppia di token.",
-    "processing": "Elaborazione...",
-    "recommended": "Consigliato",
-    "refreshRoutes": "Aggiorna percorsi",
-    "routesList": "Percorsi bridge",
-    "securityTooltip": "Trasferisci i tuoi token RWA in modo sicuro tra le reti usando LayerZero OFT o altri protocolli affidabili.",
-    "selectChain": "Seleziona rete",
-    "selectDestChain": "Seleziona rete di destinazione",
-    "selectSourceChain": "Seleziona rete di origine",
     "title": "Bridge Cross-Chain",
+    "description": "Trasferisci {{symbol}} su un'altra blockchain",
+    "from": "Da",
     "to": "A",
-    "tryDifferentChain": "Prova a selezionare una rete di destinazione diversa."
+    "amount": "Importo",
+    "selectChain": "Seleziona rete",
+    "selectSourceChain": "Seleziona rete di origine",
+    "selectDestChain": "Seleziona rete di destinazione",
+    "connectWallet": "Collega il tuo portafoglio per effettuare il trasferimento",
+    "findingRoutes": "Ricerca dei percorsi migliori...",
+    "availableRoutes": "Percorsi disponibili",
+    "routesList": "Percorsi bridge",
+    "noRoutes": "Nessun percorso bridge disponibile per questa coppia di token.",
+    "tryDifferentChain": "Prova a selezionare una rete di destinazione diversa.",
+    "recommended": "Consigliato",
+    "fee": "Commissione",
+    "securityTooltip": "Trasferisci i tuoi token RWA in modo sicuro tra le reti usando LayerZero OFT o altri protocolli affidabili.",
+    "complianceTooltip": "Lo stato KYC/conformità viene preservato tra le reti",
+    "compliancePreserved": "Conformità preservata",
+    "refreshRoutes": "Aggiorna percorsi",
+    "bridgeNow": "Trasferisci {{amount}} {{symbol}} su {{chain}}",
+    "processing": "Elaborazione..."
   },
   "ipfs": {
     "errors": {
@@ -9162,13 +9451,17 @@
       "subtitle": "Search blocks, transactions, addresses, and validators",
       "loading": "Caricamento blockchain data...",
       "errors": {
-        "loadFailed": "Impossibile load blockchain data"
+        "loadFailed": "Impossibile load blockchain data",
+        "loadFailedAction": "Unable to connect to the blockchain explorer. Please check your network connection and try again.",
+        "retry": "Retry"
       },
       "search": {
         "placeholder": "Search by block height, transaction hash, or address...",
         "found": "Found {{type}}: {{query}}",
         "notFound": "Nessun risultato trovato",
-        "failed": "Search failed"
+        "notFoundAction": "No results found. Try entering a valid block height, transaction hash, or wallet address.",
+        "failed": "Search failed",
+        "failedAction": "Search failed. Please verify your query and try again."
       },
       "time": {
         "secsAgo": "{{count}} seconds ago",
@@ -9210,7 +9503,21 @@
         "noData": "No transactions to display",
         "block": "Block",
         "fee": "Commissione",
-        "confirmations": "Confirmations"
+        "confirmations": "Confirmations",
+        "types": {
+          "transfer": "Transfer",
+          "swap": "Swap",
+          "stake": "Stake",
+          "unstake": "Unstake",
+          "reward": "Reward",
+          "governance": "Governance",
+          "bridge": "Bridge",
+          "listing": "Listing",
+          "purchase": "Purchase",
+          "escrow": "Escrow",
+          "contract": "Contract",
+          "unknown": "Unknown"
+        }
       },
       "validators": {
         "title": "Validators",
@@ -9226,7 +9533,13 @@
         "gateway": "Gateway",
         "computation": "Computation",
         "totalStaked": "Total Staked",
-        "acrossAll": "Across all validators"
+        "acrossAll": "Across all validators",
+        "types": {
+          "gateway": "Gateway",
+          "computation": "Computation",
+          "service": "Service",
+          "listing": "Listing"
+        }
       },
       "table": {
         "height": "Height",
@@ -9240,6 +9553,21 @@
         "to": "A",
         "amount": "Importo",
         "status": "Stato"
+      },
+      "tooltips": {
+        "search": "Search blockchain data",
+        "copyHash": "Copy hash to clipboard",
+        "copyNodeId": "Copy node ID to clipboard",
+        "expandTransaction": "Click to view transaction details",
+        "transactionDetails": "Transaction details",
+        "dataTabs": "Blockchain data categories",
+        "validatorSummary": "Validator network summary",
+        "uptimeValue": "Uptime: {{value}}%"
+      },
+      "status": {
+        "success": "Success",
+        "pending": "Pending",
+        "failed": "Failed"
       }
     },
     "validator": {
@@ -9290,12 +9618,12 @@
     "status": {
       "completed": "Completato",
       "failed": "Fallito",
-      "bridging": "Ponte in corso",
-      "swapping": "Scambio in corso",
-      "executing": "In esecuzione",
       "pending": "In attesa",
       "approving": "Approvazione",
+      "bridging": "Ponte in corso",
+      "swapping": "Scambio in corso",
       "settling": "Regolamento",
+      "executing": "In esecuzione",
       "awaitingClaim": "In attesa di riscossione"
     },
     "route": {
@@ -9662,10 +9990,25 @@
     }
   },
   "privacy": {
-    "errors": {
-      "conversionFailed": "Privacy conversion failed. Please try again."
-    },
     "tabTitle": "Privacy",
+    "checkout": {
+      "toggle": "Paga in Privato",
+      "enabled": "Pagamento privato attivato — il tuo pagamento utilizzerà pXOM crittografati. Gli importi sono nascosti on-chain, ma la transazione stessa viene registrata.",
+      "disabled": "Pagamento standard — transazione visibile sulla blockchain",
+      "fee": "Si applica una commissione di conversione dello 0,3% per i pagamenti privati",
+      "guarantee": "Gli importi dei pagamenti sono crittografati utilizzando i circuiti garbled di COTI. Il tuo indirizzo wallet è ancora visibile on-chain. Per la privacy dell'indirizzo, attiva la modalità relayer.",
+      "tooltip": "I pagamenti privati utilizzano pXOM per nascondere i dettagli della transazione"
+    },
+    "listing": {
+      "makePrivate": "Annuncio Privato",
+      "privateLabel": "Privato",
+      "threshold": "Disponibile per venditori con punteggio 50+"
+    },
+    "payment": {
+      "processing": "Elaborazione pagamento privato...",
+      "complete": "Pagamento privato completato",
+      "badge": "Pagamento Privato"
+    },
     "dashboard": {
       "title": "Dashboard Privacy",
       "description": "Gestisci il tuo saldo privato e converti tra XOM e pXOM",
@@ -9721,8 +10064,8 @@
           "private_transfer": "Trasferimento Privato"
         },
         "status": {
-          "pending": "In sospeso",
           "confirmed": "Confermata",
+          "pending": "In sospeso",
           "failed": "Fallita"
         }
       },
@@ -9775,333 +10118,6 @@
       "connected": "Rete COTI V2 connessa",
       "slow": "Rete COTI V2 lenta",
       "offline": "Rete COTI V2 non raggiungibile"
-    },
-    "onboarding": {
-      "welcome": {
-        "title": "Benvenuto nella Privacy",
-        "description": "Le transazioni private vengono eseguite su COTI V2 utilizzando Garbled Circuits (MPC). I tuoi importi sono crittografati — solo tu puoi vederli."
-      },
-      "cotiSetup": {
-        "title": "Configurazione COTI V2",
-        "onboarded": "Sei registrato sulla rete privacy COTI V2.",
-        "notOnboarded": "Registrati sulla rete privacy COTI V2. Questa configurazione avviene una sola volta.",
-        "onboardButton": "Registrati ora"
-      },
-      "gasSetup": {
-        "title": "Gas COTI",
-        "description": "Le operazioni di privacy richiedono una piccola quantità di COTI per le commissioni di gas.",
-        "autoOption": "Acquisizione automatica del gas — OmniBazaar scambierà XOM per gas COTI automaticamente quando necessario.",
-        "manualOption": "Scambia XOM per gas COTI direttamente.",
-        "externalNote": "Puoi anche ottenere COTI tramite bridge.coti.io."
-      },
-      "ready": {
-        "title": "Tutto pronto!",
-        "description": "Sei configurato per le transazioni private. Converti XOM in pXOM in qualsiasi momento da questa dashboard.",
-        "dismiss": "Capito"
-      },
-      "step1Title": "Benvenuto nella Privacy",
-      "step1Description": "Le transazioni private vengono eseguite su COTI V2 utilizzando Circuiti Garbled (MPC). I tuoi importi sono crittografati — solo tu puoi vederli.",
-      "step1Body1": "COTI V2 utilizza Circuiti Garbled (MPC) per crittografare gli importi delle tue transazioni on-chain. Solo tu possiedi la chiave di decrittazione.",
-      "step1Body2": "Converti XOM in pXOM per abilitare saldi privati. I trasferimenti privati tra titolari di pXOM mantengono gli importi nascosti a tutti gli altri.",
-      "step2Title": "Configurazione COTI V2",
-      "step2Description": "Registrati nella rete di privacy COTI V2. Questa configurazione avviene una sola volta.",
-      "step2Body": "Una piccola auto-transazione registra il tuo portafoglio nella rete COTI MPC. Deve essere fatto solo una volta.",
-      "step3Title": "Gas COTI",
-      "step3Description": "Le operazioni di privacy richiedono una piccola quantità di COTI per le tariffe del gas.",
-      "step4Title": "Tutto pronto!",
-      "step4Description": "Sei configurato per le transazioni private. Converti XOM in pXOM in qualsiasi momento dalla Dashboard Privacy.",
-      "onboardNow": "Registrati ora",
-      "onboardSuccess": "Sei registrato nella rete di privacy COTI V2.",
-      "onboarding": "Registrazione in corso...",
-      "onboardError": "Registrazione fallita — riprova",
-      "next": "Avanti",
-      "skip": "Salta",
-      "gotIt": "Capito",
-      "gasBalance": "Saldo Gas",
-      "refreshBalance": "Aggiorna saldo",
-      "insufficientGas": "Gas COTI insufficiente. Acquista token COTI per pagare le operazioni di privacy sulla rete COTI V2.",
-      "getCotiGas": "Ottieni Gas COTI tramite Swap",
-      "externalBridge": "Oppure usa bridge.coti.io",
-      "readyMessage": "Sei configurato per le transazioni private!",
-      "readySubtext": "Converti XOM in pXOM in qualsiasi momento dalla Dashboard Privacy.",
-      "stepIndicator": "Progresso configurazione"
-    },
-    "title": "Privacy Policy",
-    "subtitle": "How We Handle Your Data in a Decentralized World",
-    "lastUpdated": "Last Updated: January 15, 2025",
-    "toc": {
-      "title": "Indice"
-    },
-    "notice": {
-      "title": "Privacy-First Decentralized Architecture",
-      "description": "OmniBazaar is built on decentralized technologies that prioritize user privacy. Most of your data is stored locally or on distributed networks under your control, not on centralized servers. This policy explains how we handle the limited data we do process and your rights regarding your information."
-    },
-    "sections": {
-      "overview": {
-        "title": "Privacy Overview",
-        "intro": "OmniBazaar operates as a decentralized marketplace protocol that minimizes data collection and maximizes user control over personal information:",
-        "principles": {
-          "decentralized": {
-            "title": "Decentralized by Design",
-            "description": "Most data is stored on your device or distributed networks"
-          },
-          "minimal": {
-            "title": "Minimal Data Collection",
-            "description": "We only collect what's necessary for core functionality"
-          },
-          "control": {
-            "title": "User Control",
-            "description": "You decide what information to share and with whom"
-          },
-          "transparent": {
-            "title": "Transparent Processing",
-            "description": "All data handling is governed by smart contracts and open protocols"
-          }
-        },
-        "keyPrinciple": {
-          "title": "Key Principle",
-          "description": "Il tuo data belongs to you. We provide tools and infrastructure, but you maintain control over your information."
-        }
-      },
-      "collection": {
-        "title": "Information We Collect",
-        "tabs": {
-          "provided": "Information You Provide",
-          "automatic": "Automatically Collected",
-          "notCollected": "What We Don't Collect"
-        },
-        "table": {
-          "dataType": "Data Type",
-          "storage": "Storage Location",
-          "purpose": "Purpose"
-        },
-        "data": {
-          "profile": {
-            "type": "Profile Information",
-            "storage": "IPFS/Local",
-            "purpose": "Display name, bio, avatar for marketplace identity"
-          },
-          "listings": {
-            "type": "Listing Data",
-            "storage": "IPFS/Blockchain",
-            "purpose": "Product descriptions, images, pricing"
-          },
-          "messages": {
-            "type": "Messaggi",
-            "storage": "Encrypted P2P",
-            "purpose": "Communication between buyers and sellers"
-          },
-          "wallet": {
-            "type": "Wallet Addresses",
-            "storage": "Blockchain",
-            "purpose": "Transaction processing and payment"
-          }
-        },
-        "automatic": {
-          "transaction": "Transaction Data",
-          "transactionDesc": "Recorded on public blockchains",
-          "analytics": "Usage Analytics",
-          "analyticsDesc": "Anonymized interaction data (opt-in)",
-          "technical": "Technical Data",
-          "technicalDesc": "IP addresses, browser type, device information (temporary)",
-          "performance": "Performance Data",
-          "performanceDesc": "Error logs and performance metrics"
-        },
-        "notCollected": {
-          "documents": "Personal identification documents (handled by third-party KYC providers if required)",
-          "creditCard": "Credit card or bank account information",
-          "governmentId": "Social security numbers or government IDs",
-          "browsingHistory": "Detailed browsing history or tracking across other websites",
-          "privateKeys": "Private keys or seed phrases (always remain with you)"
-        }
-      },
-      "usage": {
-        "title": "Come Utilizziamo le Informazioni",
-        "intro": "OmniBazaar utilizza le informazioni raccolte solo per gli scopi necessari al funzionamento del marketplace decentralizzato:",
-        "purposes": {
-          "marketplace": "Facilitare le transazioni del marketplace tra acquirenti e venditori",
-          "identity": "Fornire la registrazione del nome utente e la verifica dell'identità opzionale (KYC)",
-          "reputation": "Calcolare i punteggi di partecipazione e le metriche di reputazione",
-          "communication": "Abilitare la messaggistica crittografata peer-to-peer tra utenti",
-          "security": "Rilevare e prevenire frodi, abusi e attività vietate",
-          "improvement": "Migliorare le prestazioni della piattaforma e l'esperienza utente attraverso analisi aggregate e anonimizzate"
-        },
-        "noSale": "Non vendiamo, affittiamo o scambiamo mai le tue informazioni personali con terze parti per scopi di marketing o pubblicità.",
-        "automated": "Alcune funzioni della piattaforma utilizzano l'elaborazione automatizzata (smart contract, punteggio di reputazione) che opera in modo trasparente on-chain o attraverso la logica verificabile dei validatori."
-      },
-      "storage": {
-        "title": "Data Storage & IPFS",
-        "subtitle": "Distributed Storage Architecture",
-        "ipfs": {
-          "title": "IPFS (InterPlanetary File System)",
-          "description": "Il tuo listings, images, and profile data are stored on the distributed IPFS network, which you control through your private keys."
-        },
-        "table": {
-          "type": "Storage Type",
-          "data": "Data Stored",
-          "control": "Control",
-          "privacy": "Privacy Level"
-        },
-        "types": {
-          "local": {
-            "name": "Local Device",
-            "data": "Settings, preferences, draft content",
-            "control": "Full User Control",
-            "privacy": "Complete Privacy"
-          },
-          "ipfs": {
-            "name": "IPFS Network",
-            "data": "Listings, images, public profile data",
-            "control": "User-Controlled Keys",
-            "privacy": "Pseudonymous"
-          },
-          "blockchain": {
-            "name": "Blockchain",
-            "data": "Transactions, smart contract interactions",
-            "control": "Immutable & Transparent",
-            "privacy": "Pseudonymous"
-          },
-          "p2p": {
-            "name": "Encrypted P2P",
-            "data": "Private messages, communication",
-            "control": "End-to-End Encrypted",
-            "privacy": "Private"
-          }
-        }
-      },
-      "sharing": {
-        "title": "Condivisione delle Informazioni",
-        "intro": "Come piattaforma decentralizzata, OmniBazaar condivide le informazioni in modo diverso rispetto ai servizi centralizzati:",
-        "categories": {
-          "public": {
-            "title": "Pubblico per Design",
-            "content": "Le transazioni blockchain, gli annunci del marketplace e le informazioni del profilo pubblico sono intrinsecamente visibili a tutti i partecipanti della rete. Questa trasparenza è una caratteristica dell'architettura decentralizzata, non una decisione di condivisione dei dati."
-          },
-          "p2p": {
-            "title": "Peer-to-Peer",
-            "content": "I messaggi privati sono crittografati durante il trasporto e trasmessi tra utenti attraverso la rete di relay dei validatori. I validatori inoltrano i dati crittografati. La crittografia end-to-end vera e propria con scambio di chiavi Diffie-Hellman e' prevista per una versione futura."
-          },
-          "validators": {
-            "title": "Nodi Validatori",
-            "content": "Gli operatori dei validatori elaborano le transazioni e archiviano i dati del marketplace come parte della rete decentralizzata. Sono vincolati dal Codice di Condotta dei Validatori e non possono accedere ai dati privati crittografati."
-          },
-          "legal": {
-            "title": "Requisiti Legali",
-            "content": "I singoli operatori dei validatori possono essere tenuti a conformarsi alle richieste legali nelle loro giurisdizioni. Tuttavia, poiché i dati sono distribuiti sulla rete, nessun singolo operatore detiene tutti i dati degli utenti."
-          }
-        },
-        "noSale": "Nessun partecipante all'ecosistema OmniBazaar vende i dati degli utenti a inserzionisti, broker di dati o terze parti."
-      },
-      "cookies": {
-        "title": "Cookie e Tracciamento",
-        "intro": "OmniBazaar adotta un approccio incentrato sulla privacy per quanto riguarda l'archiviazione nel browser e il tracciamento:",
-        "items": {
-          "localStorage": "L'applicazione utilizza il localStorage del browser per memorizzare le tue preferenze, lo stato della sessione e i dati di connessione del wallet. Questi dati non lasciano mai il tuo dispositivo.",
-          "noCookies": "OmniBazaar non utilizza cookie di tracciamento, cookie pubblicitari o cookie di analisi di terze parti.",
-          "noTracking": "Non tracciamo gli utenti attraverso i siti web, non creiamo profili pubblicitari e non condividiamo i dati di navigazione con terze parti.",
-          "essential": "Gli unici dati memorizzati nel browser sono essenziali per il funzionamento dell'applicazione: token di autenticazione, preferenze linguistiche, impostazioni del tema e dati del marketplace memorizzati nella cache."
-        },
-        "dnt": "OmniBazaar rispetta i segnali Do Not Track (DNT) del browser per impostazione predefinita, poiché non effettuiamo tracciamento tra siti diversi."
-      },
-      "thirdParty": {
-        "title": "Servizi di Terze Parti",
-        "intro": "OmniBazaar interagisce con i seguenti servizi e protocolli di terze parti. Ciascuno ha le proprie politiche sulla privacy:",
-        "services": {
-          "blockchain": {
-            "title": "Blockchain Avalanche",
-            "content": "I dati delle transazioni sono registrati sulla rete Avalanche, una blockchain pubblica. I dati on-chain sono permanenti e pubblicamente visibili."
-          },
-          "ipfs": {
-            "title": "Rete IPFS",
-            "content": "Le immagini degli annunci e i dati del marketplace sono archiviati sull'InterPlanetary File System (IPFS), una rete di archiviazione distribuita. I dati ancorati su IPFS sono disponibili per qualsiasi partecipante della rete che possieda l'hash del contenuto."
-          },
-          "kyc": {
-            "title": "Fornitori di Verifica KYC",
-            "content": "Se scegli di completare la verifica dell'identità, i tuoi documenti vengono elaborati da fornitori KYC di terze parti. I validatori di OmniBazaar memorizzano solo il risultato della verifica (superata/non superata e livello), non i documenti di identità sottostanti."
-          },
-          "rpc": {
-            "title": "Fornitori RPC Blockchain",
-            "content": "Le operazioni del wallet possono essere instradate attraverso fornitori RPC di terze parti per interagire con le reti blockchain. Questi fornitori possono registrare indirizzi IP e dati delle richieste secondo le proprie politiche."
-          }
-        },
-        "disclaimer": "I contributori di OmniBazaar non sono responsabili delle pratiche sulla privacy dei servizi di terze parti. Ti incoraggiamo a consultare le politiche sulla privacy di qualsiasi servizio di terze parti con cui interagisci."
-      },
-      "rights": {
-        "title": "Il tuo Privacy Rights",
-        "dataControl": {
-          "title": "Data Control Rights",
-          "access": "Access",
-          "accessDesc": "Request a copy of your personal data",
-          "portability": "Portability",
-          "portabilityDesc": "Export your data in a machine-readable format",
-          "correction": "Correction",
-          "correctionDesc": "Update or correct inaccurate information",
-          "deletion": "Deletion",
-          "deletionDesc": "Request deletion of your personal data (where technically possible)",
-          "restriction": "Restriction",
-          "restrictionDesc": "Limit how we process your data"
-        }
-      },
-      "security": {
-        "title": "Sicurezza dei Dati",
-        "intro": "OmniBazaar impiega molteplici livelli di sicurezza allineati con la sua architettura decentralizzata:",
-        "measures": {
-          "encryption": {
-            "title": "Crittografia",
-            "content": "I messaggi privati utilizzano la crittografia a livello di trasporto. Le chiavi private del wallet sono crittografate con AES-256-GCM e non lasciano mai il tuo dispositivo. Tutte le comunicazioni di rete utilizzano la crittografia TLS."
-          },
-          "keys": {
-            "title": "Gestione delle Chiavi",
-            "content": "Le chiavi del tuo wallet sono derivate deterministicamente dalle tue credenziali e memorizzate solo nell'archiviazione crittografata del tuo browser. I validatori di OmniBazaar non hanno mai accesso alle tue chiavi private o frasi seed."
-          },
-          "decentralized": {
-            "title": "Sicurezza Decentralizzata",
-            "content": "Poiché i dati sono distribuiti tra nodi validatori indipendenti, non esiste un singolo punto di errore o un singolo database da violare. Un attaccante dovrebbe compromettere la maggioranza dei validatori contemporaneamente."
-          },
-          "smartContracts": {
-            "title": "Sicurezza degli Smart Contract",
-            "content": "Le operazioni finanziarie sono regolate da smart contract verificabili distribuiti sulla blockchain. Il codice dei contratti è open-source e verificabile da chiunque."
-          }
-        },
-        "disclaimer": "Nonostante queste misure, nessun sistema è completamente sicuro. Sei responsabile del mantenimento della sicurezza delle tue credenziali, chiavi private e frasi seed. Le chiavi perse non possono essere recuperate da nessuno."
-      },
-      "children": {
-        "title": "Privacy dei Minori",
-        "content": "OmniBazaar non è destinato all'uso da parte di persone di età inferiore ai 18 anni. Non raccogliamo consapevolmente informazioni personali da minori di 18 anni.",
-        "action": "Se sei un genitore o tutore e ritieni che tuo figlio abbia fornito informazioni personali alla piattaforma, contattaci tramite i canali di governance della comunità. Poiché la piattaforma è decentralizzata, la rimozione dei dati potrebbe essere limitata a ciò che è tecnicamente possibile all'interno della rete distribuita.",
-        "verification": "Alcune funzionalità della piattaforma, inclusi il trading sul marketplace e le transazioni in criptovaluta, possono richiedere la verifica dell'età tramite il processo KYC."
-      },
-      "changes": {
-        "title": "Modifiche alla Politica",
-        "content": "Questa politica sulla privacy può essere aggiornata periodicamente per riflettere i cambiamenti nella piattaforma, nelle leggi applicabili o nelle nostre pratiche sulla privacy. Poiché OmniBazaar è decentralizzato, le modifiche alla politica vengono proposte e ratificate attraverso il processo di governance della comunità.",
-        "notification": "Le modifiche sostanziali a questa politica saranno annunciate tramite il sistema di governance della piattaforma e visualizzate in modo prominente sul sito web. L'uso continuato della piattaforma dopo la pubblicazione delle modifiche costituisce accettazione della politica rivista.",
-        "history": "Le versioni precedenti di questa politica sono conservate nel repository open-source del progetto per trasparenza e verificabilità."
-      },
-      "contact": {
-        "title": "Contact Information",
-        "description": "If you have questions about this privacy policy or your personal data, please contact us:",
-        "email": "Email",
-        "address": "Indirizzo",
-        "addressDetails": "Decentralized - No Physical HQ"
-      }
-    },
-    "checkout": {
-      "toggle": "Paga in Privato",
-      "enabled": "Pagamento privato attivato — il tuo pagamento utilizzerà pXOM crittografati. Gli importi sono nascosti on-chain, ma la transazione stessa viene registrata.",
-      "disabled": "Pagamento standard — transazione visibile sulla blockchain",
-      "fee": "Si applica una commissione di conversione dello 0,3% per i pagamenti privati",
-      "guarantee": "Gli importi dei pagamenti sono crittografati utilizzando i circuiti garbled di COTI. Il tuo indirizzo wallet è ancora visibile on-chain. Per la privacy dell'indirizzo, attiva la modalità relayer.",
-      "tooltip": "I pagamenti privati utilizzano pXOM per nascondere i dettagli della transazione"
-    },
-    "listing": {
-      "makePrivate": "Annuncio Privato",
-      "privateLabel": "Privato",
-      "threshold": "Disponibile per venditori con punteggio 50+"
-    },
-    "payment": {
-      "processing": "Elaborazione pagamento privato...",
-      "complete": "Pagamento privato completato",
-      "badge": "Pagamento Privato"
     },
     "tiers": {
       "amount": {
@@ -10181,6 +10197,56 @@
       "mpcSettlement": "Regolamento MPC",
       "bridgeBack": "Ritorno a OmniCoin",
       "complete": "Regolamento privato completato"
+    },
+    "onboarding": {
+      "welcome": {
+        "title": "Benvenuto nella Privacy",
+        "description": "Le transazioni private vengono eseguite su COTI V2 utilizzando Garbled Circuits (MPC). I tuoi importi sono crittografati — solo tu puoi vederli."
+      },
+      "cotiSetup": {
+        "title": "Configurazione COTI V2",
+        "onboarded": "Sei registrato sulla rete privacy COTI V2.",
+        "notOnboarded": "Registrati sulla rete privacy COTI V2. Questa configurazione avviene una sola volta.",
+        "onboardButton": "Registrati ora"
+      },
+      "gasSetup": {
+        "title": "Gas COTI",
+        "description": "Le operazioni di privacy richiedono una piccola quantità di COTI per le commissioni di gas.",
+        "autoOption": "Acquisizione automatica del gas — OmniBazaar scambierà XOM per gas COTI automaticamente quando necessario.",
+        "manualOption": "Scambia XOM per gas COTI direttamente.",
+        "externalNote": "Puoi anche ottenere COTI tramite bridge.coti.io."
+      },
+      "ready": {
+        "title": "Tutto pronto!",
+        "description": "Sei configurato per le transazioni private. Converti XOM in pXOM in qualsiasi momento da questa dashboard.",
+        "dismiss": "Capito"
+      },
+      "step1Title": "Benvenuto nella Privacy",
+      "step1Description": "Le transazioni private vengono eseguite su COTI V2 utilizzando Circuiti Garbled (MPC). I tuoi importi sono crittografati — solo tu puoi vederli.",
+      "step1Body1": "COTI V2 utilizza Circuiti Garbled (MPC) per crittografare gli importi delle tue transazioni on-chain. Solo tu possiedi la chiave di decrittazione.",
+      "step1Body2": "Converti XOM in pXOM per abilitare saldi privati. I trasferimenti privati tra titolari di pXOM mantengono gli importi nascosti a tutti gli altri.",
+      "step2Title": "Configurazione COTI V2",
+      "step2Description": "Registrati nella rete di privacy COTI V2. Questa configurazione avviene una sola volta.",
+      "step2Body": "Una piccola auto-transazione registra il tuo portafoglio nella rete COTI MPC. Deve essere fatto solo una volta.",
+      "step3Title": "Gas COTI",
+      "step3Description": "Le operazioni di privacy richiedono una piccola quantità di COTI per le tariffe del gas.",
+      "step4Title": "Tutto pronto!",
+      "step4Description": "Sei configurato per le transazioni private. Converti XOM in pXOM in qualsiasi momento dalla Dashboard Privacy.",
+      "onboardNow": "Registrati ora",
+      "onboardSuccess": "Sei registrato nella rete di privacy COTI V2.",
+      "onboarding": "Registrazione in corso...",
+      "onboardError": "Registrazione fallita — riprova",
+      "next": "Avanti",
+      "skip": "Salta",
+      "gotIt": "Capito",
+      "gasBalance": "Saldo Gas",
+      "refreshBalance": "Aggiorna saldo",
+      "insufficientGas": "Gas COTI insufficiente. Acquista token COTI per pagare le operazioni di privacy sulla rete COTI V2.",
+      "getCotiGas": "Ottieni Gas COTI tramite Swap",
+      "externalBridge": "Oppure usa bridge.coti.io",
+      "readyMessage": "Sei configurato per le transazioni private!",
+      "readySubtext": "Converti XOM in pXOM in qualsiasi momento dalla Dashboard Privacy.",
+      "stepIndicator": "Progresso configurazione"
     }
   },
   "liveChat": {
@@ -10232,6 +10298,15 @@
       "description": "I messaggi verranno rimossi solo per te. Gli altri partecipanti potranno ancora vederli.",
       "cancel": "Annulla",
       "confirm": "Cancella cronologia"
+    },
+    "loadingRooms": "Loading rooms...",
+    "loadingMessages": "Loading messages...",
+    "noRooms": "No conversations yet",
+    "noMessages": "No messages yet. Start the conversation!",
+    "errors": {
+      "loadRoomsFailed": "Failed to load chat rooms",
+      "loadMessagesFailed": "Failed to load messages",
+      "retryLater": "Please check your connection and try again."
     }
   },
   "filters": {
@@ -10476,12 +10551,12 @@
     },
     "card": {
       "allocation": "Allocazione",
-      "tvl": "TVL del Pool",
-      "price": "Prezzo XOM",
       "allocationTooltip": "Percentuale del pool di liquidità di questa chain allocata al protocollo",
       "annualShare": "Quota Annuale",
       "annualShareTooltip": "Quota di questa chain delle ricompense overflow annuali totali, in base al suo peso di allocazione",
+      "tvl": "TVL del Pool",
       "tvlTooltip": "Valore totale degli asset bloccati nel pool di liquidità di questa chain",
+      "price": "Prezzo XOM",
       "priceTooltip": "Prezzo attuale del token XOM nel pool di liquidità di questa chain",
       "dailyOverflow": "Overflow Giornaliero",
       "dailyOverflowTooltip": "Ricompensa stimata di overflow giornaliero (USD) allocata a questo pool dalle ricompense di blocco del validatore",
@@ -10570,12 +10645,14 @@
       "calculating": "Calcolo in corso...",
       "usdcIn": "USDC depositati",
       "halfSwapped": "Meta scambiata in XOM",
+      "priceImpactWarning": "Price impact: {{impact}}%. Large deposits relative to pool size cause significant slippage.",
       "lpTokens": "Token LP ricevuti",
+      "lpValue": "Your LP Position",
       "postDepositAPR": "APR stim. (dopo il deposito)",
-      "highAPRWarning": "L'APR attuale e estremamente elevato perche la liquidita totale in staking e molto bassa. L'APR diminuira man mano che viene aggiunta piu liquidita.",
       "dailyReward": "Ricompensa giornaliera stim.",
       "monthlyReward": "Ricompensa mensile stim.",
       "annualReward": "Ricompensa annuale stim.",
+      "highAPRWarning": "L'APR attuale e estremamente elevato perche la liquidita totale in staking e molto bassa. L'APR diminuira man mano che viene aggiunta piu liquidita.",
       "vestingNote": "Il 30% delle ricompense e richiedibile immediatamente. Il 70% matura linearmente in 90 giorni.",
       "lockNote": "Si applica una durata minima di staking di 1 giorno (protezione anti-flash-stake).",
       "provideLiquidity": "Fornisci liquidita",
@@ -10613,11 +10690,7 @@
       "withdrawSuccess": "Ritiro riuscito! USDC restituiti al tuo portafoglio.",
       "withdrawFailed": "Ritiro fallito",
       "emergencySuccess": "Ritiro di emergenza completato.",
-      "emergencyFailed": "Ritiro di emergenza fallito",
-      "contractsNotConfigured": "I contratti RWAAMM o dei token non sono configurati su questa rete. Per favore ricontrolla presto.",
-      "poolNotFound": "Pool di liquidita XOM/USDC non trovato. Il pool potrebbe non essere ancora stato distribuito.",
-      "emptyPool": "Il pool di liquidita non ha riserve. Per favore attendi fino a quando il pool sara alimentato.",
-      "estimationFailed": "Impossibile stimare l'importo del ritiro. Per favore riprova tra poco."
+      "emergencyFailed": "Ritiro di emergenza fallito"
     },
     "allChains": {
       "title": "Le Mie Posizioni su Tutte le Chain",
@@ -11253,7 +11326,6 @@
       "days": "{{days}} days, {{hours}} hours left",
       "hours": "{{hours}} hours left"
     },
-    "loading": "Caricamento dati di governance...",
     "overview": {
       "title": "Governance Overview",
       "totalProposals": "Total Proposals",
@@ -11373,6 +11445,7 @@
       "insufficientPower": "Potere di Voto Insufficiente",
       "connectFirst": "Collega il tuo portafoglio e possiedi i XOM necessari per creare una proposta."
     },
+    "loading": "Caricamento dati di governance...",
     "status": {
       "active": "Attivo",
       "passed": "Approvato",
@@ -11490,9 +11563,6 @@
       "confirmations": "Conferme",
       "types": {
         "transfer": "Trasferimento",
-        "swap": "Scambio",
-        "stake": "Messa in staking",
-        "unstake": "Rimozione dallo staking",
         "staking": "Staking",
         "marketplace": "Marketplace",
         "dex": "Operazione DEX",
@@ -11500,21 +11570,9 @@
         "escrow": "Deposito a garanzia",
         "reward": "Ricompensa",
         "bridge": "Bridge",
-        "listing": "Inserzione",
-        "purchase": "Acquisto",
         "contract": "Contratto",
         "unknown": "Sconosciuto"
       }
-    },
-    "tooltips": {
-      "search": "Cerca dati blockchain",
-      "copyHash": "Copia hash negli appunti",
-      "copyNodeId": "Copia ID del nodo negli appunti",
-      "expandTransaction": "Clicca per visualizzare i dettagli della transazione",
-      "transactionDetails": "Dettagli della transazione",
-      "dataTabs": "Categorie di dati blockchain",
-      "validatorSummary": "Riepilogo della rete dei validatori",
-      "uptimeValue": "Tempo di attivita: {{value}}%"
     },
     "status": {
       "pending": "In attesa",
@@ -11538,9 +11596,7 @@
       "acrossAll": "Su tutti i validatori",
       "types": {
         "gateway": "Gateway",
-        "computation": "Computazione",
-        "service": "Servizio",
-        "listing": "Inserzione"
+        "computation": "Computazione"
       }
     },
     "table": {
@@ -11735,6 +11791,7 @@
     },
     "errors": {
       "fetchFailed": "Impossibile fetch disputes. Please try again later.",
+      "loadFailed": "Failed to load disputes. Please refresh the page or try again later.",
       "detailsFailed": "Impossibile fetch dispute details. Please try again later.",
       "evidenceFailed": "Impossibile submit evidence. Please try again.",
       "messageFailed": "Impossibile send message. Please try again."
@@ -13861,79 +13918,79 @@
         "complianceFailed": "Compliance check failed",
         "invalidAddress": "Si prega di Inserisci a valid token address",
         "analysisFailed": "Analisi del token non riuscita",
-        "discoveryFailed": "Scoperta dei token non riuscita",
         "invalidWallet": "Inserisci un indirizzo di portafoglio valido",
-        "noTokens": "Nessun token da importare",
-        "priceFailed": "Aggiornamento del prezzo non riuscito"
+        "discoveryFailed": "Scoperta dei token non riuscita",
+        "priceFailed": "Aggiornamento del prezzo non riuscito",
+        "noTokens": "Nessun token da importare"
+      },
+      "priceDiscoveryTitle": "Scoperta dei prezzi sovrana",
+      "priceDiscoveryDesc": "Utilizziamo i prezzi effettivi delle transazioni DEX da Uniswap, SushiSwap e altri exchange decentralizzati anziché oracoli di terze parti. Questo garantisce prezzi trasparenti e resistenti alla manipolazione basati sull'attività reale del mercato.",
+      "importMethodDescription": "Scegli come importare i tuoi token RWA",
+      "methods": {
+        "catalog": "RWA disponibili",
+        "address": "Per indirizzo",
+        "wallet": "Dal portafoglio",
+        "issuer": "Per emittente"
       },
       "addressInstructions": "Inserisci l'indirizzo del contratto del token per analizzare il suo stato di conformità e scoprire il suo prezzo.",
-      "allTypes": "Tutti i tipi",
-      "amount": "Importo",
+      "tokenAddress": "Indirizzo del contratto del token",
+      "selectChain": "Rete blockchain",
       "analyzeToken": "Analizza token",
       "analyzing": "Analisi del token...",
-      "balance": "Saldo",
-      "complianceChecks": "Conformità",
-      "dex": "DEX",
-      "dexPools": "Pool di liquidità",
-      "discoverTokens": "Scopri token RWA",
-      "eligibility": {
-        "accreditedDesc": "Questo security token richiede la verifica di investitore accreditato. Contatta l'emittente del token.",
-        "accreditedRequired": "Richiesto lo status di investitore accreditato",
-        "allowedCountries": "Disponibile solo in: {{countries}}",
-        "eligible": "Sei idoneo a negoziare questo token",
-        "geoRestrictions": "Restrizioni geografiche",
-        "kycRequired": "Richiede KYC livello {{tier}} o superiore",
-        "notEligible": "Requisiti di negoziazione non soddisfatti",
-        "upgradeKYC": "Aggiorna KYC",
-        "verified": "La tua identità è verificata con l'emittente del token"
-      },
+      "walletInstructions": "Scopri tutti i token RWA nel tuo portafoglio. Filtra per tipo di token se necessario.",
+      "walletAddress": "Indirizzo del portafoglio",
       "filterByType": "Filtra per tipo (opzionale)",
-      "identityRegistry": "Registro delle identità",
-      "importCompleted": "{{count}} token RWA importati con successo",
-      "importFailed": "Importazione non riuscita",
-      "importMethodDescription": "Scegli come importare i tuoi token RWA",
-      "importProgress": "Avanzamento dell'importazione",
-      "importTokens": "Importa {{count}} token",
-      "imported": "importato",
-      "issuerComingSoon": "Directory degli emittenti in arrivo",
+      "allTypes": "Tutti i tipi",
+      "discoverTokens": "Scopri token RWA",
       "issuerInstructions": "Sfoglia i token di emittenti RWA noti. In arrivo.",
-      "liquidity": "Liquidità",
-      "methods": {
-        "address": "Per indirizzo",
-        "catalog": "RWA disponibili",
-        "issuer": "Per emittente",
-        "wallet": "Dal portafoglio"
-      },
+      "issuerComingSoon": "Directory degli emittenti in arrivo",
+      "tokenCount": "{{count}} token trovati",
       "noPriceData": "Nessun dato di prezzo",
-      "noTokens": "Nessun token RWA trovato in questo portafoglio",
-      "notFound": "Token non trovato o non è un RWA valido",
-      "price": "Prezzo",
+      "identityRegistry": "Registro delle identità",
+      "complianceChecks": "Conformità",
+      "balance": "Saldo",
+      "eligibility": {
+        "eligible": "Sei idoneo a negoziare questo token",
+        "verified": "La tua identità è verificata con l'emittente del token",
+        "notEligible": "Requisiti di negoziazione non soddisfatti",
+        "kycRequired": "Richiede KYC livello {{tier}} o superiore",
+        "upgradeKYC": "Aggiorna KYC",
+        "geoRestrictions": "Restrizioni geografiche",
+        "allowedCountries": "Disponibile solo in: {{countries}}",
+        "accreditedRequired": "Richiesto lo status di investitore accreditato",
+        "accreditedDesc": "Questo security token richiede la verifica di investitore accreditato. Contatta l'emittente del token."
+      },
       "priceDetails": "Dettagli sulla scoperta dei prezzi",
-      "priceDiscoveryDesc": "Utilizziamo i prezzi effettivi delle transazioni DEX da Uniswap, SushiSwap e altri exchange decentralizzati anziché oracoli di terze parti. Questo garantisce prezzi trasparenti e resistenti alla manipolazione basati sull'attività reale del mercato.",
+      "refresh": "Aggiorna",
+      "liquidity": "Liquidità",
+      "twap24h": "TWAP 24h",
+      "source": "Fonte",
+      "importTokens": "Importa {{count}} token",
       "priceDiscoveryDetails": "Dettagli sulla scoperta dei prezzi",
       "priceDiscoveryExplain": "I prezzi derivano da transazioni DEX reali, ponderati per liquidità",
-      "priceDiscoveryTitle": "Scoperta dei prezzi sovrana",
-      "priceRefreshed": "Prezzo aggiornato",
-      "priced": "con prezzo",
+      "dexPools": "Pool di liquidità",
+      "dex": "DEX",
+      "price": "Prezzo",
       "recentSwaps": "Transazioni recenti",
-      "refresh": "Aggiorna",
-      "selectChain": "Rete blockchain",
-      "source": "Fonte",
+      "time": "Ora",
+      "amount": "Importo",
+      "importProgress": "Avanzamento dell'importazione",
       "status": "Stato",
       "statusAnalyzing": "Analisi in corso",
+      "statusVerifying": "Verifica della conformità",
+      "statusPricing": "Scoperta dei prezzi",
+      "statusImporting": "Importazione in corso",
       "statusCompleted": "Completato",
       "statusFailed": "Non riuscito",
-      "statusImporting": "Importazione in corso",
-      "statusPricing": "Scoperta dei prezzi",
-      "statusVerifying": "Verifica della conformità",
-      "time": "Ora",
-      "tokenAddress": "Indirizzo del contratto del token",
+      "priced": "con prezzo",
+      "imported": "importato",
+      "priceRefreshed": "Prezzo aggiornato",
+      "noTokens": "Nessun token RWA trovato in questo portafoglio",
       "tokenAnalyzed": "Token analizzato con successo",
-      "tokenCount": "{{count}} token trovati",
+      "notFound": "Token non trovato o non è un RWA valido",
       "tokensFound": "Trovati {{count}} token RWA",
-      "twap24h": "TWAP 24h",
-      "walletAddress": "Indirizzo del portafoglio",
-      "walletInstructions": "Scopri tutti i token RWA nel tuo portafoglio. Filtra per tipo di token se necessario."
+      "importCompleted": "{{count}} token RWA importati con successo",
+      "importFailed": "Importazione non riuscita"
     }
   },
   "importCenter": {
@@ -14572,6 +14629,12 @@
       "registrationTypedDataFailed": "Impossibile get registration data. Please try again.",
       "registrationFailed": "Registration failed. Please try again.",
       "noReferralCode": "No referral code available. You may not be registered yet.",
+      "omniCoreNotConfigured": "Staking system not configured. Please contact support.",
+      "omniCoinNotConfigured": "Token contract not configured. Please contact support.",
+      "insufficientXomBalance": "Insufficient XOM balance. Please check your wallet balance.",
+      "approveFailed": "Token approval failed. Please try again.",
+      "stakeTransactionFailed": "Staking transaction failed - no receipt received. Please try again.",
+      "unlockTransactionFailed": "Unlock transaction failed - no receipt received. Please try again.",
       "stakingRewardPoolNotConfigured": "Il contratto del pool di ricompense di staking non è ancora stato distribuito. Le ricompense saranno presto disponibili.",
       "claimRewardsFailed": "La transazione di richiesta ricompense è fallita - nessuna ricevuta ricevuta. Per favore, riprova."
     }
@@ -14580,6 +14643,7 @@
     "intentToggle": "Trading basato su intenti",
     "intentToggleTooltip": "Lascia che i solver competano per eseguire la tua operazione di previsione al miglior prezzo su più fonti di liquidità.",
     "intentSubmitting": "Invio dell'intento di previsione...",
+    "backToPredictions": "Back to Predictions",
     "features": {
       "title": "Funzionalità",
       "regionLabel": "Prediction Features",
@@ -14714,6 +14778,37 @@
         "expired": "Scaduto"
       }
     },
+    "sidebar": {
+      "resultsCount": "{{displayed}} di {{total}} mercati",
+      "statistics": "Statistics",
+      "category": "Category",
+      "categoryLabel": "Filter by market category",
+      "statsRegion": "Prediction Market Statistics",
+      "totalMarketsTooltip": "Total number of active prediction markets",
+      "volume24hTooltip": "Total trading volume in the last 24 hours across all markets",
+      "sortAriaLabel": "Sort markets by selected criteria",
+      "sortBy": "Sort by",
+      "gridLabel": "Prediction markets",
+      "footerTitle": "About Prediction Markets",
+      "footerText": "Prediction markets let you trade on the outcomes of real-world events. Prices reflect the crowd-sourced probability of each outcome. Markets are settled automatically when outcomes are confirmed by trusted data sources.",
+      "showResolved": "Mostra Risolti",
+      "showResolvedLabel": "Mostra o nascondi i mercati risolti",
+      "showResolvedTooltip": "Display markets that have already been settled. Resolved markets show final outcomes.",
+      "subcategoryLabel": "Filtra per sottocategoria",
+      "subcategoryTooltip": "{{count}} mercati attivi in {{name}}"
+    },
+    "sort": {
+      "volume": "Highest Volume",
+      "newest": "Recently Created",
+      "endingSoon": "Ending Soon",
+      "alphabetical": "Alphabetical"
+    },
+    "noMarketsSearch": "No markets match your search criteria. Try a different search term.",
+    "noMarketsFilter": "No markets match the selected category.",
+    "clearFiltersAria": "Clear all filters and reset to default view",
+    "loadingAria": "Loading prediction markets",
+    "loadingMore": "Caricamento di altri mercati...",
+    "endOfResults": "Visualizzazione di {{count}} mercati",
     "intent": {
       "toggle": "Trading Basato sulle Intenzioni",
       "info": "Informazioni sul trading di previsioni basato sulle intenzioni",
@@ -14912,19 +15007,10 @@
       "invalidMarketId": "ID mercato non valido. Controlla l'URL e riprova.",
       "marketNotFound": "Mercato non trovato. Potrebbe essere stato rimosso o l'ID e errato.",
       "loadFailed": "Impossibile caricare i dettagli del mercato. Riprova piu tardi.",
-      "unknown": "Si e verificato un errore sconosciuto. Riprova.",
       "tradeFailed": "Invio dell'intenzione di previsione non riuscito. Per favore, riprova.",
-      "connectWallet": "Per favore, collega il tuo portafoglio per fare trading."
+      "connectWallet": "Per favore, collega il tuo portafoglio per fare trading.",
+      "unknown": "Si e verificato un errore sconosciuto. Riprova."
     },
-    "sidebar": {
-      "showResolved": "Mostra Risolti",
-      "showResolvedLabel": "Mostra o nascondi i mercati risolti",
-      "resultsCount": "{{displayed}} di {{total}} mercati",
-      "subcategoryLabel": "Filtra per sottocategoria",
-      "subcategoryTooltip": "{{count}} mercati attivi in {{name}}"
-    },
-    "loadingMore": "Caricamento di altri mercati...",
-    "endOfResults": "Visualizzazione di {{count}} mercati",
     "leaderboard": {
       "title": "Classifica delle Previsioni",
       "subtitle": "I migliori previsori classificati per prestazioni",
@@ -14953,61 +15039,6 @@
       "rank1": "1° posto",
       "rank2": "2° posto",
       "rank3": "3° posto"
-    },
-    "tradePanel": {
-      "title": "Negozia",
-      "buyYes": "Compra SI",
-      "buyNo": "Compra NO",
-      "amount": "Importo",
-      "amountPlaceholder": "Inserisci importo",
-      "preset10": "$10",
-      "preset25": "$25",
-      "preset50": "$50",
-      "preset100": "$100",
-      "currentPrice": "Prezzo Attuale",
-      "feeRate": "Tasso di Commissione",
-      "feeAmount": "Commissione",
-      "netAmount": "Importo Netto",
-      "estimatedShares": "Azioni Stim.",
-      "feeDisclosure": "Una commissione dinamica del {{rate}}% viene addebitata on-chain dal contratto OmniBazaar Router.",
-      "totalCost": "Costo Totale",
-      "submitTrade": "Invia Operazione",
-      "approveTokens": "Approva {{symbol}}",
-      "confirmInWallet": "Conferma nel Wallet",
-      "submitting": "Invio in corso...",
-      "approving": "Approvazione in corso...",
-      "txSubmitted": "Transazione inviata",
-      "txConfirmed": "Operazione confermata",
-      "txFailed": "La transazione non e stata completata. Se l'hai rifiutata, non e necessaria alcuna azione. Altrimenti, riprova.",
-      "orderPending": "Ordine in attesa di conferma...",
-      "orderFilled": "Ordine eseguito con successo",
-      "connectWallet": "Connetti Wallet",
-      "connectWalletDesc": "Connetti il tuo wallet per negoziare su questo mercato",
-      "wrongNetwork": "Passa a {{network}}",
-      "wrongNetworkDesc": "Cambia la rete del tuo wallet su {{network}} per negoziare su questo mercato",
-      "switchNetwork": "Cambia Rete",
-      "insufficientBalance": "Saldo {{symbol}} insufficiente",
-      "minimumAmount": "L'operazione minima e di $1.00",
-      "quoteError": "Impossibile ottenere la quotazione. Riprova.",
-      "buildError": "Impossibile preparare la tua operazione. Verifica il tuo saldo e la connessione di rete, poi riprova.",
-      "notAvailable": "Il trading on-chain non e disponibile per questa piattaforma.",
-      "notAvailableDesc": "Questo mercato si trova su {{platform}}. Usa il link della piattaforma qui sotto per negoziare direttamente.",
-      "fallbackLink": "Negozia su {{platform}}",
-      "viewOrder": "Visualizza Ordine #{{orderId}}",
-      "orderStatus": {
-        "pending": "In attesa",
-        "submitted": "Inviato",
-        "confirmed": "Confermato",
-        "filled": "Eseguito",
-        "cancelled": "Annullato",
-        "failed": "Fallito"
-      },
-      "privacyToggle": "Operazione privata (pXOM)",
-      "privacyTooltip": "Usa pXOM per previsioni private. La tua posizione sarà protetta dal livello di privacy COTI. Si applica una commissione di conversione dello 0,3% più 0,03 XOM di tariffa base.",
-      "privacyEnabled": "Privacy attivata",
-      "privacyConversionFee": "Commissione di conversione (0,3%)",
-      "privacyBaseFee": "Tariffa base",
-      "privacyTotalFee": "Costo privacy"
     }
   },
   "contractErrors": {
@@ -15745,6 +15776,138 @@
       "configFailed": "Salvataggio della configurazione non riuscito. Riprova."
     }
   },
+  "social": {
+    "title": "Contatti e pagamenti",
+    "description": "Gestisci i contatti del tuo portafoglio, invia richieste di pagamento e designa i guardiani per il recupero sociale.",
+    "loading": "Caricamento funzionalità sociali...",
+    "tabs": {
+      "contacts": "Contatti",
+      "requests": "Richieste",
+      "guardians": "Guardiani"
+    },
+    "contactCount": "{{count}} contatti",
+    "addContact": "Aggiungi contatto",
+    "addContactTitle": "Aggiungi contatto",
+    "addContactDescription": "Aggiungi un indirizzo di portafoglio ai tuoi contatti per pagamenti rapidi e recupero.",
+    "contactAdded": "Contatto aggiunto con successo.",
+    "contactRemoved": "Contatto rimosso.",
+    "noContacts": "Nessun contatto. Aggiungi un contatto per inviare pagamenti rapidamente o designare guardiani per il recupero.",
+    "walletAddress": "Indirizzo del portafoglio",
+    "nickname": "Soprannome",
+    "nicknamePlaceholder": "es. Alice",
+    "markAsGuardian": "Guardiano per il recupero sociale",
+    "guardianHint": "I guardiani possono aiutarti a recuperare il tuo portafoglio se perdi l'accesso.",
+    "add": "Aggiungi",
+    "cancel": "Annulla",
+    "favorite": "Aggiungi ai preferiti",
+    "unfavorite": "Rimuovi dai preferiti",
+    "removeContact": "Rimuovi contatto",
+    "copyAddress": "Copia indirizzo",
+    "addressCopied": "Indirizzo copiato negli appunti.",
+    "guardian": "Guardiano",
+    "guardiansInfo": "I guardiani per il recupero sociale possono aiutarti a riottenere l'accesso al tuo portafoglio. Scegli contatti fidati che possano verificare la tua identità.",
+    "noGuardians": "Nessun guardiano designato. Aggiungi contatti e contrassegnali come guardiani per il recupero sociale.",
+    "addGuardian": "Aggiungi guardiano",
+    "requestPayment": "Richiedi pagamento",
+    "requestPaymentTitle": "Richiedi pagamento",
+    "requestPaymentDescription": "Invia una richiesta di pagamento a un altro indirizzo di portafoglio.",
+    "requestTo": "Richiedi a (Indirizzo)",
+    "requestAmount": "Importo (XOM)",
+    "requestMemo": "Nota (Facoltativo)",
+    "memoPlaceholder": "A cosa serve questo pagamento?",
+    "sendRequest": "Invia richiesta",
+    "requestSent": "Richiesta di pagamento inviata.",
+    "requestDeclined": "Richiesta di pagamento rifiutata.",
+    "pendingRequests": "{{count}} richieste in sospeso",
+    "newRequest": "Nuova richiesta",
+    "incoming": "Richieste ricevute",
+    "outgoing": "Richieste inviate",
+    "from": "Da",
+    "to": "A",
+    "decline": "Rifiuta",
+    "noRequests": "Nessuna richiesta di pagamento. Usa il pulsante Nuova richiesta per richiedere un pagamento a qualcuno.",
+    "status": {
+      "pending": "In sospeso",
+      "paid": "Pagato",
+      "declined": "Rifiutato",
+      "expired": "Scaduto"
+    },
+    "timeAgo": {
+      "justNow": "adesso",
+      "minutesAgo": "{{count}}m fa",
+      "hoursAgo": "{{count}}h fa",
+      "daysAgo": "{{count}}g fa"
+    },
+    "errors": {
+      "addContactFailed": "Impossibile aggiungere il contatto. Verifica l'indirizzo e riprova.",
+      "removeContactFailed": "Impossibile rimuovere il contatto. Riprova.",
+      "createRequestFailed": "Impossibile inviare la richiesta di pagamento. Riprova.",
+      "declineFailed": "Impossibile rifiutare la richiesta. Riprova."
+    }
+  },
+  "flexGas": {
+    "title": "FlexGas",
+    "description": "Paga le commissioni gas in XOM invece dei token nativi della rete. I nuovi utenti ottengono transazioni gratuite.",
+    "comingSoonDescription": "Paga le commissioni gas in XOM invece dei token nativi. Questa funzionalità sarà disponibile al lancio completo.",
+    "loading": "Caricamento opzioni gas...",
+    "payInXom": "Paga il gas in XOM",
+    "xomPayment": "Gas in XOM",
+    "nativePayment": "Gas nativo",
+    "toggleLabel": "Attiva pagamento gas in XOM",
+    "sponsored": "Transazioni gratuite disponibili",
+    "freeRemaining": "{{count}} transazioni gratuite rimanenti",
+    "free": "Gratuito",
+    "left": "rimanenti",
+    "sponsoredHint": "La tua prossima transazione è senza costi di gas, offerta dalla rete dei validatori.",
+    "savings": "Risparmia ${{amount}} pagando il gas in XOM",
+    "nativeCostTooltip": "Costo gas stimato nel token nativo della rete",
+    "xomCostTooltip": "Costo gas equivalente se pagato in XOM tramite il paymaster",
+    "history": "Cronologia gas",
+    "noHistory": "Nessuna operazione gas ancora.",
+    "preferences": "Preferenze gas",
+    "errors": {
+      "loadFailed": "Impossibile caricare le opzioni gas. Riprova.",
+      "updateFailed": "Impossibile aggiornare la preferenza gas. Riprova."
+    }
+  },
+  "portfolioAlerts": {
+    "title": "Avvisi del portafoglio",
+    "description": "Configura avvisi di prezzo e gestisci le preferenze di notifica del tuo portafoglio.",
+    "loading": "Caricamento avvisi...",
+    "preferencesTitle": "Preferenze di notifica",
+    "priceAlertsTitle": "Avvisi di prezzo",
+    "prefs": {
+      "balanceChange": "Variazioni di saldo",
+      "tokenReceived": "Token ricevuto",
+      "stakingReward": "Ricompense di staking",
+      "priceAlert": "Avvisi di prezzo",
+      "liquidationWarning": "Avvisi di liquidazione",
+      "tokenDiscovered": "Nuovi token scoperti",
+      "sound": "Notifiche sonore"
+    },
+    "addAlert": "Aggiungi avviso",
+    "addAlertTitle": "Nuovo avviso di prezzo",
+    "addAlertDescription": "Ricevi una notifica quando un token raggiunge il tuo prezzo obiettivo.",
+    "symbol": "Simbolo del token",
+    "condition": "Condizione",
+    "above": "Il prezzo sale sopra",
+    "below": "Il prezzo scende sotto",
+    "targetPrice": "Prezzo obiettivo (USD)",
+    "create": "Crea avviso",
+    "cancel": "Annulla",
+    "active": "Attivo",
+    "triggered": "Attivato",
+    "noAlerts": "Nessun avviso di prezzo impostato. Aggiungi un avviso per ricevere notifiche quando un token raggiunge il tuo prezzo obiettivo.",
+    "alertCreated": "Avviso di prezzo creato con successo.",
+    "alertDeleted": "Avviso di prezzo eliminato.",
+    "deleteAlert": "Elimina avviso",
+    "errors": {
+      "loadFailed": "Impossibile caricare le impostazioni degli avvisi. Riprova.",
+      "updateFailed": "Impossibile aggiornare la preferenza. Riprova.",
+      "createAlertFailed": "Impossibile creare l'avviso di prezzo. Riprova.",
+      "deleteAlertFailed": "Impossibile eliminare l'avviso di prezzo. Riprova."
+    }
+  },
   "nftDetail": {
     "back": "Indietro",
     "goBack": "Torna alla pagina precedente",
@@ -15773,6 +15936,7 @@
       "traits": "Caratteristiche",
       "activity": "Attivita",
       "offers": "Offerte",
+      "listings": "Listings",
       "details": "Dettagli"
     },
     "traits": {
@@ -15949,6 +16113,14 @@
     },
     "rankOf": "#{{rank}} di {{total}}"
   },
+  "nftFees": {
+    "badge": "1% Fee — Up to 60% less than competitors",
+    "title": "NFT Marketplace Fee Comparison",
+    "ourFee": "Our 1% fee is sustainable and supports the decentralized network",
+    "vcSubsidized": "VC subsidized",
+    "platform": "Platform",
+    "fee": "Fee"
+  },
   "nftPortfolio": {
     "title": "Portfolio NFT",
     "subtitle": "Monitora le tue partecipazioni, prestazioni ed esposizione NFT.",
@@ -16110,20 +16282,31 @@
     "title": "Piattaforma di Lancio NFT",
     "subtitle": "Crea e distribuisci la tua collezione NFT in pochi minuti — nessun codice richiesto",
     "collectionName": "Nome Collezione",
+    "collectionNamePlaceholder": "My Awesome Collection",
     "symbol": "Simbolo",
     "description": "Descrizione",
+    "descriptionPlaceholder": "Tell the world about your collection...",
     "maxSupply": "Offerta Massima",
     "blockchain": "Blockchain",
     "zeroGas": "Zero Gas",
     "finishedArt": "Arte Completata",
     "layerBuilder": "Costruttore di Livelli",
     "dragDrop": "Trascina e rilascia file artistici",
+    "supportedFormats": "PNG, JPG, GIF, SVG, MP4 — Max 100MB each",
     "browse": "Sfoglia File",
+    "layerBuilderDescription": "Upload trait layers (backgrounds, bodies, accessories, etc.) and set rarity weights. The launchpad will generate unique combinations automatically.",
+    "uploadLayers": "Upload Layer Folders",
+    "layerInstructions": "One folder per trait category",
+    "unrevealedUri": "Unrevealed Placeholder URI",
+    "unrevealedHelp": "Shown for all tokens before the collection is revealed. Leave blank to skip delayed reveal.",
     "royaltyPercentage": "Percentuale Royalty",
+    "royaltySlider": "Royalty percentage slider",
     "royaltyRecipients": "Destinatari Royalty",
     "addRecipient": "Aggiungi",
     "walletAddress": "Indirizzo Portafoglio",
     "share": "Quota %",
+    "removeRecipient": "Remove recipient",
+    "royaltyEnforcement": "Royalties are enforced via ERC-2981 at marketplace settlement. The OmniBazaar marketplace automatically queries and distributes royalties on every sale.",
     "phaseName": "Nome",
     "mintPrice": "Prezzo di Conio (ETH)",
     "maxPerWallet": "Massimo per Portafoglio",
@@ -16133,6 +16316,13 @@
     "addPhase": "Aggiungi Fase di Vendita",
     "summary": "Riepilogo Collezione",
     "royalty": "Royalty",
+    "artType": "Art Type",
+    "salePhases": "Sale Phases",
+    "whitelist": "Whitelist",
+    "price": "Price",
+    "limit": "Limit",
+    "wallet": "wallet",
+    "zeroGasNote": "Deploying on OmniCoin — validators absorb gas costs. Your creators and minters pay zero gas fees!",
     "deploying": "Distribuzione...",
     "deployCollection": "Distribuisci Collezione",
     "back": "Indietro",
@@ -16145,10 +16335,37 @@
       "phases": "Fasi di Vendita",
       "review": "Revisione"
     },
+    "stepDescription": {
+      "details": "Set your collection name, supply, and blockchain",
+      "art": "Upload your artwork or configure layered generation",
+      "royalty": "Configure royalty percentage and recipients",
+      "phases": "Define sale phases with pricing and limits",
+      "review": "Review everything and deploy your collection"
+    },
     "errors": {
       "saveFailed": "Salvataggio non riuscito. Riprova.",
       "deployFailed": "Distribuzione fallita. Controlla la configurazione e riprova."
     }
+  },
+  "nftClaim": {
+    "title": "Claim Your NFT",
+    "subtitle": "Import your NFT to OmniBazaar and manage offers",
+    "connectWallet": "Connect Wallet to Claim",
+    "verifyClaim": "Verify Ownership & Claim",
+    "verifying": "Verifying ownership...",
+    "claimed": "NFT Claimed Successfully!",
+    "claimedDescription": "Your NFT has been imported. You can now list it on OmniBazaar marketplace.",
+    "createListing": "List for Sale",
+    "viewOffers": "View Offers",
+    "activeOffers": "{{count}} active offer(s)",
+    "highestOffer": "Highest offer: {{amount}} {{currency}}",
+    "onChain": "on {{chain}}",
+    "tokenId": "Token #{{id}}",
+    "notFound": "NFT not found",
+    "notFoundDescription": "We couldn't find this NFT. Please verify the contract address and token ID.",
+    "ownershipFailed": "Ownership verification failed",
+    "ownershipFailedDescription": "The connected wallet does not own this NFT. Please connect the wallet that holds this token.",
+    "signMessage": "Sign the verification message in your wallet"
   },
   "claimListing": {
     "title": "Rivendica il Tuo Annuncio",
@@ -16204,6 +16421,7 @@
     "collections": "Collezioni",
     "recentRoyalties": "Royalty Recenti",
     "yourCollections": "Le Tue Collezioni",
+    "collectionsDescription": "All NFT collections you have created or manage",
     "collection": "Collezione",
     "items": "Articoli",
     "floor": "Minimo",
@@ -16212,156 +16430,31 @@
     "royalty": "Royalty",
     "noCollections": "Nessuna collezione ancora",
     "createFirst": "Crea la Tua Prima Collezione",
+    "royaltiesDescription": "Royalty payments from secondary sales",
     "date": "Data",
     "token": "Token",
     "salePrice": "Prezzo di Vendita",
     "royaltyAmount": "Royalty",
     "tx": "Tx",
-    "noRoyalties": "Nessun pagamento di royalty ancora"
-  },
-  "social": {
-    "title": "Contatti e pagamenti",
-    "description": "Gestisci i contatti del tuo portafoglio, invia richieste di pagamento e designa i guardiani per il recupero sociale.",
-    "loading": "Caricamento funzionalità sociali...",
-    "tabs": {
-      "contacts": "Contatti",
-      "requests": "Richieste",
-      "guardians": "Guardiani"
-    },
-    "contactCount": "{{count}} contatti",
-    "addContact": "Aggiungi contatto",
-    "addContactTitle": "Aggiungi contatto",
-    "addContactDescription": "Aggiungi un indirizzo di portafoglio ai tuoi contatti per pagamenti rapidi e recupero.",
-    "contactAdded": "Contatto aggiunto con successo.",
-    "contactRemoved": "Contatto rimosso.",
-    "noContacts": "Nessun contatto. Aggiungi un contatto per inviare pagamenti rapidamente o designare guardiani per il recupero.",
-    "walletAddress": "Indirizzo del portafoglio",
-    "nickname": "Soprannome",
-    "nicknamePlaceholder": "es. Alice",
-    "markAsGuardian": "Guardiano per il recupero sociale",
-    "guardianHint": "I guardiani possono aiutarti a recuperare il tuo portafoglio se perdi l'accesso.",
-    "add": "Aggiungi",
-    "cancel": "Annulla",
-    "favorite": "Aggiungi ai preferiti",
-    "unfavorite": "Rimuovi dai preferiti",
-    "removeContact": "Rimuovi contatto",
-    "copyAddress": "Copia indirizzo",
-    "addressCopied": "Indirizzo copiato negli appunti.",
-    "guardian": "Guardiano",
-    "guardiansInfo": "I guardiani per il recupero sociale possono aiutarti a riottenere l'accesso al tuo portafoglio. Scegli contatti fidati che possano verificare la tua identità.",
-    "noGuardians": "Nessun guardiano designato. Aggiungi contatti e contrassegnali come guardiani per il recupero sociale.",
-    "addGuardian": "Aggiungi guardiano",
-    "requestPayment": "Richiedi pagamento",
-    "requestPaymentTitle": "Richiedi pagamento",
-    "requestPaymentDescription": "Invia una richiesta di pagamento a un altro indirizzo di portafoglio.",
-    "requestTo": "Richiedi a (Indirizzo)",
-    "requestAmount": "Importo (XOM)",
-    "requestMemo": "Nota (Facoltativo)",
-    "memoPlaceholder": "A cosa serve questo pagamento?",
-    "sendRequest": "Invia richiesta",
-    "requestSent": "Richiesta di pagamento inviata.",
-    "requestDeclined": "Richiesta di pagamento rifiutata.",
-    "pendingRequests": "{{count}} richieste in sospeso",
-    "newRequest": "Nuova richiesta",
-    "incoming": "Richieste ricevute",
-    "outgoing": "Richieste inviate",
-    "from": "Da",
-    "to": "A",
-    "decline": "Rifiuta",
-    "noRequests": "Nessuna richiesta di pagamento. Usa il pulsante Nuova richiesta per richiedere un pagamento a qualcuno.",
-    "status": {
-      "pending": "In sospeso",
-      "paid": "Pagato",
-      "declined": "Rifiutato",
-      "expired": "Scaduto"
-    },
-    "timeAgo": {
-      "justNow": "adesso",
-      "minutesAgo": "{{count}}m fa",
-      "hoursAgo": "{{count}}h fa",
-      "daysAgo": "{{count}}g fa"
-    },
-    "errors": {
-      "addContactFailed": "Impossibile aggiungere il contatto. Verifica l'indirizzo e riprova.",
-      "removeContactFailed": "Impossibile rimuovere il contatto. Riprova.",
-      "createRequestFailed": "Impossibile inviare la richiesta di pagamento. Riprova.",
-      "declineFailed": "Impossibile rifiutare la richiesta. Riprova."
-    }
-  },
-  "flexGas": {
-    "title": "FlexGas",
-    "description": "Paga le commissioni gas in XOM invece dei token nativi della rete. I nuovi utenti ottengono transazioni gratuite.",
-    "comingSoonDescription": "Paga le commissioni gas in XOM invece dei token nativi. Questa funzionalità sarà disponibile al lancio completo.",
-    "loading": "Caricamento opzioni gas...",
-    "payInXom": "Paga il gas in XOM",
-    "xomPayment": "Gas in XOM",
-    "nativePayment": "Gas nativo",
-    "toggleLabel": "Attiva pagamento gas in XOM",
-    "sponsored": "Transazioni gratuite disponibili",
-    "freeRemaining": "{{count}} transazioni gratuite rimanenti",
-    "free": "Gratuito",
-    "left": "rimanenti",
-    "sponsoredHint": "La tua prossima transazione è senza costi di gas, offerta dalla rete dei validatori.",
-    "savings": "Risparmia ${{amount}} pagando il gas in XOM",
-    "nativeCostTooltip": "Costo gas stimato nel token nativo della rete",
-    "xomCostTooltip": "Costo gas equivalente se pagato in XOM tramite il paymaster",
-    "history": "Cronologia gas",
-    "noHistory": "Nessuna operazione gas ancora.",
-    "preferences": "Preferenze gas",
-    "errors": {
-      "loadFailed": "Impossibile caricare le opzioni gas. Riprova.",
-      "updateFailed": "Impossibile aggiornare la preferenza gas. Riprova."
-    }
-  },
-  "portfolioAlerts": {
-    "title": "Avvisi del portafoglio",
-    "description": "Configura avvisi di prezzo e gestisci le preferenze di notifica del tuo portafoglio.",
-    "loading": "Caricamento avvisi...",
-    "preferencesTitle": "Preferenze di notifica",
-    "priceAlertsTitle": "Avvisi di prezzo",
-    "prefs": {
-      "balanceChange": "Variazioni di saldo",
-      "tokenReceived": "Token ricevuto",
-      "stakingReward": "Ricompense di staking",
-      "priceAlert": "Avvisi di prezzo",
-      "liquidationWarning": "Avvisi di liquidazione",
-      "tokenDiscovered": "Nuovi token scoperti",
-      "sound": "Notifiche sonore"
-    },
-    "addAlert": "Aggiungi avviso",
-    "addAlertTitle": "Nuovo avviso di prezzo",
-    "addAlertDescription": "Ricevi una notifica quando un token raggiunge il tuo prezzo obiettivo.",
-    "symbol": "Simbolo del token",
-    "condition": "Condizione",
-    "above": "Il prezzo sale sopra",
-    "below": "Il prezzo scende sotto",
-    "targetPrice": "Prezzo obiettivo (USD)",
-    "create": "Crea avviso",
-    "cancel": "Annulla",
-    "active": "Attivo",
-    "triggered": "Attivato",
-    "noAlerts": "Nessun avviso di prezzo impostato. Aggiungi un avviso per ricevere notifiche quando un token raggiunge il tuo prezzo obiettivo.",
-    "alertCreated": "Avviso di prezzo creato con successo.",
-    "alertDeleted": "Avviso di prezzo eliminato.",
-    "deleteAlert": "Elimina avviso",
-    "errors": {
-      "loadFailed": "Impossibile caricare le impostazioni degli avvisi. Riprova.",
-      "updateFailed": "Impossibile aggiornare la preferenza. Riprova.",
-      "createAlertFailed": "Impossibile creare l'avviso di prezzo. Riprova.",
-      "deleteAlertFailed": "Impossibile eliminare l'avviso di prezzo. Riprova."
-    }
+    "noRoyalties": "Nessun pagamento di royalty ancora",
+    "royaltiesWillAppear": "Royalties are collected automatically when your NFTs are sold on secondary markets."
   },
   "wishlist": {
     "title": "La mia lista dei desideri",
+    "count": "{{count}} items",
     "empty": "La tua lista dei desideri e vuota",
     "emptyDescription": "Esplora il marketplace e salva gli articoli che ti piacciono",
     "browseMarketplace": "Esplora il marketplace",
+    "loadMore": "Load more",
     "removeConfirm": "Rimuovere dalla lista dei desideri?",
     "removedToast": "Rimosso dalla lista dei desideri"
   },
   "savedSearches": {
     "title": "Ricerche salvate",
     "save": "Salva questa ricerca",
+    "saved": "Search saved!",
+    "saveFailed": "Failed to save search",
+    "loginRequired": "Please sign in to save searches",
     "nameLabel": "Nome della ricerca",
     "namePlaceholder": "es.: Portatili sotto $500",
     "empty": "Nessuna ricerca salvata",
@@ -16370,9 +16463,17 @@
     "matchNotification": "Nuova corrispondenza per \"{{name}}\"",
     "maxReached": "Massimo di 20 ricerche salvate raggiunto",
     "deleted": "Ricerca salvata eliminata",
+    "delete": "Delete",
     "matches": "{{count}} corrispondenze",
     "criteria": "Criteri",
     "notifications": "Notifiche",
+    "notificationsOn": "Notifications enabled",
+    "notificationsOff": "Notifications disabled",
+    "unnamed": "Unnamed Search",
+    "executeSearch": "Run search: {{name}}",
+    "tags": "Tags",
+    "from": "from",
+    "upTo": "up to",
     "errors": {
       "loadFailed": "Impossibile caricare le ricerche salvate. Controlla la connessione e riprova.",
       "saveFailed": "Impossibile salvare questa ricerca. Riprova.",
@@ -16381,6 +16482,8 @@
     }
   },
   "promotions": {
+    "title": "Promotions",
+    "description": "Manage discounts and promotions for your listings",
     "create": "Crea promozione",
     "type": "Tipo di promozione",
     "types": {
@@ -16390,15 +16493,19 @@
       "coupon": "Coupon"
     },
     "discount": "Importo dello sconto",
+    "off": "off",
     "flashSale": "Vendita lampo",
     "bundle": "Offerta pacchetto",
     "coupon": "Codice coupon",
     "expires": "Scade il {{date}}",
+    "uses": "uses",
     "apply": "Applica",
     "invalid": "Coupon non valido o scaduto",
     "applied": "Coupon applicato! Risparmi {{amount}}",
     "maxReached": "Massimo 5 promozioni attive per annuncio",
     "deleted": "Promozione eliminata",
+    "deleteFailed": "Failed to delete promotion",
+    "delete": "Delete promotion",
     "active": "Promozioni attive",
     "noPromotions": "Nessuna promozione attiva"
   },
@@ -16577,6 +16684,61 @@
       "save": "Save Changes",
       "saved": "Settings saved"
     },
+    "tradePanel": {
+      "title": "Trade",
+      "buyYes": "Buy YES",
+      "buyNo": "Buy NO",
+      "amount": "Amount",
+      "amountPlaceholder": "Enter amount",
+      "preset10": "$10",
+      "preset25": "$25",
+      "preset50": "$50",
+      "preset100": "$100",
+      "currentPrice": "Current Price",
+      "feeRate": "Fee Rate",
+      "feeAmount": "Fee",
+      "netAmount": "Net Amount",
+      "estimatedShares": "Est. Shares",
+      "feeDisclosure": "A dynamic fee of {{rate}}% is charged on-chain by the OmniBazaar Router contract.",
+      "totalCost": "Total Cost",
+      "submitTrade": "Submit Trade",
+      "approveTokens": "Approve {{symbol}}",
+      "confirmInWallet": "Confirm in Wallet",
+      "submitting": "Submitting...",
+      "approving": "Approving...",
+      "txSubmitted": "Transaction submitted",
+      "txConfirmed": "Trade confirmed",
+      "txFailed": "Transaction was not completed. If you rejected it, no action is needed. Otherwise, please try again.",
+      "orderPending": "Order pending confirmation...",
+      "orderFilled": "Order filled successfully",
+      "connectWallet": "Connect Wallet",
+      "connectWalletDesc": "Connect your wallet to trade on this market",
+      "wrongNetwork": "Switch to {{network}}",
+      "wrongNetworkDesc": "Please switch your wallet to {{network}} to trade on this market",
+      "switchNetwork": "Switch Network",
+      "insufficientBalance": "Insufficient {{symbol}} balance",
+      "minimumAmount": "Minimum trade is $1.00",
+      "quoteError": "Unable to get quote. Please try again.",
+      "buildError": "Unable to prepare your trade. Please check your balance and network connection, then try again.",
+      "notAvailable": "On-chain trading is not available for this platform.",
+      "notAvailableDesc": "This market is on {{platform}}. Use the platform link below to trade directly.",
+      "fallbackLink": "Trade on {{platform}}",
+      "viewOrder": "View Order #{{orderId}}",
+      "orderStatus": {
+        "pending": "Pending",
+        "submitted": "Submitted",
+        "confirmed": "Confirmed",
+        "filled": "Filled",
+        "cancelled": "Cancelled",
+        "failed": "Failed"
+      },
+      "privacyToggle": "Private trade (pXOM)",
+      "privacyTooltip": "Use pXOM for private predictions. Your position will be shielded via the COTI privacy layer. A 0.3% conversion fee plus 0.03 XOM base fee applies.",
+      "privacyEnabled": "Privacy enabled",
+      "privacyConversionFee": "Conversion fee (0.3%)",
+      "privacyBaseFee": "Base fee",
+      "privacyTotalFee": "Privacy overhead"
+    },
     "discovery": {
       "title": "Local Markets",
       "subtitle": "Browse community-run marketplaces near you.",
@@ -16750,16 +16912,6 @@
     "responseTimeHours": "Tempo di risposta (ore)",
     "availabilitySection": "Disponibilita Settimanale",
     "createSuccess": "Servizio creato",
-    "errors": {
-      "loadFailed": "Impossibile caricare i servizi. Controlla la connessione e riprova.",
-      "createFailed": "Impossibile creare l'annuncio di servizio. Controlla tutti i campi e riprova.",
-      "bookingFailed": "Impossibile creare la prenotazione. Controlla la disponibilità e riprova.",
-      "confirmFailed": "Impossibile confermare la prenotazione. Riprova.",
-      "completeFailed": "Impossibile completare questa prenotazione. Riprova.",
-      "reviewFailed": "Impossibile inviare la recensione. Riprova.",
-      "searchFailed": "Impossibile cercare i servizi. Riprova.",
-      "generic": "Si è verificato un errore. Riprova."
-    },
     "types": {
       "tutoring": "Lezioni private",
       "repair": "Riparazioni",
@@ -16786,6 +16938,16 @@
       "4": "Gio",
       "5": "Ven",
       "6": "Sab"
+    },
+    "errors": {
+      "loadFailed": "Impossibile caricare i servizi. Controlla la connessione e riprova.",
+      "createFailed": "Impossibile creare l'annuncio di servizio. Controlla tutti i campi e riprova.",
+      "bookingFailed": "Impossibile creare la prenotazione. Controlla la disponibilità e riprova.",
+      "confirmFailed": "Impossibile confermare la prenotazione. Riprova.",
+      "completeFailed": "Impossibile completare questa prenotazione. Riprova.",
+      "reviewFailed": "Impossibile inviare la recensione. Riprova.",
+      "searchFailed": "Impossibile cercare i servizi. Riprova.",
+      "generic": "Si è verificato un errore. Riprova."
     },
     "detail": {
       "notFound": "Servizio non trovato",
@@ -16969,6 +17131,13 @@
     "tierQuantity": "Soglia quantita",
     "tierDiscount": "Sconto %",
     "createSuccess": "Acquisto di gruppo creato",
+    "status": {
+      "active": "Attivo",
+      "threshold_met": "Soglia Raggiunta",
+      "completed": "Completato",
+      "expired": "Scaduto",
+      "cancelled": "Annullato"
+    },
     "errors": {
       "loadFailed": "Impossibile caricare le offerte di gruppo. Controlla la connessione e riprova.",
       "createFailed": "Impossibile creare l'offerta di gruppo. Controlla tutti i campi e riprova.",
@@ -16978,13 +17147,6 @@
       "cancelFailed": "Impossibile annullare questa offerta di gruppo. Riprova.",
       "validationRequired": "Compila tutti i campi obbligatori prima di creare un'offerta di gruppo.",
       "authRequired": "Accedi per creare o partecipare alle offerte di gruppo."
-    },
-    "status": {
-      "active": "Attivo",
-      "threshold_met": "Soglia Raggiunta",
-      "completed": "Completato",
-      "expired": "Scaduto",
-      "cancelled": "Annullato"
     },
     "actionSuccess": "Azione completata con successo",
     "backToList": "Torna agli Acquisti di Gruppo",
@@ -17335,7 +17497,6 @@
   "feesPage": {
     "title": "Fee Schedule",
     "subtitle": "Transparent breakdown of all fees on the OmniBazaar platform",
-    "lastUpdated": "Last updated: {{date}}",
     "tabs": {
       "marketplace": "Marketplace",
       "dex": "DEX",
@@ -17519,45 +17680,6 @@
       "screeningFailed": "Impossibile verificare lo stato di conformità del portafoglio. Riprova.",
       "screeningInProgress": "Verifica della conformità del portafoglio...",
       "serviceUnavailable": "La verifica di conformità è temporaneamente non disponibile. Riprova più tardi."
-    }
-  },
-  "notificationPreferences": {
-    "title": "Preferenze di notifica",
-    "description": "Personalizza le impostazioni delle notifiche",
-    "save": "Salva preferenze",
-    "methodsTitle": "Metodi di notifica",
-    "methodsDescription": "Scegli come ricevere le notifiche",
-    "inApp": "Notifiche in-app",
-    "inAppDescription": "Mostra le notifiche all'interno dell'app",
-    "push": "Notifiche push",
-    "pushDescription": "Ricevi notifiche push dal browser",
-    "email": "Notifiche via e-mail",
-    "emailDescription": "Ricevi notifiche via e-mail",
-    "sound": "Avvisi sonori",
-    "soundDescription": "Riproduci suono per notifiche importanti",
-    "comingSoon": "Prossimamente",
-    "categoriesTitle": "Categorie di notifica",
-    "categoriesDescription": "Scegli quali tipi di notifiche desideri ricevere",
-    "resetDefaults": "Ripristina valori predefiniti",
-    "savePreferences": "Salva preferenze",
-    "saved": "Preferenze salvate",
-    "savedDescription": "Le tue preferenze di notifica sono state aggiornate.",
-    "saveFailed": "Impossibile salvare le preferenze",
-    "cat": {
-      "orders": "Ordini",
-      "ordersDesc": "Aggiornamenti sui tuoi acquisti e vendite",
-      "messages": "Messaggi",
-      "messagesDesc": "Nuovi messaggi e richieste di chat",
-      "marketplace": "Marketplace",
-      "marketplaceDesc": "Aggiornamenti su inserzioni e offerte",
-      "trading": "Trading",
-      "tradingDesc": "Aggiornamenti su trading DEX e ordini",
-      "staking": "Staking",
-      "stakingDesc": "Notifiche su staking e ricompense",
-      "wallet": "Portafoglio",
-      "walletDesc": "Avvisi su pagamenti e saldo",
-      "system": "Sistema",
-      "systemDesc": "Aggiornamenti di sistema importanti e avvisi"
     }
   }
 }
