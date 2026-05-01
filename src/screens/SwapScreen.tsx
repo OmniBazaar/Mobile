@@ -17,15 +17,19 @@
  */
 
 import React, { useCallback, useMemo, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import Button from '@components/Button';
 import Card from '@components/Card';
-import ScreenHeader from '@components/ScreenHeader';
 import Input from '@components/Input';
 import LoadingSpinner from '@components/LoadingSpinner';
+import ScreenHeader from '@components/ScreenHeader';
+import WalletConnectBar, {
+  type SwapWalletMode,
+} from '@components/WalletConnectBar';
 import { colors } from '@theme/colors';
+
 import {
   attributionLabel,
   classifySwap,
@@ -33,11 +37,13 @@ import {
   executeQuote,
   formatPriceImpact,
   getQuote,
+  requiresEmbeddedWallet,
   type ExecuteSwapResult,
   type QuoteResponse,
   type SwapQuote,
   type TokenShortcut,
 } from '../services/SwapService';
+import type { WalletConnectConnection } from '../services/WalletConnectService';
 import { useAuthStore } from '../store/authStore';
 
 /** Props accepted by SwapScreen. */
@@ -76,16 +82,39 @@ export default function SwapScreen(props: SwapScreenProps): JSX.Element {
   const [executing, setExecuting] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
   const [quote, setQuote] = useState<SwapQuote | undefined>(undefined);
-  const [quoteResponse, setQuoteResponse] = useState<QuoteResponse | undefined>(undefined);
-  const [executionResult, setExecutionResult] = useState<ExecuteSwapResult | undefined>(undefined);
+  const [quoteResponse, setQuoteResponse] = useState<QuoteResponse | undefined>(
+    undefined,
+  );
+  const [executionResult, setExecutionResult] = useState<
+    ExecuteSwapResult | undefined
+  >(undefined);
+  const [walletMode, setWalletMode] = useState<SwapWalletMode>('embedded');
+  const [wcConnection, setWcConnection] =
+    useState<WalletConnectConnection | null>(null);
+
+  /** Address used for quotes + execute auth — depends on wallet mode. */
+  const activeAddress =
+    walletMode === 'walletconnect' && wcConnection !== null
+      ? wcConnection.address
+      : address;
+
+  /** True when the selected quote needs the embedded mnemonic (XOM leg). */
+  const quoteNeedsEmbedded =
+    quote !== undefined &&
+    walletMode === 'walletconnect' &&
+    requiresEmbeddedWallet(quote);
 
   const amountError = useMemo(() => {
     if (amount === '') return undefined;
     if (!/^\d+(\.\d+)?$/.test(amount.trim())) {
-      return t('swap.error.invalidAmount', { defaultValue: 'Enter a valid decimal amount.' });
+      return t('swap.error.invalidAmount', {
+        defaultValue: 'Enter a valid decimal amount.',
+      });
     }
     if (Number.parseFloat(amount) <= 0) {
-      return t('swap.error.zeroAmount', { defaultValue: 'Amount must be positive.' });
+      return t('swap.error.zeroAmount', {
+        defaultValue: 'Amount must be positive.',
+      });
     }
     return undefined;
   }, [amount, t]);
@@ -102,7 +131,7 @@ export default function SwapScreen(props: SwapScreenProps): JSX.Element {
   );
 
   const canQuote =
-    amount !== '' && amountError === undefined && address !== '' && !busy;
+    amount !== '' && amountError === undefined && activeAddress !== '' && !busy;
 
   const handleQuote = useCallback(async (): Promise<void> => {
     if (!canQuote) return;
@@ -118,14 +147,16 @@ export default function SwapScreen(props: SwapScreenProps): JSX.Element {
         tokenOutSymbol: to.symbol,
         targetChainId: to.chainId,
         amountIn: amount,
-        walletAddress: address,
+        walletAddress: activeAddress,
         maxSlippageBps: 50,
       });
       setQuoteResponse(response);
       setQuote(response.quotes[0]);
       if (response.quotes.length === 0) {
         setError(
-          t('swap.error.noQuotes', { defaultValue: 'No route found for this pair.' }),
+          t('swap.error.noQuotes', {
+            defaultValue: 'No route found for this pair.',
+          }),
         );
       }
     } catch (err) {
@@ -133,18 +164,32 @@ export default function SwapScreen(props: SwapScreenProps): JSX.Element {
     } finally {
       setBusy(false);
     }
-  }, [canQuote, from, to, amount, address, t]);
+  }, [canQuote, from, to, amount, activeAddress, t]);
 
   const handleExecute = useCallback(async (): Promise<void> => {
-    if (quote === undefined || address === '' || props.mnemonic === '') return;
+    if (quote === undefined || activeAddress === '') return;
+    if (walletMode === 'embedded' && props.mnemonic === '') return;
+    if (walletMode === 'walletconnect' && wcConnection === null) return;
+    if (walletMode === 'walletconnect' && quoteNeedsEmbedded) {
+      setError(
+        t('swap.external.requiresEmbedded', {
+          defaultValue:
+            'This route uses OmniCoin and must be signed by the embedded wallet. Switch to OmniWallet for OmniCoin swaps.',
+        }),
+      );
+      return;
+    }
     setExecuting(true);
     setError(undefined);
     setExecutionResult(undefined);
     try {
       const result = await executeQuote({
         quoteId: quote.quoteId,
-        address,
-        mnemonic: props.mnemonic,
+        address: activeAddress,
+        signer:
+          walletMode === 'walletconnect'
+            ? { kind: 'walletconnect' }
+            : { kind: 'embedded', mnemonic: props.mnemonic },
       });
       setExecutionResult(result);
     } catch (err) {
@@ -152,7 +197,15 @@ export default function SwapScreen(props: SwapScreenProps): JSX.Element {
     } finally {
       setExecuting(false);
     }
-  }, [quote, address, props.mnemonic]);
+  }, [
+    quote,
+    activeAddress,
+    walletMode,
+    wcConnection,
+    quoteNeedsEmbedded,
+    props.mnemonic,
+    t,
+  ]);
 
   return (
     <View style={styles.root}>
@@ -160,6 +213,12 @@ export default function SwapScreen(props: SwapScreenProps): JSX.Element {
         title={t('swap.title', { defaultValue: 'Swap' })}
         onBack={props.onBack}
       />
+      <WalletConnectBar
+        walletMode={walletMode}
+        onWalletModeChange={setWalletMode}
+        onConnectionChange={setWcConnection}
+      />
+
       <View style={styles.headerRow}>
         {props.onOpenLimit !== undefined && (
           <Pressable onPress={props.onOpenLimit} style={styles.privacyLink}>
@@ -194,7 +253,9 @@ export default function SwapScreen(props: SwapScreenProps): JSX.Element {
       </View>
 
       <Card style={styles.pairCard}>
-        <Text style={styles.fieldLabel}>{t('swap.from', { defaultValue: 'From' })}</Text>
+        <Text style={styles.fieldLabel}>
+          {t('swap.from', { defaultValue: 'From' })}
+        </Text>
         <TokenPicker selected={from} onSelect={setFrom} />
 
         <View style={styles.arrowRow}>
@@ -206,19 +267,26 @@ export default function SwapScreen(props: SwapScreenProps): JSX.Element {
               setQuote(undefined);
             }}
             accessibilityRole="button"
-            accessibilityLabel={t('swap.flip', { defaultValue: 'Flip from and to' })}
+            accessibilityLabel={t('swap.flip', {
+              defaultValue: 'Flip from and to',
+            })}
             style={styles.flipButton}
           >
             <Text style={styles.flipText}>⇅</Text>
           </Pressable>
         </View>
 
-        <Text style={styles.fieldLabel}>{t('swap.to', { defaultValue: 'To' })}</Text>
+        <Text style={styles.fieldLabel}>
+          {t('swap.to', { defaultValue: 'To' })}
+        </Text>
         <TokenPicker selected={to} onSelect={setTo} />
       </Card>
 
       <Input
-        label={t('swap.amount', { defaultValue: 'Amount ({{symbol}})', symbol: from.symbol })}
+        label={t('swap.amount', {
+          defaultValue: 'Amount ({{symbol}})',
+          symbol: from.symbol,
+        })}
         value={amount}
         onChangeText={setAmount}
         keyboardType="decimal-pad"
@@ -228,9 +296,13 @@ export default function SwapScreen(props: SwapScreenProps): JSX.Element {
 
       <Text style={styles.classification}>
         {classification === 'same-chain-swap'
-          ? t('swap.classification.sameChain', { defaultValue: 'Same-chain swap' })
+          ? t('swap.classification.sameChain', {
+              defaultValue: 'Same-chain swap',
+            })
           : classification === 'bridge-only'
-            ? t('swap.classification.bridgeOnly', { defaultValue: 'Cross-chain bridge' })
+            ? t('swap.classification.bridgeOnly', {
+                defaultValue: 'Cross-chain bridge',
+              })
             : t('swap.classification.bridgeAndSwap', {
                 defaultValue: 'Cross-chain bridge + swap',
               })}
@@ -299,19 +371,44 @@ export default function SwapScreen(props: SwapScreenProps): JSX.Element {
             style={styles.actionButton}
           />
           {quote !== undefined && executionResult === undefined && (
-            <Button
-              title={
-                executing
-                  ? t('swap.cta.executing', { defaultValue: 'Signing & broadcasting…' })
-                  : t('swap.cta.execute', { defaultValue: 'Swap Now' })
-              }
-              onPress={() => void handleExecute()}
-              disabled={executing || props.mnemonic === ''}
-              style={styles.actionButton}
-            />
+            <>
+              {quoteNeedsEmbedded && (
+                <Text style={styles.warning}>
+                  {t('swap.external.requiresEmbedded', {
+                    defaultValue:
+                      'This route uses OmniCoin and must be signed by the embedded wallet. Switch to OmniWallet for OmniCoin swaps.',
+                  })}
+                </Text>
+              )}
+              <Button
+                title={
+                  executing
+                    ? walletMode === 'walletconnect'
+                      ? t('swap.cta.confirmInWallet', {
+                          defaultValue: 'Confirm in your wallet…',
+                        })
+                      : t('swap.cta.executing', {
+                          defaultValue: 'Signing & broadcasting…',
+                        })
+                    : t('swap.cta.execute', { defaultValue: 'Swap Now' })
+                }
+                onPress={() => void handleExecute()}
+                disabled={
+                  executing ||
+                  quoteNeedsEmbedded ||
+                  (walletMode === 'embedded' && props.mnemonic === '') ||
+                  (walletMode === 'walletconnect' && wcConnection === null)
+                }
+                style={styles.actionButton}
+              />
+            </>
           )}
           {executionResult !== undefined && (
-            <View style={styles.successBox} accessibilityRole="alert" accessibilityLiveRegion="polite">
+            <View
+              style={styles.successBox}
+              accessibilityRole="alert"
+              accessibilityLiveRegion="polite"
+            >
               <Text style={styles.successTitle}>
                 {t('swap.success.title', { defaultValue: 'Submitted ✓' })}
               </Text>
@@ -364,9 +461,17 @@ function TokenPicker({
             accessibilityRole="button"
             accessibilityState={{ selected: active }}
           >
-            <Text style={[styles.tokenChipText, active && styles.tokenChipTextActive]}>
+            <Text
+              style={[
+                styles.tokenChipText,
+                active && styles.tokenChipTextActive,
+              ]}
+            >
               {tok.symbol}
-              <Text style={styles.tokenChipSub}>  · {shortChain(tok.chainId)}</Text>
+              <Text style={styles.tokenChipSub}>
+                {' '}
+                · {shortChain(tok.chainId)}
+              </Text>
             </Text>
           </Pressable>
         );
@@ -414,10 +519,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 16,
   },
-  privacyLink: { paddingVertical: 4, paddingHorizontal: 10, borderRadius: 10, borderWidth: 1, borderColor: colors.primary },
+  privacyLink: {
+    paddingVertical: 4,
+    paddingHorizontal: 10,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: colors.primary,
+  },
   privacyLinkText: { color: colors.primary, fontSize: 12, fontWeight: '600' },
   pairCard: { marginBottom: 16 },
-  fieldLabel: { color: colors.textSecondary, fontSize: 12, marginBottom: 8, textTransform: 'uppercase' },
+  fieldLabel: {
+    color: colors.textSecondary,
+    fontSize: 12,
+    marginBottom: 8,
+    textTransform: 'uppercase',
+  },
   tokenRow: { flexDirection: 'row', flexWrap: 'wrap' },
   tokenChip: {
     backgroundColor: colors.surfaceElevated,
@@ -429,8 +545,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.borderSoft,
   },
-  tokenChipActive: { backgroundColor: colors.primary, borderColor: colors.primary },
-  tokenChipText: { color: colors.textSecondary, fontSize: 13, fontWeight: '500' },
+  tokenChipActive: {
+    backgroundColor: colors.primary,
+    borderColor: colors.primary,
+  },
+  tokenChipText: {
+    color: colors.textSecondary,
+    fontSize: 13,
+    fontWeight: '500',
+  },
   tokenChipTextActive: { color: colors.background, fontWeight: '700' },
   tokenChipSub: { color: colors.textMuted, fontSize: 11 },
   arrowRow: { alignItems: 'center', marginVertical: 8 },
@@ -438,13 +561,27 @@ const styles = StyleSheet.create({
   flipText: { color: colors.primary, fontSize: 20 },
   classification: { color: colors.textMuted, fontSize: 12, marginBottom: 16 },
   quoteCard: { marginBottom: 16 },
-  quoteRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 },
+  quoteRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 8,
+  },
   quoteLabel: { color: colors.textSecondary, fontSize: 13 },
   quoteValue: { color: colors.textPrimary, fontSize: 16, fontWeight: '700' },
   quoteValueMuted: { color: colors.textPrimary, fontSize: 13 },
   attribution: { color: colors.primary, fontSize: 13, fontWeight: '600' },
   alternativesHint: { color: colors.textMuted, fontSize: 11, marginTop: 4 },
   error: { color: colors.danger, fontSize: 14, marginBottom: 12 },
+  warning: {
+    color: colors.warning,
+    fontSize: 13,
+    marginBottom: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: colors.warning,
+  },
   actions: { marginTop: 'auto' },
   actionButton: { marginBottom: 12 },
   successBox: {
@@ -455,7 +592,12 @@ const styles = StyleSheet.create({
     borderColor: colors.success,
     marginTop: 8,
   },
-  successTitle: { color: colors.success, fontSize: 14, fontWeight: '700', marginBottom: 4 },
+  successTitle: {
+    color: colors.success,
+    fontSize: 14,
+    fontWeight: '700',
+    marginBottom: 4,
+  },
   successBody: { color: colors.textPrimary, fontSize: 13, marginBottom: 6 },
   successTx: { color: colors.textMuted, fontSize: 11, fontFamily: 'monospace' },
 });

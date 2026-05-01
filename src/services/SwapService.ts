@@ -24,11 +24,19 @@ import {
 } from '@wallet/services/dex/UniversalSwapClient';
 
 import { submitTransaction } from './RelaySubmitService';
+import { requiresEmbeddedWallet } from './swapRouteClassification';
+import { getWalletConnect } from './WalletConnectService';
 
-export type { ExecuteResponse, QuoteResponse, SwapQuote, UniversalSwapQuoteParams };
+export type {
+  ExecuteResponse,
+  QuoteResponse,
+  SwapQuote,
+  UniversalSwapQuoteParams,
+};
 
 /** Canonical native-token sentinel used by the validator. */
-export const NATIVE_TOKEN_SENTINEL = '0x0000000000000000000000000000000000000000';
+export const NATIVE_TOKEN_SENTINEL =
+  '0x0000000000000000000000000000000000000000';
 
 /** Common token shortcuts for the Mobile swap dropdown. */
 export interface TokenShortcut {
@@ -40,16 +48,61 @@ export interface TokenShortcut {
 }
 
 export const COMMON_TOKENS: TokenShortcut[] = [
-  { chainId: 88008, symbol: 'XOM', address: NATIVE_TOKEN_SENTINEL, decimals: 18 },
+  {
+    chainId: 88008,
+    symbol: 'XOM',
+    address: NATIVE_TOKEN_SENTINEL,
+    decimals: 18,
+  },
   { chainId: 1, symbol: 'ETH', address: NATIVE_TOKEN_SENTINEL, decimals: 18 },
-  { chainId: 1, symbol: 'USDC', address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', decimals: 6 },
-  { chainId: 1, symbol: 'USDT', address: '0xdAC17F958D2ee523a2206206994597C13D831ec7', decimals: 6 },
-  { chainId: 42161, symbol: 'ETH', address: NATIVE_TOKEN_SENTINEL, decimals: 18 },
-  { chainId: 42161, symbol: 'USDC', address: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831', decimals: 6 },
-  { chainId: 8453, symbol: 'ETH', address: NATIVE_TOKEN_SENTINEL, decimals: 18 },
-  { chainId: 8453, symbol: 'USDC', address: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', decimals: 6 },
-  { chainId: 137, symbol: 'MATIC', address: NATIVE_TOKEN_SENTINEL, decimals: 18 },
-  { chainId: 137, symbol: 'USDC', address: '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359', decimals: 6 },
+  {
+    chainId: 1,
+    symbol: 'USDC',
+    address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+    decimals: 6,
+  },
+  {
+    chainId: 1,
+    symbol: 'USDT',
+    address: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+    decimals: 6,
+  },
+  {
+    chainId: 42161,
+    symbol: 'ETH',
+    address: NATIVE_TOKEN_SENTINEL,
+    decimals: 18,
+  },
+  {
+    chainId: 42161,
+    symbol: 'USDC',
+    address: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831',
+    decimals: 6,
+  },
+  {
+    chainId: 8453,
+    symbol: 'ETH',
+    address: NATIVE_TOKEN_SENTINEL,
+    decimals: 18,
+  },
+  {
+    chainId: 8453,
+    symbol: 'USDC',
+    address: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
+    decimals: 6,
+  },
+  {
+    chainId: 137,
+    symbol: 'MATIC',
+    address: NATIVE_TOKEN_SENTINEL,
+    decimals: 18,
+  },
+  {
+    chainId: 137,
+    symbol: 'USDC',
+    address: '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359',
+    decimals: 6,
+  },
 ];
 
 /**
@@ -59,7 +112,9 @@ export const COMMON_TOKENS: TokenShortcut[] = [
  * @param params - Quote request parameters.
  * @returns The full quote response (first element is best).
  */
-export async function getQuote(params: UniversalSwapQuoteParams): Promise<QuoteResponse> {
+export async function getQuote(
+  params: UniversalSwapQuoteParams,
+): Promise<QuoteResponse> {
   return await getUniversalSwapClient().getQuote(params);
 }
 
@@ -94,7 +149,12 @@ export function formatPriceImpact(bps: number): string {
  * @param params - Swap pair.
  * @returns Classification string.
  */
-export function classifySwap(params: Pick<UniversalSwapQuoteParams, 'sourceChainId' | 'targetChainId' | 'tokenInSymbol' | 'tokenOutSymbol'>): 'same-chain-swap' | 'bridge-only' | 'bridge-and-swap' {
+export function classifySwap(
+  params: Pick<
+    UniversalSwapQuoteParams,
+    'sourceChainId' | 'targetChainId' | 'tokenInSymbol' | 'tokenOutSymbol'
+  >,
+): 'same-chain-swap' | 'bridge-only' | 'bridge-and-swap' {
   const sameChain = params.sourceChainId === params.targetChainId;
   const sameToken = params.tokenInSymbol === params.tokenOutSymbol;
   if (sameChain) return 'same-chain-swap';
@@ -116,6 +176,13 @@ export interface ExecuteSwapResult {
   message: string;
 }
 
+/** How the per-tx sign + broadcast should be performed. */
+export type SwapSigner =
+  /** BIP39 mnemonic in memory — gasless on L1 via OmniRelay, direct otherwise. */
+  | { kind: 'embedded'; mnemonic: string }
+  /** WalletConnect v2 session — pop the connected wallet for each tx. */
+  | { kind: 'walletconnect' };
+
 /**
  * Execute a previously-quoted swap.
  *
@@ -130,30 +197,59 @@ export interface ExecuteSwapResult {
  *      broadcast so the validator's status aggregator can track the
  *      operation without waiting for its own mempool observer.
  *
- * The mnemonic is supplied by the caller and held in memory only for
- * the duration of this function — Phase 3 Week 3 wires the decryption
- * flow via EncryptionService so the caller never sees plaintext.
+ * Embedded mode keeps the mnemonic in memory only for the duration of
+ * this function. WalletConnect mode forwards each unsigned tx to the
+ * paired wallet via `eth_sendTransaction`; routes that touch OmniCoin
+ * L1 are rejected because external EOAs cannot sign EIP-2771 forward
+ * requests for OmniRelay.
  *
- * @param params - Quote ID + address + mnemonic.
+ * @param params - Quote ID + address + the chosen signer.
  * @returns ExecuteSwapResult with every broadcast tx hash.
+ * @throws Error when WalletConnect mode is selected but the route
+ *   requires the embedded mnemonic (XOM-leg present).
  */
 export async function executeQuote(params: {
   quoteId: string;
   address: string;
-  mnemonic: string;
+  signer: SwapSigner;
 }): Promise<ExecuteSwapResult> {
   const client = getUniversalSwapClient();
-  const response: ExecuteResponse = await client.execute(params.quoteId, params.address);
+  const response: ExecuteResponse = await client.execute(
+    params.quoteId,
+    params.address,
+  );
 
   const txHashes: string[] = [];
   const chainIds: number[] = [];
 
   const unsigned = response.transactions ?? [];
-  for (const tx of unsigned) {
-    const hash = await submitTransaction(
-      { to: tx.to, data: tx.data, value: tx.value, chainId: tx.chainId },
-      params.mnemonic,
+
+  if (
+    params.signer.kind === 'walletconnect' &&
+    unsigned.some((t) => t.chainId === 88008)
+  ) {
+    throw new Error(
+      'This route uses OmniCoin and must be signed by the embedded wallet. ' +
+        'Switch to OmniWallet for OmniCoin swaps.',
     );
+  }
+
+  for (const tx of unsigned) {
+    const hash =
+      params.signer.kind === 'walletconnect'
+        ? await getWalletConnect().sendTransaction(tx.chainId, {
+            from: params.address,
+            to: tx.to,
+            data: tx.data,
+            ...(tx.value !== '' &&
+              tx.value !== '0' && {
+                value: '0x' + BigInt(tx.value).toString(16),
+              }),
+          })
+        : await submitTransaction(
+            { to: tx.to, data: tx.data, value: tx.value, chainId: tx.chainId },
+            params.signer.mnemonic,
+          );
     txHashes.push(hash);
     chainIds.push(tx.chainId);
     // Route the on-chain hash back to the validator so it can track
@@ -180,6 +276,9 @@ export async function executeQuote(params: {
     message: response.message,
   };
 }
+
+/** Re-export so screens can import the embedded-wallet predicate. */
+export { requiresEmbeddedWallet };
 
 // Note: the per-tx sign/broadcast/relay logic lives in
 // `./RelaySubmitService.submitTransaction`, which chooses OmniRelay for

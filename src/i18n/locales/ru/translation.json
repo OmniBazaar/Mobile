@@ -9608,6 +9608,18 @@
       "lbpNotDeployed": "Контракт LBP не развёрнут в этой сети.",
       "noRouter": "Контракт маршрутизатора обмена недоступен. Попробуйте позже.",
       "routerNotDeployed": "OmniSwapRouter не развёрнут в этой сети."
+    },
+    "external": {
+      "embeddedTab": "OmniWallet",
+      "externalTab": "Внешний кошелёк",
+      "connect": "Подключить кошелёк",
+      "disconnect": "Отключить",
+      "waitingForApproval": "Ожидание одобрения кошелька…",
+      "missingProjectId": "ID проекта WalletConnect не настроен. Установите EXPO_PUBLIC_WALLETCONNECT_PROJECT_ID и перезагрузите.",
+      "requiresEmbedded": "Этот маршрут использует OmniCoin и должен быть подписан встроенным кошельком. Переключитесь на OmniWallet для свопов OmniCoin."
+    },
+    "cta": {
+      "confirmInWallet": "Подтвердите в кошельке…"
     }
   },
   "exchange": {

@@ -8796,6 +8796,18 @@
       "lbpNotDeployed": "LBP-Vertrag nicht in diesem Netzwerk bereitgestellt.",
       "noRouter": "Kein Tausch-Router-Vertrag verfuegbar. Bitte versuchen Sie es spaeter erneut.",
       "routerNotDeployed": "OmniSwapRouter nicht in diesem Netzwerk bereitgestellt."
+    },
+    "external": {
+      "embeddedTab": "OmniWallet",
+      "externalTab": "Externe Wallet",
+      "connect": "Wallet verbinden",
+      "disconnect": "Trennen",
+      "waitingForApproval": "Warten auf Wallet-Bestätigung…",
+      "missingProjectId": "WalletConnect-Projekt-ID ist nicht konfiguriert. Setzen Sie EXPO_PUBLIC_WALLETCONNECT_PROJECT_ID und laden Sie neu.",
+      "requiresEmbedded": "Diese Route verwendet OmniCoin und muss von der integrierten Wallet signiert werden. Wechseln Sie zu OmniWallet für OmniCoin-Tauschvorgänge."
+    },
+    "cta": {
+      "confirmInWallet": "Bestätigen Sie in Ihrer Wallet…"
     }
   },
   "exchange": {

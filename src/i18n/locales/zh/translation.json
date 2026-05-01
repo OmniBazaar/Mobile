@@ -9662,6 +9662,18 @@
       "lbpNotDeployed": "LBP 合约未部署在此网络上。",
       "noRouter": "没有可用的兑换路由器合约。请稍后重试。",
       "routerNotDeployed": "OmniSwapRouter 未部署在此网络上。"
+    },
+    "external": {
+      "embeddedTab": "OmniWallet",
+      "externalTab": "外部钱包",
+      "connect": "连接钱包",
+      "disconnect": "断开连接",
+      "waitingForApproval": "等待钱包批准…",
+      "missingProjectId": "未配置 WalletConnect 项目 ID。请设置 EXPO_PUBLIC_WALLETCONNECT_PROJECT_ID 并重新加载。",
+      "requiresEmbedded": "此路线使用 OmniCoin,必须由内置钱包签名。切换到 OmniWallet 进行 OmniCoin 交换。"
+    },
+    "cta": {
+      "confirmInWallet": "在您的钱包中确认…"
     }
   },
   "exchange": {

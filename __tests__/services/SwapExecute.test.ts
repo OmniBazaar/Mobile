@@ -59,7 +59,7 @@ describe('SwapService.executeQuote', () => {
     await executeQuote({
       quoteId: 'q-abc',
       address: '0x1111111111111111111111111111111111111111',
-      mnemonic: MNEMONIC,
+      signer: { kind: 'embedded', mnemonic: MNEMONIC },
     });
     expect(mockExecute).toHaveBeenCalledWith(
       'q-abc',
@@ -81,7 +81,7 @@ describe('SwapService.executeQuote', () => {
     const result = await executeQuote({
       quoteId: 'q-1',
       address: '0x1111111111111111111111111111111111111111',
-      mnemonic: MNEMONIC,
+      signer: { kind: 'embedded', mnemonic: MNEMONIC },
     });
 
     expect(mockSubmitTransaction).toHaveBeenCalledTimes(2);
@@ -111,7 +111,7 @@ describe('SwapService.executeQuote', () => {
     const result = await executeQuote({
       quoteId: 'q-l1',
       address: '0x6666666666666666666666666666666666666666',
-      mnemonic: MNEMONIC,
+      signer: { kind: 'embedded', mnemonic: MNEMONIC },
     });
 
     expect(mockSubmitTransaction).toHaveBeenCalledTimes(1);
@@ -137,7 +137,7 @@ describe('SwapService.executeQuote', () => {
     await executeQuote({
       quoteId: 'q-2',
       address: '0x2222222222222222222222222222222222222222',
-      mnemonic: MNEMONIC,
+      signer: { kind: 'embedded', mnemonic: MNEMONIC },
     });
 
     // Each on-chain tx should push its hash to the validator with the
@@ -165,7 +165,7 @@ describe('SwapService.executeQuote', () => {
     const result = await executeQuote({
       quoteId: 'q-3',
       address: '0x3333333333333333333333333333333333333333',
-      mnemonic: MNEMONIC,
+      signer: { kind: 'embedded', mnemonic: MNEMONIC },
     });
 
     // Tx was still broadcast + included in the result.
@@ -190,7 +190,7 @@ describe('SwapService.executeQuote', () => {
       executeQuote({
         quoteId: 'q-4',
         address: '0x4444444444444444444444444444444444444444',
-        mnemonic: MNEMONIC,
+        signer: { kind: 'embedded', mnemonic: MNEMONIC },
       }),
     ).rejects.toThrow(/no RPC provider for chainId 999/);
   });
@@ -206,7 +206,7 @@ describe('SwapService.executeQuote', () => {
     const result = await executeQuote({
       quoteId: 'q-5',
       address: '0x5555555555555555555555555555555555555555',
-      mnemonic: MNEMONIC,
+      signer: { kind: 'embedded', mnemonic: MNEMONIC },
     });
     expect(result.txHashes).toEqual([]);
     expect(result.chainIds).toEqual([]);

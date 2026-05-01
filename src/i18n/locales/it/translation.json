@@ -8840,6 +8840,18 @@
       "lbpNotDeployed": "LBP contract not deployed on this network.",
       "noRouter": "No swap router contract available. Please try again later.",
       "routerNotDeployed": "OmniSwapRouter not deployed on this network."
+    },
+    "external": {
+      "embeddedTab": "OmniWallet",
+      "externalTab": "Wallet Esterno",
+      "connect": "Connetti Wallet",
+      "disconnect": "Disconnetti",
+      "waitingForApproval": "In attesa di approvazione del wallet…",
+      "missingProjectId": "L'ID progetto WalletConnect non è configurato. Imposta EXPO_PUBLIC_WALLETCONNECT_PROJECT_ID e ricarica.",
+      "requiresEmbedded": "Questa rotta usa OmniCoin e deve essere firmata dal wallet integrato. Passa a OmniWallet per gli swap OmniCoin."
+    },
+    "cta": {
+      "confirmInWallet": "Conferma nel tuo wallet…"
     }
   },
   "exchange": {
