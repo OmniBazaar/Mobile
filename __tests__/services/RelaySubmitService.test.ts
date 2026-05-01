@@ -17,12 +17,18 @@ jest.mock('@wallet/services/relay/WalletRelayingSigner', () => ({
   })),
 }));
 
+/** Toggle so tests can flip relay availability per scenario. */
+let mockRelayAvailable = true;
 jest.mock('@wallet/services/relay/OmniRelayClient', () => ({
   OmniRelayClient: {
     getInstance: () => ({
-      isRelayAvailable: (addresses: { OmniForwarder?: string }) =>
-        addresses.OmniForwarder !== undefined &&
-        addresses.OmniForwarder !== '0x0000000000000000000000000000000000000000',
+      isRelayAvailable: (addresses: { OmniForwarder?: string }) => {
+        if (!mockRelayAvailable) return false;
+        return (
+          addresses.OmniForwarder !== undefined &&
+          addresses.OmniForwarder !== '0x0000000000000000000000000000000000000000'
+        );
+      },
     }),
   },
 }));
@@ -49,6 +55,7 @@ jest.mock('ethers', () => {
 import {
   broadcastDirect,
   OMNICOIN_L1_CHAIN_ID,
+  RelayUnavailableError,
   relayL1Transaction,
   shouldRelay,
   submitTransaction,
@@ -60,6 +67,7 @@ const MNEMONIC =
 describe('RelaySubmitService', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockRelayAvailable = true;
     mockRelaySend.mockResolvedValue({
       hash: '0xrelay',
       wait: async (): Promise<null> => null,
@@ -109,6 +117,46 @@ describe('RelaySubmitService', () => {
       await expect(
         relayL1Transaction({ to: '0xA', data: '0x', value: '0', chainId: 1 }, MNEMONIC),
       ).rejects.toThrow(/expected chainId 88008/);
+    });
+  });
+
+  describe('submitTransaction fail-closed for unavailable relay', () => {
+    it('throws RelayUnavailableError on L1 when relay is unreachable', async () => {
+      mockRelayAvailable = false;
+      const promise = submitTransaction(
+        { to: '0xA', data: '0x', value: '0', chainId: OMNICOIN_L1_CHAIN_ID },
+        MNEMONIC,
+      );
+      await expect(promise).rejects.toBeInstanceOf(RelayUnavailableError);
+      await expect(promise).rejects.toMatchObject({ code: 'RELAY_UNAVAILABLE' });
+      expect(mockRelaySend).not.toHaveBeenCalled();
+      expect(mockDirectSend).not.toHaveBeenCalled();
+    });
+
+    it('does NOT silently fall back to direct broadcast for L1', async () => {
+      mockRelayAvailable = false;
+      try {
+        await submitTransaction(
+          { to: '0xA', data: '0x', value: '0', chainId: OMNICOIN_L1_CHAIN_ID },
+          MNEMONIC,
+        );
+      } catch {
+        // expected
+      }
+      // The previous bug: shouldRelay() === false → broadcastDirect.
+      // Regression check: must NOT broadcast directly when relay is the
+      // only correct path. Real users have zero native XOM.
+      expect(mockDirectSend).not.toHaveBeenCalled();
+    });
+
+    it('still uses direct broadcast for non-L1 chains regardless of relay state', async () => {
+      mockRelayAvailable = false; // shouldn't matter for non-L1
+      const hash = await submitTransaction(
+        { to: '0xA', data: '0x', value: '0', chainId: 1 },
+        MNEMONIC,
+      );
+      expect(hash).toBe('0xdirect');
+      expect(mockRelaySend).not.toHaveBeenCalled();
     });
   });
 

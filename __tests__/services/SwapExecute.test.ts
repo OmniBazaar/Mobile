@@ -35,6 +35,18 @@ jest.mock('../../src/services/RelaySubmitService', () => ({
   broadcastDirect: jest.fn(),
 }));
 
+// Mock the WalletConnect service so we can assert routing without
+// pulling in @walletconnect/react-native-compat (which installs RN
+// globals Jest can't satisfy).
+const mockWcSendTransaction = jest.fn(
+  async (chainId: number) => `0xwc${(chainId ?? 0).toString(16).padStart(2, '0')}`,
+);
+jest.mock('../../src/services/WalletConnectService', () => ({
+  getWalletConnect: () => ({
+    sendTransaction: mockWcSendTransaction,
+  }),
+}));
+
 import { executeQuote } from '../../src/services/SwapService';
 
 const MNEMONIC =
@@ -193,6 +205,90 @@ describe('SwapService.executeQuote', () => {
         signer: { kind: 'embedded', mnemonic: MNEMONIC },
       }),
     ).rejects.toThrow(/no RPC provider for chainId 999/);
+  });
+
+  describe('walletconnect signer', () => {
+    it('routes per-tx through WalletConnect.sendTransaction (no mnemonic)', async () => {
+      mockExecute.mockResolvedValue({
+        operationId: 'op-wc',
+        status: 'submitted',
+        message: '',
+        transactions: [
+          {
+            step: 'swap',
+            chainId: 42161,
+            to: '0xRouter',
+            data: '0xfeed',
+            value: '1000000000000000',
+            description: '',
+          },
+        ],
+      });
+
+      const result = await executeQuote({
+        quoteId: 'q-wc',
+        address: '0x9999999999999999999999999999999999999999',
+        signer: { kind: 'walletconnect' },
+      });
+
+      expect(mockWcSendTransaction).toHaveBeenCalledTimes(1);
+      const [chainId, tx] = mockWcSendTransaction.mock.calls[0] ?? [];
+      expect(chainId).toBe(42161);
+      expect(tx).toMatchObject({
+        from: '0x9999999999999999999999999999999999999999',
+        to: '0xRouter',
+        data: '0xfeed',
+        value: '0x' + BigInt('1000000000000000').toString(16),
+      });
+      // Embedded path must not be touched.
+      expect(mockSubmitTransaction).not.toHaveBeenCalled();
+      expect(result.txHashes).toHaveLength(1);
+      expect(result.txHashes[0]).toBe(`0xwc${(42161).toString(16).padStart(2, '0')}`);
+    });
+
+    it('refuses to send any tx when an unsigned step targets OmniCoin L1', async () => {
+      mockExecute.mockResolvedValue({
+        operationId: 'op-wc-l1',
+        status: 'submitted',
+        message: '',
+        transactions: [
+          { step: 'approve', chainId: 1, to: '0xA', data: '0x', value: '0', description: '' },
+          { step: 'swap', chainId: 88008, to: '0xB', data: '0x', value: '0', description: '' },
+        ],
+      });
+
+      await expect(
+        executeQuote({
+          quoteId: 'q-wc-blocked',
+          address: '0x8888888888888888888888888888888888888888',
+          signer: { kind: 'walletconnect' },
+        }),
+      ).rejects.toThrow(/OmniCoin/);
+      // Crucially: NO tx broadcast at all — neither the L1 leg nor the
+      // earlier non-L1 leg. Fail-closed before any signing happens.
+      expect(mockWcSendTransaction).not.toHaveBeenCalled();
+      expect(mockSubmitTransaction).not.toHaveBeenCalled();
+    });
+
+    it('omits value field for zero-value txs (does not send "0x0")', async () => {
+      mockExecute.mockResolvedValue({
+        operationId: 'op-wc-zero',
+        status: 'submitted',
+        message: '',
+        transactions: [
+          { step: 'swap', chainId: 8453, to: '0xZ', data: '0x', value: '0', description: '' },
+        ],
+      });
+
+      await executeQuote({
+        quoteId: 'q-wc-zero',
+        address: '0x7777777777777777777777777777777777777777',
+        signer: { kind: 'walletconnect' },
+      });
+
+      const [, tx] = mockWcSendTransaction.mock.calls[0] ?? [];
+      expect(tx).not.toHaveProperty('value');
+    });
   });
 
   it('returns an empty txHashes array when execute returns zero transactions', async () => {
