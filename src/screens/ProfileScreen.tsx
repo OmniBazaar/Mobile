@@ -28,7 +28,8 @@ export type ProfileDestination =
   | 'participation-score'
   | 'staking-calculator'
   | 'referrals'
-  | 'address-book';
+  | 'address-book'
+  | 'notifications';
 
 /** Props accepted by ProfileScreen. */
 export interface ProfileScreenProps {
@@ -98,6 +99,11 @@ export default function ProfileScreen(props: ProfileScreenProps): JSX.Element {
       key: 'address-book',
       label: t('profile.addressBook', { defaultValue: 'Address Book' }),
       hint: t('profile.addressBookHint', { defaultValue: 'Save trusted contacts for fast sends' }),
+    },
+    {
+      key: 'notifications',
+      label: t('profile.notifications', { defaultValue: 'Notifications' }),
+      hint: t('profile.notificationsHint', { defaultValue: 'Trade, escrow, chat, security alerts' }),
     },
     {
       key: 'kyc',

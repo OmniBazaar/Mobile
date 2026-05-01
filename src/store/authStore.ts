@@ -98,17 +98,27 @@ export const useAuthStore = create<AuthStoreState>((set) => ({
     set({ state: 'guest', address: '', username: '', mnemonic: '', familyAddresses: {} }),
   markUnlocked: () => {
     set({ state: 'unlocked', lastUnlockMs: Date.now() });
-    // Kick off the decentralisation-dashboard heartbeat as soon as
-    // we have an unlocked session + address. Idempotent: second call
-    // is a no-op inside the reporter. Lazy-imported so unit tests
-    // that exercise authStore don't pull in fetch / setInterval.
+    // Kick off the decentralisation-dashboard heartbeat + push-token
+    // registration + chat unread badge as soon as we have an unlocked
+    // session + address. All three are lazy-imported so unit tests
+    // that exercise authStore don't pull in fetch / setInterval / etc.
     void (async (): Promise<void> => {
       try {
-        const mod = await import('../services/RpcOriginReporter');
+        const reporter = await import('../services/RpcOriginReporter');
         const addr = useAuthStore.getState().address;
-        if (addr !== '') mod.startRpcOriginReporter(addr);
+        if (addr !== '') reporter.startRpcOriginReporter(addr);
       } catch {
         /* reporter unavailable — silent. */
+      }
+      try {
+        const push = await import('../services/NotificationService');
+        const addr = useAuthStore.getState().address;
+        if (addr !== '') {
+          await push.registerPushToken(addr);
+          push.startTapListener();
+        }
+      } catch {
+        /* push module unavailable in this build — silent. */
       }
     })();
   },
@@ -127,6 +137,12 @@ export const useAuthStore = create<AuthStoreState>((set) => ({
         mod.stopRpcOriginReporter();
       } catch {
         /* reporter unavailable — silent. */
+      }
+      try {
+        const push = await import('../services/NotificationService');
+        push.stopTapListener();
+      } catch {
+        /* push module unavailable — silent. */
       }
     })();
   },

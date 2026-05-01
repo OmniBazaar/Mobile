@@ -28,6 +28,7 @@ import TrezorWebViewScreen from '../../screens/TrezorWebViewScreen';
 import ParticipationScoreScreen from '../../screens/ParticipationScoreScreen';
 import StakingCalculatorScreen from '../../screens/StakingCalculatorScreen';
 import ReferralScreen from '../../screens/ReferralScreen';
+import NotificationsScreen from '../../screens/NotificationsScreen';
 import { ComingSoonScreen } from '../shared/ComingSoonScreen';
 
 const Stack = createNativeStackNavigator<ProfileStackParamList>();
@@ -82,6 +83,9 @@ function destinationToRoute(
       return;
     case 'address-book':
       nav.navigate('Wallet', { screen: 'AddressBook' });
+      return;
+    case 'notifications':
+      nav.navigate('Notifications');
       return;
   }
 }
@@ -191,6 +195,12 @@ function ReferralWrapper(): React.ReactElement {
   return <ReferralScreen onBack={goBack(nav)} />;
 }
 
+/** Notifications wrapper. */
+function NotificationsWrapper(): React.ReactElement {
+  const nav = useNavigation();
+  return <NotificationsScreen onBack={goBack(nav)} />;
+}
+
 /**
  * Build the Profile-tab stack.
  *
@@ -218,11 +228,7 @@ export default function ProfileStack(): React.ReactElement {
         component={ComingSoonScreen}
         initialParams={{ feature: 'Earnings History', sprint: 'Sprint 3 polish' }}
       />
-      <Stack.Screen
-        name="Notifications"
-        component={ComingSoonScreen}
-        initialParams={{ feature: 'Notifications', sprint: 'Sprint 3 (push wiring)' }}
-      />
+      <Stack.Screen name="Notifications" component={NotificationsWrapper} />
       <Stack.Screen
         name="Governance"
         component={ComingSoonScreen}

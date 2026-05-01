@@ -12,26 +12,14 @@
  *     out via props only.
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 import { useTranslation } from 'react-i18next';
 
-// Local stub for the screen-capture API. We intentionally don't depend on
-// `expo-screen-capture` because its native module calls Android 14's
-// `registerScreenCaptureObserver` at init, which throws SecurityException
-// on Pixel 7 Pro (Android 14) even with `DETECT_SCREEN_CAPTURE` declared
-// in the manifest. The native init failure crashed the entire JS bundle
-// before `main` could register with `AppRegistry`. Until the upstream
-// expo module ships a fix, screenshot prevention is a best-effort no-op
-// on mobile; the seed backup flow still gates display behind a tap.
-const ScreenCapture = {
-  preventScreenCaptureAsync: async (): Promise<void> => undefined,
-  allowScreenCaptureAsync: async (): Promise<void> => undefined,
-};
-
 import Button from '@components/Button';
 import { colors } from '@theme/colors';
+import { useScreenCaptureBlocked } from '../services/ScreenCaptureGuard';
 
 /** Props accepted by SeedBackupScreen. */
 export interface SeedBackupScreenProps {
@@ -52,17 +40,10 @@ export default function SeedBackupScreen(props: SeedBackupScreenProps): JSX.Elem
   const { t } = useTranslation();
   const [revealed, setRevealed] = useState(false);
   const words = props.mnemonic.trim().split(/\s+/);
-
-  useEffect(() => {
-    void ScreenCapture.preventScreenCaptureAsync().catch((err) => {
-      console.warn('[seed-backup] preventScreenCaptureAsync failed', err);
-    });
-    return () => {
-      void ScreenCapture.allowScreenCaptureAsync().catch(() => {
-        /* best effort */
-      });
-    };
-  }, []);
+  // Block screenshots + screen recording for as long as this screen is
+  // mounted. Native module is real (Sprint 3 H8 — the prior stub was
+  // removed and `expo-screen-capture` is now a first-class dep).
+  useScreenCaptureBlocked('seed-backup');
 
   const handleCopy = async (): Promise<void> => {
     await Clipboard.setStringAsync(props.mnemonic);

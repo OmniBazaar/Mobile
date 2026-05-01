@@ -27,6 +27,8 @@ import { parseAmount, sendErc20, sendNative, type SendResult } from '../services
 import { ERC20_TOKENS } from '../services/PortfolioService';
 import { resolveAddress, isAddress } from '../services/UsernameResolver';
 import { estimateGasFee, type GasEstimate } from '../services/GasEstimator';
+import { useScreenCaptureBlocked } from '../services/ScreenCaptureGuard';
+import * as haptics from '../utils/haptics';
 
 /** Asset (native or ERC-20) the user can send. */
 interface SendAsset {
@@ -108,14 +110,23 @@ export interface SendScreenProps {
  */
 export default function SendScreen(props: SendScreenProps): JSX.Element {
   const { t } = useTranslation();
+  // Block screenshots — Send shows recipient + amount + balances, all
+  // sensitive enough that we shouldn't leak them to remote-display.
+  useScreenCaptureBlocked('send');
   const ASSETS = useMemo(() => allAssets(), []);
-  const [asset, setAsset] = useState<SendAsset>(ASSETS[0] ?? {
-    chainId: 88008,
-    chainName: 'OmniCoin',
-    symbol: 'XOM',
-    decimals: 18,
-    contractAddress: '0x1eE61487F08F715055358A1F020A86c9E571ED78',
-  });
+  // ASSETS is guaranteed non-empty by `allAssets()` (it always returns
+  // at least the OmniCoin XOM row); the optional-chaining + fallback
+  // is a defensive guard for edge cases. Address is sourced from
+  // OMNICOIN_ADDRESSES via PortfolioService — never hardcoded.
+  const [asset, setAsset] = useState<SendAsset>(
+    ASSETS[0] ?? ({
+      chainId: 88008,
+      chainName: 'OmniCoin',
+      symbol: 'XOM',
+      decimals: 18,
+      contractAddress: ERC20_TOKENS.find((t) => t.chainId === 88008 && t.symbol === 'XOM')?.address ?? '',
+    } as SendAsset),
+  );
   const [to, setTo] = useState('');
   const [resolvedTo, setResolvedTo] = useState<string | undefined>(undefined);
   const [resolveError, setResolveError] = useState<string | undefined>(undefined);
@@ -218,6 +229,7 @@ export default function SendScreen(props: SendScreenProps): JSX.Element {
           style: 'default',
           onPress: () => {
             void (async () => {
+              haptics.impactMedium();
               setBusy(true);
               setError(undefined);
               try {
@@ -237,8 +249,10 @@ export default function SendScreen(props: SendScreenProps): JSX.Element {
                         to: resolvedTo,
                         amount: parsed,
                       });
+                haptics.success();
                 props.onSent(result);
               } catch (err) {
+                haptics.error();
                 setError(err instanceof Error ? err.message : String(err));
               } finally {
                 setBusy(false);

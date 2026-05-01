@@ -70,6 +70,7 @@
     "expo-localization": "~14.8.0",
     "expo-location": "~16.5.0",
     "expo-notifications": "~0.27.0",
+    "expo-screen-capture": "~5.8.0",
     "expo-secure-store": "~12.8.0",
     "expo-sharing": "~11.10.0",
     "expo-splash-screen": "~0.26.0",
@@ -127,13 +128,7 @@
     "typescript": "^5.3.0"
   },
   "_jest_comment": "Jest config now lives in jest.config.js (see that file).",
-  "expo": {
-    "autolinking": {
-      "exclude": [
-        "expo-screen-capture"
-      ]
-    }
-  },
+  "expo": {},
   "private": true,
   "engines": {
     "node": ">=22.18.0",

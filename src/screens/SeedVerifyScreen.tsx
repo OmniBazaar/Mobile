@@ -15,6 +15,7 @@ import Button from '@components/Button';
 import Input from '@components/Input';
 import { colors } from '@theme/colors';
 import { chooseVerifyPositions } from '../services/WalletCreationService';
+import { useScreenCaptureBlocked } from '../services/ScreenCaptureGuard';
 
 /** Props accepted by SeedVerifyScreen. */
 export interface SeedVerifyScreenProps {
@@ -33,6 +34,7 @@ export interface SeedVerifyScreenProps {
  */
 export default function SeedVerifyScreen(props: SeedVerifyScreenProps): JSX.Element {
   const { t } = useTranslation();
+  useScreenCaptureBlocked('seed-verify');
 
   const words = props.mnemonic.trim().split(/\s+/);
   const positions = useMemo(

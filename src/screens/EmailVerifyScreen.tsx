@@ -19,6 +19,7 @@ import Input from '@components/Input';
 import LoadingSpinner from '@components/LoadingSpinner';
 import { colors } from '@theme/colors';
 import { getBaseUrl } from '../services/BootstrapService';
+import { useScreenCaptureBlocked } from '../services/ScreenCaptureGuard';
 
 /** Props accepted by EmailVerifyScreen. */
 export interface EmailVerifyScreenProps {
@@ -45,6 +46,9 @@ export default function EmailVerifyScreen(props: EmailVerifyScreenProps): JSX.El
   const [resending, setResending] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
   const [resendNotice, setResendNotice] = useState<string | undefined>(undefined);
+  // Block screenshots — verification codes are sensitive and should
+  // not leak to remote-display tools or screen recordings.
+  useScreenCaptureBlocked('email-verify');
 
   const handleVerify = useCallback(async (): Promise<void> => {
     setError(undefined);
