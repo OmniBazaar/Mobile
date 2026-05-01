@@ -114,9 +114,11 @@ export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Elem
 
   const { nonZeroChains, totalErrorRows } = summarize(balances);
 
-  // Validator-aggregated USD totals (hits `/api/v1/wallet/portfolio/:address`).
-  // Independent of the per-chain Multicall fan-out above so the hero can
-  // populate even when some chains time out, and vice versa.
+  // On-device portfolio aggregation. ClientPortfolioService runs the
+  // same Multicall3 fan-out as the per-token list above, applies USD
+  // pricing via PriceOracle (CoinGecko → Li.Fi), and caches for 30 s.
+  // Architectural mandate (§53): every blockchain RPC originates from
+  // the user's IP, not the validator.
   const { portfolio, loading: portfolioLoading, error: portfolioError } = usePortfolio();
 
   return (

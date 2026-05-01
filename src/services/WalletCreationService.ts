@@ -14,6 +14,8 @@ import { pbkdf2 as noblePbkdf2 } from '@noble/hashes/pbkdf2';
 import { sha512 } from '@noble/hashes/sha512';
 import { entropyToMnemonic as scureEntropyToMnemonic } from '@scure/bip39';
 import { wordlist as englishWordlist } from '@scure/bip39/wordlists/english';
+import { logger } from '../utils/logger';
+import { nativePbkdf2Sha512Sync, isQuickCryptoAvailable } from './QuickCryptoBridge';
 
 /** Bundle of primary derivation output used by the auth flow. */
 export interface DerivedKeys {
@@ -92,26 +94,33 @@ export function deriveDeterministicWallet(username: string, password: string): D
   if (normalizedUsername.length === 0) {
     throw new Error('username required for deterministic wallet derivation');
   }
-  // Pure-JS PBKDF2 via `@noble/hashes`. We do NOT route through ethers'
-  // `pbkdf2`: ethers v6's CommonJS build delegates to `crypto.pbkdf2Sync`
-  // from Node's `crypto` module, which is not present in Hermes (RN).
-  // The resulting `undefined` swallowed silently and surfaced as
-  // "undefined is not a function" inside the hot path. Noble is what
-  // ethers itself uses on the browser side, so the output is identical.
+  // Native PBKDF2 via `react-native-quick-crypto` (JSI C++) when present;
+  // pure-JS `@noble/hashes` only as a Jest / Node fallback. Production
+  // Mobile MUST run the native path — it's ~30× faster (380 ms vs
+  // 12 000 ms for 100k iter SHA-512 on Pixel 7 Pro). Both producers
+  // emit byte-identical output for the same (secret, salt, iter, dkLen)
+  // tuple, which is essential because the resulting entropy is the
+  // deterministic seed for the user's wallet — divergence locks them out.
   const encoder = new TextEncoder();
   const salt = encoder.encode(normalizedUsername);
   const secret = encoder.encode(password);
   const t0 = Date.now();
-  const entropy = noblePbkdf2(sha512, secret, salt, {
-    c: DETERMINISTIC_PBKDF2_ITERATIONS,
-    dkLen: 32,
+  const entropy = isQuickCryptoAvailable()
+    ? nativePbkdf2Sha512Sync(secret, salt, DETERMINISTIC_PBKDF2_ITERATIONS, 32)
+    : noblePbkdf2(sha512, secret, salt, {
+        c: DETERMINISTIC_PBKDF2_ITERATIONS,
+        dkLen: 32,
+      });
+  const elapsed = Date.now() - t0;
+  logger.info('[derive] pbkdf2', {
+    iterations: DETERMINISTIC_PBKDF2_ITERATIONS,
+    durationMs: elapsed,
+    backend: isQuickCryptoAvailable() ? 'quick-crypto' : 'noble',
   });
-  // PBKDF2 is the dominant cost on Hermes; log it so we can profile
-  // whether to swap in a native implementation. On Pixel 7 Pro the
-  // pure-JS path takes ~10–15 seconds for 100k iters; a native
-  // implementation would drop this to <50ms.
-  // eslint-disable-next-line no-console
-  console.log('[derive] pbkdf2 100k SHA-512 took', Date.now() - t0, 'ms');
+  if (elapsed > 2_000 && isQuickCryptoAvailable()) {
+    // Native should never exceed 2 s. If it does, surface the regression.
+    logger.warn('[derive] native pbkdf2 unexpectedly slow', { durationMs: elapsed });
+  }
   // `@scure/bip39` mirrors the BIP-39 spec exactly; ethers'
   // `Mnemonic.fromEntropy` does the same internally but routes through
   // `crypto.createHash('sha256')` for the checksum, which is also

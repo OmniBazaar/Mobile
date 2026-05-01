@@ -5963,12 +5963,21 @@
       "loading": "Signing In...",
       "success": "Welcome back!",
       "error": "Failed to sign in",
+      "deriving": "Unlocking wallet…",
+      "signing": "Signing challenge…",
       "emailNotVerified": "Your email ({{maskedEmail}}) hasn't been verified yet.",
       "emailNotVerifiedHint": "We've sent a verification code to your email. Enter the 6-digit code below to verify and sign in.",
       "verifyAndSignIn": "Verify & Sign In",
       "verificationSuccess": "Email verified! Signing you in...",
       "cancelVerification": "Cancel",
-      "resendCode": "Resend Code"
+      "resendCode": "Resend Code",
+      "errors": {
+        "userNotFound": "No account matches that username. Check the spelling, or tap \"Create Wallet\" to register.",
+        "challengeExpired": "The login challenge expired. Tap Log In again.",
+        "rateLimited": "Too many sign-in attempts. Please wait a minute and try again.",
+        "badPassword": "Wrong password. Try again, or tap \"Forgot Password?\" if you cannot recover it.",
+        "network": "No connection to OmniBazaar. Check your internet and try again."
+      }
     },
     "signUp": {
       "title": "Create Account",

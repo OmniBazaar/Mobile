@@ -22,6 +22,7 @@ import {
   getErc20Balances,
   getNativeBalances,
 } from '@wallet/core/providers/MulticallService';
+import { OMNICOIN_ADDRESSES } from '@wallet/config/omnicoin-integration';
 
 /** Per-chain native balance entry. */
 export interface ChainBalance {
@@ -174,9 +175,16 @@ export interface Erc20Token {
 export const ERC20_TOKENS: Erc20Token[] = [
   // OmniCoin (XOM) ERC-20 contract on chain 88008. This is where the
   // user's actual XOM balance lives — the native gas balance on chain
-  // 88008 is always near zero (gasless platform). Mainnet address from
-  // `Wallet/src/config/omnicoin-integration.ts::OMNICOIN_ADDRESSES.mainnet.OmniCoin`.
-  { chainId: 88008, address: '0x1eE61487F08F715055358A1F020A86c9E571ED78', symbol: 'XOM', decimals: 18 },
+  // 88008 is always near zero (gasless platform). Address sourced from
+  // the canonical contract registry rather than hardcoded; if mainnet
+  // ever migrates, sync-contract-addresses.js updates the registry and
+  // this row picks it up automatically.
+  {
+    chainId: 88008,
+    address: OMNICOIN_ADDRESSES['mainnet']?.OmniCoin ?? '',
+    symbol: 'XOM',
+    decimals: 18,
+  },
   { chainId: 1, address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', symbol: 'USDC', decimals: 6 },
   { chainId: 1, address: '0xdAC17F958D2ee523a2206206994597C13D831ec7', symbol: 'USDT', decimals: 6 },
   { chainId: 42161, address: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831', symbol: 'USDC', decimals: 6 },

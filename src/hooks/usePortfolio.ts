@@ -1,23 +1,28 @@
 /**
- * usePortfolio — React hook that fetches the multi-chain portfolio for
- * the signed-in user from the validator.
+ * usePortfolio — React hook that produces an on-device portfolio
+ * snapshot for the signed-in user.
  *
- * Mobile-equivalent of the Wallet popup's `PortfolioAnalyticsPage`
- * fetcher: calls `PortfolioService.getPortfolio(address)` once on
- * mount, exposes `{ portfolio, loading, error, refresh }` so the
- * caller can render a per-chain breakdown + a refresh button.
+ * The hook drives `ClientPortfolioService.getClientPortfolio()`, which
+ * fans out balance reads across the 7 EVM chains via Multicall3 and
+ * prices them via the on-device PriceOracle. No validator round-trip
+ * is involved — the validator's `/api/v1/wallet/portfolio/:address`
+ * endpoint is intentionally NOT consulted here. (Architectural mandate
+ * §53: every blockchain balance call originates from the user's IP.)
  *
- * Cached for 30 seconds inside `PortfolioService` so re-mounts within
- * a session don't refetch.
+ * Snapshot shape preserves backwards compatibility with the previous
+ * version of `usePortfolio`: the WalletHomeScreen reads `totalUsd`,
+ * `change24h`, and `chains[]`. Sprint 3 wires `change24h` from a
+ * historical-price source.
  *
  * @module hooks/usePortfolio
  */
 
 import { useCallback, useEffect, useState } from 'react';
 import { useAuthStore } from '../store/authStore';
-import { getPortfolioService } from '../services/PortfolioClient';
+import { getClientPortfolio } from '../services/ClientPortfolioService';
+import { logger } from '../utils/logger';
 
-/** Per-chain breakdown returned by the validator. */
+/** Per-chain breakdown rendered by the home screen. */
 export interface PortfolioChainEntry {
   chainId: number;
   chainName: string;
@@ -30,14 +35,21 @@ export interface PortfolioChainEntry {
 /** Top-level portfolio shape rendered by the home screen. */
 export interface PortfolioSnapshot {
   totalUsd: number;
+  /**
+   * 24-hour change. Sprint 3 fills this with a real value from a
+   * historical-price source. Until then we emit zeroes so the UI's
+   * defensive guard renders nothing rather than crashing.
+   */
   change24h: { amount: number; percentage: number };
   chains: PortfolioChainEntry[];
   lastUpdated: number;
+  /** True when at least one chain failed; UI shows a retry banner. */
+  hadErrors: boolean;
 }
 
 /** Return value of the hook. */
 export interface UsePortfolioResult {
-  /** Latest portfolio snapshot, undefined while loading. */
+  /** Latest portfolio snapshot, undefined while loading initial fetch. */
   portfolio: PortfolioSnapshot | undefined;
   /** True while the initial / refresh fetch is in flight. */
   loading: boolean;
@@ -48,7 +60,8 @@ export interface UsePortfolioResult {
 }
 
 /**
- * Fetch the full portfolio for the authenticated user.
+ * Fetch + cache the full on-device portfolio for the authenticated
+ * user.
  *
  * @returns Loading / data / error state plus a manual refresh trigger.
  */
@@ -69,14 +82,15 @@ export function usePortfolio(): UsePortfolioResult {
     setError(undefined);
     void (async (): Promise<void> => {
       try {
-        const service = getPortfolioService();
-        const result = refreshTick === 0
-          ? await service.getPortfolio(address)
-          : await service.refreshPortfolio(address);
+        const result = await getClientPortfolio(address, refreshTick > 0);
         if (cancelled) return;
+        if (result === undefined) {
+          setError('invalid_address');
+          return;
+        }
         setPortfolio({
           totalUsd: result.totalUsd,
-          change24h: result.change24h,
+          change24h: result.change24h ?? { amount: 0, percentage: 0 },
           chains: result.chains.map((c) => ({
             chainId: c.chainId,
             chainName: c.chainName,
@@ -85,16 +99,21 @@ export function usePortfolio(): UsePortfolioResult {
             nativeUsdValue: c.nativeUsdValue,
             totalUsd: c.totalUsd,
           })),
-          lastUpdated: result.lastUpdated,
+          lastUpdated: result.timestamp,
+          hadErrors: result.hadErrors,
         });
       } catch (err) {
         if (cancelled) return;
-        setError(err instanceof Error ? err.message : String(err));
+        const msg = err instanceof Error ? err.message : String(err);
+        logger.warn('usePortfolio: fetch failed', { address, msg });
+        setError(msg);
       } finally {
         if (!cancelled) setLoading(false);
       }
     })();
-    return () => { cancelled = true; };
+    return (): void => {
+      cancelled = true;
+    };
   }, [address, refreshTick]);
 
   const refresh = useCallback((): void => {

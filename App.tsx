@@ -1,14 +1,20 @@
-// CRITICAL: react-native-get-random-values MUST be the first import in
-// the entire app. It runs as a side effect that polyfills
-// `crypto.getRandomValues` on the React Native global. Without it, every
-// ethers crypto operation (Wallet.fromPhrase, HD derivation, signature
-// nonces) throws a fatal "no global crypto" error at runtime — the
-// classic post-splash-screen Android crash signature. Symptoms: app
-// installs, splash flashes, instant crash back to launcher.
+// CRITICAL: native crypto bridge MUST come first. `react-native-quick-crypto`
+// installs JSI-backed `globalThis.crypto.{getRandomValues,subtle}` and
+// registers a Node-style `crypto` module that ethers v6 + the wallet
+// derivation path pick up. Without it Hermes falls back to pure-JS
+// noble for PBKDF2 / secp256k1 / SHA-512 — 30× slower, which manifests
+// as a 10–30 second sign-in. The bridge's `install()` is idempotent, so
+// it's safe to call here even if a later sub-module also calls it.
 //
-// The polyfill is a side-effect-only import (no exports), so nothing
-// references it explicitly anywhere else in the app — but it MUST run
-// before any module touches ethers / crypto.
+// The bridge gracefully no-ops in environments where the native module
+// isn't present (Jest test runs, etc.); the QuickCryptoBridge wrapper
+// detects that and falls through to noble.
+import { installQuickCrypto } from './src/services/QuickCryptoBridge';
+installQuickCrypto();
+// Fallback polyfill for `getRandomValues` for environments where
+// quick-crypto did not install (test bundles, older builds). Side-effect
+// import; ordering is important — keep AFTER quick-crypto so the native
+// version wins when both are present.
 import 'react-native-get-random-values';
 // TextEncoder / TextDecoder polyfill. Hermes (RN 0.73) does NOT expose
 // these globally. The Cardano serialization library

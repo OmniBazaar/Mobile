@@ -29,6 +29,7 @@ import LoadingSpinner from '@components/LoadingSpinner';
 import { colors } from '@theme/colors';
 import { signInWithMnemonic } from '../services/AuthService';
 import { deriveDeterministicWallet, type DerivedKeys } from '../services/WalletCreationService';
+import { logger } from '../utils/logger';
 
 /** Username canonical form — mirrors validator-side regex. */
 const USERNAME_PATTERN = /^[a-z][a-z0-9_]{2,19}$/;
@@ -75,8 +76,7 @@ export default function SignInScreen(props: SignInScreenProps): JSX.Element {
 
     setBusy(true);
     setBusyLabel(t('signIn.deriving', {
-      defaultValue:
-        'Deriving your wallet from credentials… (this takes ~30 seconds on the first sign-in; native acceleration is on the roadmap)',
+      defaultValue: 'Unlocking wallet…',
     }));
     try {
       // Yield to the UI thread so the spinner paints before the PBKDF2
@@ -84,40 +84,54 @@ export default function SignInScreen(props: SignInScreenProps): JSX.Element {
       // derivation and looks crashed. setTimeout(0) gives Hermes one
       // event-loop tick to render the busy state.
       await new Promise<void>((r) => setTimeout(r, 0));
-      // Derive the wallet from credentials. This is the same KDF the
-      // user ran on signup — same inputs always produce the same seed.
-      // eslint-disable-next-line no-console
-      console.log('[signin] step:derive starting');
       const t0 = Date.now();
       const keys = deriveDeterministicWallet(canonical, password);
-      // eslint-disable-next-line no-console
-      console.log('[signin] step:derive ok in', Date.now() - t0, 'ms address=', keys.address);
-      // Challenge-response sign-in. The validator looks up the on-record
-      // address for `canonical` and verifies our signature against it;
-      // if our derived address matches, we get the JWT pair back.
-      setBusyLabel(t('signIn.signing', {
-        defaultValue: 'Signing challenge…',
-      }));
-      // eslint-disable-next-line no-console
-      console.log('[signin] step:challenge-response starting');
+      logger.info('[signin] derive ok', {
+        durationMs: Date.now() - t0,
+        address: keys.address,
+      });
+      setBusyLabel(t('signIn.signing', { defaultValue: 'Signing challenge…' }));
       const t1 = Date.now();
       await signInWithMnemonic(keys.mnemonic, canonical);
-      // eslint-disable-next-line no-console
-      console.log('[signin] step:challenge-response ok in', Date.now() - t1, 'ms');
+      logger.info('[signin] challenge-response ok', { durationMs: Date.now() - t1 });
       props.onSignedIn(keys, canonical);
     } catch (err) {
-      const msg = err instanceof Error ? err.message : String(err);
-      // Surface the full error to logcat so we can diagnose anything
-      // the JS try/catch swallows. Look for `[signin] FAILED` in
-      // `adb logcat *:E ReactNative:V ReactNativeJS:V`.
-      // eslint-disable-next-line no-console
-      console.error('[signin] FAILED:', err instanceof Error ? err.stack ?? err.message : err);
-      setError(
-        t('signIn.failed', {
+      logger.error('[signin] failed', {
+        message: err instanceof Error ? err.message : String(err),
+      });
+      // Map known failure shapes to user-actionable copy. Anything else
+      // falls through to a generic message that still tells the user
+      // what to do next.
+      const raw = err instanceof Error ? err.message : String(err);
+      let copy: string;
+      if (/not[_ -]?found|user_not_found|unknown[_ ]username/i.test(raw)) {
+        copy = t('signIn.errors.userNotFound', {
+          defaultValue:
+            'No account matches that username. Check the spelling, or tap "Create Wallet" to register.',
+        });
+      } else if (/challenge[_ ]?expired|expired/i.test(raw)) {
+        copy = t('signIn.errors.challengeExpired', {
+          defaultValue: 'The login challenge expired. Tap Log In again.',
+        });
+      } else if (/rate[_ -]?limit|too many/i.test(raw)) {
+        copy = t('signIn.errors.rateLimited', {
+          defaultValue: 'Too many sign-in attempts. Please wait a minute and try again.',
+        });
+      } else if (/bad[_ -]?signature|invalid_password|verifyMessage/i.test(raw)) {
+        copy = t('signIn.errors.badPassword', {
+          defaultValue: 'Wrong password. Try again, or tap "Forgot Password?" if you cannot recover it.',
+        });
+      } else if (/network|timeout|fetch/i.test(raw)) {
+        copy = t('signIn.errors.network', {
+          defaultValue: 'No connection to OmniBazaar. Check your internet and try again.',
+        });
+      } else {
+        copy = t('signIn.failed', {
           defaultValue: 'Sign-in failed: {{msg}}',
-          msg,
-        }),
-      );
+          msg: raw,
+        });
+      }
+      setError(copy);
     } finally {
       setBusy(false);
     }
