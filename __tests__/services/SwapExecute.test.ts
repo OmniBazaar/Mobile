@@ -39,7 +39,10 @@ jest.mock('../../src/services/RelaySubmitService', () => ({
 // pulling in @walletconnect/react-native-compat (which installs RN
 // globals Jest can't satisfy).
 const mockWcSendTransaction = jest.fn(
-  async (chainId: number) => `0xwc${(chainId ?? 0).toString(16).padStart(2, '0')}`,
+  async (
+    chainId: number,
+    _tx: { from: string; to: string; data: string; value?: string },
+  ) => `0xwc${(chainId ?? 0).toString(16).padStart(2, '0')}`,
 );
 jest.mock('../../src/services/WalletConnectService', () => ({
   getWalletConnect: () => ({
