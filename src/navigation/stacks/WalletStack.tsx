@@ -25,7 +25,8 @@ import OwnedNFTsScreen from '../../screens/OwnedNFTsScreen';
 import EscrowsScreen from '../../screens/EscrowsScreen';
 import PredictionPositionsScreen from '../../screens/PredictionPositionsScreen';
 import StakingScreen from '../../screens/StakingScreen';
-import { ComingSoonScreen } from '../shared/ComingSoonScreen';
+import TokenDetailScreen from '../../screens/TokenDetailScreen';
+import AddressBookScreen from '../../screens/AddressBookScreen';
 
 const Stack = createNativeStackNavigator<WalletStackParamList>();
 
@@ -106,6 +107,49 @@ function StakingWrapper(): React.ReactElement {
   return <StakingScreen onBack={goBack(nav)} mnemonic={mnemonic} />;
 }
 
+/** Address-book wrapper. */
+function AddressBookWrapper(): React.ReactElement {
+  const nav = useNavigation();
+  return <AddressBookScreen onBack={goBack(nav)} />;
+}
+
+/** TokenDetail wrapper — reads route params. */
+function TokenDetailWrapper(): React.ReactElement {
+  const nav =
+    useNavigation<NavigationProp<WalletStackParamList & RootStackParamList>>();
+  // We rely on the route params passed via navigate('TokenDetail', {...}).
+  // The screen is forgiving: when fields are missing it falls back to the
+  // chain's native gas token defaults so deep-links don't crash.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { useRoute } = require('@react-navigation/native') as {
+    useRoute: () => { params?: Record<string, unknown> };
+  };
+  const route = useRoute();
+  const params = route.params ?? {};
+  const chainId = typeof params['chainId'] === 'number' ? (params['chainId'] as number) : 1;
+  const symbol = typeof params['symbol'] === 'string' ? (params['symbol'] as string) : 'ETH';
+  const contract = typeof params['contract'] === 'string' ? (params['contract'] as string) : 'native';
+  const chainName = typeof params['chainName'] === 'string' ? (params['chainName'] as string) : 'Chain';
+  const balance = typeof params['balance'] === 'string' ? (params['balance'] as string) : '0';
+  const usdValue = typeof params['usdValue'] === 'number' ? (params['usdValue'] as number) : 0;
+  const decimals = typeof params['decimals'] === 'number' ? (params['decimals'] as number) : 18;
+  return (
+    <TokenDetailScreen
+      chainId={chainId}
+      symbol={symbol}
+      contract={contract}
+      chainName={chainName}
+      balance={balance}
+      usdValue={usdValue}
+      decimals={decimals}
+      onBack={goBack(nav)}
+      onSend={(): void => nav.navigate('Send')}
+      onReceive={(): void => nav.navigate('Receive')}
+      onSwap={(): void => nav.navigate('MainTabs', { screen: 'Trade', params: { screen: 'Swap' } })}
+    />
+  );
+}
+
 /**
  * Build the Wallet-tab stack.
  *
@@ -119,21 +163,13 @@ export default function WalletStack(): React.ReactElement {
       <Stack.Screen name="WalletHome" component={WalletHomeWrapper} />
       <Stack.Screen name="Send" component={SendWrapper} />
       <Stack.Screen name="Receive" component={ReceiveWrapper} />
-      <Stack.Screen
-        name="TokenDetail"
-        component={ComingSoonScreen}
-        initialParams={{ feature: 'Token Detail', sprint: 'Sprint 2 H5' }}
-      />
+      <Stack.Screen name="TokenDetail" component={TokenDetailWrapper} />
       <Stack.Screen name="TxHistory" component={TxHistoryWrapper} />
       <Stack.Screen name="OwnedNFTs" component={OwnedNFTsWrapper} />
       <Stack.Screen name="Escrows" component={EscrowsWrapper} />
       <Stack.Screen name="PredictionPositions" component={PredictionPositionsWrapper} />
       <Stack.Screen name="Staking" component={StakingWrapper} />
-      <Stack.Screen
-        name="AddressBook"
-        component={ComingSoonScreen}
-        initialParams={{ feature: 'Address Book', sprint: 'Sprint 2 B9' }}
-      />
+      <Stack.Screen name="AddressBook" component={AddressBookWrapper} />
     </Stack.Navigator>
   );
 }

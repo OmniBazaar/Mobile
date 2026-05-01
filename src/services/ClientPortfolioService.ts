@@ -36,6 +36,8 @@ import {
   type ChainBalance,
 } from './PortfolioService';
 import { getTokenUsdPrices, priceKey } from './PriceOracle';
+import { fetchFamilyBalances } from './FamilyPortfolioService';
+import type { FamilyAddressBundle } from '../store/authStore';
 import { logger } from '../utils/logger';
 
 /** A single per-chain entry in the on-device snapshot. */
@@ -154,11 +156,15 @@ function cacheKey(address: string): string | undefined {
  *
  * @param address - EVM address.
  * @param force - When true, bypass the 30 s cache.
+ * @param familyAddresses - Optional non-EVM family bundle. When
+ *   provided, the snapshot also includes BTC / SOL / XRP / TRON /
+ *   ATOM / ADA / NEAR / HBAR / XLM / XTZ / DOT rows.
  * @returns Snapshot, or undefined when the address is malformed.
  */
 export async function getClientPortfolio(
   address: string,
   force: boolean = false,
+  familyAddresses?: FamilyAddressBundle,
 ): Promise<OnDevicePortfolioSnapshot | undefined> {
   const key = cacheKey(address);
   if (key === undefined) return undefined;
@@ -169,12 +175,13 @@ export async function getClientPortfolio(
     }
   }
 
-  // Fan out the two balance queries in parallel. Native + ERC-20 each
-  // emit per-chain error rows on individual chain failures, so a partial
-  // result is normal.
-  const [nativeRows, erc20Rows] = await Promise.all([
+  // Fan out the EVM balance queries + the non-EVM family fetchers in
+  // parallel. Native + ERC-20 each emit per-chain error rows on
+  // individual chain failures, so a partial result is normal.
+  const [nativeRows, erc20Rows, familyResult] = await Promise.all([
     fetchNativeBalances(address),
     fetchErc20Balances(address),
+    familyAddresses !== undefined ? fetchFamilyBalances(familyAddresses) : Promise.resolve(undefined),
   ]);
 
   // Build the price-request set up front so the oracle batch is one
@@ -259,6 +266,27 @@ export async function getClientPortfolio(
   // Detect any per-chain ERC-20 error not also present on the native row.
   for (const row of erc20Rows) {
     if (row.error !== undefined) hadErrors = true;
+  }
+
+  // Merge in non-EVM family rows + their dollar totals.
+  if (familyResult !== undefined) {
+    for (const row of familyResult.rows) {
+      tokens.push(row);
+      // Family chains roll up as their own per-chain entry too, so the
+      // wallet-home chain card count reflects holdings across the full
+      // wallet.
+      chains.push({
+        chainId: row.chainId,
+        chainName: row.chainName,
+        nativeSymbol: row.symbol,
+        nativeBalance: row.balance,
+        nativeUsdValue: row.usdValue,
+        totalUsd: row.usdValue,
+        error: false,
+      });
+    }
+    totalUsd += familyResult.totalUsd;
+    if (familyResult.hadErrors) hadErrors = true;
   }
 
   // Sort tokens by USD value descending; equal-value rows fall back to

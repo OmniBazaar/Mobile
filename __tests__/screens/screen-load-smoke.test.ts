@@ -92,6 +92,35 @@ jest.mock("../../src/i18n", () => ({
   default: { language: "en", changeLanguage: jest.fn() },
 }));
 
+// @expo/vector-icons is shipped as ESM and cannot be parsed by ts-jest
+// without a transformIgnorePatterns escape hatch. Stub the icon-set
+// exports as null components so any screen that pulls them in (via
+// ScreenHeader, BottomNav, etc.) loads without crashing.
+jest.mock("@expo/vector-icons", () => ({
+  __esModule: true,
+  Ionicons: () => null,
+  MaterialIcons: () => null,
+  MaterialCommunityIcons: () => null,
+  Feather: () => null,
+  FontAwesome: () => null,
+  FontAwesome5: () => null,
+  AntDesign: () => null,
+  Entypo: () => null,
+  EvilIcons: () => null,
+  Foundation: () => null,
+  Octicons: () => null,
+  SimpleLineIcons: () => null,
+  Zocial: () => null,
+}));
+
+// expo-clipboard is shipped as ESM. WalletConnectBar uses
+// `Clipboard.setStringAsync(uri)` to copy the WC pairing URI.
+jest.mock("expo-clipboard", () => ({
+  __esModule: true,
+  setStringAsync: jest.fn().mockResolvedValue(true),
+  getStringAsync: jest.fn().mockResolvedValue(""),
+}));
+
 describe("Screen modules load without errors", () => {
   const SCREENS = [
     { name: "WelcomeScreen", path: "../../src/screens/WelcomeScreen" },

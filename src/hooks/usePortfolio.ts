@@ -67,6 +67,7 @@ export interface UsePortfolioResult {
  */
 export function usePortfolio(): UsePortfolioResult {
   const address = useAuthStore((s) => s.address);
+  const familyAddresses = useAuthStore((s) => s.familyAddresses);
   const [portfolio, setPortfolio] = useState<PortfolioSnapshot | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
@@ -82,7 +83,7 @@ export function usePortfolio(): UsePortfolioResult {
     setError(undefined);
     void (async (): Promise<void> => {
       try {
-        const result = await getClientPortfolio(address, refreshTick > 0);
+        const result = await getClientPortfolio(address, refreshTick > 0, familyAddresses);
         if (cancelled) return;
         if (result === undefined) {
           setError('invalid_address');
@@ -114,7 +115,7 @@ export function usePortfolio(): UsePortfolioResult {
     return (): void => {
       cancelled = true;
     };
-  }, [address, refreshTick]);
+  }, [address, refreshTick, familyAddresses]);
 
   const refresh = useCallback((): void => {
     setRefreshTick((n) => n + 1);

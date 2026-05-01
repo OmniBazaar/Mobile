@@ -25,6 +25,9 @@ import TokenApprovalsScreen from '../../screens/TokenApprovalsScreen';
 import ConnectedSitesScreen from '../../screens/ConnectedSitesScreen';
 import HardwareWalletScreen from '../../screens/HardwareWalletScreen';
 import TrezorWebViewScreen from '../../screens/TrezorWebViewScreen';
+import ParticipationScoreScreen from '../../screens/ParticipationScoreScreen';
+import StakingCalculatorScreen from '../../screens/StakingCalculatorScreen';
+import ReferralScreen from '../../screens/ReferralScreen';
 import { ComingSoonScreen } from '../shared/ComingSoonScreen';
 
 const Stack = createNativeStackNavigator<ProfileStackParamList>();
@@ -44,7 +47,7 @@ function destinationToRoute(
       nav.navigate('Settings');
       return;
     case 'staking':
-      // Staking is a Wallet-tab screen — switch tabs, then push.
+      // Staking + AddressBook live in the Wallet stack.
       nav.navigate('Wallet', { screen: 'Staking' });
       return;
     case 'kyc':
@@ -67,6 +70,18 @@ function destinationToRoute(
       return;
     case 'hardware':
       nav.navigate('Hardware');
+      return;
+    case 'participation-score':
+      nav.navigate('ParticipationScore');
+      return;
+    case 'staking-calculator':
+      nav.navigate('StakingCalculator');
+      return;
+    case 'referrals':
+      nav.navigate('Referrals');
+      return;
+    case 'address-book':
+      nav.navigate('Wallet', { screen: 'AddressBook' });
       return;
   }
 }
@@ -158,6 +173,24 @@ function TrezorWebViewWrapper(): React.ReactElement {
   return <TrezorWebViewScreen onBack={goBack(nav)} />;
 }
 
+/** Participation-score wrapper. */
+function ParticipationScoreWrapper(): React.ReactElement {
+  const nav = useNavigation();
+  return <ParticipationScoreScreen onBack={goBack(nav)} />;
+}
+
+/** Staking-calculator wrapper. */
+function StakingCalculatorWrapper(): React.ReactElement {
+  const nav = useNavigation();
+  return <StakingCalculatorScreen onBack={goBack(nav)} />;
+}
+
+/** Referral wrapper. */
+function ReferralWrapper(): React.ReactElement {
+  const nav = useNavigation();
+  return <ReferralScreen onBack={goBack(nav)} />;
+}
+
 /**
  * Build the Profile-tab stack.
  *
@@ -177,25 +210,18 @@ export default function ProfileStack(): React.ReactElement {
       <Stack.Screen name="ConnectedSites" component={ConnectedSitesWrapper} />
       <Stack.Screen name="Hardware" component={HardwareWrapper} />
       <Stack.Screen name="TrezorWebView" component={TrezorWebViewWrapper} />
-      <Stack.Screen
-        name="ParticipationScore"
-        component={ComingSoonScreen}
-        initialParams={{ feature: 'Participation Score', sprint: 'Sprint 2 B9' }}
-      />
-      <Stack.Screen
-        name="StakingCalculator"
-        component={ComingSoonScreen}
-        initialParams={{ feature: 'Staking Calculator', sprint: 'Sprint 2 B9' }}
-      />
+      <Stack.Screen name="ParticipationScore" component={ParticipationScoreWrapper} />
+      <Stack.Screen name="StakingCalculator" component={StakingCalculatorWrapper} />
+      <Stack.Screen name="Referrals" component={ReferralWrapper} />
       <Stack.Screen
         name="EarningsHistory"
         component={ComingSoonScreen}
-        initialParams={{ feature: 'Earnings History', sprint: 'Sprint 2 B9' }}
+        initialParams={{ feature: 'Earnings History', sprint: 'Sprint 3 polish' }}
       />
       <Stack.Screen
         name="Notifications"
         component={ComingSoonScreen}
-        initialParams={{ feature: 'Notifications', sprint: 'Sprint 2 B9' }}
+        initialParams={{ feature: 'Notifications', sprint: 'Sprint 3 (push wiring)' }}
       />
       <Stack.Screen
         name="Governance"

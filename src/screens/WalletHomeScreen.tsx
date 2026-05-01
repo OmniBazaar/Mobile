@@ -27,6 +27,7 @@ import TokenIcon from '@components/TokenIcon';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '@theme/colors';
 import {
+  ERC20_TOKENS,
   fetchErc20Balances,
   fetchNativeBalances,
   formatRaw,
@@ -36,6 +37,8 @@ import {
 import { usePortfolio } from '../hooks/usePortfolio';
 import { useAuthStore } from '../store/authStore';
 import { useRequireAuth } from '@components/RequireAuth';
+import { useNavigation, type NavigationProp } from '@react-navigation/native';
+import type { WalletStackParamList } from '../navigation/types';
 
 /**
  * Format a USD number for the hero "Portfolio" total.
@@ -83,6 +86,29 @@ export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Elem
   const authState = useAuthStore((s) => s.state);
   const requireAuth = useRequireAuth();
   const isGuest = authState === 'guest';
+  const nav = useNavigation<NavigationProp<WalletStackParamList>>();
+
+  /** Resolve a balance row to the params TokenDetailScreen needs. */
+  const onTokenPress = useCallback(
+    (balance: ChainBalance): void => {
+      // Find the matching ERC20_TOKENS entry to recover the contract
+      // address; native rows pass 'native'.
+      const erc20 = ERC20_TOKENS.find(
+        (t2) => t2.chainId === balance.chainId && t2.symbol === balance.symbol,
+      );
+      const contract = erc20?.address ?? 'native';
+      nav.navigate('TokenDetail', {
+        chainId: balance.chainId,
+        contract,
+        symbol: balance.symbol,
+        chainName: balance.chainName,
+        balance: formatRaw(balance.raw, balance.decimals),
+        usdValue: balance.usdValue ?? 0,
+        decimals: balance.decimals,
+      });
+    },
+    [nav],
+  );
 
   const [balances, setBalances] = useState<ChainBalance[]>([]);
   const [refreshing, setRefreshing] = useState(false);
@@ -254,8 +280,8 @@ export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Elem
 
       <FlatList
         data={balances}
-        keyExtractor={(item) => `${item.chainId}`}
-        renderItem={({ item }) => <TokenRow balance={item} />}
+        keyExtractor={(item, idx) => `${item.chainId}-${item.symbol}-${idx}`}
+        renderItem={({ item }) => <TokenRow balance={item} onPress={() => onTokenPress(item)} />}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={() => void refresh()} tintColor={colors.primary} />
         }
@@ -276,15 +302,22 @@ export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Elem
   );
 }
 
-/** Single token-row render. */
-function TokenRow({ balance }: { balance: ChainBalance }): JSX.Element {
+/** Single token-row render. Tap → TokenDetailScreen. */
+function TokenRow({
+  balance,
+  onPress,
+}: {
+  balance: ChainBalance;
+  onPress: () => void;
+}): JSX.Element {
   return (
-    <View style={styles.tokenRow}>
-      <TokenIcon
-        chainId={balance.chainId}
-        symbol={balance.symbol}
-        size={36}
-      />
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={`${balance.symbol} on ${balance.chainName}`}
+      style={styles.tokenRow}
+    >
+      <TokenIcon chainId={balance.chainId} symbol={balance.symbol} size={36} />
       <View style={styles.tokenRowMid}>
         <Text style={styles.tokenSymbol}>{balance.symbol}</Text>
         <Text style={styles.tokenChain}>{balance.chainName}</Text>
@@ -301,7 +334,7 @@ function TokenRow({ balance }: { balance: ChainBalance }): JSX.Element {
           </>
         )}
       </View>
-    </View>
+    </Pressable>
   );
 }
 

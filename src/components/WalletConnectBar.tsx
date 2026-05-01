@@ -19,11 +19,13 @@ import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors } from '@theme/colors';
 
-import {
-  getWalletConnect,
-  type WalletConnectConnection,
-  MissingProjectIdError,
-} from '../services/WalletConnectService';
+// Type-only import — erased at runtime, so SwapScreen's static module
+// graph does NOT pull in `@walletconnect/react-native-compat` (which
+// installs RN-only globals Jest can't satisfy). The value imports
+// (getWalletConnect, MissingProjectIdError) are loaded dynamically
+// inside the connect/subscribe handlers below, only when the user
+// actually flips into walletconnect mode.
+import type { WalletConnectConnection } from '../services/WalletConnectService';
 
 /** Wallet-mode value the parent screen owns. */
 export type SwapWalletMode = 'embedded' | 'walletconnect';
@@ -56,57 +58,79 @@ export default function WalletConnectBar(
   const [pairing, setPairing] = useState<{ uri: string } | null>(null);
   const [error, setError] = useState<string | undefined>(undefined);
 
-  // Subscribe to live connection updates from the WC singleton.
+  // Subscribe to live connection updates from the WC singleton. The
+  // singleton itself (and its websocket / RN-compat polyfills) is loaded
+  // lazily so screens that never enter walletconnect mode don't pay for
+  // the import.
   useEffect(() => {
-    const unsubscribe = getWalletConnect().onChange((c) => {
-      setConnection(c);
-      onConnectionChange(c);
-    });
-    return unsubscribe;
+    let unsubscribe: (() => void) | undefined;
+    let cancelled = false;
+    void (async (): Promise<void> => {
+      const { getWalletConnect } = await import('../services/WalletConnectService');
+      if (cancelled) return;
+      unsubscribe = getWalletConnect().onChange((c) => {
+        setConnection(c);
+        onConnectionChange(c);
+      });
+    })();
+    return (): void => {
+      cancelled = true;
+      if (unsubscribe !== undefined) unsubscribe();
+    };
   }, [onConnectionChange]);
 
   const handleConnect = useCallback(async (): Promise<void> => {
     setError(undefined);
     try {
-      const handle = await getWalletConnect().connect();
-      setPairing({ uri: handle.uri });
+      const { getWalletConnect, MissingProjectIdError } = await import(
+        '../services/WalletConnectService'
+      );
       try {
-        await Clipboard.setStringAsync(handle.uri);
-      } catch {
-        // Clipboard failure isn't fatal — the user can still tap Open.
-      }
-      // Open the wallet selector sheet — most wallets register the wc:
-      // protocol so this brings the wallet into the foreground.
-      try {
-        await Linking.openURL(handle.uri);
-      } catch {
-        // If no wallet handles wc: directly, leave the URI on the clipboard
-        // so the user can paste it into their wallet manually.
-      }
-      try {
-        await handle.approval;
-        setPairing(null);
+        const handle = await getWalletConnect().connect();
+        setPairing({ uri: handle.uri });
+        try {
+          await Clipboard.setStringAsync(handle.uri);
+        } catch {
+          // Clipboard failure isn't fatal — the user can still tap Open.
+        }
+        // Open the wallet selector sheet — most wallets register the wc:
+        // protocol so this brings the wallet into the foreground.
+        try {
+          await Linking.openURL(handle.uri);
+        } catch {
+          // If no wallet handles wc: directly, leave the URI on the
+          // clipboard so the user can paste it into their wallet manually.
+        }
+        try {
+          await handle.approval;
+          setPairing(null);
+        } catch (e) {
+          setPairing(null);
+          setError(e instanceof Error ? e.message : String(e));
+        }
       } catch (e) {
-        setPairing(null);
-        setError(e instanceof Error ? e.message : String(e));
+        if (e instanceof MissingProjectIdError) {
+          setError(
+            t('swap.external.missingProjectId', {
+              defaultValue:
+                'WalletConnect project id is not configured. Set EXPO_PUBLIC_WALLETCONNECT_PROJECT_ID and reload.',
+            }),
+          );
+        } else {
+          setError(e instanceof Error ? e.message : String(e));
+        }
       }
-    } catch (e) {
-      if (e instanceof MissingProjectIdError) {
-        setError(
-          t('swap.external.missingProjectId', {
-            defaultValue:
-              'WalletConnect project id is not configured. Set EXPO_PUBLIC_WALLETCONNECT_PROJECT_ID and reload.',
-          }),
-        );
-      } else {
-        setError(e instanceof Error ? e.message : String(e));
-      }
+    } catch (importErr) {
+      // Failed to even load the WC module (bundling issue, missing native
+      // polyfill, etc.). Surface the underlying error so it isn't silent.
+      setError(importErr instanceof Error ? importErr.message : String(importErr));
     }
   }, [t]);
 
   const handleDisconnect = useCallback(async (): Promise<void> => {
     setError(undefined);
     try {
+      const { getWalletConnect } = await import('../services/WalletConnectService');
       await getWalletConnect().disconnect();
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));

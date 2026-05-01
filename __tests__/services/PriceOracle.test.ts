@@ -73,8 +73,11 @@ describe('PriceOracle', () => {
   });
 
   it('does NOT cache an undefined result', async () => {
+    // Native chains only hit CoinGecko (no Li.Fi fallback for natives),
+    // so each `getTokenUsdPrice(1, undefined)` consumes exactly one
+    // mock. First call fails → undefined → not cached. Second call
+    // succeeds → 2100 → cached.
     (global.fetch as FetchMock)
-      .mockResolvedValueOnce({ ok: false, json: async () => ({}) })
       .mockResolvedValueOnce({ ok: false, json: async () => ({}) })
       .mockResolvedValueOnce({
         ok: true,
@@ -83,5 +86,7 @@ describe('PriceOracle', () => {
     expect(await getTokenUsdPrice(1, undefined)).toBeUndefined();
     const second = await getTokenUsdPrice(1, undefined);
     expect(second).toBe(2100);
+    // Two distinct fetches — proves the first failure was not cached.
+    expect(global.fetch).toHaveBeenCalledTimes(2);
   });
 });

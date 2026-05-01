@@ -25,6 +25,7 @@ import {
   signInWithMnemonic,
 } from '../../services/AuthService';
 import type { DerivedKeys } from '../../services/WalletCreationService';
+import { deriveFamilyAddresses } from '../../services/FamilyAddressService';
 import { logger } from '../../utils/logger';
 
 import WelcomeScreen from '../../screens/WelcomeScreen';
@@ -92,6 +93,7 @@ function EmailVerifyWrapper(): React.ReactElement {
   const { t } = useTranslation();
   const setAddress = useAuthStore((s) => s.setAddress);
   const setMnemonic = useAuthStore((s) => s.setMnemonic);
+  const setFamilyAddresses = useAuthStore((s) => s.setFamilyAddresses);
   const markUnlocked = useAuthStore((s) => s.markUnlocked);
   const [error, setError] = useState<string | undefined>(undefined);
 
@@ -129,6 +131,7 @@ function EmailVerifyWrapper(): React.ReactElement {
         await signInWithMnemonic(keys.mnemonic, username);
         setAddress(keys.address, username);
         setMnemonic(keys.mnemonic);
+        setFamilyAddresses(deriveFamilyAddresses(keys.mnemonic));
         markUnlocked();
         // RootNavigator's auth listener will switch us to MainTabs.
       } catch (err) {
@@ -164,12 +167,14 @@ function SignInWrapper(): React.ReactElement {
   const nav = useNavigation<NavigationProp<OnboardingStackParamList>>();
   const setAddress = useAuthStore((s) => s.setAddress);
   const setMnemonic = useAuthStore((s) => s.setMnemonic);
+  const setFamilyAddresses = useAuthStore((s) => s.setFamilyAddresses);
   const markUnlocked = useAuthStore((s) => s.markUnlocked);
   return (
     <SignInScreen
       onSignedIn={(keys, username): void => {
         setAddress(keys.address, username);
         setMnemonic(keys.mnemonic);
+        setFamilyAddresses(deriveFamilyAddresses(keys.mnemonic));
         markUnlocked();
       }}
       onCancel={(): void => nav.navigate('Welcome')}

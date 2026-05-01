@@ -24,7 +24,11 @@ export type ProfileDestination =
   | 'nfts-owned'
   | 'escrows'
   | 'prediction-positions'
-  | 'hardware';
+  | 'hardware'
+  | 'participation-score'
+  | 'staking-calculator'
+  | 'referrals'
+  | 'address-book';
 
 /** Props accepted by ProfileScreen. */
 export interface ProfileScreenProps {
@@ -74,6 +78,26 @@ export default function ProfileScreen(props: ProfileScreenProps): JSX.Element {
       key: 'staking',
       label: t('profile.staking', { defaultValue: 'Staking' }),
       hint: t('profile.stakingHint', { defaultValue: 'Earn 5–12% APR on XOM' }),
+    },
+    {
+      key: 'staking-calculator',
+      label: t('profile.stakingCalculator', { defaultValue: 'Staking Calculator' }),
+      hint: t('profile.stakingCalculatorHint', { defaultValue: 'Project rewards by amount + duration' }),
+    },
+    {
+      key: 'participation-score',
+      label: t('profile.participationScore', { defaultValue: 'Participation Score' }),
+      hint: t('profile.participationScoreHint', { defaultValue: 'Your 100-point Proof-of-Participation total' }),
+    },
+    {
+      key: 'referrals',
+      label: t('profile.referrals', { defaultValue: 'Refer a Friend' }),
+      hint: t('profile.referralsHint', { defaultValue: 'Share your link, earn 0.35% of every fee' }),
+    },
+    {
+      key: 'address-book',
+      label: t('profile.addressBook', { defaultValue: 'Address Book' }),
+      hint: t('profile.addressBookHint', { defaultValue: 'Save trusted contacts for fast sends' }),
     },
     {
       key: 'kyc',

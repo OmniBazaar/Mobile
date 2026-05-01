@@ -17,6 +17,32 @@ import { create } from 'zustand';
 /** High-level auth lifecycle state. */
 export type AuthState = 'bootstrapping' | 'signedOut' | 'guest' | 'locked' | 'unlocked';
 
+/** Per-family address bundle cached at sign-in. */
+export interface FamilyAddressBundle {
+  /** Bitcoin (mainnet, P2WPKH). */
+  bitcoin?: string;
+  /** Solana base58 address. */
+  solana?: string;
+  /** Polkadot SS58 address (DOT). */
+  polkadot?: string;
+  /** Cosmos hub bech32 address. */
+  cosmos?: string;
+  /** Cardano shelley bech32 address. */
+  cardano?: string;
+  /** XRP classic address. */
+  xrp?: string;
+  /** TRON Base58Check address. */
+  tron?: string;
+  /** NEAR account ID. */
+  near?: string;
+  /** Hedera account ID. */
+  hedera?: string;
+  /** Stellar G-prefix address. */
+  stellar?: string;
+  /** Tezos tz1/tz2/tz3 address. */
+  tezos?: string;
+}
+
 /** Shape of the auth slice. */
 export interface AuthStoreState {
   /** Current state. */
@@ -33,6 +59,12 @@ export interface AuthStoreState {
    * NFT buy, predictions, staking).
    */
   mnemonic: string;
+  /**
+   * Per-family addresses derived once at sign-in / wallet-create. Empty
+   * object when signed-out or in guest mode. Populated by
+   * `KeyringService.deriveFamilyAddresses(mnemonic)`.
+   */
+  familyAddresses: FamilyAddressBundle;
   /** True when the user has enabled biometric unlock. */
   biometricEnabled: boolean;
   /** Epoch ms of the most recent successful unlock. */
@@ -41,6 +73,7 @@ export interface AuthStoreState {
   setState(next: AuthState): void;
   setAddress(address: string, username?: string): void;
   setMnemonic(mnemonic: string): void;
+  setFamilyAddresses(bundle: FamilyAddressBundle): void;
   setBiometricEnabled(enabled: boolean): void;
   markUnlocked(): void;
   enterGuestMode(): void;
@@ -52,14 +85,17 @@ export const useAuthStore = create<AuthStoreState>((set) => ({
   address: '',
   username: '',
   mnemonic: '',
+  familyAddresses: {},
   biometricEnabled: false,
   lastUnlockMs: 0,
   setState: (next) => set({ state: next }),
   setAddress: (address, username) =>
     set({ address, ...(username !== undefined && { username }) }),
   setMnemonic: (mnemonic) => set({ mnemonic }),
+  setFamilyAddresses: (bundle) => set({ familyAddresses: bundle }),
   setBiometricEnabled: (enabled) => set({ biometricEnabled: enabled }),
-  enterGuestMode: () => set({ state: 'guest', address: '', username: '', mnemonic: '' }),
+  enterGuestMode: () =>
+    set({ state: 'guest', address: '', username: '', mnemonic: '', familyAddresses: {} }),
   markUnlocked: () => {
     set({ state: 'unlocked', lastUnlockMs: Date.now() });
     // Kick off the decentralisation-dashboard heartbeat as soon as
@@ -82,6 +118,7 @@ export const useAuthStore = create<AuthStoreState>((set) => ({
       address: '',
       username: '',
       mnemonic: '',
+      familyAddresses: {},
       lastUnlockMs: 0,
     });
     void (async (): Promise<void> => {

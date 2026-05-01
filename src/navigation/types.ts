@@ -62,7 +62,15 @@ export type WalletStackParamList = {
   WalletHome: undefined;
   Send: { to?: string; amount?: string; chainId?: number } | undefined;
   Receive: undefined;
-  TokenDetail: { chainId: number; contract?: string; symbol: string };
+  TokenDetail: {
+    chainId: number;
+    contract?: string;
+    symbol: string;
+    chainName?: string;
+    balance?: string;
+    usdValue?: number;
+    decimals?: number;
+  };
   TxHistory: undefined;
   OwnedNFTs: undefined;
   Escrows: undefined;
@@ -90,6 +98,7 @@ export type ProfileStackParamList = {
   TrezorWebView: undefined;
   ParticipationScore: undefined;
   StakingCalculator: undefined;
+  Referrals: undefined;
   EarningsHistory: undefined;
   Notifications: undefined;
   Governance: undefined;
