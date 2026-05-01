@@ -49,7 +49,7 @@ const STORAGE_KEY = 'connectedSites';
 export default function ConnectedSitesScreen(
   props: ConnectedSitesScreenProps,
 ): JSX.Element {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [sites, setSites] = useState<ConnectedSite[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -136,7 +136,7 @@ export default function ConnectedSitesScreen(
             <Text style={styles.meta}>
               {t('connectedSites.connectedAt', {
                 defaultValue: 'Connected {{when}}',
-                when: new Date(s.connectedAt).toLocaleString(),
+                when: new Date(s.connectedAt).toLocaleString(i18n.language),
               })}
             </Text>
             <Button

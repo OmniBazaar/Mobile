@@ -25,7 +25,6 @@ import {
 
 import { submitTransaction } from './RelaySubmitService';
 import { requiresEmbeddedWallet } from './swapRouteClassification';
-import { getWalletConnect } from './WalletConnectService';
 
 export type {
   ExecuteResponse,
@@ -234,10 +233,20 @@ export async function executeQuote(params: {
     );
   }
 
+  // Lazy-load the WC service only when actually using it. Static import
+  // would force `@walletconnect/react-native-compat` to evaluate at
+  // module-load time, which (a) installs RN-only globals that Jest can't
+  // satisfy and (b) costs bundle size for users who never connect a WC
+  // wallet. Embedded-mode callers stay on the cold path.
+  const wc =
+    params.signer.kind === 'walletconnect'
+      ? (await import('./WalletConnectService')).getWalletConnect()
+      : null;
+
   for (const tx of unsigned) {
     const hash =
       params.signer.kind === 'walletconnect'
-        ? await getWalletConnect().sendTransaction(tx.chainId, {
+        ? await wc!.sendTransaction(tx.chainId, {
             from: params.address,
             to: tx.to,
             data: tx.data,

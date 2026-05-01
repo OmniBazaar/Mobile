@@ -33,7 +33,7 @@ export interface LiquidityScreenProps {
  * @returns JSX.
  */
 export default function LiquidityScreen(props: LiquidityScreenProps): JSX.Element {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const address = useAuthStore((s) => s.address);
   const [pools, setPools] = useState<LpPoolRow[]>([]);
   const [poolAddress, setPoolAddress] = useState<string | undefined>(undefined);
@@ -130,7 +130,7 @@ export default function LiquidityScreen(props: LiquidityScreenProps): JSX.Elemen
               <Card style={styles.poolCard}>
                 <Text style={styles.poolLabel}>{t('lp.tvl', { defaultValue: 'TVL' })}</Text>
                 <Text style={styles.poolValue}>
-                  {tvl !== undefined ? `$${tvl.toLocaleString()}` : '—'}
+                  {tvl !== undefined ? `$${tvl.toLocaleString(i18n.language)}` : '—'}
                 </Text>
                 <Text style={styles.poolLabel}>{t('lp.apr', { defaultValue: 'APR' })}</Text>
                 <Text style={styles.poolValue}>
