@@ -1,104 +1,201 @@
 /**
- * CreateWalletScreen — entry to the wallet-creation flow.
+ * CreateWalletScreen — deterministic-credentials sign-up form.
  *
- * Generates a fresh BIP39 mnemonic via WalletCreationService and hands
- * the 12 words to the SeedBackup screen. The actual mnemonic never
- * crosses the React component boundary after backup is confirmed —
- * SeedBackup strips it from state the moment the user proceeds.
+ * Single screen: username + email + password + confirm-password →
+ * derives a BIP39 seed via PBKDF2-SHA512(password, salt=username) and
+ * registers the wallet on the validator. The seed is the deterministic
+ * function of (username, password); typing the same pair on any client
+ * regenerates the same wallet. There is no separate mnemonic to back up.
  *
- * UX guarantees:
- *   - The mnemonic is generated locally on-demand; not fetched.
- *   - Haptic feedback on the "I'm Ready" confirm button.
- *   - Screen-capture is prevented on the seed-display screen via
- *     expo-screen-capture (wired by SeedBackup).
+ * Mirrors `Wallet/src/popup/pages/onboarding/CreateWallet.tsx` so users
+ * have one credential pair across mobile, browser-extension, and web.
+ *
+ * Email is collected here and sent to the validator at registration.
+ * The validator emails a 6-digit verification code; the next step in
+ * the navigator collects that code via `EmailVerifyScreen`.
  */
 
 import React, { useCallback, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { useTranslation } from 'react-i18next';
 
 import Button from '@components/Button';
+import Input from '@components/Input';
 import LoadingSpinner from '@components/LoadingSpinner';
 import { colors } from '@theme/colors';
-import { createWallet, type DerivedKeys } from '../services/WalletCreationService';
+import {
+  deriveDeterministicWallet,
+  type DerivedKeys,
+} from '../services/WalletCreationService';
+
+/** Username regex — mirrors validator-side canonical form. */
+const USERNAME_PATTERN = /^[a-z][a-z0-9_]{2,19}$/;
+/** Quick email shape check. Validator does the canonical RFC validation. */
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** Props accepted by CreateWalletScreen. */
 export interface CreateWalletScreenProps {
-  /** Invoked once the user has acknowledged the warning — `keys.mnemonic` is the new 12-word phrase. */
-  onMnemonicReady: (keys: DerivedKeys) => void;
+  /**
+   * Fired once derivation succeeds. The navigator should advance to
+   * the registration step, which posts the attestation to the
+   * validator and triggers the verification email.
+   */
+  onAccountReady: (params: {
+    keys: DerivedKeys;
+    username: string;
+    email: string;
+    referralCode?: string;
+  }) => void;
   /** Back-navigation callback. */
   onCancel: () => void;
 }
 
 /**
- * Render the create-wallet warning + Generate button.
+ * Render the create-account form.
+ *
  * @param props - See {@link CreateWalletScreenProps}.
  * @returns JSX.
  */
 export default function CreateWalletScreen(props: CreateWalletScreenProps): JSX.Element {
   const { t } = useTranslation();
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [referralCode, setReferralCode] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | undefined>(undefined);
 
-  const handleGenerate = useCallback((): void => {
+  const handleSubmit = useCallback((): void => {
+    setError(undefined);
+    const canonicalUsername = username.trim().toLowerCase();
+    if (!USERNAME_PATTERN.test(canonicalUsername)) {
+      setError(t('createWallet.usernameInvalid', {
+        defaultValue: 'Username must be 3–20 characters: lowercase letters, digits, or underscore, starting with a letter.',
+      }));
+      return;
+    }
+    const trimmedEmail = email.trim();
+    if (!EMAIL_PATTERN.test(trimmedEmail)) {
+      setError(t('createWallet.emailInvalid', { defaultValue: 'Enter a valid email address.' }));
+      return;
+    }
+    if (password.length < 8) {
+      setError(t('createWallet.passwordTooShort', {
+        defaultValue: 'Password must be at least 8 characters.',
+      }));
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError(t('createWallet.passwordMismatch', { defaultValue: 'Passwords do not match.' }));
+      return;
+    }
+
     setLoading(true);
-    // Defer to next tick so the spinner paints — creation itself is
-    // synchronous and completes in < 10 ms on mid-range Android.
+    // Derivation is synchronous (~150 ms on mid-range Android for
+    // 100k PBKDF2 iters) — defer one tick so the spinner paints.
     setTimeout(() => {
       try {
-        const keys = createWallet(12);
+        const keys = deriveDeterministicWallet(canonicalUsername, password);
+        const trimmedReferral = referralCode.trim();
         void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-        props.onMnemonicReady(keys);
+        props.onAccountReady({
+          keys,
+          username: canonicalUsername,
+          email: trimmedEmail,
+          ...(trimmedReferral.length > 0 && { referralCode: trimmedReferral }),
+        });
       } catch (err) {
-        console.error('[create-wallet] generation failed', err);
+        const msg = err instanceof Error ? err.message : String(err);
+        setError(t('createWallet.deriveFailed', {
+          defaultValue: 'Wallet derivation failed: {{msg}}',
+          msg,
+        }));
         setLoading(false);
       }
     }, 0);
-  }, [props]);
+  }, [props, t, username, email, password, confirmPassword, referralCode]);
 
   if (loading) {
     return (
       <View style={styles.root}>
         <LoadingSpinner
-          label={t('createWallet.generating', { defaultValue: 'Generating your secure wallet…' })}
+          label={t('createWallet.generating', {
+            defaultValue: 'Deriving your wallet from credentials…',
+          })}
         />
       </View>
     );
   }
 
   return (
-    <View style={styles.root}>
+    <ScrollView style={styles.root} contentContainerStyle={styles.content}>
       <Text style={styles.title} accessibilityRole="header">
-        {t('createWallet.title', { defaultValue: 'Before We Begin' })}
+        {t('createWallet.title', { defaultValue: 'Create Account' })}
+      </Text>
+      <Text style={styles.subtitle}>
+        {t('createWallet.deterministicHint', {
+          defaultValue:
+            'Your wallet is derived from your username and password. The same credentials regenerate the same wallet on any device — there is no separate seed phrase to write down.',
+        })}
       </Text>
 
-      <View style={styles.warnings}>
-        <Warning
-          emoji="🔒"
-          text={t('createWallet.warn.local', {
-            defaultValue: 'Your wallet is generated on this device. We never see it.',
-          })}
-        />
-        <Warning
-          emoji="📝"
-          text={t('createWallet.warn.write', {
-            defaultValue:
-              'You will see a 12-word recovery phrase. Write it down and store it somewhere safe.',
-          })}
-        />
-        <Warning
-          emoji="⚠️"
-          text={t('createWallet.warn.lose', {
-            defaultValue:
-              'If you lose your recovery phrase you lose access to your wallet. No one can recover it for you.',
-          })}
-        />
-      </View>
+      <Input
+        label={t('createWallet.usernameLabel', { defaultValue: 'Username' })}
+        value={username}
+        onChangeText={setUsername}
+        autoCapitalize="none"
+        autoCorrect={false}
+        placeholder="alice"
+        textContentType="username"
+      />
+      <Input
+        label={t('createWallet.emailLabel', { defaultValue: 'Email' })}
+        value={email}
+        onChangeText={setEmail}
+        autoCapitalize="none"
+        autoCorrect={false}
+        keyboardType="email-address"
+        placeholder="alice@example.com"
+        textContentType="emailAddress"
+      />
+      <Input
+        label={t('createWallet.passwordLabel', { defaultValue: 'Password' })}
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+        autoCapitalize="none"
+        autoCorrect={false}
+        textContentType="newPassword"
+      />
+      <Input
+        label={t('createWallet.confirmPasswordLabel', {
+          defaultValue: 'Confirm Password',
+        })}
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+        secureTextEntry
+        autoCapitalize="none"
+        autoCorrect={false}
+        textContentType="newPassword"
+      />
+      <Input
+        label={t('createWallet.referralLabel', {
+          defaultValue: 'Referral Code (optional)',
+        })}
+        value={referralCode}
+        onChangeText={setReferralCode}
+        autoCapitalize="none"
+        autoCorrect={false}
+      />
+
+      {error !== undefined && <Text style={styles.error}>{error}</Text>}
 
       <View style={styles.actions}>
         <Button
-          title={t('createWallet.cta.generate', { defaultValue: 'Generate My Wallet' })}
-          onPress={handleGenerate}
+          title={t('createWallet.cta.create', { defaultValue: 'Create Account' })}
+          onPress={handleSubmit}
           style={styles.actionButton}
         />
         <Button
@@ -107,17 +204,7 @@ export default function CreateWalletScreen(props: CreateWalletScreenProps): JSX.
           variant="secondary"
         />
       </View>
-    </View>
-  );
-}
-
-/** Helper row rendering a warning emoji + text. */
-function Warning({ emoji, text }: { emoji: string; text: string }): JSX.Element {
-  return (
-    <View style={styles.warnRow}>
-      <Text style={styles.warnEmoji}>{emoji}</Text>
-      <Text style={styles.warnText}>{text}</Text>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -125,6 +212,8 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: colors.background,
+  },
+  content: {
     paddingHorizontal: 24,
     paddingTop: 64,
     paddingBottom: 32,
@@ -133,13 +222,15 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     fontSize: 26,
     fontWeight: '700',
-    textAlign: 'center',
-    marginBottom: 32,
+    marginBottom: 12,
   },
-  warnings: { flex: 1, justifyContent: 'center' },
-  warnRow: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 20 },
-  warnEmoji: { fontSize: 24, marginRight: 12 },
-  warnText: { color: colors.textSecondary, fontSize: 15, lineHeight: 22, flex: 1 },
+  subtitle: {
+    color: colors.textSecondary,
+    fontSize: 15,
+    lineHeight: 22,
+    marginBottom: 24,
+  },
+  error: { color: colors.danger, fontSize: 14, marginBottom: 16, marginTop: 8 },
   actions: { marginTop: 24 },
   actionButton: { marginBottom: 12 },
 });

@@ -30,11 +30,9 @@ import { colors } from '@theme/colors';
 
 /** Navigation prop shape the screen expects. */
 export interface WelcomeScreenProps {
-  /** Called when the user taps "Create Wallet". */
+  /** Called when the user taps "Create Account". */
   onCreateWallet: () => void;
-  /** Called when the user taps "Import Wallet". */
-  onImportWallet: () => void;
-  /** Called when the user taps "Sign In" (existing wallet on new device). */
+  /** Called when the user taps "Log In" (existing account on this or any device). */
   onSignIn: () => void;
 }
 
@@ -123,27 +121,17 @@ export default function WelcomeScreen(props: WelcomeScreenProps): JSX.Element {
 
       <View style={styles.actions}>
         <Button
-          title={t('welcome.cta.create', { defaultValue: 'Create New Wallet' })}
+          title={t('welcome.cta.create', { defaultValue: 'Create New Account' })}
           onPress={props.onCreateWallet}
           variant="primary"
           style={styles.actionButton}
         />
         <Button
-          title={t('welcome.cta.import', { defaultValue: 'I Have a Seed Phrase' })}
-          onPress={props.onImportWallet}
+          title={t('welcome.cta.signIn', { defaultValue: 'Log In' })}
+          onPress={props.onSignIn}
           variant="secondary"
           style={styles.actionButton}
         />
-        <Text style={styles.signInRow}>
-          {t('welcome.cta.haveAccount', { defaultValue: 'Already have an account?' })}{' '}
-          <Text
-            accessibilityRole="link"
-            onPress={props.onSignIn}
-            style={styles.signInLink}
-          >
-            {t('welcome.cta.signIn', { defaultValue: 'Sign In' })}
-          </Text>
-        </Text>
       </View>
     </View>
   );

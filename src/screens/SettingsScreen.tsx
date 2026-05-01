@@ -18,8 +18,10 @@ import { useTranslation } from 'react-i18next';
 
 import Button from '@components/Button';
 import Card from '@components/Card';
+import ScreenHeader from '@components/ScreenHeader';
 import { colors } from '@theme/colors';
 import { getBiometricAdapter, getStorageAdapter } from '@wallet/platform/registry';
+import { setAutoLockInterval, type AutoLockMinutes } from '../services/AutoLockService';
 import { SUPPORTED_LANGUAGES, type SupportedLanguage } from '../i18n';
 import { useAuthStore } from '../store/authStore';
 
@@ -36,6 +38,12 @@ export interface SettingsScreenProps {
   onBack: () => void;
   /** Sign-out callback (clears authStore). */
   onSignOut: () => void;
+  /** Open ChangePasswordScreen. */
+  onOpenChangePassword?: () => void;
+  /** Open TokenApprovalsScreen. */
+  onOpenTokenApprovals?: () => void;
+  /** Open ConnectedSitesScreen. */
+  onOpenConnectedSites?: () => void;
 }
 
 /**
@@ -84,6 +92,9 @@ export default function SettingsScreen(props: SettingsScreenProps): JSX.Element 
     } catch {
       /* best effort */
     }
+    // Apply immediately so the next idle tick uses the new interval
+    // — without this, the change wouldn't take effect until app boot.
+    setAutoLockInterval(minutes as AutoLockMinutes);
   }, []);
 
   const toggleBiometric = useCallback(async (next: boolean): Promise<void> => {
@@ -105,14 +116,10 @@ export default function SettingsScreen(props: SettingsScreenProps): JSX.Element 
 
   return (
     <View style={styles.root}>
-      <View style={styles.header}>
-        <Pressable onPress={props.onBack} accessibilityRole="button" style={styles.backButton}>
-          <Text style={styles.backText}>‹ {t('common.back', { defaultValue: 'Back' })}</Text>
-        </Pressable>
-        <Text style={styles.title} accessibilityRole="header">
-          {t('settings.title', { defaultValue: 'Settings' })}
-        </Text>
-      </View>
+      <ScreenHeader
+        title={t('settings.title', { defaultValue: 'Settings' })}
+        onBack={props.onBack}
+      />
 
       {/* Language */}
       <Card style={styles.section}>
@@ -189,6 +196,37 @@ export default function SettingsScreen(props: SettingsScreenProps): JSX.Element 
         </View>
       </Card>
 
+      {/* Security & connections — quick navigation tiles. */}
+      <Card style={styles.section}>
+        <Text style={styles.sectionHeader}>
+          {t('settings.securityHeader', { defaultValue: 'Security & Connections' })}
+        </Text>
+        {props.onOpenChangePassword !== undefined && (
+          <Pressable onPress={props.onOpenChangePassword} style={styles.linkRow}>
+            <Text style={styles.linkRowText}>
+              {t('settings.changePassword', { defaultValue: 'Change Password' })}
+            </Text>
+            <Text style={styles.linkRowChev}>›</Text>
+          </Pressable>
+        )}
+        {props.onOpenTokenApprovals !== undefined && (
+          <Pressable onPress={props.onOpenTokenApprovals} style={styles.linkRow}>
+            <Text style={styles.linkRowText}>
+              {t('settings.tokenApprovals', { defaultValue: 'Token Approvals' })}
+            </Text>
+            <Text style={styles.linkRowChev}>›</Text>
+          </Pressable>
+        )}
+        {props.onOpenConnectedSites !== undefined && (
+          <Pressable onPress={props.onOpenConnectedSites} style={styles.linkRow}>
+            <Text style={styles.linkRowText}>
+              {t('settings.connectedSites', { defaultValue: 'Connected Apps' })}
+            </Text>
+            <Text style={styles.linkRowChev}>›</Text>
+          </Pressable>
+        )}
+      </Card>
+
       <View style={styles.actions}>
         <Button
           title={t('settings.signOut', { defaultValue: 'Sign Out' })}
@@ -232,4 +270,13 @@ const styles = StyleSheet.create({
   chipTextActive: { color: colors.background, fontWeight: '700' },
   switchRow: { flexDirection: 'row', alignItems: 'center' },
   actions: { paddingHorizontal: 16, marginTop: 24 },
+  linkRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+  },
+  linkRowText: { color: colors.textPrimary, fontSize: 15, flex: 1 },
+  linkRowChev: { color: colors.textMuted, fontSize: 22, fontWeight: '600' },
 });

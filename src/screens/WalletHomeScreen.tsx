@@ -23,6 +23,8 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import Card from '@components/Card';
+import TokenIcon from '@components/TokenIcon';
+import { Ionicons } from '@expo/vector-icons';
 import { colors } from '@theme/colors';
 import {
   fetchErc20Balances,
@@ -31,7 +33,26 @@ import {
   summarize,
   type ChainBalance,
 } from '../services/PortfolioService';
+import { usePortfolio } from '../hooks/usePortfolio';
 import { useAuthStore } from '../store/authStore';
+
+/**
+ * Format a USD number for the hero "Portfolio" total.
+ *
+ * @param usd - Numeric USD value.
+ * @returns "$0.00" through "$99,999,999.99" formatted with commas + 2 dp.
+ */
+function formatUsd(usd: number): string {
+  if (!Number.isFinite(usd)) return '—';
+  // Two-decimal precision under $1k, integer commas above. Mirrors
+  // WebApp `formatUsd()` UX so the same dollar shows the same string
+  // on both platforms.
+  const rounded = Math.round(usd * 100) / 100;
+  const fixed = rounded.toFixed(2);
+  const [whole, dec] = fixed.split('.');
+  const withCommas = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return `$${withCommas}.${dec}`;
+}
 
 /** Props accepted by WalletHomeScreen. */
 export interface WalletHomeScreenProps {
@@ -93,6 +114,11 @@ export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Elem
 
   const { nonZeroChains, totalErrorRows } = summarize(balances);
 
+  // Validator-aggregated USD totals (hits `/api/v1/wallet/portfolio/:address`).
+  // Independent of the per-chain Multicall fan-out above so the hero can
+  // populate even when some chains time out, and vice versa.
+  const { portfolio, loading: portfolioLoading, error: portfolioError } = usePortfolio();
+
   return (
     <View style={styles.root}>
       {/* Hero card */}
@@ -101,14 +127,40 @@ export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Elem
           {t('walletHome.portfolio', { defaultValue: 'Portfolio' })}
         </Text>
         <Text style={styles.heroTotal}>
-          {balances.length === 0
-            ? t('walletHome.loading', { defaultValue: 'Loading…' })
-            : t('walletHome.chainSummary', {
-                defaultValue: '{{n}} chain{{s}} active',
-                n: nonZeroChains,
-                s: nonZeroChains === 1 ? '' : 's',
-              })}
+          {portfolio !== undefined && typeof portfolio.totalUsd === 'number'
+            ? formatUsd(portfolio.totalUsd)
+            : portfolioLoading
+              ? t('walletHome.loading', { defaultValue: 'Loading…' })
+              : portfolioError !== undefined
+                ? '—'
+                : t('walletHome.chainSummary', {
+                    defaultValue: '{{n}} chain{{s}} active',
+                    n: nonZeroChains,
+                    s: nonZeroChains === 1 ? '' : 's',
+                  })}
         </Text>
+        {(() => {
+          // Defensive read: validator may omit `change24h` entirely
+          // when no price-history is available, return it as `null`,
+          // or return `{ amount, percentage }` with non-numeric fields.
+          // Without this guard the whole home screen used to throw
+          // "Cannot read property 'amount' of undefined" mid-render
+          // and the React tree would unmount back to the splash.
+          const c24 = portfolio?.change24h;
+          const amount = typeof c24?.amount === 'number' ? c24.amount : 0;
+          const percentage = typeof c24?.percentage === 'number' ? c24.percentage : 0;
+          if (portfolio === undefined || amount === 0) return null;
+          return (
+            <Text
+              style={[
+                styles.heroChange,
+                amount >= 0 ? styles.heroChangePos : styles.heroChangeNeg,
+              ]}
+            >
+              {amount >= 0 ? '↑' : '↓'} {formatUsd(Math.abs(amount))} ({percentage.toFixed(2)}%)
+            </Text>
+          );
+        })()}
         <Text style={styles.heroAddress}>{username !== '' ? `@${username} · ${short(address)}` : short(address)}</Text>
         {totalErrorRows > 0 && (
           <Text style={styles.heroError}>
@@ -121,19 +173,41 @@ export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Elem
         )}
       </Card>
 
-      {/* Quick actions */}
-      <View style={styles.actionsRow}>
-        <ActionTile label={t('walletHome.send', { defaultValue: 'Send' })} onPress={props.onSend} />
-        <ActionTile
-          label={t('walletHome.receive', { defaultValue: 'Receive' })}
-          onPress={props.onReceive}
-        />
-        <ActionTile label={t('walletHome.swap', { defaultValue: 'Swap' })} onPress={props.onSwap} />
-        <ActionTile label={t('walletHome.shop', { defaultValue: 'Shop' })} onPress={props.onShop} />
-        <ActionTile
-          label={t('walletHome.profile', { defaultValue: 'Profile' })}
-          onPress={props.onProfile}
-        />
+      {/* Quick actions — 2 rows of 3 (with the bottom slot empty) so
+          each tile gets ~33% of screen width, plenty for "Receive"
+          (the longest label) plus an icon without wrapping. */}
+      <View style={styles.actionsGrid}>
+        <View style={styles.actionsRow}>
+          <ActionTile
+            icon="arrow-up-outline"
+            label={t('walletHome.send', { defaultValue: 'Send' })}
+            onPress={props.onSend}
+          />
+          <ActionTile
+            icon="arrow-down-outline"
+            label={t('walletHome.receive', { defaultValue: 'Receive' })}
+            onPress={props.onReceive}
+          />
+          <ActionTile
+            icon="swap-horizontal-outline"
+            label={t('walletHome.swap', { defaultValue: 'Swap' })}
+            onPress={props.onSwap}
+          />
+        </View>
+        <View style={styles.actionsRow}>
+          <ActionTile
+            icon="storefront-outline"
+            label={t('walletHome.shop', { defaultValue: 'Shop' })}
+            onPress={props.onShop}
+          />
+          <ActionTile
+            icon="person-circle-outline"
+            label={t('walletHome.profile', { defaultValue: 'Profile' })}
+            onPress={props.onProfile}
+          />
+          {/* Spacer so the second row aligns with the first. */}
+          <View style={styles.actionTileSpacer} />
+        </View>
       </View>
 
       <Text style={styles.sectionHeader}>
@@ -168,7 +242,12 @@ export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Elem
 function TokenRow({ balance }: { balance: ChainBalance }): JSX.Element {
   return (
     <View style={styles.tokenRow}>
-      <View style={styles.tokenRowLeft}>
+      <TokenIcon
+        chainId={balance.chainId}
+        symbol={balance.symbol}
+        size={36}
+      />
+      <View style={styles.tokenRowMid}>
         <Text style={styles.tokenSymbol}>{balance.symbol}</Text>
         <Text style={styles.tokenChain}>{balance.chainName}</Text>
       </View>
@@ -176,7 +255,12 @@ function TokenRow({ balance }: { balance: ChainBalance }): JSX.Element {
         {balance.error !== undefined ? (
           <Text style={styles.tokenError}>error</Text>
         ) : (
-          <Text style={styles.tokenBalance}>{formatRaw(balance.raw, balance.decimals)}</Text>
+          <>
+            <Text style={styles.tokenBalance}>{formatRaw(balance.raw, balance.decimals)}</Text>
+            {balance.usdValue !== undefined && (
+              <Text style={styles.tokenUsd}>{formatUsd(balance.usdValue)}</Text>
+            )}
+          </>
         )}
       </View>
     </View>
@@ -184,10 +268,26 @@ function TokenRow({ balance }: { balance: ChainBalance }): JSX.Element {
 }
 
 /** Quick-action tile (Send / Receive / Swap). */
-function ActionTile({ label, onPress }: { label: string; onPress: () => void }): JSX.Element {
+function ActionTile({
+  label,
+  onPress,
+  icon,
+}: {
+  label: string;
+  onPress: () => void;
+  icon: React.ComponentProps<typeof Ionicons>['name'];
+}): JSX.Element {
   return (
-    <Pressable onPress={onPress} accessibilityRole="button" style={styles.actionTile}>
-      <Text style={styles.actionLabel}>{label}</Text>
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      style={styles.actionTile}
+    >
+      <Ionicons name={icon} size={22} color={colors.textPrimary} />
+      <Text style={styles.actionLabel} numberOfLines={1}>
+        {label}
+      </Text>
     </Pressable>
   );
 }
@@ -204,17 +304,30 @@ const styles = StyleSheet.create({
   heroLabel: { color: colors.textMuted, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1.2 },
   heroTotal: { color: colors.textPrimary, fontSize: 28, fontWeight: '700', marginTop: 8, marginBottom: 4 },
   heroAddress: { color: colors.primary, fontSize: 13, marginTop: 4 },
+  heroChange: { fontSize: 13, marginTop: 4, fontWeight: '600' },
+  heroChangePos: { color: colors.success },
+  heroChangeNeg: { color: colors.danger },
   heroError: { color: colors.warning, fontSize: 12, marginTop: 8, textAlign: 'center' },
-  actionsRow: { flexDirection: 'row', marginBottom: 24 },
+  actionsGrid: { marginBottom: 24 },
+  actionsRow: { flexDirection: 'row', marginBottom: 8 },
   actionTile: {
     flex: 1,
     backgroundColor: colors.surface,
     borderRadius: 12,
-    padding: 16,
+    paddingVertical: 14,
+    paddingHorizontal: 8,
     alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
     marginHorizontal: 4,
   },
-  actionLabel: { color: colors.textPrimary, fontWeight: '600', fontSize: 15 },
+  actionTileSpacer: { flex: 1, marginHorizontal: 4 },
+  actionLabel: {
+    color: colors.textPrimary,
+    fontWeight: '600',
+    fontSize: 14,
+    marginLeft: 6,
+  },
   sectionHeader: {
     color: colors.textSecondary,
     fontSize: 13,
@@ -225,17 +338,18 @@ const styles = StyleSheet.create({
   listContent: { paddingBottom: 32 },
   tokenRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    alignItems: 'center',
     backgroundColor: colors.surface,
     borderRadius: 12,
     padding: 16,
     marginBottom: 8,
   },
-  tokenRowLeft: { flexDirection: 'column' },
-  tokenRowRight: { justifyContent: 'center' },
+  tokenRowMid: { flex: 1, marginLeft: 12, flexDirection: 'column' },
+  tokenRowRight: { alignItems: 'flex-end' },
   tokenSymbol: { color: colors.textPrimary, fontSize: 16, fontWeight: '600' },
   tokenChain: { color: colors.textMuted, fontSize: 13, marginTop: 2 },
   tokenBalance: { color: colors.textPrimary, fontSize: 15 },
+  tokenUsd: { color: colors.textMuted, fontSize: 12, marginTop: 2 },
   tokenError: { color: colors.danger, fontSize: 13 },
   empty: { color: colors.textMuted, textAlign: 'center', paddingVertical: 48 },
   signOut: { alignItems: 'center', paddingVertical: 16 },

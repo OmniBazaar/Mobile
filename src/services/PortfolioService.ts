@@ -48,7 +48,13 @@ const CHAINS: Array<{
   symbol: string;
   decimals: number;
 }> = [
-  { chainId: 88008, name: 'OmniCoin', symbol: 'XOM', decimals: 18 },
+  // OmniCoin L1 native gas balance is intentionally NOT queried as a
+  // user-facing balance row: it always reads ~0 because the platform
+  // is gasless (txns relay through OmniRelay) and reading it just
+  // confuses the user. The user's actual XOM balance lives in the
+  // OmniCoin ERC-20 contract, which is queried via ERC20_TOKENS
+  // below. If we ever need to surface gas balance separately, do it
+  // as a "Gas reserve" row, NOT as the user's XOM balance.
   { chainId: 1, name: 'Ethereum', symbol: 'ETH', decimals: 18 },
   { chainId: 10, name: 'Optimism', symbol: 'ETH', decimals: 18 },
   { chainId: 56, name: 'BNB Chain', symbol: 'BNB', decimals: 18 },
@@ -57,6 +63,27 @@ const CHAINS: Array<{
   { chainId: 42161, name: 'Arbitrum', symbol: 'ETH', decimals: 18 },
   { chainId: 43114, name: 'Avalanche', symbol: 'AVAX', decimals: 18 },
 ];
+
+/**
+ * Per-chain RPC timeout (ms). Without this a single slow chain
+ * (cold-DNS, regional outage) stalls the entire portfolio refresh.
+ * The home screen waits for `Promise.all(...)` to resolve before
+ * rendering balances, so any single chain stuck for 30 s blocks the
+ * whole hero card. 5 s is enough for a healthy Multicall3 round trip
+ * but cuts off pathological cases.
+ */
+const CHAIN_FETCH_TIMEOUT_MS = 5_000;
+
+/** Wrap a promise in a timeout that rejects after `ms` milliseconds. */
+function withTimeout<T>(work: Promise<T>, ms: number, label: string): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const t = setTimeout(() => reject(new Error(`${label} timed out after ${ms}ms`)), ms);
+    work.then(
+      (v) => { clearTimeout(t); resolve(v); },
+      (e: unknown) => { clearTimeout(t); reject(e); },
+    );
+  });
+}
 
 /**
  * Fetch native balances for a single address across every chain the
@@ -75,7 +102,11 @@ export async function fetchNativeBalances(address: string): Promise<ChainBalance
   const results = await Promise.all(
     CHAINS.map(async (chain) => {
       try {
-        const map = await getNativeBalances(chain.chainId, [address]);
+        const map = await withTimeout(
+          getNativeBalances(chain.chainId, [address]),
+          CHAIN_FETCH_TIMEOUT_MS,
+          `native ${chain.name}`,
+        );
         const raw = map.get(address.toLowerCase()) ?? map.get(address) ?? 0n;
         return {
           chainId: chain.chainId,
@@ -141,6 +172,11 @@ export interface Erc20Token {
  * understands. Extend as new tokens go live.
  */
 export const ERC20_TOKENS: Erc20Token[] = [
+  // OmniCoin (XOM) ERC-20 contract on chain 88008. This is where the
+  // user's actual XOM balance lives — the native gas balance on chain
+  // 88008 is always near zero (gasless platform). Mainnet address from
+  // `Wallet/src/config/omnicoin-integration.ts::OMNICOIN_ADDRESSES.mainnet.OmniCoin`.
+  { chainId: 88008, address: '0x1eE61487F08F715055358A1F020A86c9E571ED78', symbol: 'XOM', decimals: 18 },
   { chainId: 1, address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', symbol: 'USDC', decimals: 6 },
   { chainId: 1, address: '0xdAC17F958D2ee523a2206206994597C13D831ec7', symbol: 'USDT', decimals: 6 },
   { chainId: 42161, address: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831', symbol: 'USDC', decimals: 6 },
@@ -179,7 +215,11 @@ export async function fetchErc20Balances(address: string): Promise<ChainBalance[
     Array.from(byChain.entries()).map(async ([chainId, tokens]) => {
       try {
         const tokenAddresses = tokens.map((t) => t.address);
-        const balances = await getErc20Balances(chainId, address, tokenAddresses);
+        const balances = await withTimeout(
+          getErc20Balances(chainId, address, tokenAddresses),
+          CHAIN_FETCH_TIMEOUT_MS,
+          `erc20 ${chainNameFor(chainId)}`,
+        );
         for (const tok of tokens) {
           const key = tok.address.toLowerCase();
           const raw = balances.get(key) ?? balances.get(tok.address) ?? 0n;

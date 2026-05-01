@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 
 import Button from '@components/Button';
 import Card from '@components/Card';
+import ScreenHeader from '@components/ScreenHeader';
 import { colors } from '@theme/colors';
 import { useAuthStore } from '../store/authStore';
 
@@ -39,9 +40,10 @@ export default function ReceiveScreen(props: ReceiveScreenProps): JSX.Element {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.title} accessibilityRole="header">
-        {t('receive.title', { defaultValue: 'Receive' })}
-      </Text>
+      <ScreenHeader
+        title={t('receive.title', { defaultValue: 'Receive' })}
+        onBack={props.onBack}
+      />
       <Text style={styles.subtitle}>
         {t('receive.subtitle', {
           defaultValue: 'Share this address to receive tokens on any EVM chain.',

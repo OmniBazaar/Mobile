@@ -92,6 +92,59 @@ if (typeof (__g['process'] as { nextTick?: unknown } | undefined)?.nextTick !== 
   };
 }
 
+// `AbortSignal.timeout(ms)` polyfill. Hermes (RN 0.73) lacks this
+// (added to Node 17.3 / browsers 2022+). Several `@wallet/*` services
+// — most critically `ChallengeAuthClient.getChallenge` — pass
+// `signal: AbortSignal.timeout(10_000)` to fetch(), which evaluates
+// to `undefined(...)` on Hermes and throws "undefined is not a
+// function" mid-login. The polyfill wires AbortController to a
+// setTimeout that calls `.abort()` after `ms` — semantically identical
+// to the spec'd version. Idempotent: if the runtime later gains the
+// API natively, we leave the native one alone.
+if (typeof (AbortSignal as { timeout?: unknown }).timeout !== 'function') {
+  (AbortSignal as { timeout?: (ms: number) => AbortSignal }).timeout = (ms: number): AbortSignal => {
+    const controller = new AbortController();
+    setTimeout(() => {
+      // The DOMException class is provided by RN's polyfill; fall back
+      // to a plain Error if not. The reason is attached to the signal
+      // and surfaces to fetch consumers as `signal.reason`.
+      try {
+        const reason =
+          typeof (globalThis as { DOMException?: typeof DOMException }).DOMException === 'function'
+            ? new DOMException('The operation timed out.', 'TimeoutError')
+            : new Error('The operation timed out.');
+        // Cast: AbortController.abort accepts an unknown reason in
+        // current spec; some older RN typings constrain it.
+        (controller.abort as (r?: unknown) => void)(reason);
+      } catch {
+        controller.abort();
+      }
+    }, ms);
+    return controller.signal;
+  };
+}
+
+// CRITICAL: install the chrome global stub BEFORE any @wallet/* code is
+// evaluated. The bundled Wallet code calls `chrome.runtime.sendMessage`,
+// `chrome.runtime.getURL`, `chrome.runtime.onStartup.addListener` etc.
+// directly without guards (it was authored for an MV3 service worker
+// where `globalThis.chrome` is always defined). On Hermes, accessing
+// any property of the missing `chrome` global throws "Property 'chrome'
+// doesn't exist" / "undefined is not a function" — the latter is what
+// crashes login because ChallengeAuthClient.hardwareSigner reaches for
+// `chrome.runtime.sendMessage` on the verify path.
+import { installChromeStub } from './src/services/ChromeStub';
+installChromeStub();
+
+// Install the ethers crypto shim BEFORE any module that imports from
+// `ethers` is evaluated. ethers v6's CommonJS build pulls
+// `pbkdf2Sync`/`createHmac`/etc. off `require("crypto")`, which Hermes
+// silently stubs out — so without this shim, every BIP-39 / HD-key
+// derivation throws "undefined is not a function" and login crashes
+// before the JS bundle's main can even register with AppRegistry.
+import { installEthersCryptoShim } from './src/services/EthersCryptoShim';
+installEthersCryptoShim();
+
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Modal, Linking, Platform, Pressable } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
@@ -137,6 +190,7 @@ void (async (): Promise<void> => {
 })();
 
 import RootNavigator from './src/navigation/RootNavigator';
+import ErrorBoundary from './src/components/ErrorBoundary';
 import { VersionCheckService, type VersionCheckResult, type VersionStatus } from './src/services/VersionCheckService';
 
 /** Store URL for directing users to update the app */
@@ -242,7 +296,9 @@ export default function App(): JSX.Element {
       )}
 
       {/* ---- App content ---- */}
-      <RootNavigator />
+      <ErrorBoundary>
+        <RootNavigator />
+      </ErrorBoundary>
       <StatusBar style="auto" />
     </View>
   );

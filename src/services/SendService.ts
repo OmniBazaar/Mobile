@@ -119,3 +119,72 @@ export function parseAmount(amount: string, decimals: number = 18): bigint {
   }
   return ethers.parseUnits(trimmed, decimals);
 }
+
+/** Params for {@link sendErc20}. */
+export interface SendErc20Params {
+  /** Decrypted BIP39 mnemonic. */
+  mnemonic: string;
+  /** EVM chain ID where the token contract lives. */
+  chainId: number;
+  /** ERC-20 token contract address. */
+  tokenAddress: string;
+  /** Recipient address. */
+  to: string;
+  /** Smallest-unit amount (already scaled by token decimals). */
+  amount: bigint;
+}
+
+/** Minimal ERC-20 transfer ABI for ethers Contract. */
+const ERC20_TRANSFER_ABI = [
+  'function transfer(address to, uint256 amount) returns (bool)',
+];
+
+/**
+ * Send `amount` of an ERC-20 token from the wallet's primary account
+ * to `to`. Uses the provider exposed by ClientRPCRegistry.
+ *
+ * @param params - See {@link SendErc20Params}.
+ * @returns Broadcast receipt metadata.
+ */
+export async function sendErc20(params: SendErc20Params): Promise<SendResult> {
+  if (params.amount <= 0n) {
+    throw new Error('sendErc20: amount must be positive');
+  }
+  if (!ethers.isAddress(params.to)) {
+    throw new Error(`sendErc20: invalid recipient address ${params.to}`);
+  }
+  if (!ethers.isAddress(params.tokenAddress)) {
+    throw new Error(`sendErc20: invalid token contract ${params.tokenAddress}`);
+  }
+  const provider = getClientRPCRegistry().getProvider(params.chainId);
+  if (provider === undefined) {
+    throw new Error(
+      `sendErc20: no RPC provider available for chainId ${params.chainId}`,
+    );
+  }
+  const wallet = Wallet.fromPhrase(
+    params.mnemonic,
+    provider as unknown as ethers.Provider,
+  );
+  const contract = new ethers.Contract(
+    params.tokenAddress,
+    ERC20_TRANSFER_ABI,
+    wallet,
+  );
+  const transferFn = contract['transfer'];
+  if (typeof transferFn !== 'function') {
+    throw new Error('sendErc20: transfer ABI not bound on contract');
+  }
+  // ethers' Contract.transfer returns a TransactionResponse on
+  // signed/wallet-bound contracts. Cast through unknown because
+  // TypeScript's Contract proxy can't narrow ABI fragments.
+  const sent = (await (transferFn as (...a: unknown[]) => Promise<unknown>)(
+    params.to,
+    params.amount,
+  )) as { hash: string };
+  return {
+    txHash: sent.hash,
+    chainId: params.chainId,
+    from: wallet.address,
+  };
+}

@@ -12,15 +12,17 @@
  * the KYC-read endpoint integration on the Mobile path lands.
  */
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import Button from '@components/Button';
 import Card from '@components/Card';
+import ScreenHeader from '@components/ScreenHeader';
 import { colors } from '@theme/colors';
 import { getTabsAdapter } from '@wallet/platform/registry';
 import { getBaseUrl } from '../services/BootstrapService';
+import { fetchKycStatus, invalidateKycCache, type KycStatus } from '../services/KYCStatusService';
 import { useAuthStore } from '../store/authStore';
 
 /** KYC tier metadata. */
@@ -53,16 +55,29 @@ export interface KYCScreenProps {
 export default function KYCScreen(props: KYCScreenProps): JSX.Element {
   const { t } = useTranslation();
   const address = useAuthStore((s) => s.address);
-  // Phase 5 MVP: assume tier 0 until the validator-read integration lands
-  // in Phase 5 Week 2. The UI just wants something to highlight.
-  const [currentTier] = useState<number>(0);
+  const [status, setStatus] = useState<KycStatus | undefined>(undefined);
   const [launching, setLaunching] = useState(false);
+  const currentTier = status?.tier ?? 0;
+
+  // Read current tier from validator on mount + whenever address changes.
+  // Soft-fail: tier 0 is the safe default if the network call hangs.
+  useEffect(() => {
+    if (address === '') return;
+    let cancelled = false;
+    void (async (): Promise<void> => {
+      const s = await fetchKycStatus(address);
+      if (!cancelled) setStatus(s);
+    })();
+    return () => { cancelled = true; };
+  }, [address]);
 
   const handleLaunchPersona = useCallback(async (): Promise<void> => {
     setLaunching(true);
     try {
       const url = `${getBaseUrl()}/api/v1/kyc/persona/start?address=${encodeURIComponent(address)}&returnTo=${encodeURIComponent('omnibazaar://kyc/complete')}`;
       await getTabsAdapter().openUrl(url);
+      // Invalidate cache so next read picks up the post-Persona tier.
+      invalidateKycCache(address);
     } catch (err) {
       console.warn('[kyc] Persona launch failed', err);
     } finally {
@@ -72,17 +87,22 @@ export default function KYCScreen(props: KYCScreenProps): JSX.Element {
 
   return (
     <View style={styles.root}>
+      <ScreenHeader
+        title={t('kyc.title', { defaultValue: 'Identity Verification' })}
+        onBack={props.onBack}
+      />
       <View style={styles.header}>
-        <Pressable onPress={props.onBack} accessibilityRole="button" style={styles.backButton}>
-          <Text style={styles.backText}>‹ {t('common.back', { defaultValue: 'Back' })}</Text>
-        </Pressable>
-        <Text style={styles.title} accessibilityRole="header">
-          {t('kyc.title', { defaultValue: 'Identity Verification' })}
-        </Text>
         <Text style={styles.subtitle}>
           {t('kyc.subtitle', {
             defaultValue:
               'Higher KYC tiers unlock more marketplaces, higher trading limits, and validator eligibility.',
+          })}
+        </Text>
+        <Text style={styles.currentTierLine}>
+          {t('kyc.currentTier', {
+            defaultValue: 'Current tier: {{name}} (Tier {{n}})',
+            name: status?.tierName ?? 'Anonymous',
+            n: currentTier,
           })}
         </Text>
       </View>
@@ -138,11 +158,17 @@ export default function KYCScreen(props: KYCScreenProps): JSX.Element {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: colors.background, paddingBottom: 32 },
-  header: { paddingHorizontal: 16, paddingTop: 56, paddingBottom: 16 },
+  header: { paddingHorizontal: 16, paddingTop: 8, paddingBottom: 16 },
   backButton: { paddingVertical: 8 },
   backText: { color: colors.primary, fontSize: 14 },
   title: { color: colors.textPrimary, fontSize: 24, fontWeight: '700', marginTop: 4 },
   subtitle: { color: colors.textSecondary, fontSize: 13, lineHeight: 18, marginTop: 8 },
+  currentTierLine: {
+    color: colors.primary,
+    fontSize: 14,
+    fontWeight: '600',
+    marginTop: 12,
+  },
   tierCard: { marginHorizontal: 16, marginBottom: 10 },
   tierCardActive: { borderWidth: 1, borderColor: colors.primary },
   tierRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 6 },

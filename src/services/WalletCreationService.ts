@@ -10,6 +10,10 @@
  */
 
 import { HDNodeWallet, Mnemonic } from 'ethers';
+import { pbkdf2 as noblePbkdf2 } from '@noble/hashes/pbkdf2';
+import { sha512 } from '@noble/hashes/sha512';
+import { entropyToMnemonic as scureEntropyToMnemonic } from '@scure/bip39';
+import { wordlist as englishWordlist } from '@scure/bip39/wordlists/english';
 
 /** Bundle of primary derivation output used by the auth flow. */
 export interface DerivedKeys {
@@ -54,6 +58,68 @@ export function createWallet(wordCount: 12 | 24 = 12): DerivedKeys {
  */
 export function importWallet(phrase: string): DerivedKeys {
   const mnemonic = Mnemonic.fromPhrase(phrase.trim());
+  return deriveFromMnemonic(mnemonic);
+}
+
+/** Number of PBKDF2 iterations. Must match Wallet's `KeyringManager.SALT_ROUNDS`. */
+const DETERMINISTIC_PBKDF2_ITERATIONS = 100_000;
+
+/**
+ * Derive a wallet deterministically from username + password.
+ *
+ * MUST stay byte-for-byte identical to:
+ *   - `Wallet/src/core/keyring/KeyringManager.ts::generateDeterministicSeed`
+ *   - WebApp `EmbeddedWalletService.getMnemonic(username, password)`
+ *
+ * The validator stores exactly one address per username at registration,
+ * so any divergence in this KDF locks the user out — re-cased usernames
+ * or alternative iteration counts silently produce a different mnemonic.
+ *
+ * Canonical algorithm:
+ *   salt     = utf8(trim(username))   // case preserved (validator already
+ *                                     //  enforces lowercase at signup)
+ *   secret   = utf8(password)
+ *   entropy  = pbkdf2(secret, salt, 100_000 iterations, SHA-512, 32 bytes)
+ *   mnemonic = bip39.entropyToMnemonic(entropy)   // 24 words
+ *
+ * @param username - Canonical username (validator already lowercases).
+ * @param password - Plaintext password.
+ * @returns DerivedKeys (24-word mnemonic + EVM address + owner/active pubkeys).
+ * @throws If username is empty.
+ */
+export function deriveDeterministicWallet(username: string, password: string): DerivedKeys {
+  const normalizedUsername = username.trim();
+  if (normalizedUsername.length === 0) {
+    throw new Error('username required for deterministic wallet derivation');
+  }
+  // Pure-JS PBKDF2 via `@noble/hashes`. We do NOT route through ethers'
+  // `pbkdf2`: ethers v6's CommonJS build delegates to `crypto.pbkdf2Sync`
+  // from Node's `crypto` module, which is not present in Hermes (RN).
+  // The resulting `undefined` swallowed silently and surfaced as
+  // "undefined is not a function" inside the hot path. Noble is what
+  // ethers itself uses on the browser side, so the output is identical.
+  const encoder = new TextEncoder();
+  const salt = encoder.encode(normalizedUsername);
+  const secret = encoder.encode(password);
+  const t0 = Date.now();
+  const entropy = noblePbkdf2(sha512, secret, salt, {
+    c: DETERMINISTIC_PBKDF2_ITERATIONS,
+    dkLen: 32,
+  });
+  // PBKDF2 is the dominant cost on Hermes; log it so we can profile
+  // whether to swap in a native implementation. On Pixel 7 Pro the
+  // pure-JS path takes ~10–15 seconds for 100k iters; a native
+  // implementation would drop this to <50ms.
+  // eslint-disable-next-line no-console
+  console.log('[derive] pbkdf2 100k SHA-512 took', Date.now() - t0, 'ms');
+  // `@scure/bip39` mirrors the BIP-39 spec exactly; ethers'
+  // `Mnemonic.fromEntropy` does the same internally but routes through
+  // `crypto.createHash('sha256')` for the checksum, which is also
+  // missing in Hermes. Build the phrase via `@scure/bip39` first, then
+  // hand it to ethers' `Mnemonic.fromPhrase` which is pure JS once it
+  // has a validated phrase.
+  const phrase = scureEntropyToMnemonic(entropy, englishWordlist);
+  const mnemonic = Mnemonic.fromPhrase(phrase);
   return deriveFromMnemonic(mnemonic);
 }
 

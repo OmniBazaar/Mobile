@@ -16,6 +16,7 @@ import type {
   NFTCollectionSummary,
 } from '@wallet/services/marketplace/MarketplaceClient';
 
+import ScreenHeader from '@components/ScreenHeader';
 import { colors } from '@theme/colors';
 import { useAuthStore } from '../store/authStore';
 import P2PBrowseScreen from './P2PBrowseScreen';
@@ -103,14 +104,10 @@ export default function MarketplaceHomeScreen(props: MarketplaceHomeScreenProps)
 
   return (
     <View style={styles.root}>
-      <View style={styles.header}>
-        <Pressable onPress={props.onBack} accessibilityRole="button" style={styles.backButton}>
-          <Text style={styles.backText}>‹ {t('common.back', { defaultValue: 'Back' })}</Text>
-        </Pressable>
-        <Text style={styles.title} accessibilityRole="header">
-          {t('marketplace.title', { defaultValue: 'Marketplaces' })}
-        </Text>
-      </View>
+      <ScreenHeader
+        title={t('marketplace.title', { defaultValue: 'Marketplaces' })}
+        onBack={props.onBack}
+      />
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tabRow}>
         {tabs.map((tab) => (

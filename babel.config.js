@@ -43,6 +43,18 @@ module.exports = function (api) {
             // See bundled-vs-sibling fallback above.
             '@wallet': walletAlias,
             '@webapp': webappAlias,
+            // Node core polyfills. Metro silently auto-stubs Node-core
+            // requires (crypto, stream) BEFORE its own extraNodeModules
+            // check runs, so neither `extraNodeModules` nor the resolver
+            // hook in metro.config.js intercept them. babel-plugin-
+            // module-resolver runs at TRANSFORM time, rewriting the
+            // require() literal before Metro ever sees it. Without this,
+            // ethers v6's CJS `var crypto_1 = require("crypto")` reads
+            // an empty stub on Hermes and `crypto_1.pbkdf2Sync` is
+            // undefined → "undefined is not a function" at the first
+            // call site (Mnemonic.computeSeed / HDNodeWallet.fromSeed).
+            crypto: 'crypto-browserify',
+            stream: 'stream-browserify',
           },
         },
       ],

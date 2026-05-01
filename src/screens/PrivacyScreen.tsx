@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next';
 
 import Button from '@components/Button';
 import Card from '@components/Card';
+import ScreenHeader from '@components/ScreenHeader';
 import Input from '@components/Input';
 import LoadingSpinner from '@components/LoadingSpinner';
 import { colors } from '@theme/colors';
@@ -134,13 +135,11 @@ export default function PrivacyScreen(props: PrivacyScreenProps): JSX.Element {
 
   return (
     <View style={styles.root}>
+      <ScreenHeader
+        title={t('privacy.title', { defaultValue: 'Private XOM (pXOM)' })}
+        onBack={props.onBack}
+      />
       <View style={styles.header}>
-        <Pressable onPress={props.onBack} accessibilityRole="button" style={styles.backButton}>
-          <Text style={styles.backText}>‹ {t('common.back', { defaultValue: 'Back' })}</Text>
-        </Pressable>
-        <Text style={styles.title} accessibilityRole="header">
-          {t('privacy.title', { defaultValue: 'Private XOM (pXOM)' })}
-        </Text>
         <Text style={styles.subtitle}>
           {t('privacy.subtitle', {
             defaultValue:

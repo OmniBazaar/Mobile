@@ -22,6 +22,7 @@ import { useTranslation } from 'react-i18next';
 
 import Button from '@components/Button';
 import Card from '@components/Card';
+import ScreenHeader from '@components/ScreenHeader';
 import Input from '@components/Input';
 import LoadingSpinner from '@components/LoadingSpinner';
 import { colors } from '@theme/colors';
@@ -45,6 +46,12 @@ export interface SwapScreenProps {
   onBack: () => void;
   /** Navigate to the privacy (pXOM) screen. */
   onOpenPrivacy: () => void;
+  /** Navigate to the limit-order screen. */
+  onOpenLimit?: () => void;
+  /** Navigate to the liquidity-pool screen. */
+  onOpenLiquidity?: () => void;
+  /** Navigate to the yield-vaults screen. */
+  onOpenYield?: () => void;
   /**
    * Decrypted BIP39 mnemonic. Used only during swap execution and
    * kept in memory for the duration of the user's session. Phase 3
@@ -149,10 +156,32 @@ export default function SwapScreen(props: SwapScreenProps): JSX.Element {
 
   return (
     <View style={styles.root}>
+      <ScreenHeader
+        title={t('swap.title', { defaultValue: 'Swap' })}
+        onBack={props.onBack}
+      />
       <View style={styles.headerRow}>
-        <Text style={styles.title} accessibilityRole="header">
-          {t('swap.title', { defaultValue: 'Swap' })}
-        </Text>
+        {props.onOpenLimit !== undefined && (
+          <Pressable onPress={props.onOpenLimit} style={styles.privacyLink}>
+            <Text style={styles.privacyLinkText}>
+              {t('swap.limitLink', { defaultValue: 'Limit' })}
+            </Text>
+          </Pressable>
+        )}
+        {props.onOpenLiquidity !== undefined && (
+          <Pressable onPress={props.onOpenLiquidity} style={styles.privacyLink}>
+            <Text style={styles.privacyLinkText}>
+              {t('swap.lpLink', { defaultValue: 'LP' })}
+            </Text>
+          </Pressable>
+        )}
+        {props.onOpenYield !== undefined && (
+          <Pressable onPress={props.onOpenYield} style={styles.privacyLink}>
+            <Text style={styles.privacyLinkText}>
+              {t('swap.yieldLink', { defaultValue: 'Yield' })}
+            </Text>
+          </Pressable>
+        )}
         <Pressable
           onPress={props.onOpenPrivacy}
           accessibilityRole="link"
