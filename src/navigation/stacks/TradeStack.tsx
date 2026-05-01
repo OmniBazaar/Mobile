@@ -17,7 +17,7 @@ import LiquidityScreen from '../../screens/LiquidityScreen';
 import YieldScreen from '../../screens/YieldScreen';
 import RWAMarketplaceScreen from '../../screens/RWAMarketplaceScreen';
 import PrivacyScreen from '../../screens/PrivacyScreen';
-import { ComingSoonScreen } from '../shared/ComingSoonScreen';
+import BridgeScreen from '../../screens/BridgeScreen';
 
 const Stack = createNativeStackNavigator<TradeStackParamList>();
 
@@ -72,6 +72,12 @@ function PrivacyWrapper(): React.ReactElement {
   return <PrivacyScreen onBack={goBack(nav)} />;
 }
 
+/** Bridge wrapper. */
+function BridgeWrapper(): React.ReactElement {
+  const nav = useNavigation();
+  return <BridgeScreen onBack={goBack(nav)} />;
+}
+
 /**
  * Build the Trade-tab stack.
  *
@@ -88,11 +94,7 @@ export default function TradeStack(): React.ReactElement {
       <Stack.Screen name="Yield" component={YieldWrapper} />
       <Stack.Screen name="RWA" component={RWAWrapper} />
       <Stack.Screen name="Privacy" component={PrivacyWrapper} />
-      <Stack.Screen
-        name="Bridge"
-        component={ComingSoonScreen}
-        initialParams={{ feature: 'Bridge', sprint: 'Sprint 2 B6' }}
-      />
+      <Stack.Screen name="Bridge" component={BridgeWrapper} />
     </Stack.Navigator>
   );
 }

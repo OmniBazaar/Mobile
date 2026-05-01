@@ -17,6 +17,7 @@ import type {
 } from '@wallet/services/marketplace/MarketplaceClient';
 
 import ScreenHeader from '@components/ScreenHeader';
+import { Ionicons } from '@expo/vector-icons';
 import { colors } from '@theme/colors';
 import { useAuthStore } from '../store/authStore';
 import P2PBrowseScreen from './P2PBrowseScreen';
@@ -41,6 +42,17 @@ export interface MarketplaceHomeScreenProps {
    * buy flows that sign EIP-712 intents client-side. Empty string blocks buy.
    */
   mnemonic: string;
+  /**
+   * Optional — called when the user taps the floating "+" FAB on the
+   * P2P sub-tab to start a new listing. When omitted, the FAB is
+   * hidden.
+   */
+  onCreateListing?: () => void;
+  /**
+   * Optional — called when the user taps "My Listings" in the header.
+   * When omitted, the entry is hidden.
+   */
+  onOpenMyListings?: () => void;
 }
 
 /**
@@ -107,6 +119,20 @@ export default function MarketplaceHomeScreen(props: MarketplaceHomeScreenProps)
       <ScreenHeader
         title={t('marketplace.title', { defaultValue: 'Marketplaces' })}
         onBack={props.onBack}
+        {...(props.onOpenMyListings !== undefined && {
+          rightSlot: (
+            <Pressable
+              onPress={props.onOpenMyListings}
+              accessibilityRole="button"
+              accessibilityLabel={t('marketplace.myListingsA11y', {
+                defaultValue: 'View my listings',
+              })}
+              hitSlop={6}
+            >
+              <Ionicons name="albums-outline" size={22} color={colors.primary} />
+            </Pressable>
+          ),
+        })}
       />
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tabRow}>
@@ -139,6 +165,20 @@ export default function MarketplaceHomeScreen(props: MarketplaceHomeScreenProps)
           <DeepLinkToDex kind={kind} onOpenSwap={props.onOpenSwap} />
         )}
       </View>
+
+      {kind === 'p2p' && props.onCreateListing !== undefined && (
+        <Pressable
+          onPress={props.onCreateListing}
+          accessibilityRole="button"
+          accessibilityLabel={t('marketplace.createA11y', {
+            defaultValue: 'Create a new P2P listing',
+          })}
+          style={styles.fab}
+          hitSlop={6}
+        >
+          <Ionicons name="add" size={28} color={colors.background} />
+        </Pressable>
+      )}
     </View>
   );
 }
@@ -218,4 +258,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   dexButtonText: { color: colors.background, fontWeight: '700', fontSize: 15 },
+  fab: {
+    position: 'absolute',
+    bottom: 24,
+    right: 24,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 6,
+    shadowColor: '#000',
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 8,
+  },
 });

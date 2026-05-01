@@ -32,6 +32,7 @@ import { useTranslation } from 'react-i18next';
 
 import type { AppTabsParamList } from './types';
 import { colors } from '@theme/colors';
+import { useChatUnread } from '../hooks/useChatUnread';
 
 import ShopStack from './stacks/ShopStack';
 import TradeStack from './stacks/TradeStack';
@@ -72,8 +73,7 @@ function iconFor(
  */
 export default function AppTabs(): React.ReactElement {
   const { t } = useTranslation();
-  // Sprint 2 wires real chat unread; Sprint 1 keeps the badge hidden.
-  const unreadChats = 0;
+  const unreadChats = useChatUnread();
   return (
     <Tab.Navigator
       initialRouteName="Wallet"
