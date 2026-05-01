@@ -14,11 +14,10 @@
  * `OmniRelayClient.readStoredEndpoint()` returns `undefined` in RN (no
  * `chrome` global), so discovery is authoritative.
  */
-import { ethers, Wallet } from 'ethers';
-
 import { getClientRPCRegistry } from '@wallet/core/providers/ClientRPCRegistry';
 import { OmniRelayClient } from '@wallet/services/relay/OmniRelayClient';
 import { WalletRelayingSigner } from '@wallet/services/relay/WalletRelayingSigner';
+import { ethers, Wallet } from 'ethers';
 
 import { getContractAddresses } from '../config/omnicoin-integration';
 
@@ -48,9 +47,12 @@ export interface MobileUnsignedTx {
  * Currently limited to OmniCoin L1; other L1s charge real gas and must
  * submit the normal way.
  *
- * Returns `false` if the OmniForwarder address isn't configured for the
- * active network (which forces a direct broadcast + surfaces a visible
- * failure upstream instead of silently mis-routing).
+ * For non-L1 chains, returns `false` (use direct broadcast). For L1
+ * routes, returns `true` only if the OmniForwarder address is configured
+ * AND the relay is reachable. When relay is unavailable for an L1 tx the
+ * caller MUST surface a clear error rather than fall back to direct
+ * broadcast — the user expects gasless and will not have native XOM to
+ * pay for a direct broadcast.
  *
  * @param chainId - Target chain ID of the unsigned transaction.
  * @returns `true` iff this tx should be relayed.
@@ -62,6 +64,27 @@ export function shouldRelay(chainId: number): boolean {
     return OmniRelayClient.getInstance().isRelayAvailable(addresses);
   } catch {
     return false;
+  }
+}
+
+/**
+ * Error thrown when an L1 transaction needs the OmniRelay but the relay
+ * client is not configured / not reachable. Callers should surface a
+ * "Relayer unavailable, please retry" toast in the swap UI instead of
+ * mis-routing the user to a direct broadcast that would either fail
+ * with `insufficient funds for gas` or silently charge native XOM the
+ * user did not expect to spend.
+ */
+export class RelayUnavailableError extends Error {
+  /** Always set so callers can branch on it without instanceof in RN. */
+  public readonly code = 'RELAY_UNAVAILABLE';
+  /**
+   * Construct a relay-unavailable error.
+   * @param message - Human-readable explanation.
+   */
+  constructor(message = 'OmniRelay is unavailable. Please retry in a moment.') {
+    super(message);
+    this.name = 'RelayUnavailableError';
   }
 }
 
@@ -95,7 +118,9 @@ export async function relayL1Transaction(
   }
   const provider = getClientRPCRegistry().getProvider(tx.chainId);
   if (provider === undefined) {
-    throw new Error(`relayL1Transaction: no RPC provider for chainId ${tx.chainId}`);
+    throw new Error(
+      `relayL1Transaction: no RPC provider for chainId ${tx.chainId}`,
+    );
   }
   const innerSigner = Wallet.fromPhrase(
     mnemonic,
@@ -108,7 +133,9 @@ export async function relayL1Transaction(
   // distinct #private fields. The signer works at runtime; the `unknown`
   // cast punches through the realm mismatch.
   const relay = new WalletRelayingSigner(
-    innerSigner as unknown as ConstructorParameters<typeof WalletRelayingSigner>[0],
+    innerSigner as unknown as ConstructorParameters<
+      typeof WalletRelayingSigner
+    >[0],
     addresses,
   );
   const value = tx.value === '' || tx.value === '0x' ? 0n : BigInt(tx.value);
@@ -137,9 +164,14 @@ export async function broadcastDirect(
 ): Promise<string> {
   const provider = getClientRPCRegistry().getProvider(tx.chainId);
   if (provider === undefined) {
-    throw new Error(`broadcastDirect: no RPC provider for chainId ${tx.chainId}`);
+    throw new Error(
+      `broadcastDirect: no RPC provider for chainId ${tx.chainId}`,
+    );
   }
-  const wallet = Wallet.fromPhrase(mnemonic, provider as unknown as ethers.Provider);
+  const wallet = Wallet.fromPhrase(
+    mnemonic,
+    provider as unknown as ethers.Provider,
+  );
   const value = tx.value === '' || tx.value === '0x' ? 0n : BigInt(tx.value);
   const response = await wallet.sendTransaction({
     to: tx.to,
@@ -156,15 +188,26 @@ export async function broadcastDirect(
  * otherwise. This is the preferred helper for callers that handle mixed
  * chain flows (e.g. SwapService executing a multi-hop route).
  *
+ * Fail-closed for L1: if the destination is OmniCoin L1 but the relay
+ * is not available, throw {@link RelayUnavailableError} instead of
+ * falling back to direct broadcast — the user does not own native gas
+ * on L1 and would either get `insufficient funds for gas` from the RPC
+ * or silently spend XOM they expected to be gasless.
+ *
  * @param tx - Unsigned tx.
  * @param mnemonic - Signer mnemonic.
  * @returns On-chain tx hash.
+ * @throws {RelayUnavailableError} When the tx is an L1 tx and the
+ *   OmniRelay endpoint is not configured or not reachable.
  */
 export async function submitTransaction(
   tx: MobileUnsignedTx,
   mnemonic: string,
 ): Promise<string> {
-  if (shouldRelay(tx.chainId)) {
+  if (tx.chainId === OMNICOIN_L1_CHAIN_ID) {
+    if (!shouldRelay(tx.chainId)) {
+      throw new RelayUnavailableError();
+    }
     return relayL1Transaction(tx, mnemonic);
   }
   return broadcastDirect(tx, mnemonic);
