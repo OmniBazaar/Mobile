@@ -1,0 +1,56 @@
+# Guest-mode browse: fresh install → tap "Browse as Guest" → land on
+# the Wallet tab → tab over to Shop → confirm we can read marketplaces
+# without an account.
+#
+# This flow validates B3 from MOBILE_REMEDIATION_PLAN: marketplaces
+# must be reachable read-only without sign-in. Tapping a write-action
+# (Buy / Send) should pop the AuthPrompt modal — not silently fail.
+appId: com.omnibazaar.mobile
+---
+- launchApp:
+    clearState: true
+    clearKeychain: true
+    stopApp: true
+- assertVisible: "OmniBazaar"
+- assertVisible: "Browse as Guest"
+- tapOn: "Browse as Guest"
+# Bottom-tab bar should now be visible. We start on Wallet.
+- assertVisible: "Wallet"
+- assertVisible: "Shop"
+- assertVisible: "Trade"
+- assertVisible: "Chat"
+- assertVisible: "Profile"
+# Tap Shop → MarketplaceHome.
+- tapOn: "Shop"
+- waitForAnimationToEnd:
+    timeout: 5000
+- assertVisible: "Marketplaces"
+- assertVisible: "P2P"
+- assertVisible: "NFT"
+# Tap a P2P listing card if any exist; otherwise the empty state is fine.
+- runFlow:
+    when:
+      visible:
+        text: ".+"
+        index: 0
+    commands:
+      - tapOn:
+          text: ".+"
+          index: 0
+      # On the listing detail, tapping Buy must trigger the AuthPrompt
+      # modal (since we're a guest).
+      - runFlow:
+          when:
+            visible: "Buy"
+          commands:
+            - tapOn: "Buy"
+            - assertVisible: "Sign in required"
+            - tapOn: "Cancel"
+- back
+- back
+# Verify we can switch tabs without signing in.
+- tapOn: "Trade"
+- assertVisible: "Swap"
+- tapOn: "Wallet"
+# Wallet hero should show a guest banner (rendered when authState=guest).
+- assertVisible: "browsing as a guest"

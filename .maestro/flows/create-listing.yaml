@@ -1,0 +1,51 @@
+# Create-listing flow: signed-in user → Shop → P2P → tap "+" FAB →
+# fill listing → submit → confirm Title appears in My Listings.
+#
+# Validates Sprint 2 H6. Requires the user to be signed-in already
+# (chain through `onboarding.yaml` first when running locally).
+#
+# IPFS upload depends on validator availability + camera/library
+# permissions. The flow uses the library picker (simulator can't use
+# the camera). Run with --include-tags=create-listing to skip on
+# offline runs.
+appId: com.omnibazaar.mobile
+tags:
+  - create-listing
+---
+- assertVisible: "Wallet"
+- tapOn: "Shop"
+- waitForAnimationToEnd:
+    timeout: 5000
+- assertVisible: "Marketplaces"
+- assertVisible: "P2P"
+- tapOn: "P2P"
+# FAB should be visible on the P2P sub-tab.
+- tapOn:
+    id: "create-listing-fab"
+    optional: true
+# CreateListingScreen.
+- assertVisible: "New Listing"
+# Library picker — simulators expose a fake library; tap "Library".
+- tapOn: "Library"
+- waitForAnimationToEnd:
+    timeout: 5000
+# After image picker returns, fill in fields.
+- inputText: "Maestro Test — vintage watch"
+- tapOn:
+    text: ".*"
+    index: 1
+- inputText: "Mid-century Omega Seamaster, runs cleanly. Local pickup only."
+- tapOn:
+    text: "Price"
+    optional: true
+- inputText: "120"
+# Currency defaults to XOM. Category defaults to Products.
+- tapOn: "Publish Listing"
+- assertVisible: "Listing published"
+- tapOn: "OK"
+# We should be back at the marketplace. Tap the albums icon to open
+# My Listings + verify the new title appears.
+- tapOn:
+    id: "my-listings-header"
+    optional: true
+- assertVisible: "Maestro Test — vintage watch"

@@ -1,0 +1,34 @@
+# Bridge flow: signed-in user → Trade → Bridge → pick USDC → ETH →
+# Arbitrum → enter amount → fetch quote → confirm we see the route
+# preview.
+#
+# We don't submit the actual bridge tx in CI (requires real funds +
+# real RPC). Validates Sprint 2 B6 wiring is reachable end-to-end.
+appId: com.omnibazaar.mobile
+tags:
+  - bridge
+---
+- assertVisible: "Wallet"
+- tapOn: "Trade"
+- waitForAnimationToEnd:
+    timeout: 5000
+- assertVisible: "Swap"
+- tapOn: "Bridge"
+- waitForAnimationToEnd:
+    timeout: 3000
+- assertVisible: "Bridge"
+- assertVisible: "USDC"
+- assertVisible: "From"
+- assertVisible: "To"
+# Pick USDC asset (default), Ethereum source, Arbitrum target.
+- tapOn: "USDC"
+- tapOn: "Ethereum"
+- tapOn: "Arbitrum"
+# Amount field.
+- inputText: "10"
+- tapOn: "Refresh quote"
+# Live quote may take a few seconds — wait, then assert the card.
+- waitForAnimationToEnd:
+    timeout: 12000
+- assertVisible: "You receive"
+- assertVisible: "Total fees"
