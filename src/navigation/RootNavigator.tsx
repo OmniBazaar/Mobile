@@ -18,6 +18,7 @@
  */
 
 import React, { useEffect } from 'react';
+import { AppState, type AppStateStatus } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -27,6 +28,7 @@ import { createLinking } from './linking';
 import { useAuthStore } from '../store/authStore';
 import { bootstrap } from '../services/BootstrapService';
 import { startAutoLock, stopAutoLock } from '../services/AutoLockService';
+import { evaluateNativeGuard } from '../services/NativeAutoLockGuard';
 
 import OnboardingStack from './stacks/OnboardingStack';
 import AppTabs from './AppTabs';
@@ -71,6 +73,35 @@ export default function RootNavigator(): React.ReactElement | null {
     });
     return (): void => stopAutoLock();
   }, [authState, lockKeystore]);
+
+  // Native auto-lock guard (Sprint 7 / H9): the JS setTimeout in
+  // AutoLockService dies when the OS suspends or kills the bundle. The
+  // guard's persisted "lockBy" timestamp survives those events. We
+  // evaluate it on cold-start AND on every AppState=active transition
+  // — if the elapsed time would have fired the timer, force-lock now.
+  useEffect(() => {
+    let cancelled = false;
+    const check = (): void => {
+      if (cancelled) return;
+      // Only runs when the wallet is unlocked — there's nothing to lock
+      // in any other state.
+      if (useAuthStore.getState().state !== 'unlocked') return;
+      void evaluateNativeGuard().then((expired) => {
+        if (!cancelled && expired) {
+          lockKeystore();
+        }
+      });
+    };
+    // Cold-start check (first paint after bootstrap).
+    check();
+    const sub = AppState.addEventListener('change', (next: AppStateStatus): void => {
+      if (next === 'active') check();
+    });
+    return (): void => {
+      cancelled = true;
+      sub.remove();
+    };
+  }, [lockKeystore]);
 
   if (authState === 'bootstrapping') return null;
 

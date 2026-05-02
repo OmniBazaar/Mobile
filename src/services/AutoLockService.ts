@@ -3,23 +3,40 @@
  *
  * The user picks an idle duration in SettingsScreen (1 / 5 / 15 / 30
  * minutes). After that much idle time OR when the app goes to the
- * background, the wallet locks itself: `useAuthStore.clear()` is
- * invoked so the next launch routes through onboarding / sign-in.
+ * background, the wallet locks itself by invoking the supplied
+ * `onLock` callback — which RootNavigator wires to
+ * `useAuthStore.lockKeystore()` (Phase 12, 2026-05-02).
  *
- * Mobile design choice: we do NOT keep an encrypted vault on device
- * (the credentials ARE the recovery — see CreateWalletScreen). So
- * "lock" really means "drop in-memory keys + return user to login".
- * That's the correct answer for a deterministic-credentials wallet.
+ * `lockKeystore()` wipes the in-memory mnemonic but **keeps** the
+ * cached username + family addresses + lifecycle state — flipping
+ * `state` to `'locked'`. The next 🔒 action triggers the contextual
+ * UnlockSheet (mounted under RootNavigator), not the onboarding
+ * bounce. Pre-Phase-12 the lock callback was `clear()`, which dropped
+ * everything and forced a re-derivation through the welcome flow.
  *
  * Two triggers:
  *   1. Idle timer that fires after `intervalMs` of inactivity.
- *   2. AppState transition to `background` or `inactive` — fires
- *      immediately even if the user isn't past the configured idle.
+ *   2. AppState transition to `background` — fires immediately if the
+ *      grace window has elapsed. `'inactive'` is intentionally NOT
+ *      treated as a lock signal (too noisy: notification drop-down,
+ *      biometric prompt, camera permission dialog, keyboard animation
+ *      all trip it).
+ *
+ * Native alarm: the JS `setTimeout` here drops if the OS suspends the
+ * bundle. The companion `NativeAutoLockTask` (registered at boot)
+ * persists a "lockBy" timestamp on every background transition; the
+ * RootNavigator checks it on cold-start AND on every AppState=active
+ * transition and force-locks if expired. That layer survives bundle
+ * kills and is what makes auto-lock truly resistant to OS suspension.
  *
  * @module services/AutoLockService
  */
 
 import { AppState, type AppStateStatus } from 'react-native';
+import {
+  armNativeGuard,
+  disarmNativeGuard,
+} from './NativeAutoLockGuard';
 
 /** Default lock interval — 5 minutes. */
 const DEFAULT_INTERVAL_MS = 5 * 60_000;
@@ -66,17 +83,27 @@ export function minutesToMs(mins: AutoLockMinutes): number {
   return mins * 60_000;
 }
 
-/** Reschedule the idle timer from now. */
+/** Reschedule the idle timer from now. Also refreshes the persisted
+ *  native-guard timestamp so a bundle kill before the timer fires
+ *  still ends in a lock on the next foreground.
+ */
 function rescheduleTimer(): void {
   if (state.timer !== undefined) {
     clearTimeout(state.timer);
     state.timer = undefined;
   }
-  if (!Number.isFinite(state.intervalMs)) return;
+  if (!Number.isFinite(state.intervalMs)) {
+    void disarmNativeGuard();
+    return;
+  }
   state.timer = setTimeout(() => {
     state.timer = undefined;
     state.onLock?.();
   }, state.intervalMs);
+  // Best-effort: update the persisted lockBy timestamp. We do not
+  // await — the lock countdown is JS-driven; the native guard is a
+  // safety net for bundle suspension.
+  void armNativeGuard(state.intervalMs);
 }
 
 /**
@@ -133,7 +160,10 @@ export function startAutoLock(onLock: () => void): void {
   }
 }
 
-/** Tear down the AutoLock service (sign-out cleanup). */
+/** Tear down the AutoLock service (sign-out cleanup). Also clears the
+ *  persisted native-guard timestamp so a stale entry from a previous
+ *  session can't re-lock a freshly-signed-in user.
+ */
 export function stopAutoLock(): void {
   if (state.timer !== undefined) {
     clearTimeout(state.timer);
@@ -144,4 +174,5 @@ export function stopAutoLock(): void {
     state.appStateSub = undefined;
   }
   state.onLock = undefined;
+  void disarmNativeGuard();
 }
