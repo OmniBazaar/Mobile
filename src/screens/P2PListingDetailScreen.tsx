@@ -96,7 +96,13 @@ export default function P2PListingDetailScreen(
     );
   }, [requireAuth, rawOnBuy, t]);
 
-  const coverUrl = listing.images[0];
+  // Defensive: validator schema declares `images: string[]` but real
+  // payloads sometimes omit it entirely — bracket-indexing `undefined`
+  // throws "Cannot read property '0' of undefined" and crashes the
+  // detail screen mid-render (root cause of the 2026-05-02 user
+  // "click crashes" report). Coerce to a safe array first.
+  const coverImages: readonly string[] = Array.isArray(listing.images) ? listing.images : [];
+  const coverUrl = coverImages[0];
 
   return (
     <ScrollView contentContainerStyle={styles.root}>

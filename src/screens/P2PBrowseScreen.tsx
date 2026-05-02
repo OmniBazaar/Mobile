@@ -143,7 +143,12 @@ function ListingCard({
   listing: MarketplaceListing;
   onPress?: () => void;
 }): JSX.Element {
-  const imageUrl = listing.images.length > 0 ? listing.images[0] : undefined;
+  // Defensive: validator schema declares `images: string[]` but real
+  // payloads sometimes omit it entirely — coerce to an empty array so
+  // `.length` never throws (root cause of the "click image → crash"
+  // 2026-05-02 user report).
+  const images: readonly string[] = Array.isArray(listing.images) ? listing.images : [];
+  const imageUrl = images.length > 0 ? images[0] : undefined;
   return (
     <Pressable
       style={styles.card}
