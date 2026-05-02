@@ -96,7 +96,7 @@ export function createLinking(): LinkingOptions<RootStackParamList> {
               screens: {
                 ProfileHome: 'profile',
                 Settings: 'profile/settings',
-                KYC: 'profile/kyc',
+                KYC: ['profile/kyc', 'kyc/complete'],
                 About: 'profile/about',
                 ChangePassword: 'profile/change-password',
                 TokenApprovals: 'profile/approvals',

@@ -13,16 +13,15 @@
  */
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import Button from '@components/Button';
 import Card from '@components/Card';
 import ScreenHeader from '@components/ScreenHeader';
 import { colors } from '@theme/colors';
-import { getTabsAdapter } from '@wallet/platform/registry';
-import { getBaseUrl } from '../services/BootstrapService';
 import { fetchKycStatus, invalidateKycCache, type KycStatus } from '../services/KYCStatusService';
+import { launchTier3Verification } from '../services/KYCPersonaService';
 import { useAuthStore } from '../store/authStore';
 
 /** KYC tier metadata. */
@@ -55,8 +54,11 @@ export interface KYCScreenProps {
 export default function KYCScreen(props: KYCScreenProps): JSX.Element {
   const { t } = useTranslation();
   const address = useAuthStore((s) => s.address);
+  const mnemonic = useAuthStore((s) => s.mnemonic);
   const [status, setStatus] = useState<KycStatus | undefined>(undefined);
   const [launching, setLaunching] = useState(false);
+  const [error, setError] = useState<string>('');
+  const [info, setInfo] = useState<string>('');
   const currentTier = status?.tier ?? 0;
 
   // Read current tier from validator on mount + whenever address changes.
@@ -73,17 +75,35 @@ export default function KYCScreen(props: KYCScreenProps): JSX.Element {
 
   const handleLaunchPersona = useCallback(async (): Promise<void> => {
     setLaunching(true);
+    setError('');
+    setInfo('');
     try {
-      const url = `${getBaseUrl()}/api/v1/kyc/persona/start?address=${encodeURIComponent(address)}&returnTo=${encodeURIComponent('omnibazaar://kyc/complete')}`;
-      await getTabsAdapter().openUrl(url);
-      // Invalidate cache so next read picks up the post-Persona tier.
+      const result = await launchTier3Verification(address, mnemonic);
       invalidateKycCache(address);
+      // Refresh tier from validator so the UI updates immediately.
+      const fresh = await fetchKycStatus(address);
+      setStatus(fresh);
+      setInfo(
+        result.alreadyAtTier === true
+          ? t('kyc.alreadyVerified', {
+              defaultValue: 'You are already verified at Tier {{n}}.',
+              n: result.newTier,
+            })
+          : t('kyc.verified', {
+              defaultValue: 'Verified! You are now at Tier {{n}}.',
+              n: result.newTier,
+            }),
+      );
     } catch (err) {
-      console.warn('[kyc] Persona launch failed', err);
+      const message =
+        err instanceof Error
+          ? err.message
+          : t('kyc.launchError', { defaultValue: 'Verification failed. Please try again.' });
+      setError(message);
     } finally {
       setLaunching(false);
     }
-  }, [address]);
+  }, [address, mnemonic, t]);
 
   return (
     <View style={styles.root}>
@@ -149,8 +169,18 @@ export default function KYCScreen(props: KYCScreenProps): JSX.Element {
               : t('kyc.cta.continue', { defaultValue: 'Continue Verification' })
           }
           onPress={() => void handleLaunchPersona()}
-          disabled={launching}
+          disabled={launching || mnemonic === ''}
         />
+        {error !== '' && (
+          <Text style={styles.errorText} accessibilityRole="alert">
+            {error}
+          </Text>
+        )}
+        {info !== '' && (
+          <Text style={styles.successText} accessibilityLiveRegion="polite">
+            {info}
+          </Text>
+        )}
       </View>
     </View>
   );
@@ -195,4 +225,6 @@ const styles = StyleSheet.create({
   tierScore: { color: colors.primary, fontSize: 12, marginTop: 6 },
   lockedHint: { color: colors.textMuted, fontSize: 11, marginTop: 4 },
   actions: { paddingHorizontal: 16, marginTop: 16 },
+  errorText: { color: '#d04f4f', fontSize: 13, marginTop: 12, lineHeight: 18 },
+  successText: { color: '#2f8f4d', fontSize: 13, marginTop: 12, lineHeight: 18 },
 });
