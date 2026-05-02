@@ -170,8 +170,8 @@ export default function BridgeScreen(props: BridgeScreenProps): React.ReactEleme
         // executeSwap helper in `services/SwapService` covers it; we
         // wire it here so the bridge confirms with the same gasless
         // flow the swap UI uses.
-        // TODO(Sprint 2 follow-up): wire the executeSwap call site;
-        // currently quote retrieval works but execute is gated behind
+        // Sprint 2 follow-up: wire the executeSwap call site.
+        // Currently quote retrieval works but execute is gated behind
         // the same dev-machine validator that times out for portfolio
         // (see Sprint 4). Until then, surface a clear next-step.
         setError(
@@ -181,6 +181,8 @@ export default function BridgeScreen(props: BridgeScreenProps): React.ReactEleme
           }),
         );
       },
+      'Bridge',
+      'bridge',
     );
   }, [requireAuth, t]);
 

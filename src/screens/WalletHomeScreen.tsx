@@ -219,6 +219,8 @@ export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Elem
                   defaultValue: 'Sign in to send tokens from your wallet.',
                 }),
                 props.onSend,
+                'WalletHome',
+                'send',
               )
             }
           />
@@ -231,6 +233,8 @@ export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Elem
                   defaultValue: 'Sign in to view your receive address and QR code.',
                 }),
                 props.onReceive,
+                'WalletHome',
+                'viewWallet',
               )
             }
           />
@@ -243,6 +247,8 @@ export default function WalletHomeScreen(props: WalletHomeScreenProps): JSX.Elem
                   defaultValue: 'Sign in to swap or trade tokens.',
                 }),
                 props.onSwap,
+                'WalletHome',
+                'swap',
               )
             }
           />

@@ -126,6 +126,8 @@ export default function NFTDetailScreen(props: NFTDetailScreenProps): JSX.Elemen
         defaultValue: 'Sign in to buy this NFT.',
       }),
       rawConfirmBuy,
+      'NFTDetail',
+      'buyNft',
     );
   }, [requireAuth, rawConfirmBuy, t]);
 

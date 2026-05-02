@@ -39,6 +39,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 import Button from '@components/Button';
 import ScreenHeader from '@components/ScreenHeader';
+import { useRequireAuth } from '@components/RequireAuth';
 import { colors } from '@theme/colors';
 import type { ListingCategory } from '@wallet/services/marketplace/MarketplaceClient';
 
@@ -92,6 +93,7 @@ export default function CreateListingScreen(
   const { t } = useTranslation();
   const sellerAddress = useAuthStore((s) => s.address);
   const mnemonic = useAuthStore((s) => s.mnemonic);
+  const requireAuth = useRequireAuth();
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -471,7 +473,14 @@ export default function CreateListingScreen(
               ? t('createListing.submitting', { defaultValue: 'Publishing…' })
               : t('createListing.publish', { defaultValue: 'Publish Listing' })
           }
-          onPress={(): void => void onSubmit()}
+          onPress={(): void =>
+            requireAuth(
+              t('authPrompt.toCreateListing', { defaultValue: 'Sign in to list an item for sale.' }),
+              () => void onSubmit(),
+              'CreateListing',
+              'createListing',
+            )
+          }
           disabled={submitting}
           style={styles.cta}
         />

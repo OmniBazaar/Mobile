@@ -24,6 +24,7 @@ import { ethers } from 'ethers';
 
 import Card from '@components/Card';
 import { Button } from '@components/index';
+import { useRequireAuth } from '@components/RequireAuth';
 import { colors } from '@theme/colors';
 import { useAuthStore } from '../store/authStore';
 import {
@@ -78,6 +79,7 @@ export default function StakingScreen(props: StakingScreenProps): JSX.Element {
   const { t } = useTranslation();
   const { mnemonic, onBack } = props;
   const staker = useAuthStore((s) => s.address);
+  const requireAuth = useRequireAuth();
 
   const [amount, setAmount] = useState('');
   const [durationIdx, setDurationIdx] = useState(0);
@@ -291,7 +293,14 @@ export default function StakingScreen(props: StakingScreenProps): JSX.Element {
                   ? t('staking.submitting', { defaultValue: 'Submitting…' })
                   : t('staking.stake', { defaultValue: 'Stake' })
               }
-              onPress={onStake}
+              onPress={(): void =>
+                requireAuth(
+                  t('authPrompt.toStake', { defaultValue: 'Sign in to stake or unstake.' }),
+                  onStake,
+                  'Staking',
+                  'stake',
+                )
+              }
               disabled={!canStake || busy !== undefined}
             />
           </View>
@@ -302,7 +311,14 @@ export default function StakingScreen(props: StakingScreenProps): JSX.Element {
                   ? t('staking.submitting', { defaultValue: 'Submitting…' })
                   : t('staking.unstake', { defaultValue: 'Unstake' })
               }
-              onPress={onUnstake}
+              onPress={(): void =>
+                requireAuth(
+                  t('authPrompt.toStake', { defaultValue: 'Sign in to stake or unstake.' }),
+                  onUnstake,
+                  'Staking',
+                  'unstake',
+                )
+              }
               disabled={!canUnstake || busy !== undefined}
             />
           </View>
@@ -313,7 +329,14 @@ export default function StakingScreen(props: StakingScreenProps): JSX.Element {
                   ? t('staking.submitting', { defaultValue: 'Submitting…' })
                   : t('staking.claim', { defaultValue: 'Claim rewards' })
               }
-              onPress={onClaim}
+              onPress={(): void =>
+                requireAuth(
+                  t('authPrompt.toStake', { defaultValue: 'Sign in to claim staking rewards.' }),
+                  onClaim,
+                  'Staking',
+                  'claimRewards',
+                )
+              }
               disabled={!canClaim || busy !== undefined}
             />
           </View>

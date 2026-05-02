@@ -19,6 +19,7 @@ import Card from '@components/Card';
 import ScreenHeader from '@components/ScreenHeader';
 import Input from '@components/Input';
 import LoadingSpinner from '@components/LoadingSpinner';
+import { useRequireAuth } from '@components/RequireAuth';
 import { colors } from '@theme/colors';
 import {
   getPrivacyService,
@@ -43,6 +44,7 @@ type Direction = 'shield' | 'unshield';
 export default function PrivacyScreen(props: PrivacyScreenProps): JSX.Element {
   const { t } = useTranslation();
   const address = useAuthStore((s) => s.address);
+  const requireAuth = useRequireAuth();
 
   const [direction, setDirection] = useState<Direction>('shield');
   const [amount, setAmount] = useState('');
@@ -228,7 +230,16 @@ export default function PrivacyScreen(props: PrivacyScreenProps): JSX.Element {
                 ? t('privacy.cta.shield', { defaultValue: 'Shield XOM' })
                 : t('privacy.cta.unshield', { defaultValue: 'Unshield pXOM' })
             }
-            onPress={handleSubmit}
+            onPress={(): void =>
+              requireAuth(
+                direction === 'shield'
+                  ? t('authPrompt.toShield', { defaultValue: 'Sign in to shield XOM to private.' })
+                  : t('authPrompt.toUnshield', { defaultValue: 'Sign in to unshield pXOM to public.' }),
+                handleSubmit,
+                'Privacy',
+                direction === 'shield' ? 'shield' : 'unshield',
+              )
+            }
             disabled={!canSubmit}
           />
         )}

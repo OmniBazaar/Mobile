@@ -165,6 +165,8 @@ export default function PredictionsMarketDetailScreen(
         defaultValue: 'Sign in to buy this prediction position.',
       }),
       rawOnBuy,
+      'PredictionsMarketDetail',
+      'predictBuy',
     );
   }, [requireAuth, rawOnBuy, t]);
 
@@ -206,6 +208,8 @@ export default function PredictionsMarketDetailScreen(
         defaultValue: 'Sign in to claim your winnings.',
       }),
       rawOnClaim,
+      'PredictionsMarketDetail',
+      'claim',
     );
   }, [requireAuth, rawOnClaim, t]);
 

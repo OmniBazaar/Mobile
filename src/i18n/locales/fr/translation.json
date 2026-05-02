@@ -6140,7 +6140,47 @@
       "skipActivation": "Continuer sans activer votre compte. Vous pouvez le faire plus tard depuis votre profil.",
       "activateAccount": "Activez votre compte pour réclamer votre bonus de bienvenue et débloquer toutes les fonctionnalités"
     },
-    "trustedBy": "Approuvé par {{count}} utilisateurs dans le monde"
+    "trustedBy": "Approuvé par {{count}} utilisateurs dans le monde",
+    "unlockSheet": {
+      "title": "Déverrouillez pour continuer",
+      "body": "Pour {{action}}, déverrouillez votre portefeuille avec votre mot de passe.",
+      "passwordLabel": "Mot de passe du portefeuille",
+      "passwordPlaceholder": "Saisissez votre mot de passe",
+      "unlock": "Déverrouiller",
+      "unlocking": "Déverrouillage…",
+      "errorPasswordRequired": "Saisissez le mot de passe de votre portefeuille pour continuer.",
+      "errorMissingUsername": "Votre nom d’utilisateur n’est pas en cache sur cet appareil. Reconnectez-vous pour continuer.",
+      "errorDeriveFailed": "Le déverrouillage a échoué. Vérifiez votre mot de passe et réessayez.",
+      "actions": {
+        "default": "continuer",
+        "buyListing": "acheter cette annonce",
+        "buyNft": "acheter ce NFT",
+        "createListing": "créer une annonce",
+        "swap": "échanger des tokens",
+        "limit": "passer cet ordre à cours limité",
+        "cancelOrder": "annuler cet ordre",
+        "addLiquidity": "ajouter de la liquidité",
+        "removeLiquidity": "retirer de la liquidité",
+        "stake": "staker",
+        "unstake": "retirer du staking",
+        "claim": "réclamer les gains",
+        "claimRewards": "réclamer les récompenses",
+        "bridge": "utiliser le bridge",
+        "send": "envoyer des tokens",
+        "shield": "passer en privé",
+        "unshield": "passer en public",
+        "startKyc": "démarrer la vérification d’identité",
+        "predictBuy": "acheter cette position",
+        "predictSell": "vendre cette position",
+        "rwaBuy": "acheter ce token RWA",
+        "rwaSell": "vendre ce token RWA",
+        "viewWallet": "voir votre portefeuille",
+        "viewMyListings": "voir vos annonces",
+        "viewPortfolio": "voir votre portefeuille global",
+        "chat": "envoyer ce message",
+        "dappSign": "signer cette requête"
+      }
+    }
   },
   "landing": {
     "hero": {

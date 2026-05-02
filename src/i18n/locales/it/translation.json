@@ -6140,7 +6140,47 @@
       "skipActivation": "Continue without activating your account. You can do this later from your profile.",
       "activateAccount": "Activate your account to claim your welcome bonus and unlock all features"
     },
-    "trustedBy": "Trusted by {{count}} users worldwide"
+    "trustedBy": "Trusted by {{count}} users worldwide",
+    "unlockSheet": {
+      "title": "Sblocca per continuare",
+      "body": "Per {{action}}, sblocca il tuo wallet con la tua password.",
+      "passwordLabel": "Password del wallet",
+      "passwordPlaceholder": "Inserisci la tua password",
+      "unlock": "Sblocca",
+      "unlocking": "Sblocco in corso…",
+      "errorPasswordRequired": "Inserisci la password del wallet per continuare.",
+      "errorMissingUsername": "Il tuo nome utente non è memorizzato su questo dispositivo. Accedi di nuovo per continuare.",
+      "errorDeriveFailed": "Sblocco fallito. Controlla la password e riprova.",
+      "actions": {
+        "default": "continuare",
+        "buyListing": "comprare questo annuncio",
+        "buyNft": "comprare questo NFT",
+        "createListing": "creare un annuncio",
+        "swap": "scambiare token",
+        "limit": "inserire questo ordine limit",
+        "cancelOrder": "annullare questo ordine",
+        "addLiquidity": "aggiungere liquidità",
+        "removeLiquidity": "rimuovere liquidità",
+        "stake": "fare staking",
+        "unstake": "ritirare lo staking",
+        "claim": "riscuotere le vincite",
+        "claimRewards": "riscuotere le ricompense",
+        "bridge": "usare il bridge",
+        "send": "inviare token",
+        "shield": "passare a privato",
+        "unshield": "passare a pubblico",
+        "startKyc": "avviare la verifica identità",
+        "predictBuy": "comprare questa posizione",
+        "predictSell": "vendere questa posizione",
+        "rwaBuy": "comprare questo token RWA",
+        "rwaSell": "vendere questo token RWA",
+        "viewWallet": "vedere il tuo wallet",
+        "viewMyListings": "vedere i tuoi annunci",
+        "viewPortfolio": "vedere il tuo portafoglio",
+        "chat": "inviare questo messaggio",
+        "dappSign": "firmare questa richiesta"
+      }
+    }
   },
   "landing": {
     "hero": {

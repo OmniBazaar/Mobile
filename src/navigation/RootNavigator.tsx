@@ -31,6 +31,7 @@ import { startAutoLock, stopAutoLock } from '../services/AutoLockService';
 import OnboardingStack from './stacks/OnboardingStack';
 import AppTabs from './AppTabs';
 import AuthPromptScreen from './AuthPromptScreen';
+import UnlockSheetMount from '../components/UnlockSheetMount';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -53,25 +54,35 @@ export default function RootNavigator(): React.ReactElement | null {
     });
   }, [setAuthState]);
 
-  // AutoLock: arm on unlocked, disarm on sign-out / guest.
+  // AutoLock: arm on unlocked, disarm on sign-out / guest / locked.
+  // Phase 12: when the timer fires, transition to `locked` (NOT
+  // `signedOut`) so the user keeps their browse session and the
+  // contextual UnlockSheet appears on the next 🔒 action. The
+  // pre-Phase-12 `clearAuth()` bounced the user to onboarding —
+  // the unlock-first model — and is replaced here.
+  const lockKeystore = useAuthStore((s) => s.lockKeystore);
   useEffect(() => {
     if (authState !== 'unlocked') {
       stopAutoLock();
       return;
     }
     startAutoLock(() => {
-      clearAuth();
+      lockKeystore();
     });
     return (): void => stopAutoLock();
-  }, [authState, clearAuth]);
+  }, [authState, lockKeystore]);
 
   if (authState === 'bootstrapping') return null;
 
   // 'unlocked' → MainTabs with full features.
-  // 'guest' → MainTabs with read-only access (action buttons routed
-  //           through RequireAuth → AuthPrompt).
-  // 'signedOut' or 'locked' → Onboarding stack.
-  const showTabs = authState === 'unlocked' || authState === 'guest';
+  // 'guest' / 'locked' → MainTabs with read-only access (action buttons
+  //           routed through RequireAuth → contextual UnlockSheet for
+  //           `locked`, AuthPrompt for `guest`).
+  // 'signedOut' → Onboarding stack.
+  const showTabs =
+    authState === 'unlocked' ||
+    authState === 'guest' ||
+    authState === 'locked';
 
   return (
     <NavigationContainer linking={createLinking()}>
@@ -94,6 +105,10 @@ export default function RootNavigator(): React.ReactElement | null {
           <Stack.Screen name="Onboarding" component={OnboardingStack} />
         )}
       </Stack.Navigator>
+      {/* Phase 12: contextual UnlockSheet, mounted once and driven by
+          the unlock-guard zustand slice. Renders nothing while no
+          deferred action is pending. */}
+      {showTabs ? <UnlockSheetMount /> : null}
     </NavigationContainer>
   );
 }

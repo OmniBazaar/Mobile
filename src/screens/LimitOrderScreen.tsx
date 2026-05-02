@@ -20,6 +20,7 @@ import Button from '@components/Button';
 import Card from '@components/Card';
 import Input from '@components/Input';
 import ScreenHeader from '@components/ScreenHeader';
+import { useRequireAuth } from '@components/RequireAuth';
 import { colors } from '@theme/colors';
 import { getClobService, type ClobOrder } from '@wallet/services/dex/ClobService';
 import { useAuthStore } from '../store/authStore';
@@ -42,6 +43,7 @@ const PAIR = 'XOM/USDC';
 export default function LimitOrderScreen(props: LimitOrderScreenProps): JSX.Element {
   const { t } = useTranslation();
   const address = useAuthStore((s) => s.address);
+  const requireAuth = useRequireAuth();
   const [side, setSide] = useState<'buy' | 'sell'>('buy');
   const [price, setPrice] = useState('');
   const [size, setSize] = useState('');
@@ -164,7 +166,14 @@ export default function LimitOrderScreen(props: LimitOrderScreenProps): JSX.Elem
           title={busy
             ? t('common.submitting', { defaultValue: 'Submitting…' })
             : t('limit.submit', { defaultValue: 'Place Order' })}
-          onPress={() => void handleSubmit()}
+          onPress={() =>
+            requireAuth(
+              t('authPrompt.toLimit', { defaultValue: 'Sign in to place a limit order.' }),
+              () => void handleSubmit(),
+              'LimitOrder',
+              'limit',
+            )
+          }
           disabled={busy}
           style={styles.submit}
         />
@@ -196,7 +205,14 @@ export default function LimitOrderScreen(props: LimitOrderScreenProps): JSX.Elem
                 <Button
                   title={t('limit.cancel', { defaultValue: 'Cancel' })}
                   variant="secondary"
-                  onPress={() => void handleCancel(id)}
+                  onPress={() =>
+                    requireAuth(
+                      t('authPrompt.toCancelOrder', { defaultValue: 'Sign in to cancel this order.' }),
+                      () => void handleCancel(id),
+                      'LimitOrder',
+                      'cancelOrder',
+                    )
+                  }
                 />
               </Card>
             );

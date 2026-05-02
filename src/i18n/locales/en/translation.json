@@ -149,6 +149,48 @@
     "toStake": "Sign in to stake or unstake.",
     "toBridge": "Sign in to bridge assets across chains."
   },
+  "auth": {
+    "unlockSheet": {
+      "title": "Unlock to continue",
+      "body": "To {{action}}, unlock your wallet with your password.",
+      "passwordLabel": "Wallet password",
+      "passwordPlaceholder": "Enter your password",
+      "unlock": "Unlock",
+      "unlocking": "Unlocking…",
+      "errorPasswordRequired": "Please enter your wallet password to continue.",
+      "errorMissingUsername": "We don't have your username cached on this device. Sign in again to continue.",
+      "errorDeriveFailed": "Unlock failed. Check your password and try again.",
+      "actions": {
+        "default": "continue",
+        "buyListing": "buy this listing",
+        "buyNft": "buy this NFT",
+        "createListing": "create a listing",
+        "swap": "swap tokens",
+        "limit": "place this limit order",
+        "cancelOrder": "cancel this order",
+        "addLiquidity": "add liquidity",
+        "removeLiquidity": "remove liquidity",
+        "stake": "stake",
+        "unstake": "unstake",
+        "claim": "claim winnings",
+        "claimRewards": "claim rewards",
+        "bridge": "bridge",
+        "send": "send tokens",
+        "shield": "shield to private",
+        "unshield": "unshield to public",
+        "startKyc": "start identity verification",
+        "predictBuy": "buy this position",
+        "predictSell": "sell this position",
+        "rwaBuy": "buy this RWA token",
+        "rwaSell": "sell this RWA token",
+        "viewWallet": "view your wallet",
+        "viewMyListings": "view your listings",
+        "viewPortfolio": "view your portfolio",
+        "chat": "send this chat message",
+        "dappSign": "sign this request"
+      }
+    }
+  },
   "comingSoon": {
     "body": "This screen lands in {{sprint}}. Track progress in MOBILE_REMEDIATION_PLAN.md."
   },

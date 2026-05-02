@@ -16,6 +16,7 @@ import Button from '@components/Button';
 import Card from '@components/Card';
 import Input from '@components/Input';
 import ScreenHeader from '@components/ScreenHeader';
+import { useRequireAuth } from '@components/RequireAuth';
 import { colors } from '@theme/colors';
 import { LiquidityService, type LpPoolRow } from '@wallet/services/LiquidityService';
 import { useAuthStore } from '../store/authStore';
@@ -35,6 +36,7 @@ export interface LiquidityScreenProps {
 export default function LiquidityScreen(props: LiquidityScreenProps): JSX.Element {
   const { t, i18n } = useTranslation();
   const address = useAuthStore((s) => s.address);
+  const requireAuth = useRequireAuth();
   const [pools, setPools] = useState<LpPoolRow[]>([]);
   const [poolAddress, setPoolAddress] = useState<string | undefined>(undefined);
   const [xomAmount, setXomAmount] = useState('');
@@ -165,7 +167,14 @@ export default function LiquidityScreen(props: LiquidityScreenProps): JSX.Elemen
           title={busy
             ? t('common.submitting', { defaultValue: 'Submitting…' })
             : t('lp.add', { defaultValue: 'Add Liquidity' })}
-          onPress={() => void handleAdd()}
+          onPress={() =>
+            requireAuth(
+              t('authPrompt.toAddLiquidity', { defaultValue: 'Sign in to add liquidity.' }),
+              () => void handleAdd(),
+              'Liquidity',
+              'addLiquidity',
+            )
+          }
           disabled={busy || poolAddress === undefined}
           style={styles.submit}
         />

@@ -214,6 +214,8 @@ export default function TokenDetailScreen(
               requireAuth(
                 t('authPrompt.toSend', { defaultValue: 'Sign in to send tokens from your wallet.' }),
                 props.onSend,
+                'TokenDetail',
+                'send',
               )
             }
             accessibilityRole="button"
@@ -237,6 +239,8 @@ export default function TokenDetailScreen(
               requireAuth(
                 t('authPrompt.toSwap', { defaultValue: 'Sign in to swap or trade tokens.' }),
                 props.onSwap,
+                'TokenDetail',
+                'swap',
               )
             }
             accessibilityRole="button"

@@ -6140,7 +6140,47 @@
       "skipActivation": "Continue without activating your account. You can do this later from your profile.",
       "activateAccount": "Activate your account to claim your welcome bonus and unlock all features"
     },
-    "trustedBy": "Trusted by {{count}} users worldwide"
+    "trustedBy": "Trusted by {{count}} users worldwide",
+    "unlockSheet": {
+      "title": "続けるにはロック解除してください",
+      "body": "{{action}}するために、パスワードでウォレットをロック解除してください。",
+      "passwordLabel": "ウォレットのパスワード",
+      "passwordPlaceholder": "パスワードを入力",
+      "unlock": "ロック解除",
+      "unlocking": "ロック解除中…",
+      "errorPasswordRequired": "続けるにはウォレットのパスワードを入力してください。",
+      "errorMissingUsername": "このデバイスにユーザー名がキャッシュされていません。もう一度サインインしてください。",
+      "errorDeriveFailed": "ロック解除に失敗しました。パスワードを確認して再試行してください。",
+      "actions": {
+        "default": "続ける",
+        "buyListing": "この商品を購入",
+        "buyNft": "この NFT を購入",
+        "createListing": "商品を作成",
+        "swap": "トークンをスワップ",
+        "limit": "指値注文を出す",
+        "cancelOrder": "注文をキャンセル",
+        "addLiquidity": "流動性を追加",
+        "removeLiquidity": "流動性を除去",
+        "stake": "ステーク",
+        "unstake": "アンステーク",
+        "claim": "賞金を受け取る",
+        "claimRewards": "報酬を受け取る",
+        "bridge": "ブリッジを使う",
+        "send": "トークンを送る",
+        "shield": "プライベートに変換",
+        "unshield": "パブリックに変換",
+        "startKyc": "本人確認を開始",
+        "predictBuy": "このポジションを購入",
+        "predictSell": "このポジションを売却",
+        "rwaBuy": "この RWA トークンを購入",
+        "rwaSell": "この RWA トークンを売却",
+        "viewWallet": "ウォレットを表示",
+        "viewMyListings": "出品を表示",
+        "viewPortfolio": "ポートフォリオを表示",
+        "chat": "チャットを送信",
+        "dappSign": "このリクエストに署名"
+      }
+    }
   },
   "landing": {
     "hero": {

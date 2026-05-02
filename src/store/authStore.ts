@@ -77,8 +77,41 @@ export interface AuthStoreState {
   setBiometricEnabled(enabled: boolean): void;
   markUnlocked(): void;
   enterGuestMode(): void;
+  /**
+   * Phase 12: lock the keystore in place — wipes the in-memory seed
+   * but keeps the cached username + family addresses + JWT so the
+   * UnlockSheet can re-derive without bouncing the user to onboarding.
+   * Auto-lock alarms call this instead of `clear()`.
+   */
+  lockKeystore(): void;
   clear(): void;
 }
+
+/**
+ * Phase 12 selector — true when an encrypted vault (or cached
+ * credentials) is present on this device. `true` for `locked` and
+ * `unlocked` lifecycles; `false` for `signedOut` / `guest`. Used by
+ * `useRequireAuth` to decide between the AuthPrompt route (no wallet
+ * → onboarding) and the contextual UnlockSheet (wallet exists, just
+ * locked).
+ *
+ * @param s - Auth store state.
+ * @returns Whether a wallet exists on this device.
+ */
+export const selectWalletExists = (s: AuthStoreState): boolean =>
+  s.state === 'locked' || s.state === 'unlocked';
+
+/**
+ * Phase 12 selector — true when the in-memory keyring is materialised
+ * and signing operations are available. `false` for every other state
+ * including `bootstrapping`. Mirror of the wallet extension's
+ * `selectIsUnlocked`.
+ *
+ * @param s - Auth store state.
+ * @returns Whether the keystore is unlocked.
+ */
+export const selectIsUnlocked = (s: AuthStoreState): boolean =>
+  s.state === 'unlocked';
 
 export const useAuthStore = create<AuthStoreState>((set) => ({
   state: 'bootstrapping',
@@ -89,6 +122,16 @@ export const useAuthStore = create<AuthStoreState>((set) => ({
   biometricEnabled: false,
   lastUnlockMs: 0,
   setState: (next) => set({ state: next }),
+  /**
+   * Phase 12: drop the in-memory seed and flip the lifecycle to
+   * `'locked'` instead of `'signedOut'`. Keeps the cached username +
+   * familyAddresses so the UnlockSheet's `username` can prefill
+   * automatically and the user is not bounced to onboarding for what
+   * is functionally a re-enter-password event. Auto-lock alarms now
+   * call this instead of `clear()`.
+   */
+  lockKeystore: () =>
+    set({ state: 'locked', mnemonic: '' }),
   setAddress: (address, username) =>
     set({ address, ...(username !== undefined && { username }) }),
   setMnemonic: (mnemonic) => set({ mnemonic }),

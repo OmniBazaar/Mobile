@@ -25,6 +25,7 @@ import Card from '@components/Card';
 import Input from '@components/Input';
 import LoadingSpinner from '@components/LoadingSpinner';
 import ScreenHeader from '@components/ScreenHeader';
+import { useRequireAuth } from '@components/RequireAuth';
 import WalletConnectBar, {
   type SwapWalletMode,
 } from '@components/WalletConnectBar';
@@ -74,6 +75,7 @@ export interface SwapScreenProps {
 export default function SwapScreen(props: SwapScreenProps): JSX.Element {
   const { t } = useTranslation();
   const address = useAuthStore((s) => s.address);
+  const requireAuth = useRequireAuth();
 
   const [from, setFrom] = useState<TokenShortcut>(COMMON_TOKENS[0]!);
   const [to, setTo] = useState<TokenShortcut>(COMMON_TOKENS[2]!);
@@ -392,7 +394,14 @@ export default function SwapScreen(props: SwapScreenProps): JSX.Element {
                         })
                     : t('swap.cta.execute', { defaultValue: 'Swap Now' })
                 }
-                onPress={() => void handleExecute()}
+                onPress={() =>
+                  requireAuth(
+                    t('authPrompt.toSwap', { defaultValue: 'Sign in to swap or trade tokens.' }),
+                    () => void handleExecute(),
+                    'Swap',
+                    'swap',
+                  )
+                }
                 disabled={
                   executing ||
                   quoteNeedsEmbedded ||

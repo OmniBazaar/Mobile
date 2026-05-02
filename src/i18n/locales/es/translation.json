@@ -6140,7 +6140,47 @@
       "skipActivation": "Continúe sin activar su cuenta. Puede hacer esto más tarde desde su perfil.",
       "activateAccount": "Active su cuenta para reclamar su bono de bienvenida y desbloquear todas las funciones"
     },
-    "trustedBy": "En {{count}} confían usuarios de todo el mundo"
+    "trustedBy": "En {{count}} confían usuarios de todo el mundo",
+    "unlockSheet": {
+      "title": "Desbloquea para continuar",
+      "body": "Para {{action}}, desbloquea tu billetera con tu contraseña.",
+      "passwordLabel": "Contraseña de la billetera",
+      "passwordPlaceholder": "Introduce tu contraseña",
+      "unlock": "Desbloquear",
+      "unlocking": "Desbloqueando…",
+      "errorPasswordRequired": "Introduce la contraseña de tu billetera para continuar.",
+      "errorMissingUsername": "No tenemos tu usuario guardado en este dispositivo. Inicia sesión de nuevo para continuar.",
+      "errorDeriveFailed": "No se pudo desbloquear. Revisa tu contraseña e inténtalo de nuevo.",
+      "actions": {
+        "default": "continuar",
+        "buyListing": "comprar este artículo",
+        "buyNft": "comprar este NFT",
+        "createListing": "crear un anuncio",
+        "swap": "intercambiar tokens",
+        "limit": "colocar esta orden límite",
+        "cancelOrder": "cancelar esta orden",
+        "addLiquidity": "añadir liquidez",
+        "removeLiquidity": "retirar liquidez",
+        "stake": "hacer staking",
+        "unstake": "retirar staking",
+        "claim": "reclamar premios",
+        "claimRewards": "reclamar recompensas",
+        "bridge": "usar el puente",
+        "send": "enviar tokens",
+        "shield": "pasar a privado",
+        "unshield": "pasar a público",
+        "startKyc": "iniciar verificación de identidad",
+        "predictBuy": "comprar esta posición",
+        "predictSell": "vender esta posición",
+        "rwaBuy": "comprar este token RWA",
+        "rwaSell": "vender este token RWA",
+        "viewWallet": "ver tu billetera",
+        "viewMyListings": "ver tus anuncios",
+        "viewPortfolio": "ver tu portafolio",
+        "chat": "enviar este mensaje",
+        "dappSign": "firmar esta solicitud"
+      }
+    }
   },
   "landing": {
     "hero": {

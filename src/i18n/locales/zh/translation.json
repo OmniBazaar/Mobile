@@ -6140,7 +6140,47 @@
       "skipActivation": "不激活账户继续。您可以稍后在个人资料中完成。",
       "activateAccount": "激活账户以领取欢迎奖金并解锁所有功能"
     },
-    "trustedBy": "全球 {{count}} 名用户信赖"
+    "trustedBy": "全球 {{count}} 名用户信赖",
+    "unlockSheet": {
+      "title": "解锁后继续",
+      "body": "请使用密码解锁钱包以{{action}}。",
+      "passwordLabel": "钱包密码",
+      "passwordPlaceholder": "输入密码",
+      "unlock": "解锁",
+      "unlocking": "正在解锁…",
+      "errorPasswordRequired": "请输入钱包密码以继续。",
+      "errorMissingUsername": "此设备未缓存您的用户名。请重新登录以继续。",
+      "errorDeriveFailed": "解锁失败。请检查密码后重试。",
+      "actions": {
+        "default": "继续",
+        "buyListing": "购买此商品",
+        "buyNft": "购买此 NFT",
+        "createListing": "创建商品",
+        "swap": "兑换代币",
+        "limit": "提交此限价单",
+        "cancelOrder": "取消此订单",
+        "addLiquidity": "添加流动性",
+        "removeLiquidity": "移除流动性",
+        "stake": "质押",
+        "unstake": "解除质押",
+        "claim": "领取奖金",
+        "claimRewards": "领取奖励",
+        "bridge": "使用跨链桥",
+        "send": "发送代币",
+        "shield": "转为隐私",
+        "unshield": "转为公开",
+        "startKyc": "开始身份验证",
+        "predictBuy": "购买此持仓",
+        "predictSell": "出售此持仓",
+        "rwaBuy": "购买此 RWA 代币",
+        "rwaSell": "出售此 RWA 代币",
+        "viewWallet": "查看钱包",
+        "viewMyListings": "查看我的商品",
+        "viewPortfolio": "查看资产组合",
+        "chat": "发送此消息",
+        "dappSign": "签署此请求"
+      }
+    }
   },
   "landing": {
     "hero": {

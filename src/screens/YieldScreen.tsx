@@ -16,6 +16,7 @@ import Button from '@components/Button';
 import Card from '@components/Card';
 import Input from '@components/Input';
 import ScreenHeader from '@components/ScreenHeader';
+import { useRequireAuth } from '@components/RequireAuth';
 import { colors } from '@theme/colors';
 import { useAuthStore } from '../store/authStore';
 
@@ -42,6 +43,7 @@ interface VaultRow {
 export default function YieldScreen(props: YieldScreenProps): JSX.Element {
   const { t } = useTranslation();
   const address = useAuthStore((s) => s.address);
+  const requireAuth = useRequireAuth();
   const [vaults, setVaults] = useState<VaultRow[]>([]);
   const [selected, setSelected] = useState<VaultRow | undefined>(undefined);
   const [amount, setAmount] = useState('');
@@ -158,14 +160,28 @@ export default function YieldScreen(props: YieldScreenProps): JSX.Element {
         <View style={styles.actions}>
           <Button
             title={t('yield.deposit', { defaultValue: 'Deposit' })}
-            onPress={() => void handleAction('deposit')}
+            onPress={() =>
+              requireAuth(
+                t('authPrompt.toAddLiquidity', { defaultValue: 'Sign in to deposit into a yield vault.' }),
+                () => void handleAction('deposit'),
+                'Yield',
+                'addLiquidity',
+              )
+            }
             disabled={busy || selected === undefined}
             style={styles.action}
           />
           <Button
             title={t('yield.withdraw', { defaultValue: 'Withdraw' })}
             variant="secondary"
-            onPress={() => void handleAction('withdraw')}
+            onPress={() =>
+              requireAuth(
+                t('authPrompt.toRemoveLiquidity', { defaultValue: 'Sign in to withdraw from a yield vault.' }),
+                () => void handleAction('withdraw'),
+                'Yield',
+                'removeLiquidity',
+              )
+            }
             disabled={busy || selected === undefined}
             style={styles.action}
           />

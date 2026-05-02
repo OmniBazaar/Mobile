@@ -6140,7 +6140,47 @@
       "skipActivation": "Ohne Kontoaktivierung fortfahren. Sie koennen dies spaeter nachholen.",
       "activateAccount": "Konto aktivieren, um Willkommensbonus und alle Funktionen freizuschalten"
     },
-    "trustedBy": "Von {{count}} Benutzern weltweit vertraut"
+    "trustedBy": "Von {{count}} Benutzern weltweit vertraut",
+    "unlockSheet": {
+      "title": "Entsperren, um fortzufahren",
+      "body": "Um {{action}} zu können, entsperre dein Wallet mit deinem Passwort.",
+      "passwordLabel": "Wallet-Passwort",
+      "passwordPlaceholder": "Passwort eingeben",
+      "unlock": "Entsperren",
+      "unlocking": "Wird entsperrt…",
+      "errorPasswordRequired": "Bitte Wallet-Passwort eingeben, um fortzufahren.",
+      "errorMissingUsername": "Dein Benutzername ist auf diesem Gerät nicht gespeichert. Melde dich erneut an, um fortzufahren.",
+      "errorDeriveFailed": "Entsperren fehlgeschlagen. Prüfe dein Passwort und versuche es erneut.",
+      "actions": {
+        "default": "fortzufahren",
+        "buyListing": "dieses Angebot zu kaufen",
+        "buyNft": "dieses NFT zu kaufen",
+        "createListing": "ein Angebot zu erstellen",
+        "swap": "Tokens zu tauschen",
+        "limit": "diese Limit-Order zu platzieren",
+        "cancelOrder": "diese Order zu stornieren",
+        "addLiquidity": "Liquidität hinzuzufügen",
+        "removeLiquidity": "Liquidität abzuziehen",
+        "stake": "zu staken",
+        "unstake": "das Staking zu beenden",
+        "claim": "Gewinne abzurufen",
+        "claimRewards": "Belohnungen abzurufen",
+        "bridge": "die Bridge zu nutzen",
+        "send": "Tokens zu senden",
+        "shield": "in privat zu wandeln",
+        "unshield": "in öffentlich zu wandeln",
+        "startKyc": "die Identitätsprüfung zu starten",
+        "predictBuy": "diese Position zu kaufen",
+        "predictSell": "diese Position zu verkaufen",
+        "rwaBuy": "diesen RWA-Token zu kaufen",
+        "rwaSell": "diesen RWA-Token zu verkaufen",
+        "viewWallet": "dein Wallet anzusehen",
+        "viewMyListings": "deine Angebote anzusehen",
+        "viewPortfolio": "dein Portfolio anzusehen",
+        "chat": "diese Chatnachricht zu senden",
+        "dappSign": "diese Anfrage zu signieren"
+      }
+    }
   },
   "landing": {
     "hero": {

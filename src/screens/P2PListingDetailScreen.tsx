@@ -91,6 +91,8 @@ export default function P2PListingDetailScreen(
         defaultValue: 'Sign in to fund the escrow and buy this listing.',
       }),
       rawOnBuy,
+      'P2PListingDetail',
+      'buyListing',
     );
   }, [requireAuth, rawOnBuy, t]);
 
