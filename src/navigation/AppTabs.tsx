@@ -20,7 +20,7 @@
  * @module navigation/AppTabs
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 import {
   createBottomTabNavigator,
@@ -33,12 +33,21 @@ import { useTranslation } from 'react-i18next';
 import type { AppTabsParamList } from './types';
 import { colors } from '@theme/colors';
 import { useChatUnread } from '../hooks/useChatUnread';
+import { useAuthStore } from '../store/authStore';
+import { getStorageAdapter } from '@wallet/platform/registry';
 
 import ShopStack from './stacks/ShopStack';
 import TradeStack from './stacks/TradeStack';
 import WalletStack from './stacks/WalletStack';
 import ChatStack from './stacks/ChatStack';
 import ProfileStack from './stacks/ProfileStack';
+
+/**
+ * Phase 12 — chrome.storage.local key (mobile equivalent: storage
+ * adapter) for the "Open to Wallet on launch" preference. Mirrors
+ * `Wallet/src/popup/pages/settings/SecurityPage.tsx`.
+ */
+const KEY_OPEN_TO_WALLET = 'settings.openToWalletOnLaunch';
 
 const Tab = createBottomTabNavigator<AppTabsParamList>();
 
@@ -74,9 +83,30 @@ function iconFor(
 export default function AppTabs(): React.ReactElement {
   const { t } = useTranslation();
   const unreadChats = useChatUnread();
+
+  // Phase 12 browse-first landing. Defaults to Shop. The user can opt
+  // into "Wallet on launch" via a toggle in SettingsScreen — but the
+  // toggle only takes effect when `state === 'unlocked'`. Guests and
+  // users in the `'locked'` lifecycle always land on Shop because the
+  // Wallet tab won't be functional for them anyway.
+  const authState = useAuthStore((s) => s.state);
+  const [openToWallet, setOpenToWallet] = useState<boolean>(false);
+  useEffect(() => {
+    void (async (): Promise<void> => {
+      try {
+        const stored = await getStorageAdapter().getItem<boolean>(KEY_OPEN_TO_WALLET);
+        if (stored === true) setOpenToWallet(true);
+      } catch {
+        /* best effort — default to false (browse-first) */
+      }
+    })();
+  }, []);
+  const initialRouteName: keyof AppTabsParamList =
+    openToWallet && authState === 'unlocked' ? 'Wallet' : 'Shop';
+
   return (
     <Tab.Navigator
-      initialRouteName="Wallet"
+      initialRouteName={initialRouteName}
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: colors.primary,

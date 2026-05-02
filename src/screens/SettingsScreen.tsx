@@ -28,6 +28,13 @@ import { useAuthStore } from '../store/authStore';
 /** Storage keys used by this screen. */
 const KEY_LANGUAGE = 'settings.language';
 const KEY_AUTO_LOCK_MIN = 'settings.autoLockMinutes';
+/**
+ * Phase 12 — persisted preference deciding whether the app lands on
+ * the Wallet tab vs. the Shop tab on launch. Defaults to `false`
+ * (browse-first acquisition). Mirrors the wallet-extension key
+ * `openToWalletOnLaunch`.
+ */
+const KEY_OPEN_TO_WALLET = 'settings.openToWalletOnLaunch';
 
 /** Allowed auto-lock durations. */
 const AUTO_LOCK_OPTIONS: number[] = [1, 5, 15, 30];
@@ -60,8 +67,9 @@ export default function SettingsScreen(props: SettingsScreenProps): JSX.Element 
     (i18next.language as SupportedLanguage) ?? 'en',
   );
   const [autoLockMin, setAutoLockMin] = useState<number>(5);
+  const [openToWallet, setOpenToWallet] = useState<boolean>(false);
 
-  // Hydrate auto-lock preference from storage on mount.
+  // Hydrate auto-lock + open-to-wallet preferences from storage on mount.
   useEffect(() => {
     void (async (): Promise<void> => {
       try {
@@ -69,6 +77,12 @@ export default function SettingsScreen(props: SettingsScreenProps): JSX.Element 
         if (typeof stored === 'number' && AUTO_LOCK_OPTIONS.includes(stored)) {
           setAutoLockMin(stored);
         }
+      } catch {
+        /* best effort */
+      }
+      try {
+        const stored = await getStorageAdapter().getItem<boolean>(KEY_OPEN_TO_WALLET);
+        if (stored === true) setOpenToWallet(true);
       } catch {
         /* best effort */
       }
@@ -95,6 +109,24 @@ export default function SettingsScreen(props: SettingsScreenProps): JSX.Element 
     // Apply immediately so the next idle tick uses the new interval
     // — without this, the change wouldn't take effect until app boot.
     setAutoLockInterval(minutes as AutoLockMinutes);
+  }, []);
+
+  /**
+   * Phase 12 — persist the "Open to Wallet on launch" preference. The
+   * AppTabs navigator reads this on cold-start (via the same storage
+   * adapter) to pick `Wallet` vs. `Shop` as the initial tab. Default
+   * is `false` so first-launch users still land on the browse-first
+   * Shop tab.
+   *
+   * @param next - New toggle value.
+   */
+  const toggleOpenToWallet = useCallback(async (next: boolean): Promise<void> => {
+    setOpenToWallet(next);
+    try {
+      await getStorageAdapter().setItem(KEY_OPEN_TO_WALLET, next);
+    } catch {
+      /* best effort */
+    }
   }, []);
 
   const toggleBiometric = useCallback(async (next: boolean): Promise<void> => {
@@ -192,6 +224,35 @@ export default function SettingsScreen(props: SettingsScreenProps): JSX.Element 
             onValueChange={(next) => void toggleBiometric(next)}
             trackColor={{ true: colors.primary, false: colors.border }}
             thumbColor={colors.textPrimary}
+          />
+        </View>
+      </Card>
+
+      {/* Phase 12 — Open to Wallet on launch */}
+      <Card style={styles.section}>
+        <View style={styles.switchRow}>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.sectionHeader}>
+              {t('auth.settings.openToWallet.label', {
+                defaultValue: 'Open to Wallet on launch',
+              })}
+            </Text>
+            <Text style={styles.rowSubtle}>
+              {t('auth.settings.openToWallet.description', {
+                defaultValue:
+                  'When enabled, the app lands on Wallet instead of Shop, after you have unlocked at least once on this device.',
+              })}
+            </Text>
+          </View>
+          <Switch
+            value={openToWallet}
+            onValueChange={(next): void => void toggleOpenToWallet(next)}
+            trackColor={{ true: colors.primary, false: colors.border }}
+            thumbColor={colors.textPrimary}
+            accessibilityRole="switch"
+            accessibilityLabel={t('auth.settings.openToWallet.label', {
+              defaultValue: 'Open to Wallet on launch',
+            })}
           />
         </View>
       </Card>
