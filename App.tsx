@@ -1,20 +1,30 @@
-// CRITICAL: native crypto bridge MUST come first. `react-native-quick-crypto`
-// installs JSI-backed `globalThis.crypto.{getRandomValues,subtle}` and
-// registers a Node-style `crypto` module that ethers v6 + the wallet
-// derivation path pick up. Without it Hermes falls back to pure-JS
-// noble for PBKDF2 / secp256k1 / SHA-512 — 30× slower, which manifests
-// as a 10–30 second sign-in. The bridge's `install()` is idempotent, so
-// it's safe to call here even if a later sub-module also calls it.
+// IMPORTANT: every polyfill ASSIGNMENT in this file is a top-level
+// statement, and JS module semantics run statements in source order
+// AFTER all `import` declarations have evaluated. That means
+// `installQuickCrypto()` cannot run BEFORE the Buffer/process/etc.
+// global assignments below — even though the bridge's docstring used
+// to say "native crypto bridge MUST come first". When it ran first,
+// `require('react-native-quick-crypto')` triggered quick-crypto's JS
+// to evaluate; quick-crypto reads the global Buffer at top-level
+// (it implements Node's crypto API which is Buffer-centric), and
+// because lines 36-38 hadn't run yet, Buffer was undefined →
+// `ReferenceError: Property 'Buffer' doesn't exist` → JS bundle
+// failed to register and the app crashed back to the launcher
+// within a second of the splash. Confirmed via Pixel-class device
+// logcat 2026-05-03.
 //
-// The bridge gracefully no-ops in environments where the native module
-// isn't present (Jest test runs, etc.); the QuickCryptoBridge wrapper
-// detects that and falls through to noble.
+// Fix: hoist the IMPORT (so it brings `installQuickCrypto` into
+// scope), but defer the CALL until after every polyfill assignment.
+// Once Buffer/process/AbortSignal are in place, calling
+// installQuickCrypto is safe — its install() overwrites
+// `globalThis.crypto` regardless of whether react-native-get-
+// random-values polyfilled it first, so "native bridge wins"
+// still holds.
 import { installQuickCrypto } from './src/services/QuickCryptoBridge';
-installQuickCrypto();
 // Fallback polyfill for `getRandomValues` for environments where
 // quick-crypto did not install (test bundles, older builds). Side-effect
-// import; ordering is important — keep AFTER quick-crypto so the native
-// version wins when both are present.
+// import — provides crypto.getRandomValues immediately. Quick-crypto's
+// install() overwrites it later with the JSI-backed version.
 import 'react-native-get-random-values';
 // TextEncoder / TextDecoder polyfill. Hermes (RN 0.73) does NOT expose
 // these globally. The Cardano serialization library
@@ -129,6 +139,12 @@ if (typeof (AbortSignal as { timeout?: unknown }).timeout !== 'function') {
     return controller.signal;
   };
 }
+
+// Now — Buffer / process / AbortSignal are all polyfilled, so it's
+// safe to bring up the JSI native crypto bridge. Quick-crypto's JS
+// reads `Buffer` at top-level evaluation; calling install() before
+// the global was set was the 2026-05-03 boot crash root cause.
+installQuickCrypto();
 
 // CRITICAL: install the chrome global stub BEFORE any @wallet/* code is
 // evaluated. The bundled Wallet code calls `chrome.runtime.sendMessage`,
