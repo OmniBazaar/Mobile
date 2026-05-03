@@ -1,149 +1,32 @@
-// IMPORTANT: every polyfill ASSIGNMENT in this file is a top-level
-// statement, and JS module semantics run statements in source order
-// AFTER all `import` declarations have evaluated. That means
-// `installQuickCrypto()` cannot run BEFORE the Buffer/process/etc.
-// global assignments below — even though the bridge's docstring used
-// to say "native crypto bridge MUST come first". When it ran first,
-// `require('react-native-quick-crypto')` triggered quick-crypto's JS
-// to evaluate; quick-crypto reads the global Buffer at top-level
-// (it implements Node's crypto API which is Buffer-centric), and
-// because lines 36-38 hadn't run yet, Buffer was undefined →
-// `ReferenceError: Property 'Buffer' doesn't exist` → JS bundle
-// failed to register and the app crashed back to the launcher
-// within a second of the splash. Confirmed via Pixel-class device
-// logcat 2026-05-03.
+// CRITICAL: this side-effect import MUST be the first line of the
+// file. It evaluates `src/native/polyfills.ts`, which sets up
+// `globalThis.{Buffer,process,AbortSignal.timeout,crypto.*}` plus
+// `TextEncoder/TextDecoder` BEFORE any other module body runs.
 //
-// Fix: hoist the IMPORT (so it brings `installQuickCrypto` into
-// scope), but defer the CALL until after every polyfill assignment.
-// Once Buffer/process/AbortSignal are in place, calling
-// installQuickCrypto is safe — its install() overwrites
-// `globalThis.crypto` regardless of whether react-native-get-
-// random-values polyfilled it first, so "native bridge wins"
-// still holds.
+// Why a separate module instead of inline statements? ES modules
+// evaluate ALL imported modules' bodies (recursively, dependency-
+// first) BEFORE the importing module's own statements run. The
+// previous inline-polyfill layout in App.tsx couldn't actually run
+// the assignments early enough — every other import in this file
+// (RootNavigator, registerMobileAdapters, etc.) would evaluate its
+// transitive imports BEFORE App.tsx body statements got a chance to
+// set globals. The result was three different ReferenceError
+// crashes confirmed via Pixel-class logcat 2026-05-03 (Buffer
+// undefined deep in the @wallet/* chain). Putting the polyfills in
+// their own module with side-effect assignments at THAT module's
+// top level forces them to run before any subsequent import in
+// THIS file (declaration order is preserved for side-effect
+// imports).
+//
+// DO NOT move this import below any other import. Do not add
+// statements above it.
+import './src/native/polyfills';
+
 import { installQuickCrypto } from './src/services/QuickCryptoBridge';
-// Fallback polyfill for `getRandomValues` for environments where
-// quick-crypto did not install (test bundles, older builds). Side-effect
-// import — provides crypto.getRandomValues immediately. Quick-crypto's
-// install() overwrites it later with the JSI-backed version.
-import 'react-native-get-random-values';
-// TextEncoder / TextDecoder polyfill. Hermes (RN 0.73) does NOT expose
-// these globally. The Cardano serialization library
-// (@emurgo/cardano-serialization-lib-nodejs, pulled in transitively via
-// @wallet/core/keyring/cardanoCip1852) destructures
-// `const { TextDecoder, TextEncoder } = require('util')` at module-load
-// time. With no global TextEncoder/TextDecoder, the bundled `util` shim
-// has them as `undefined`, and `new TextDecoder(...)` throws on app
-// boot — the post-splash crash signature on Pixel 7 Pro / Android 14.
-// `fast-text-encoding` attaches both classes to `globalThis` as a
-// side-effect import, which is exactly what the bundled `util` shim
-// reads from.
-import 'fast-text-encoding';
-// Buffer polyfill — Node's `Buffer` global isn't present on RN by
-// default. Several @wallet/* services use it (e.g. raw APDU framing,
-// base64 encode/decode in BLE transport). Setting it as a global here
-// keeps those callers working without per-site `require('buffer')`.
-import { Buffer as BufferPolyfill } from 'buffer';
-if (typeof (globalThis as { Buffer?: unknown }).Buffer === 'undefined') {
-  (globalThis as { Buffer: typeof BufferPolyfill }).Buffer = BufferPolyfill;
-}
-// `process` polyfill — chain SDKs (algosdk, stellar, hedera, flow,
-// cardano, cosmos, multiversx, tron) reference `process.nextTick`,
-// `process.browser`, `process.version`, `process.env`. Hermes has a
-// minimal `process` but it's missing `nextTick` and the rest. Mirrors
-// the polyfill in Wallet/polyfills.js so the same chain SDKs work
-// identically in the mobile bundle.
-const __g = globalThis as unknown as Record<string, unknown>;
-if (typeof (__g['process'] as { nextTick?: unknown } | undefined)?.nextTick !== 'function') {
-  const queue: Array<[(...a: unknown[]) => void, unknown[]]> = [];
-  let queued = false;
-  const drain = (): void => {
-    queued = false;
-    while (queue.length > 0) {
-      const next = queue.shift();
-      if (next === undefined) break;
-      const [fn, args] = next;
-      try { fn(...args); } catch (err) {
-        void Promise.resolve().then(() => { throw err; });
-      }
-    }
-  };
-  const existing = (__g['process'] as Record<string, unknown> | undefined) ?? {};
-  __g['process'] = {
-    env: {},
-    browser: true,
-    version: '',
-    versions: { node: '0.0.0' },
-    title: 'browser',
-    platform: 'browser',
-    arch: 'arm64',
-    argv: [],
-    argv0: 'browser',
-    pid: 0,
-    cwd: () => '/',
-    chdir: () => { throw new Error('process.chdir is not supported'); },
-    umask: () => 0,
-    nextTick: (fn: (...a: unknown[]) => void, ...args: unknown[]): void => {
-      if (typeof fn !== 'function') {
-        throw new TypeError('process.nextTick callback must be a function');
-      }
-      queue.push([fn, args]);
-      if (!queued) {
-        queued = true;
-        void Promise.resolve().then(drain);
-      }
-    },
-    stdout: { write: (): void => {} },
-    stderr: { write: (): void => {} },
-    on: (): void => {},
-    once: (): void => {},
-    off: (): void => {},
-    addListener: (): void => {},
-    removeListener: (): void => {},
-    removeAllListeners: (): void => {},
-    emit: (): boolean => false,
-    prependListener: (): void => {},
-    prependOnceListener: (): void => {},
-    listeners: (): unknown[] => [],
-    ...existing,
-  };
-}
-
-// `AbortSignal.timeout(ms)` polyfill. Hermes (RN 0.73) lacks this
-// (added to Node 17.3 / browsers 2022+). Several `@wallet/*` services
-// — most critically `ChallengeAuthClient.getChallenge` — pass
-// `signal: AbortSignal.timeout(10_000)` to fetch(), which evaluates
-// to `undefined(...)` on Hermes and throws "undefined is not a
-// function" mid-login. The polyfill wires AbortController to a
-// setTimeout that calls `.abort()` after `ms` — semantically identical
-// to the spec'd version. Idempotent: if the runtime later gains the
-// API natively, we leave the native one alone.
-if (typeof (AbortSignal as { timeout?: unknown }).timeout !== 'function') {
-  (AbortSignal as { timeout?: (ms: number) => AbortSignal }).timeout = (ms: number): AbortSignal => {
-    const controller = new AbortController();
-    setTimeout(() => {
-      // The DOMException class is provided by RN's polyfill; fall back
-      // to a plain Error if not. The reason is attached to the signal
-      // and surfaces to fetch consumers as `signal.reason`.
-      try {
-        const reason =
-          typeof (globalThis as { DOMException?: typeof DOMException }).DOMException === 'function'
-            ? new DOMException('The operation timed out.', 'TimeoutError')
-            : new Error('The operation timed out.');
-        // Cast: AbortController.abort accepts an unknown reason in
-        // current spec; some older RN typings constrain it.
-        (controller.abort as (r?: unknown) => void)(reason);
-      } catch {
-        controller.abort();
-      }
-    }, ms);
-    return controller.signal;
-  };
-}
-
-// Now — Buffer / process / AbortSignal are all polyfilled, so it's
-// safe to bring up the JSI native crypto bridge. Quick-crypto's JS
-// reads `Buffer` at top-level evaluation; calling install() before
-// the global was set was the 2026-05-03 boot crash root cause.
+// Buffer / process / AbortSignal are now in place (set by
+// polyfills.ts above). The JSI native crypto bridge reads Buffer
+// at top-level, so it could not be `installQuickCrypto()`-d before
+// the polyfills ran.
 installQuickCrypto();
 
 // CRITICAL: install the chrome global stub BEFORE any @wallet/* code is
