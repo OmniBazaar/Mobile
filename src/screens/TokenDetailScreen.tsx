@@ -20,13 +20,55 @@ import React, { useEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
-import { LineChart } from 'react-native-wagmi-charts';
 
 import ScreenHeader from '@components/ScreenHeader';
 import TokenIcon from '@components/TokenIcon';
 import { useRequireAuth } from '@components/RequireAuth';
 import { colors } from '@theme/colors';
 import { logger } from '../utils/logger';
+
+/**
+ * Lazily resolved `LineChart` component from `react-native-wagmi-charts`.
+ *
+ * Why lazy: wagmi-charts pulls in `react-native-redash` which uses
+ * Reanimated worklets. A static `import { LineChart } from
+ * 'react-native-wagmi-charts'` puts the worklet payload in the boot
+ * bundle's evaluation chain (App.tsx → RootNavigator → AppTabs →
+ * WalletStack → TokenDetailScreen). When anything in that chain blows
+ * up, the JS thread dies before AppRegistry registers — the user sees
+ * the splash, then the launcher (the 2026-05-03 reported "crashes at
+ * splash in less than a second"). Lazy-loading via React.lazy +
+ * Suspense quarantines the failure to the screen itself: if the chart
+ * can't render, the screen renders a skeleton instead and the rest of
+ * the app keeps working.
+ */
+const LazyChart = React.lazy(() =>
+  import('react-native-wagmi-charts')
+    .then((mod) => ({
+      default: function ChartWrapper({ data }: { data: PricePoint[] }): React.ReactElement {
+        const Provider = mod.LineChart.Provider;
+        const Chart = mod.LineChart;
+        return (
+          <Provider data={data}>
+            <Chart height={160}>
+              <Chart.Path color={colors.primary} />
+              <Chart.CursorCrosshair color={colors.primary} />
+            </Chart>
+          </Provider>
+        );
+      },
+    }))
+    .catch((err) => {
+      logger.warn('TokenDetailScreen lazy chart failed', {
+        err: err instanceof Error ? err.message : String(err),
+      });
+      return {
+        default: function ChartUnavailable(): React.ReactElement {
+          return <Text style={styles.chartFallback}>—</Text>;
+        },
+      };
+    }),
+);
 
 /** Price-chart point shape consumed by react-native-wagmi-charts. */
 interface PricePoint {
@@ -198,12 +240,15 @@ export default function TokenDetailScreen(
               })}
             </Text>
           ) : (
-            <LineChart.Provider data={history}>
-              <LineChart height={160}>
-                <LineChart.Path color={colors.primary} />
-                <LineChart.CursorCrosshair color={colors.primary} />
-              </LineChart>
-            </LineChart.Provider>
+            <React.Suspense
+              fallback={
+                <Text style={styles.chartFallback}>
+                  {t('tokenDetail.loadingChart', { defaultValue: 'Loading 24-hour chart…' })}
+                </Text>
+              }
+            >
+              <LazyChart data={history} />
+            </React.Suspense>
           )}
         </View>
 

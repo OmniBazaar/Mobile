@@ -23,7 +23,6 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
-      ['react-native-reanimated/plugin'],
       [
         'module-resolver',
         {
@@ -69,6 +68,13 @@ module.exports = function (api) {
           allowUndefined: true,
         },
       ],
+      // Reanimated MUST be the last Babel plugin — it transforms the
+      // worklet factories produced by every preceding pass. With it
+      // listed first (the original config), worklets pulled in by
+      // react-native-wagmi-charts → react-native-redash crashed at
+      // module evaluation and the JS bundle failed to register with
+      // AppRegistry, producing the splash-then-launcher crash.
+      ['react-native-reanimated/plugin'],
     ],
   };
 };
