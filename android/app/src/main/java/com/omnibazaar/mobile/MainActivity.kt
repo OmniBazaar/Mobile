@@ -2,6 +2,7 @@ package com.omnibazaar.mobile
 
 import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
@@ -16,6 +17,25 @@ class MainActivity : ReactActivity() {
     // coloring the background, status bar, and navigation bar.
     // This is required for expo-splash-screen.
     setTheme(R.style.AppTheme);
+
+    // FLAG_SECURE — block screenshots, screen recording, and Cast/Mira
+    // remote-display from capturing any frame of this activity.
+    // Replaces the previous expo-screen-capture approach which crashed
+    // on Android 14 because its eager native init touched
+    // registerScreenCaptureCallback before the user had granted the
+    // DETECT_SCREEN_CAPTURE runtime permission. FLAG_SECURE needs no
+    // runtime permission and works back to API 18, so it's both
+    // simpler and strictly more reliable. Tradeoff: it covers the
+    // entire activity rather than per-screen — but the things we'd
+    // gate per-screen (seed phrase, OTP code, tx review) are exactly
+    // the things that should be blanket-blocked anyway. Confirmed
+    // 2026-05-03 against the boot crash logged in
+    // MOBILE_REMEDIATION_PLAN.md / Sprint 7.4.
+    window.setFlags(
+        WindowManager.LayoutParams.FLAG_SECURE,
+        WindowManager.LayoutParams.FLAG_SECURE,
+    )
+
     super.onCreate(null)
   }
 

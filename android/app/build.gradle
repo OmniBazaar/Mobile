@@ -88,8 +88,8 @@ android {
         applicationId 'com.omnibazaar.mobile'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 4
-        versionName "0.3.2-20260503.0250"
+        versionCode 5
+        versionName "0.3.3-20260503.1200"
 
         buildConfigField("boolean", "REACT_NATIVE_UNSTABLE_USE_RUNTIME_SCHEDULER_ALWAYS", (findProperty("reactNative.unstable_useRuntimeSchedulerAlways") ?: true).toString())
     }

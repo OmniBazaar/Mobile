@@ -48,8 +48,7 @@
         "android.permission.BLUETOOTH",
         "android.permission.BLUETOOTH_ADMIN",
         "android.permission.BLUETOOTH_CONNECT",
-        "android.permission.BLUETOOTH_SCAN",
-        "android.permission.DETECT_SCREEN_CAPTURE"
+        "android.permission.BLUETOOTH_SCAN"
       ]
     },
     "web": {

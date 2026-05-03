@@ -1,81 +1,50 @@
 /**
- * ScreenCaptureGuard — wrapper around `expo-screen-capture` so screens
- * that must NEVER be screenshotted (seed phrase, email-verification
- * code, transaction-review with sensitive amounts) can declaratively
- * lock + unlock capture for the duration of their mount.
+ * ScreenCaptureGuard — currently a no-op (no-screen-capture-protection).
  *
- * iOS: blanks the screenshot of the app in the multitasking switcher
- * and hides screen recording. Android (API 23+): sets FLAG_SECURE on
- * the window so the system-level screenshot button + screen recorders
- * + remote-display tools (Cast, Mira) all see a black frame.
+ * **Why it's a stub right now (2026-05-03):**
  *
- * Sprint 1's seed-backup carried a local stub; Sprint 3 (H8)
- * removes the stub and uses the real native module.
+ * The previous implementation pulled in `expo-screen-capture`. On
+ * Android 14+, expo-modules-core eagerly initialises every linked
+ * expo module via the `NativeUnimoduleProxy` JSI host object — the
+ * lazy `require()` inside this file does NOT change that. expo-
+ * screen-capture's native init calls
+ * `Activity.registerScreenCaptureCallback`, which on API 34 requires
+ * the `DETECT_SCREEN_CAPTURE` runtime permission. Until the user has
+ * granted that permission at runtime, the API throws Java's
+ * `SecurityException` — and because the throw escapes the JSI proxy
+ * BEFORE `AppRegistry.registerComponent` runs, the entire JS bundle
+ * fails to register and the app crashes back to the launcher within a
+ * second of the splash. (Confirmed via two consecutive Pixel-class
+ * device logcats on 2026-05-03.) Adding the manifest permission alone
+ * is not sufficient because the runtime grant isn't possible to
+ * collect before module-init.
+ *
+ * **What replaces it (planned, not yet shipped):** Android's
+ * `FLAG_SECURE` window flag. Set on the Activity at MainActivity
+ * init, it produces the same outcome (blanked screenshot in the
+ * recents view, blocked screen recording on most launchers) without
+ * any runtime permission and without an expo module. iOS already
+ * blanks the multitasking screenshot when an active text input or
+ * sensitive view is shown, but a real solution will use a tiny
+ * config-plugin to wire `Window.addFlags(WindowManager.LayoutParams
+ * .FLAG_SECURE)` on Android and a `UIScreen.captured`-style observer
+ * on iOS. Tracked as `MOBILE_REMEDIATION_PLAN.md` H8 follow-up.
+ *
+ * Until that ships, calling `useScreenCaptureBlocked` is a no-op.
+ * This is a known security regression vs. the planned protection
+ * level — but a *no-op* is strictly safer than a *crash* (the user
+ * can at least back out of the screen, and the original mobile app
+ * before Sprint 3 H8 was in this same state).
  *
  * @module services/ScreenCaptureGuard
  */
 
-import { useEffect } from 'react';
-import { logger } from '../utils/logger';
-
-/** Lazy-load the native module so the test bundle still compiles. */
-async function loadScreenCapture(): Promise<{
-  preventScreenCaptureAsync?: (key?: string) => Promise<void>;
-  allowScreenCaptureAsync?: (key?: string) => Promise<void>;
-}> {
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const mod: unknown = require('expo-screen-capture');
-    if (mod !== undefined && mod !== null && typeof mod === 'object') {
-      return mod as {
-        preventScreenCaptureAsync?: (key?: string) => Promise<void>;
-        allowScreenCaptureAsync?: (key?: string) => Promise<void>;
-      };
-    }
-  } catch (err) {
-    logger.debug('[screen-capture] module unavailable', {
-      err: err instanceof Error ? err.message : String(err),
-    });
-  }
-  return {};
-}
-
 /**
  * Block screenshots + screen recording for the duration this hook is
- * mounted. Releases automatically on unmount.
+ * mounted. Currently a no-op — see module docstring.
  *
- * @param key - Optional debug-tag (used by Expo to track multiple
- *   simultaneous holders so each one releases independently).
+ * @param _key - Reserved; ignored while the guard is stubbed.
  */
-export function useScreenCaptureBlocked(key?: string): void {
-  useEffect(() => {
-    let active = true;
-    void (async () => {
-      const mod = await loadScreenCapture();
-      if (!active || mod.preventScreenCaptureAsync === undefined) return;
-      try {
-        await mod.preventScreenCaptureAsync(key);
-      } catch (err) {
-        logger.warn('[screen-capture] preventScreenCaptureAsync failed', {
-          key,
-          err: err instanceof Error ? err.message : String(err),
-        });
-      }
-    })();
-    return (): void => {
-      active = false;
-      void (async () => {
-        const mod = await loadScreenCapture();
-        if (mod.allowScreenCaptureAsync === undefined) return;
-        try {
-          await mod.allowScreenCaptureAsync(key);
-        } catch (err) {
-          logger.debug('[screen-capture] allowScreenCaptureAsync failed', {
-            key,
-            err: err instanceof Error ? err.message : String(err),
-          });
-        }
-      })();
-    };
-  }, [key]);
+export function useScreenCaptureBlocked(_key?: string): void {
+  // Intentional no-op. See module docstring.
 }
